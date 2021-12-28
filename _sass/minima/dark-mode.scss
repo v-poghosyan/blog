@@ -1,8 +1,7 @@
 $high-emph: rgba(white, 0.87);
-$med-emph: rgba(white, 0.69); //Noicee
+$med-emph: rgba(white, 0.69);
 $low-emph: rgba(white, 0.38);
 $dark-grey : #121212; 
-// $dark-grey : #1F1B24;
 $overlay: mix($dark-grey, white, 95%);
 $overlay-light: mix($dark-grey, white, 90%);
 
@@ -13,6 +12,7 @@ html, body, input, textarea, select, button {
 
 a {
     text-decoration: none !important;
+    font-style: italic !important;
     color: $high-emph !important;
 }
 
@@ -96,7 +96,8 @@ li .post-meta-description {
 }
 
 .site-header {
-border-bottom: 1px solid rgba(1,1,1,0) !important;
+  border-bottom: 1px solid rgba(1,1,1,0) !important;
+  border-top: 5px solid rgba(1,1,1,0) !important;
 }
 
 .site-footer {
@@ -107,8 +108,12 @@ border-bottom: 1px solid rgba(1,1,1,0) !important;
   border: 1px solid rgba(1,1,1,0);
 }
 
-.flex-justify-center {
+.pb-5.d-flex.flex-justify-center {
   justify-content: left !important;
+}
+
+.vega-embed .vega-actions {
+  background-color: $dark-grey;
 }
 
 
