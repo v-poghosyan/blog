@@ -12,7 +12,7 @@ html, body, input, textarea, select, button {
 
 a {
     text-decoration: none !important;
-    font-style: italic !important;
+    font-style: bold !important;
     color: $high-emph !important;
 }
 
@@ -113,7 +113,7 @@ li .post-meta-description {
 }
 
 .vega-embed .vega-actions {
-  background-color: $dark-grey;
+  background-color: $dark-grey !important;
 }
 
 
