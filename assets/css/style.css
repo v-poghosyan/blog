@@ -431,9 +431,11 @@ pre code { font-size: 15px !important; }
 /*----- ADD YOUR STYLES BELOW -------*/
 html, body, input, textarea, select, button { color: rgba(255, 255, 255, 0.87) !important; background-color: #121212 !important; }
 
-a { text-decoration: none !important; font-style: bold !important; color: rgba(255, 255, 255, 0.87) !important; }
+a { text-decoration: none !important; font-weight: bold !important; color: rgba(255, 255, 255, 0.87) !important; }
 
 a:hover { color: #de9240 !important; }
+
+.flash a { color: #121212 !important; }
 
 .site-title, .site-title:visited, .site-nav, .page-link { color: rgba(255, 255, 255, 0.87) !important; }
 
