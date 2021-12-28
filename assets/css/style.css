@@ -477,7 +477,7 @@ li .post-meta-description { color: rgba(255, 255, 255, 0.69) !important; }
 
 .social-media-list li a, .pagination li a { border: 1px solid rgba(1, 1, 1, 0); }
 
-.px-2 { padding-left: 0 !important; }
+.pb-5.d-flex.flex-justify-center .px-2 { padding-left: 0 !important; }
 
 .pb-5.d-flex.flex-justify-center { justify-content: left !important; }
 
