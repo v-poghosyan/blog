@@ -467,4 +467,10 @@ li .post-meta-description { color: rgba(255, 255, 255, 0.69) !important; }
 
 .anchor-link { \-webkit-text-stroke: none !important; }
 
+.site-header { border-bottom: 1px solid rgba(1, 1, 1, 0) !important; }
+
+.site-footer { border-top: 1px solid rgba(1, 1, 1, 0); }
+
+.pagination li a { border: 1px solid rgba(1, 1, 1, 0); }
+
 /*# sourceMappingURL=style.css.map */
