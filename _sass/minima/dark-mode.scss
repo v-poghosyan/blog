@@ -12,12 +12,16 @@ html, body, input, textarea, select, button {
 
 a {
     text-decoration: none !important;
-    font-style: bold !important;
+    font-weight: bold !important;
     color: $high-emph !important;
 }
 
 a:hover {
     color: rgb(222, 146, 64) !important;
+}
+
+.flash a {
+   color: $dark-grey !important;
 }
 
 .site-title, .site-title:visited, .site-nav, .page-link {
