@@ -447,6 +447,8 @@ a:hover { color: #de9240 !important; }
 
 pre, code { border-color: #2a2a2a; background-color: #1e1e1e; }
 
+.highlight-rouge .highlight { background: #1e1e1e !important; }
+
 .page-description { color: rgba(255, 255, 255, 0.69); }
 
 .post-meta { color: rgba(255, 255, 255, 0.38); }
