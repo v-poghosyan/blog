@@ -16,7 +16,7 @@ While still at community college I got my first job as a Software Engineer Inter
 
 In the Summer of 2022 I will be joining the team at [Capital One](https://www.capitalone.com/) as a Software Engineer Intern.
 
-### Social Media
+### 🙋‍♂️ Social Media
 
 For a detailed rundown of my work history, check out my [LinkedIn](https://www.linkedin.com/in/vahrampoghosyan/). 
 
