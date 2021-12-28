@@ -94,3 +94,15 @@ li .post-meta-description {
 .anchor-link {
   \-webkit-text-stroke: none !important;
 }
+
+.site-header {
+border-bottom: 1px solid rgba(1,1,1,0) !important;
+}
+
+.site-footer {
+  border-top: 1px solid rgba(1,1,1,0);
+}
+
+.pagination li a {
+  border: 1px solid rgba(1,1,1,0);
+}
