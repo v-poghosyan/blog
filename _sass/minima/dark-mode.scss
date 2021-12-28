@@ -46,6 +46,10 @@ pre, code {
     background-color: $overlay;
 }
 
+.highlight-rouge .highlight {
+  background: $overlay !important;
+}
+
 .page-description {
     color: $med-emph;
 }
@@ -127,6 +131,3 @@ li .post-meta-description {
 .vega-embed .vega-actions {
   background-color: $dark-grey !important;
 }
-
-
-
