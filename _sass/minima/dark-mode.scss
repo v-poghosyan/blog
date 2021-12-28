@@ -24,6 +24,10 @@ a:hover {
    color: $dark-grey !important;
 }
 
+.site-title a {
+  font-weight: normal !important;
+}
+
 .site-title, .site-title:visited, .site-nav, .page-link {
     color: $high-emph !important;
 }
