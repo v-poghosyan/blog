@@ -13,11 +13,11 @@ html, body, input, textarea, select, button {
 
 a {
     text-decoration: none !important;
-    color: rgb(222, 146, 64) !important;
+    color: $high-emph !important;
 }
 
 a:hover {
-    color:$high-emph !important;
+    color: rgb(222, 146, 64) !important;
 }
 
 .site-title, .site-title:visited, .site-nav, .page-link {
@@ -103,6 +103,13 @@ border-bottom: 1px solid rgba(1,1,1,0) !important;
   border-top: 1px solid rgba(1,1,1,0);
 }
 
-.pagination li a {
+.social-media-list li a, .pagination li a {
   border: 1px solid rgba(1,1,1,0);
 }
+
+.flex-justify-center {
+  justify-content: left !important;
+}
+
+
+
