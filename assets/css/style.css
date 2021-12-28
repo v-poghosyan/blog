@@ -431,7 +431,7 @@ pre code { font-size: 15px !important; }
 /*----- ADD YOUR STYLES BELOW -------*/
 html, body, input, textarea, select, button { color: rgba(255, 255, 255, 0.87) !important; background-color: #121212 !important; }
 
-a { text-decoration: none !important; color: rgba(255, 255, 255, 0.87) !important; }
+a { text-decoration: none !important; font-style: italic !important; color: rgba(255, 255, 255, 0.87) !important; }
 
 a:hover { color: #de9240 !important; }
 
@@ -467,12 +467,14 @@ li .post-meta-description { color: rgba(255, 255, 255, 0.69) !important; }
 
 .anchor-link { \-webkit-text-stroke: none !important; }
 
-.site-header { border-bottom: 1px solid rgba(1, 1, 1, 0) !important; }
+.site-header { border-bottom: 1px solid rgba(1, 1, 1, 0) !important; border-top: 5px solid rgba(1, 1, 1, 0) !important; }
 
 .site-footer { border-top: 1px solid rgba(1, 1, 1, 0); }
 
 .social-media-list li a, .pagination li a { border: 1px solid rgba(1, 1, 1, 0); }
 
-.flex-justify-center { justify-content: left !important; }
+.pb-5.d-flex.flex-justify-center { justify-content: left !important; }
+
+.vega-embed .vega-actions { background-color: #121212; }
 
 /*# sourceMappingURL=style.css.map */
