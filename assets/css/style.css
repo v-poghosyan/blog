@@ -431,7 +431,7 @@ pre code { font-size: 15px !important; }
 /*----- ADD YOUR STYLES BELOW -------*/
 html, body, input, textarea, select, button { color: rgba(255, 255, 255, 0.87) !important; background-color: #121212 !important; }
 
-a { text-decoration: none !important; font-style: italic !important; color: rgba(255, 255, 255, 0.87) !important; }
+a { text-decoration: none !important; font-style: bold !important; color: rgba(255, 255, 255, 0.87) !important; }
 
 a:hover { color: #de9240 !important; }
 
@@ -475,6 +475,6 @@ li .post-meta-description { color: rgba(255, 255, 255, 0.69) !important; }
 
 .pb-5.d-flex.flex-justify-center { justify-content: left !important; }
 
-.vega-embed .vega-actions { background-color: #121212; }
+.vega-embed .vega-actions { background-color: #121212 !important; }
 
 /*# sourceMappingURL=style.css.map */
