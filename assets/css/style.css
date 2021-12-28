@@ -465,4 +465,6 @@ canvas { filter: invert(100%); }
 
 li .post-meta-description { color: rgba(255, 255, 255, 0.69) !important; }
 
+.anchor-link { \-webkit-text-stroke: none !important; }
+
 /*# sourceMappingURL=style.css.map */
