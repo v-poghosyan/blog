@@ -431,9 +431,9 @@ pre code { font-size: 15px !important; }
 /*----- ADD YOUR STYLES BELOW -------*/
 html, body, input, textarea, select, button { color: rgba(255, 255, 255, 0.87) !important; background-color: #121212 !important; }
 
-a { text-decoration: none !important; color: #de9240 !important; }
+a { text-decoration: none !important; color: rgba(255, 255, 255, 0.87) !important; }
 
-a:hover { color: rgba(255, 255, 255, 0.87) !important; }
+a:hover { color: #de9240 !important; }
 
 .site-title, .site-title:visited, .site-nav, .page-link { color: rgba(255, 255, 255, 0.87) !important; }
 
@@ -471,6 +471,8 @@ li .post-meta-description { color: rgba(255, 255, 255, 0.69) !important; }
 
 .site-footer { border-top: 1px solid rgba(1, 1, 1, 0); }
 
-.pagination li a { border: 1px solid rgba(1, 1, 1, 0); }
+.social-media-list li a, .pagination li a { border: 1px solid rgba(1, 1, 1, 0); }
+
+.flex-justify-center { justify-content: left !important; }
 
 /*# sourceMappingURL=style.css.map */
