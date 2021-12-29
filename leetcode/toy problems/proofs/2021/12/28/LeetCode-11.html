@@ -161,6 +161,10 @@ window.onload = wrap_img;
 <ul>
 <li class="toc-entry toc-h2"><a href="#Problem-Statement">Problem Statement </a></li>
 <li class="toc-entry toc-h2"><a href="#Foreword">Foreword </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Proof-of-Correctness">Proof of Correctness </a>
+<ul>
 <li class="toc-entry toc-h2"><a href="#Optimal-Substructure">Optimal Substructure </a></li>
 <li class="toc-entry toc-h2"><a href="#Inductive-Proof">Inductive Proof </a></li>
 </ul>
@@ -245,18 +249,24 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Proof-of-Correctness">
+<a class="anchor" href="#Proof-of-Correctness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Correctness<a class="anchor-link" href="#Proof-of-Correctness"> </a>
+</h1>
 <h2 id="Optimal-Substructure">
 <a class="anchor" href="#Optimal-Substructure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimal Substructure<a class="anchor-link" href="#Optimal-Substructure"> </a>
 </h2>
-<p>The procedure is inspired by the following <a href="https://en.wikipedia.org/wiki/Optimal_substructure#:~:text=In%20computer%20science%2C%20a%20problem,greedy%20algorithms%20for%20a%20problem.">optimal substructure</a> of the problem:</p>
+<p>The procedure is inspired by the following recurisve <a href="https://en.wikipedia.org/wiki/Optimal_substructure#:~:text=In%20computer%20science%2C%20a%20problem,greedy%20algorithms%20for%20a%20problem.">optimal substructure</a> of the problem:</p>
 <p>Let $h(i)$ denote the height of the $i$-th vertical line.</p>
 <p>Let $a(i,j)$ denote the area of the container formed by the pair of vertical lines $(i,j)$.</p>
 <p>Let $maxArea([i:j])$ denote the maximum area formed by the lines $i,...,j$ – that is the output of the procedure on the subarray $[i,j]$.</p>
 <p><strong>Claim:</strong></p>
-<p>The problem has optimal substructure $maxArea([1:n]) = max\{a(1,n), maxArea([2:n])\}$.</p>
+<p>The problem has optimal substructure: 
+
+$$maxArea([1:n]) = max\{a(1,n), maxArea([2:n])\}$$
+</p>
 <p><strong>Proof of Claim:</strong></p>
 <p>For the initial pair $(1,n)$ where, <em>WLOG</em>, $h(1) &lt; h(n)$ we have $a(1,n) &gt; a(1,i)  \ \ \forall k$. This is because we're starting out from the <em>widest container</em> formed by $(1,n)$ and considering containers of decreasing width formed by the pairs $(1, n-1), (1, n-2), ..., (1,2)$. In case $h(k) &gt; h(1)$ for some $1 &lt; k \leq n$ the area of the container formed by $(1,k)$ is still determined by $h(1)$, except now it's less wide. Whereas if $h(k) &lt; h(1)$ the area of the container decreases not only in width but also in height. In both cases we have $a(1,n) &gt; a(1,k)$ which means in general $a(1,n) &gt; a(1, k) \ \ \forall k$. Therefore, we may omit the first vertical line from consideration and consider the subproblem on the indices $2,...,n$. The overall optimal solution will then be $$maxArea([1:n]) = max\{a(1,n), maxArea([2:n])\}$$
-as claimed.</p>
+as was the claim.</p>
 
 </div>
 </div>
@@ -267,7 +277,7 @@ as claimed.</p>
 <h2 id="Inductive-Proof">
 <a class="anchor" href="#Inductive-Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inductive Proof<a class="anchor-link" href="#Inductive-Proof"> </a>
 </h2>
-<p>As with all problems that have a recursive substructure, an inductive proof of correctness is immediately what springs to mind.</p>
+<p>As with all problems that have a recursive optimal substructure, an inductive proof of correctness is immediately what springs to mind.</p>
 <p><strong>Base Case:</strong></p>
 <p>For the case when $n = 2$, $maxArea([1:2]) = max\{a(1,2), maxArea([2:2])\} = a(1,2)$ since $maxArea[2:2] = 0$. This is obviously correct.</p>
 <p><strong>Inductive Step:</strong></p>
