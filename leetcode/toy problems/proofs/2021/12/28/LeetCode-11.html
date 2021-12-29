@@ -8,8 +8,8 @@
 <meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="LeetCode 11 - Container with Most Water" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Proof of correctness of the the two-pointer approach." />
-<meta property="og:description" content="Proof of correctness of the the two-pointer approach." />
+<meta name="description" content="Proof of correctness of the two-pointer approach." />
+<meta property="og:description" content="Proof of correctness of the two-pointer approach." />
 <link rel="canonical" href="https://v-poghosyan.github.io/blog/leetcode/toy%20problems/proofs/2021/12/28/LeetCode-11.html" />
 <meta property="og:url" content="https://v-poghosyan.github.io/blog/leetcode/toy%20problems/proofs/2021/12/28/LeetCode-11.html" />
 <meta property="og:site_name" content="Vahram Poghosyan" />
@@ -20,7 +20,7 @@
 <meta property="twitter:image" content="https://v-poghosyan.github.io/blog/images/container-with-most-water-example.jpg" />
 <meta property="twitter:title" content="LeetCode 11 - Container with Most Water" />
 <script type="application/ld+json">
-{"url":"https://v-poghosyan.github.io/blog/leetcode/toy%20problems/proofs/2021/12/28/LeetCode-11.html","@type":"BlogPosting","headline":"LeetCode 11 - Container with Most Water","dateModified":"2021-12-28T00:00:00-06:00","datePublished":"2021-12-28T00:00:00-06:00","image":"https://v-poghosyan.github.io/blog/images/container-with-most-water-example.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/leetcode/toy%20problems/proofs/2021/12/28/LeetCode-11.html"},"description":"Proof of correctness of the the two-pointer approach.","@context":"https://schema.org"}</script>
+{"url":"https://v-poghosyan.github.io/blog/leetcode/toy%20problems/proofs/2021/12/28/LeetCode-11.html","@type":"BlogPosting","headline":"LeetCode 11 - Container with Most Water","dateModified":"2021-12-28T00:00:00-06:00","datePublished":"2021-12-28T00:00:00-06:00","image":"https://v-poghosyan.github.io/blog/images/container-with-most-water-example.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/leetcode/toy%20problems/proofs/2021/12/28/LeetCode-11.html"},"description":"Proof of correctness of the two-pointer approach.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://v-poghosyan.github.io/blog/feed.xml" title="Vahram Poghosyan" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -106,7 +106,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">LeetCode 11 - Container with Most Water</h1><p class="page-description">Proof of correctness of the the two-pointer approach.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-28T00:00:00-06:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">LeetCode 11 - Container with Most Water</h1><p class="page-description">Proof of correctness of the two-pointer approach.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-28T00:00:00-06:00" itemprop="datePublished">
         Dec 28, 2021
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -198,10 +198,10 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 <a class="anchor" href="#Foreword" aria-hidden="true"><span class="octicon octicon-link"></span></a>Foreword<a class="anchor-link" href="#Foreword"> </a>
 </h2>
 <p>The brute force solution to this problem consists of checking each pair of vertical lines. Since order of any given pair does not matter, this solution has time complexity $O({n \choose 2}) = O(n^2)$ where $n$ is the length of the <code>height</code> array.</p>
-<p>The non-brute-force solution to this problem (i.e. the 'two pointer solution') is pretty intuitive -  the difficulty lies in its proof of correctness. Therefore, I will give away the procedure in this foreword and then proceeed to prove its correctness.</p>
+<p>The non-brute-force solution to this problem (i.e. the 'two pointer solution') is pretty intuitive -  the difficulty lies in its proof of correctness. Therefore, I will give away the procedure in this foreword and then proceed to prove its correctness.</p>
 <p><strong>Here's the procedure:</strong></p>
 <ol>
-<li>Initialize left and right pointers at 1 and n respectively (assuming indexing starting at 1).</li>
+<li>Initialize left and right pointers at 1 and n respectively (assuming indices start at 1).</li>
 <li>While the pointers do not intersect:<ul>
 <li>Fix the pointer whose corresponding vertical line is longer. </li>
 <li>Advance the pointer whose corresponding vertical line is shorter towards the fixed one.</li>
@@ -247,10 +247,11 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The procedure is inspired by the following recursive property of the problem:</p>
+<p>The procedure is inspired by the following <em>optimal substructure</em> of the problem:</p>
 <p>Let $h(i)$ denote the height of the $i$-th vertical line.</p>
-<p>Let $v(i,j)$ denote the volume of the container formed by the pair of vertical lines $(i,j)$.</p>
-<p>For the initial pair $(1,n)$ where, <em>WLOG</em>, $h(1) &lt; h(n)$ we have $v(1,n) &gt; v(1,i)  \ \ \forall i$. This is because we're starting out from the <em>widest container</em> formed by $(1,n)$ and considering containers of decreasing width formed by the pairs $(1, n-1), (1, n-2), ..., (1,2)$. In case $h(k) &gt; h(1)$ for some $1 &lt; k \leq n$ the volume of the container formed by $(1,k)$ is still determined by $h(1)$, except now it's less wide. Whereas if $h(k) &lt; h(1)$ the volume of the container decreases not only in width but also in height. In both cases we have $v(1,n) &gt; v(1,k)$ which means in general $v(1,n) &gt; v(1, i) \ \ \forall i$. Therefore, we may omit the first vertical line from consideration and consider the subproblem on the indices $2,...,n$.</p>
+<p>Let $a(i,j)$ denote the area of the container formed by the pair of vertical lines $(i,j)$.</p>
+<p>Let $maxArea([i:j])$ denote the maximum area formed by the lines $i,...,j$ – that is the output of the procedure on the subarray $[i,j]$.</p>
+<p>For the initial pair $(1,n)$ where, <em>WLOG</em>, $h(1) &lt; h(n)$ we have $a(1,n) &gt; a(1,i)  \ \ \forall i$. This is because we're starting out from the <em>widest container</em> formed by $(1,n)$ and considering containers of decreasing width formed by the pairs $(1, n-1), (1, n-2), ..., (1,2)$. In case $h(k) &gt; h(1)$ for some $1 &lt; k \leq n$ the area of the container formed by $(1,k)$ is still determined by $h(1)$, except now it's less wide. Whereas if $h(k) &lt; h(1)$ the area of the container decreases not only in width but also in height. In both cases we have $a(1,n) &gt; a(1,k)$ which means in general $a(1,n) &gt; a(1, i) \ \ \forall i$. Therefore, we may omit the first vertical line from consideration and consider the subproblem on the indices $2,...,n$. The overall optimal solution will then be $maxArea([1:n]) = max\{a(1,n), maxArea([2:n])\}$.</p>
 
 </div>
 </div>
@@ -261,6 +262,9 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 <h3 id="Inductive-Proof">
 <a class="anchor" href="#Inductive-Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inductive Proof<a class="anchor-link" href="#Inductive-Proof"> </a>
 </h3>
+<p>As with all problems that have a recursive substructure, an inductive proof of correctness is immediately what springs to mind.</p>
+<p><strong>Base Case:</strong></p>
+
 </div>
 </div>
 </div>
