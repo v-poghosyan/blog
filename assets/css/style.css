@@ -437,6 +437,10 @@ a:hover { color: #de9240 !important; }
 
 .flash a { color: #121212 !important; }
 
+.search-result .search-result-title { text-decoration: none !important; color: rgba(255, 255, 255, 0.87) !important; }
+
+.search-result .search-result-highlight { color: #de9240 !important; }
+
 .site-title { font-weight: normal !important; }
 
 .site-title, .site-title:visited, .site-nav, .page-link { color: rgba(255, 255, 255, 0.87) !important; }
