@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      2 min read
     
 </span></p>
 
@@ -160,7 +160,11 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Problem-Statement">Problem Statement </a></li>
-<li class="toc-entry toc-h2"><a href="#Foreword">Foreword </a></li>
+<li class="toc-entry toc-h2"><a href="#Foreword">Foreword </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Inductive-Proof">Inductive Proof </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -184,7 +188,7 @@ window.onload = wrap_img;
 <p>You are given an integer array <code>height</code> of length <code>n</code>. There are <code>n</code> vertical lines drawn such that the two endpoints of the <code>i</code>th line are <code>(i, 0)</code> and <code>(i, height[i])</code>.</p>
 <p>Find two lines that together with the x-axis form a container, such that the container contains the most water.</p>
 <p>Return the maximum amount of water a container can store.</p>
-<p>Example:</p>
+<p><strong>Example:</strong></p>
 <p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg" alt=""></p>
 
 <pre><code>Input: height = [1,8,6,2,5,4,8,3,7]
@@ -193,11 +197,70 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 <h2 id="Foreword">
 <a class="anchor" href="#Foreword" aria-hidden="true"><span class="octicon octicon-link"></span></a>Foreword<a class="anchor-link" href="#Foreword"> </a>
 </h2>
-<p>The brute force solution to this problem consists of checking each pair of vertical lines. Since order of the pair does not matter, this solution has time complexity $O(n \choose 2) = O(n^2)$.</p>
-<p>The non-brute-force solution to this problem (i.e. the 'two pointer solution') is pretty intuitive -  the difficulty lies in its proof of correctness. Therefore, I will give away the solution in this foreword and then proceeed to prove its correctness.</p>
-<p>Here's the solution:</p>
-<p>Initialize left and right pointers as <code>lpt = 1</code> and <code>rpt = n</code> respectively.</p>
+<p>The brute force solution to this problem consists of checking each pair of vertical lines. Since order of any given pair does not matter, this solution has time complexity $O({n \choose 2}) = O(n^2)$ where $n$ is the length of the <code>height</code> array.</p>
+<p>The non-brute-force solution to this problem (i.e. the 'two pointer solution') is pretty intuitive -  the difficulty lies in its proof of correctness. Therefore, I will give away the procedure in this foreword and then proceeed to prove its correctness.</p>
+<p><strong>Here's the procedure:</strong></p>
+<ol>
+<li>Initialize left and right pointers at 1 and n respectively (assuming indexing starting at 1).</li>
+<li>While the pointers do not intersect:<ul>
+<li>Fix the pointer whose corresponding vertical line is longer. </li>
+<li>Advance the pointer whose corresponding vertical line is shorter towards the fixed one.</li>
+</ul>
+</li>
+</ol>
 
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maxArea</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+        <span class="n">lpt</span><span class="p">,</span> <span class="n">rpt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+        <span class="n">max_volume</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">while</span> <span class="n">lpt</span> <span class="o">&lt;</span> <span class="n">rpt</span><span class="p">:</span>
+            <span class="n">shorter</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">lpt</span><span class="p">,</span> <span class="n">rpt</span><span class="p">)</span>
+            <span class="n">max_volume</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_volume</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">lpt</span><span class="p">,</span> <span class="n">rpt</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">lpt</span> <span class="o">-</span> <span class="n">rpt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            
+            
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The procedure is inspired by the following recursive property of the problem:</p>
+<p>Let $h(i)$ denote the height of the $i$-th vertical line.</p>
+<p>Let $v(i,j)$ denote the volume of the container formed by the pair of vertical lines $(i,j)$.</p>
+<p>For the initial pair $(1,n)$ where, <em>WLOG</em>, $h(1) &lt; h(n)$ we have $v(1,n) &gt; v(1,i)  \ \ \forall i$. This is because we're starting out from the <em>widest container</em> formed by $(1,n)$ and considering containers of decreasing width formed by the pairs $(1, n-1), (1, n-2), ..., (1,2)$. In case $h(k) &gt; h(1)$ for some $1 &lt; k \leq n$ the volume of the container formed by $(1,k)$ is still determined by $h(1)$, except now it's less wide. Whereas if $h(k) &lt; h(1)$ the volume of the container decreases not only in width but also in height. In both cases we have $v(1,n) &gt; v(1,k)$ which means in general $v(1,n) &gt; v(1, i) \ \ \forall i$. Therefore, we may omit the first vertical line from consideration and consider the subproblem on the indices $2,...,n$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Inductive-Proof">
+<a class="anchor" href="#Inductive-Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inductive Proof<a class="anchor-link" href="#Inductive-Proof"> </a>
+</h3>
 </div>
 </div>
 </div>
