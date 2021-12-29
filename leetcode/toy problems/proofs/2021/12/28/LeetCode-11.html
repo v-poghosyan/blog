@@ -160,13 +160,27 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Problem-Statement">Problem Statement </a></li>
-<li class="toc-entry toc-h2"><a href="#Foreword">Foreword </a></li>
+<li class="toc-entry toc-h2"><a href="#Foreword">Foreword </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Here's-the-procedure:">Here&#39;s the procedure: </a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#Proof-of-Correctness">Proof of Correctness </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#Optimal-Substructure">Optimal Substructure </a></li>
-<li class="toc-entry toc-h2"><a href="#Inductive-Proof">Inductive Proof </a></li>
+<li class="toc-entry toc-h2"><a href="#Optimal-Substructure">Optimal Substructure </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Claim:">Claim: </a></li>
+<li class="toc-entry toc-h3"><a href="#Proof-of-Claim:">Proof of Claim: </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Inductive-Proof">Inductive Proof </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Base-Case:">Base Case: </a></li>
+<li class="toc-entry toc-h3"><a href="#Inductive-Step:">Inductive Step: </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#Proof-by-Contradiction">Proof by Contradiction </a></li>
 </ul>
 </li>
@@ -202,7 +216,9 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 </h2>
 <p>The brute force solution to this problem consists of checking each pair of vertical lines. Since order of any given pair does not matter, this solution has time complexity $O({n \choose 2}) = O(n^2)$ where $n$ is the length of the <code>height</code> array.</p>
 <p>The non-brute-force solution to this problem (i.e. the 'two pointer solution') is pretty intuitive -  the difficulty lies in its proof of correctness. Therefore, I will give away the procedure in this foreword and then proceed to prove its correctness.</p>
-<p><strong>Here's the procedure:</strong></p>
+<h3 id="Here's-the-procedure:">
+<a class="anchor" href="#Here's-the-procedure:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Here's the procedure:<a class="anchor-link" href="#Here's-the-procedure:"> </a>
+</h3>
 <ol>
 <li>Initialize left and right pointers at 1 and n respectively (assuming indices start at 1).</li>
 <li>While the pointers do not intersect:<ul>
@@ -260,12 +276,16 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 <p>Let $h(i)$ denote the height of the $i$-th vertical line.</p>
 <p>Let $a(i,j)$ denote the area of the container formed by the pair of vertical lines $(i,j)$.</p>
 <p>Let $maxArea([i:j])$ denote the maximum area formed by the lines $i,...,j$ – that is the output of the procedure on the subarray $[i:j]$.</p>
-<p><strong>Claim:</strong></p>
+<h3 id="Claim:">
+<a class="anchor" href="#Claim:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Claim:<a class="anchor-link" href="#Claim:"> </a>
+</h3>
 <p>The problem has optimal substructure: 
 
 $$maxArea([1:n]) = max\{a(1,n), maxArea([2:n])\}$$
 </p>
-<p><strong>Proof of Claim:</strong></p>
+<h3 id="Proof-of-Claim:">
+<a class="anchor" href="#Proof-of-Claim:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Claim:<a class="anchor-link" href="#Proof-of-Claim:"> </a>
+</h3>
 <p>For the initial pair $(1,n)$ where, <em>WLOG</em>, $h(1) &lt; h(n)$ we have $a(1,n) &gt; a(1,i)  \ \ \forall k$. This is because we're starting out from the <em>widest container</em> formed by $(1,n)$ and considering containers of decreasing width formed by the pairs $(1, n-1), (1, n-2), ..., (1,2)$. In case $h(k) &gt; h(1)$ for some $1 &lt; k \leq n$ the area of the container formed by $(1,k)$ is still determined by $h(1)$, except now it's less wide. Whereas if $h(k) &lt; h(1)$ the area of the container decreases not only in width but also in height. In both cases we have $a(1,n) &gt; a(1,k)$ which means in general $a(1,n) &gt; a(1, k) \ \ \forall k$. Therefore, we may omit the first vertical line from consideration and consider the subproblem on the indices $2,...,n$. The overall optimal solution will then be $$maxArea([1:n]) = max\{a(1,n), maxArea([2:n])\}$$
 as was the claim.</p>
 
@@ -279,9 +299,13 @@ as was the claim.</p>
 <a class="anchor" href="#Inductive-Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inductive Proof<a class="anchor-link" href="#Inductive-Proof"> </a>
 </h2>
 <p>As with all problems that have a recursive optimal substructure, an inductive proof of correctness is immediately what springs to mind.</p>
-<p><strong>Base Case:</strong></p>
+<h3 id="Base-Case:">
+<a class="anchor" href="#Base-Case:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Base Case:<a class="anchor-link" href="#Base-Case:"> </a>
+</h3>
 <p>For the case when $n = 2$, $maxArea([1:2]) = max\{a(1,2), maxArea([2:2])\} = a(1,2)$ since $maxArea[2:2] = 0$. This is obviously correct.</p>
-<p><strong>Inductive Step:</strong></p>
+<h3 id="Inductive-Step:">
+<a class="anchor" href="#Inductive-Step:" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inductive Step:<a class="anchor-link" href="#Inductive-Step:"> </a>
+</h3>
 <p>Suppose for an array of length $m$, the procedure $maxArea$ is correct. We would like to show that for an array of length $m+1$ it is still correct.</p>
 <p>Assume, <em>WLOG</em>, $h(1) &lt; h(m+1)$.
 Note that by the optimal substructure shown above, $maxArea([1:m+1]) = max\{a(1,m+1), maxArea([2:m+1])\}$. In omiting the first element of the input array, the only pairs we remove from consideration are $(1,m), (1,m-1),..., (1,2)$ which we have already shown to be suboptimal to $(1,m+1)$ in the proof of optimal substructure. And since by assumption the procedure $maxArea$ on the $m$-element subarray $[2:m+1]$ is correct, we are done!</p>
