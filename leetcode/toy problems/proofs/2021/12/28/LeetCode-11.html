@@ -163,6 +163,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#Foreword">Foreword </a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#The-Procedure">The Procedure </a></li>
+<li class="toc-entry toc-h4"><a href="#The-Code">The Code </a></li>
 </ul>
 </li>
 </ul>
@@ -219,15 +220,20 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 <h4 id="The-Procedure">
 <a class="anchor" href="#The-Procedure" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Procedure<a class="anchor-link" href="#The-Procedure"> </a>
 </h4>
-<ol>
+<p>The following is the overall procedure in words:</p>
+<ul>
 <li>Initialize left and right pointers at 1 and n respectively (assuming indices start at 1).</li>
-<li>While the pointers do not intersect:<ul>
+<li>
+<p>While the pointers do not intersect:</p>
+<ul>
 <li>Fix the pointer whose corresponding vertical line is longer. </li>
 <li>Advance the pointer whose corresponding vertical line is shorter towards the fixed one.</li>
 </ul>
 </li>
-</ol>
-
+</ul>
+<h4 id="The-Code">
+<a class="anchor" href="#The-Code" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Code<a class="anchor-link" href="#The-Code"> </a>
+</h4>
 </div>
 </div>
 </div>
@@ -241,7 +247,9 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#hide-output</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">maxArea</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         
         <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
@@ -260,36 +268,6 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 </div>
 
     </details>
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-2-bd850825019e&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">      1</span> <span class="ansi-red-intense-fg ansi-bold">#collapse-hide</span>
-<span class="ansi-green-fg">      2</span> 
-<span class="ansi-green-intense-fg ansi-bold">----&gt; 3</span><span class="ansi-yellow-intense-fg ansi-bold"> </span><span class="ansi-green-intense-fg ansi-bold">class</span> Solution<span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">      4</span>     <span class="ansi-green-intense-fg ansi-bold">def</span> maxArea<span class="ansi-yellow-intense-fg ansi-bold">(</span>self<span class="ansi-yellow-intense-fg ansi-bold">,</span> height<span class="ansi-yellow-intense-fg ansi-bold">:</span> List<span class="ansi-yellow-intense-fg ansi-bold">[</span>int<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">-&gt;</span> int<span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">      5</span> 
-
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-2-bd850825019e&gt;</span> in <span class="ansi-cyan-fg">Solution</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
-<span class="ansi-green-fg">      2</span> 
-<span class="ansi-green-fg">      3</span> <span class="ansi-green-intense-fg ansi-bold">class</span> Solution<span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-intense-fg ansi-bold">----&gt; 4</span><span class="ansi-yellow-intense-fg ansi-bold">     </span><span class="ansi-green-intense-fg ansi-bold">def</span> maxArea<span class="ansi-yellow-intense-fg ansi-bold">(</span>self<span class="ansi-yellow-intense-fg ansi-bold">,</span> height<span class="ansi-yellow-intense-fg ansi-bold">:</span> List<span class="ansi-yellow-intense-fg ansi-bold">[</span>int<span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">-&gt;</span> int<span class="ansi-yellow-intense-fg ansi-bold">:</span>
-<span class="ansi-green-fg">      5</span> 
-<span class="ansi-green-fg">      6</span>         i<span class="ansi-yellow-intense-fg ansi-bold">,</span> j <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> len<span class="ansi-yellow-intense-fg ansi-bold">(</span>height<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">-</span> <span class="ansi-cyan-intense-fg ansi-bold">1</span>
-
-<span class="ansi-red-intense-fg ansi-bold">NameError</span>: name 'List' is not defined</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     
 
@@ -303,9 +281,17 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 <a class="anchor" href="#Optimal-Substructure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimal Substructure<a class="anchor-link" href="#Optimal-Substructure"> </a>
 </h2>
 <p>The procedure is inspired by the following recurisve <a href="https://en.wikipedia.org/wiki/Optimal_substructure#:~:text=In%20computer%20science%2C%20a%20problem,greedy%20algorithms%20for%20a%20problem.">optimal substructure</a> of the problem:</p>
+<ul>
+<li>
 <p>Let $h(i)$ denote the height of the $i$-th vertical line.</p>
+</li>
+<li>
 <p>Let $a(i,j)$ denote the area of the container formed by the pair of vertical lines $(i,j)$.</p>
+</li>
+<li>
 <p>Let $maxArea([i:j])$ denote the maximum area formed by the lines ${i,...,j}$ – that is the output of the procedure on the subarray ${[i:j]}$.</p>
+</li>
+</ul>
 <h4 id="Claim">
 <a class="anchor" href="#Claim" aria-hidden="true"><span class="octicon octicon-link"></span></a>Claim<a class="anchor-link" href="#Claim"> </a>
 </h4>
@@ -316,7 +302,11 @@ $$maxArea([1:n]) = max\{a(1,n), maxArea([2:n])\}$$
 <h4 id="Proof-of-Claim">
 <a class="anchor" href="#Proof-of-Claim" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Claim<a class="anchor-link" href="#Proof-of-Claim"> </a>
 </h4>
-<p>For the initial pair $(1,n)$ where, <em>WLOG</em>, ${h(1) &lt; h(n)}$ we have ${a(1,n) &gt; a(1,k)  \ \ \forall k}$. This is because we're starting out from the <em>widest container</em> formed by ${(1,n)}$ and considering containers of decreasing width formed by the pairs ${(1, n-1), (1, n-2), ..., (1,2)}$. In case ${h(k) &gt; h(1)}$ for some ${1 &lt; k \leq n}$ the area of the container formed by ${(1,k)}$ is still determined by ${h(1)}$, except now it's less wide. Whereas if ${h(k) &lt; h(1)}$ the area of the container decreases not only in width but also in height. In both cases we have ${a(1,n) &gt; a(1,k)}$ which means in general ${a(1,n) &gt; a(1, k) \ \ \forall k}$. Therefore, we may omit the first vertical line from consideration and consider the subproblem on the indices ${2,...,n}$. The overall optimal solution will then be $$maxArea([1:n]) = max\{a(1,n), maxArea([2:n])\}$$
+<p>For the initial pair $(1,n)$ where, <em>WLOG</em>, ${h(1) &lt; h(n)}$ we have ${a(1,n) &gt; a(1,k)  \ \ \forall k}$. This is because we're starting out from the <em>widest container</em> formed by ${(1,n)}$ and considering containers of decreasing width formed by the pairs ${(1, n-1), (1, n-2), ..., (1,2)}$.</p>
+<p>There are two cases:</p>
+<p>In case ${h(k) &gt; h(1)}$ for some ${1 &lt; k \leq n}$ the area of the container formed by ${(1,k)}$ is still determined by ${h(1)}$, except now it's less wide. Whereas if ${h(k) &lt; h(1)}$ the area of the container decreases not only in width but also in height.</p>
+<p>In both cases we have ${a(1,n) &gt; a(1,k)}$ which means in general ${a(1,n) &gt; a(1, k) \ \ \forall k}$.</p>
+<p>Therefore, we may omit the first vertical line from consideration and consider the subproblem on the indices ${2,...,n}$. The overall optimal solution will then be $$maxArea([1:n]) = max\{a(1,n), maxArea([2:n])\}$$
 as was the claim.</p>
 
 </div>
