@@ -24,6 +24,15 @@ a:hover {
    color: $dark-grey !important;
 }
 
+.search-result .search-result-title {
+  text-decoration: none !important;
+  color: $high-emph !important;
+}
+
+.search-result .search-result-highlight {
+  color: rgb(222, 146, 64) !important;
+}
+
 .site-title {
   font-weight: normal !important;
 }
