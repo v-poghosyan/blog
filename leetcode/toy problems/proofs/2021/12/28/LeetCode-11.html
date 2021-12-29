@@ -214,7 +214,7 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 <h2 id="Foreword">
 <a class="anchor" href="#Foreword" aria-hidden="true"><span class="octicon octicon-link"></span></a>Foreword<a class="anchor-link" href="#Foreword"> </a>
 </h2>
-<p>The brute force solution to this problem consists of checking each pair of vertical lines. Since order of any given pair does not matter, this solution has time complexity $O({n \choose 2}) = O(n^2)$ where $n$ is the length of the <code>height</code> array.</p>
+<p>The brute force solution to this problem consists of checking each pair of vertical lines. Since order of any given pair does not matter, this solution has time complexity ${O({n \choose 2}) = O(n^2)}$ where $n$ is the length of the <code>height</code> array.</p>
 <p>The non-brute-force solution to this problem (i.e. the 'two pointer solution') is pretty intuitive -  the difficulty lies in its proof of correctness. Therefore, I will give away the procedure in this foreword and then proceed to prove its correctness.</p>
 <h4 id="The-Procedure">
 <a class="anchor" href="#The-Procedure" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Procedure<a class="anchor-link" href="#The-Procedure"> </a>
@@ -305,7 +305,7 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 <p>The procedure is inspired by the following recurisve <a href="https://en.wikipedia.org/wiki/Optimal_substructure#:~:text=In%20computer%20science%2C%20a%20problem,greedy%20algorithms%20for%20a%20problem.">optimal substructure</a> of the problem:</p>
 <p>Let $h(i)$ denote the height of the $i$-th vertical line.</p>
 <p>Let $a(i,j)$ denote the area of the container formed by the pair of vertical lines $(i,j)$.</p>
-<p>Let $maxArea([i:j])$ denote the maximum area formed by the lines $i,...,j$ – that is the output of the procedure on the subarray $[i:j]$.</p>
+<p>Let $maxArea([i:j])$ denote the maximum area formed by the lines ${i,...,j}$ – that is the output of the procedure on the subarray ${[i:j]}$.</p>
 <h4 id="Claim">
 <a class="anchor" href="#Claim" aria-hidden="true"><span class="octicon octicon-link"></span></a>Claim<a class="anchor-link" href="#Claim"> </a>
 </h4>
@@ -316,7 +316,7 @@ $$maxArea([1:n]) = max\{a(1,n), maxArea([2:n])\}$$
 <h4 id="Proof-of-Claim">
 <a class="anchor" href="#Proof-of-Claim" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Claim<a class="anchor-link" href="#Proof-of-Claim"> </a>
 </h4>
-<p>For the initial pair $(1,n)$ where, <em>WLOG</em>, $h(1) &lt; h(n)$ we have $a(1,n) &gt; a(1,k)  \ \ \forall k$. This is because we're starting out from the <em>widest container</em> formed by $(1,n)$ and considering containers of decreasing width formed by the pairs $(1, n-1), (1, n-2), ..., (1,2)$. In case $h(k) &gt; h(1)$ for some $1 &lt; k \leq n$ the area of the container formed by $(1,k)$ is still determined by $h(1)$, except now it's less wide. Whereas if $h(k) &lt; h(1)$ the area of the container decreases not only in width but also in height. In both cases we have $a(1,n) &gt; a(1,k)$ which means in general $a(1,n) &gt; a(1, k) \ \ \forall k$. Therefore, we may omit the first vertical line from consideration and consider the subproblem on the indices $2,...,n$. The overall optimal solution will then be $$maxArea([1:n]) = max\{a(1,n), maxArea([2:n])\}$$
+<p>For the initial pair $(1,n)$ where, <em>WLOG</em>, ${h(1) &lt; h(n)}$ we have ${a(1,n) &gt; a(1,k)  \ \ \forall k}$. This is because we're starting out from the <em>widest container</em> formed by ${(1,n)}$ and considering containers of decreasing width formed by the pairs ${(1, n-1), (1, n-2), ..., (1,2)}$. In case ${h(k) &gt; h(1)}$ for some ${1 &lt; k \leq n}$ the area of the container formed by ${(1,k)}$ is still determined by ${h(1)}$, except now it's less wide. Whereas if ${h(k) &lt; h(1)}$ the area of the container decreases not only in width but also in height. In both cases we have ${a(1,n) &gt; a(1,k)}$ which means in general ${a(1,n) &gt; a(1, k) \ \ \forall k}$. Therefore, we may omit the first vertical line from consideration and consider the subproblem on the indices ${2,...,n}$. The overall optimal solution will then be $$maxArea([1:n]) = max\{a(1,n), maxArea([2:n])\}$$
 as was the claim.</p>
 
 </div>
@@ -332,13 +332,13 @@ as was the claim.</p>
 <h4 id="Base-Case">
 <a class="anchor" href="#Base-Case" aria-hidden="true"><span class="octicon octicon-link"></span></a>Base Case<a class="anchor-link" href="#Base-Case"> </a>
 </h4>
-<p>For the case when $n = 2$, $maxArea([1:2]) = max\{a(1,2), maxArea([2:2])\} = a(1,2)$ since $maxArea[2:2] = 0$. This is obviously correct.</p>
+<p>For the case when $n = 2$, ${maxArea([1:2]) = max\{a(1,2), maxArea([2:2])\} = a(1,2)}$ since ${maxArea[2:2] = 0}$. This is obviously correct.</p>
 <h4 id="Inductive-Step">
 <a class="anchor" href="#Inductive-Step" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inductive Step<a class="anchor-link" href="#Inductive-Step"> </a>
 </h4>
 <p>Suppose for an array of length $m$, the procedure $maxArea$ is correct. We would like to show that for an array of length $m+1$ it is still correct.</p>
-<p>Assume, <em>WLOG</em>, $h(1) &lt; h(m+1)$.
-Note that by the optimal substructure shown above, $maxArea([1:m+1]) = max\{a(1,m+1), maxArea([2:m+1])\}$. In omiting the first element of the input array, the only pairs we remove from consideration are $(1,m), (1,m-1),..., (1,2)$ which we have already shown to be suboptimal to $(1,m+1)$ in the proof of optimal substructure. And since by assumption the procedure $maxArea$ on the $m$-element subarray $[2:m+1]$ is correct, we are done!</p>
+<p>Assume, <em>WLOG</em>, ${h(1) &lt; h(m+1)}$.
+Note that by the optimal substructure shown above, ${maxArea([1:m+1]) = max\{a(1,m+1), maxArea([2:m+1])\}}$. In omiting the first element of the input array, the only pairs we remove from consideration are ${(1,m), (1,m-1),..., (1,2)}$ which we have already shown to be suboptimal to ${(1,m+1)}$ in the proof of the optimal substructure. And since by assumption the procedure $maxArea$ on the $m$-element subarray ${[2:m+1]}$ is correct, we are done!</p>
 <h2 id="Proof-by-Contradiction">
 <a class="anchor" href="#Proof-by-Contradiction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof by Contradiction<a class="anchor-link" href="#Proof-by-Contradiction"> </a>
 </h2>
