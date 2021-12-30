@@ -182,7 +182,6 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#Inductive-Step">Inductive Step </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#Proof-by-Contradiction">Proof by Contradiction </a></li>
 </ul>
 </li>
 </ul><!--
@@ -329,10 +328,6 @@ as was the claim.</p>
 <p>Suppose for an array of length $m$, the procedure $maxArea$ is correct. We would like to show that for an array of length $m+1$ it is still correct.</p>
 <p>Assume, <em>WLOG</em>, ${h(1) &lt; h(m+1)}$.
 Note that by the optimal substructure shown above, ${maxArea([1:m+1]) = max\{a(1,m+1), maxArea([2:m+1])\}}$. In omiting the first element of the input array, the only pairs we remove from consideration are ${(1,m), (1,m-1),..., (1,2)}$ which we have already shown to be suboptimal to ${(1,m+1)}$ in the proof of the optimal substructure. And since by assumption the procedure $maxArea$ on the $m$-element subarray ${[2:m+1]}$ is correct, we are done!</p>
-<h2 id="Proof-by-Contradiction">
-<a class="anchor" href="#Proof-by-Contradiction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof by Contradiction<a class="anchor-link" href="#Proof-by-Contradiction"> </a>
-</h2>
-<p>Coming soon...</p>
 
 </div>
 </div>
