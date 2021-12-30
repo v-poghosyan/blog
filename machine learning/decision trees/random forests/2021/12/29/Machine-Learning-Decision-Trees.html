@@ -200,13 +200,13 @@ window.onload = wrap_img;
 <a class="anchor" href="#Decision-Trees" aria-hidden="true"><span class="octicon octicon-link"></span></a>Decision Trees<a class="anchor-link" href="#Decision-Trees"> </a>
 </h2>
 <p><em>Decision trees</em> are one type of classifier among many.</p>
-<p>In the following discussion, for simplicity, we assume binary input and binary output for decision trees. That is, the training set is  ${S = \{(x^1,y^1), ... ,(x^k, y^k)\}}$ with ${x^i \in \{0,1\}^n}$ and ${y^i \in \{0,1\} \ \ \forall i}$. This means that the decision tree itself is simply a binary function which we'll be attempting to learn.</p>
 <p>The nodes of a decision tree correspond to the <em>features</em> of the input and its leaves corrspond to the class labels. The paths in a decision tree corrspond to the <em>conjunction of features</em> that lead to the class labels at its leaves.</p>
 <p>To understand this, let's look at an example of a non-binary decision tree that's nonetheless very easy to understand because of the historical context of the data it's attempting to learn.</p>
 <p><strong>Example:</strong>
 <img src="/blog/images/copied_from_nb/my_icons/decision-tree-example.jpg" alt="" title="Description: Decision tree that predicts the survival chances of the passangers in the Titanic."></p>
-<p>The above decision tree has identified three features that best predict the chances of a given passanger of the Titanic to survive. These three features, in order of their effect on the accurace of the prediction, are <em>gender</em>, <em>age</em>, and <em>sibsp</em> (which is the number of siblings or spouses). The numbers in the leaves correspond to probability of survival.</p>
-<p>As we can infer from the tree, were you a passanger on the Titanic, you woudl've likely survived if you were either female or a male child (below the age of 9.5) with less than 3 siblings (a conjunction of features).</p>
+<p>The above decision tree has identified three features that best predict the chances of a given passanger of the Titanic to survive. These three features, in order of their effect on the accurace of the prediction, are <em>gender</em>, <em>age</em>, and <em>sibsp</em> (which is the number of siblings or spouses).</p>
+<p>As we can infer from the tree, were you a passanger on the Titanic, you would've likely survived if you were either female or a male child (below the age of 9.5) with less than 3 siblings (a conjunction of features).</p>
+<p>In the rest of this article, for simplicity, we will assume binary input and binary output for decision trees. That is, the training set is  ${S = \{(x^1,y^1), ... ,(x^k, y^k)\}}$ with ${x^i \in \{0,1\}^n}$ and ${y^i \in \{0,1\} \ \ \forall i}$. This means that the decision tree itself is simply a binary function which also receives binary input. The task is to learn this function.</p>
 
 </div>
 </div>
