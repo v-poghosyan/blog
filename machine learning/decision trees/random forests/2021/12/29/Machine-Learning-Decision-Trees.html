@@ -183,20 +183,24 @@ window.onload = wrap_img;
 </h2>
 <p>We start our discussion of decision trees with a definition of <em>classification</em> and <em>classifier</em>.</p>
 <blockquote>
-<p>Definition:<strong>Classification</strong> is the process of grouping data into discrete categories (i.e. <strong>class labels</strong>).
-We may contrast this definition with <em>regression</em> which is the process of predicting a <em>continous</em> (i.e. real or complex-valued) output.</p>
+<p>Definition:  <strong>Classification</strong> is the process of grouping data into discrete categories (i.e. <strong>class labels</strong>).<br></p>
 </blockquote>
+<p>We may contrast this definition with <em>regression</em> which is the process of predicting a <em>continous</em> (i.e. real or complex-valued) output.</p>
 <p>A common example of a classification problem is the sorting of emails into the binary categories of <em>'spam'</em> and <em>'not spam'</em>. However, the labels in a classification problem need not be binary — they may be any discrete set. Whereas a common example of regression is learning a linear (or a non-linear) function that best fits a given dataset. 
 </p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
     <strong>Note: </strong>The line between classification and regression is sometimes blurred. For instance, <em>logistic regression</em> is a regression algorithm which outputs a prediction in the continous probability range $[0,1]$. It’s commonly used with a <em>decision rule</em> which casts its output into discrete classes. Thus, even though it’s a regression algorithm, it can easily be converted into a classification algorithm.
-</div>&gt; Definition:A <strong>classifier</strong> is any algorithm that performs classification.
+</div>
+<br>
+<blockquote>
+<p>Definition:  A <strong>classifier</strong> is any algorithm that performs classification.<br></p>
+</blockquote>
 <h2 id="Decision-Trees">
 <a class="anchor" href="#Decision-Trees" aria-hidden="true"><span class="octicon octicon-link"></span></a>Decision Trees<a class="anchor-link" href="#Decision-Trees"> </a>
 </h2>
-<p><em>Decision trees</em> are one type of classifier among many. In the following discussion, for simplicity, we assume binary input and binary output for decision trees. That is, the training set is  ${S = \{(x^1,y^1), ... ,(x^k, y^k)\}$ with $x^i \in \{0,1\}^n$ and $y^i \in \{0,1\} \ \ \forall i}$ and the decision tree itself is simply a binary function. The nodes of a decision tree correspond to the <em>features</em> of the input and its leaves corrspond to the class labels. Its paths corrspond to the <em>conjunction of features</em> that lead to the class labels at the leaves.</p>
-<p>To understand this, let's look at an example of a non-binary decision tree that's nonetheles very simple to understand because of the historical context of the data.</p>
+<p><em>Decision trees</em> are one type of classifier among many. In the following discussion, for simplicity, we assume binary input and binary output for decision trees. That is, the training set is  ${S = \{(x^1,y^1), ... ,(x^k, y^k)\}}$ with ${x^i \in \{0,1\}^n}$ and ${y^i \in \{0,1\} \ \ \forall i}$ and the decision tree itself is simply a binary function. The nodes of a decision tree correspond to the <em>features</em> of the input and its leaves corrspond to the class labels. Its paths corrspond to the <em>conjunction of features</em> that lead to the class labels at the leaves.</p>
+<p>To understand this, let's look at an example of a non-binary decision tree that's nonetheless very easy to understand because of the historical context of the data it's attempting to learn.</p>
 
 </div>
 </div>
