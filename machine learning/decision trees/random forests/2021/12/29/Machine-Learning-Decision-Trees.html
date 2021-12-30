@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      2 min read
     
 </span></p>
 
@@ -190,7 +190,7 @@ window.onload = wrap_img;
 </p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>The line between classification and regression is sometimes blurred. For instance, <em>logistic regression</em> is a regression algorithm which outputs a prediction in the continous probability range $[0,1]$. It’s commonly used with a <em>decision rule</em> which casts its output into discrete classes. Thus, even though it’s a regression algorithm, it can easily be converted into a classification algorithm.
+    <strong>Note: </strong>The line between classification and regression is sometimes blurred. For instance, <em>logistic regression</em> is a regression algorithm which outputs a prediction in the continous probability range $[0,1]$. It’s commonly used with a <em>decision rule</em> which casts its output into discrete classes. Thus, even though it’s a regression algorithm, it can easily be converted into a classification algorithm and is often used for classification problems in practice.
 </div>
 <br>
 <blockquote>
@@ -204,7 +204,9 @@ window.onload = wrap_img;
 <p>The nodes of a decision tree correspond to the <em>features</em> of the input and its leaves corrspond to the class labels. The paths in a decision tree corrspond to the <em>conjunction of features</em> that lead to the class labels at its leaves.</p>
 <p>To understand this, let's look at an example of a non-binary decision tree that's nonetheless very easy to understand because of the historical context of the data it's attempting to learn.</p>
 <p><strong>Example:</strong>
-<img src="/blog/images/copied_from_nb/my_icons/decision-tree-example.jpg" alt="" title="Decision tree that predicts the survival chances of the passangers in the Titanic."></p>
+<img src="/blog/images/copied_from_nb/my_icons/decision-tree-example.jpg" alt="" title="Description: Decision tree that predicts the survival chances of the passangers in the Titanic."></p>
+<p>The above decision tree has identified three features that best predict the chances of a given passanger of the Titanic to survive. These three features, in order of their effect on the accurace of the prediction, are <em>gender</em>, <em>age</em>, and <em>sibsp</em> (which is the number of siblings or spouses). The numbers in the leaves correspond to probability of survival.</p>
+<p>As we can infer from the tree, were you a passanger on the Titanic, you woudl've likely survived if you were either female or a male child (below the age of 9.5) with less than 3 siblings (a conjunction of features).</p>
 
 </div>
 </div>
