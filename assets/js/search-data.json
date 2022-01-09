@@ -14,7 +14,7 @@
     
         ,"post1": {
             "title": "Python for Machine Learning - Loading Data with Pandas",
-            "content": "Importing Pandas . Pandas is a library that contains pre-written code to help wrangle with data. We can think of it as Python&#39;s equivalent of Excel. . We import Pandas into our development environment as we import any other library — using the import command. . import pandas . This gives us access to a vast array of pre-built classes and functions which are details in the documentation. . Classes and Functions .",
+            "content": "Importing Pandas . Pandas is a library that contains pre-written code to help wrangle with data. We can think of it as Python&#39;s equivalent of Excel. . We import Pandas into our development environment as we import any other library — using the import command. . import pandas . This gives us access to a vast array of pre-built classes and functions which are details in the API reference. . Commonly Used API .",
             "url": "https://v-poghosyan.github.io/blog/python%20for%20ml/pandas/machine%20learning/2021/12/28/Python-for-ML-Loading-Data-with-Pandas.html",
             "relUrl": "/python%20for%20ml/pandas/machine%20learning/2021/12/28/Python-for-ML-Loading-Data-with-Pandas.html",
             "date": " • Dec 28, 2021"
