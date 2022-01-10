@@ -437,7 +437,7 @@ a:hover { color: #de9240 !important; }
 
 .flash a { color: #121212 !important; }
 
-.flash code { background-color: #8dabc7 !important; }
+.flash code { background-color: #8dabc7 !important; border-color: #375066 !important; }
 
 .search-result .search-result-title { text-decoration: none !important; color: rgba(255, 255, 255, 0.87) !important; }
 
