@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      2 min read
     
 </span></p>
 
@@ -160,7 +160,11 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#Importing-Pandas">Importing Pandas </a></li>
 <li class="toc-entry toc-h1"><a href="#Common-Pandas-Features">Common Pandas Features </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#Two-Underlying-Data-Types">Two Underlying Data Types </a></li>
+<li class="toc-entry toc-h2"><a href="#Two-Underlying-Data-Types">Two Underlying Data Types </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Series">Series </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#Loading-Data">Loading Data </a></li>
 </ul>
 </li>
@@ -200,7 +204,10 @@ window.onload = wrap_img;
 <h2 id="Two-Underlying-Data-Types">
 <a class="anchor" href="#Two-Underlying-Data-Types" aria-hidden="true"><span class="octicon octicon-link"></span></a>Two Underlying Data Types<a class="anchor-link" href="#Two-Underlying-Data-Types"> </a>
 </h2>
-<p>The basic unit of Pandas is the <code>pandas.Series</code> object which, on first siin keeping with the Excel analogy, can be thought of as a column in an Excel table. It's a one-dimensional data structure that's derived from a <a href="https://numpy.org/">Numpy</a> array. However, unlike a Numpy array, the indices of a <code>Series</code> object aren't limited to the integer values $0,1,...n$ — they can be labels.</p>
+<h3 id="Series">
+<a class="anchor" href="#Series" aria-hidden="true"><span class="octicon octicon-link"></span></a>Series<a class="anchor-link" href="#Series"> </a>
+</h3>
+<p>The basic unit of Pandas is the <code>pandas.Series</code> object which, in keeping with the Excel analogy, can be thought of as a column in an Excel table. It's a one-dimensional data structure that's derived from a <a href="https://numpy.org/">Numpy</a> array. However, unlike a Numpy array, the indices of a <code>Series</code> object aren't limited to the integer values $0,1,...n$ — they can also be descriptive labels.</p>
 <p>Let's create a <code>Series</code> object representing the populations of the G-7 countries.</p>
 
 </div>
@@ -213,7 +220,8 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_population</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">35</span><span class="p">,</span><span class="mi">63</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">318</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">g7_pop</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">35</span><span class="p">,</span><span class="mi">63</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">318</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -226,7 +234,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To check it's data type, we can do the following:</p>
+<p>Indexing into a <code>Series</code> object is similar to indexing a Python list. For instance, let's print the first element in the above series.</p>
 
 </div>
 </div>
@@ -238,10 +246,245 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_population</span><span class="o">.</span><span class="n">dtype</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>35</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To check the data type of a <code>Series</code> object, we can use the <code>dtype</code> property.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>dtype('int64')</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's swap out the integer-based indices with descriptive labels. Each <code>Series</code> object has an <code>index</code> property that can be overwritten.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'Canada'</span><span class="p">,</span>
+    <span class="s1">'France'</span><span class="p">,</span>
+    <span class="s1">'Germany'</span><span class="p">,</span>
+    <span class="s1">'Italy'</span><span class="p">,</span>
+    <span class="s1">'Japan'</span><span class="p">,</span>
+    <span class="s1">'UK'</span><span class="p">,</span>
+    <span class="s1">'US'</span>
+<span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, we can print the first element of the series using its descriptive label.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="p">[</span><span class="s1">'Canada'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>35</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We may notice a similarity between a standard Python dictionary and a labeled <code>Series</code> object. Namely, indexing a series with a label and keying into a Python dictionary share a similar syntax. In fact, it's possible to create a labeled <code>Series</code> object directly from a Python dictionary.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
+    <span class="s1">'Canada'</span> <span class="p">:</span> <span class="mi">35</span><span class="p">,</span>
+    <span class="s1">'France'</span> <span class="p">:</span> <span class="mi">63</span><span class="p">,</span>
+    <span class="s1">'Germany'</span> <span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+    <span class="s1">'Italy'</span> <span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="s1">'Japan'</span> <span class="p">:</span> <span class="mi">127</span><span class="p">,</span>
+    <span class="s1">'UK'</span> <span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+    <span class="s1">'US'</span> <span class="p">:</span> <span class="mi">318</span>
+<span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>In the event of overwritting the number-based indices, it’s still possible to access the elements of a <code>Series</code> sequentially using the <code>iloc</code> property (short for "integer location") like so: <code>g7_pop.iloc[0]</code>.
+</div>
+Since the <code>Series</code> object is based on a Numpy array, it supports multi-indexing, as well as broadcasted (i.e. element-wise) and vectorized operations.
+<p>For instance, to print the populations of Canada and Germany at the same time, we can do:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="p">[</span><span class="s1">'Canada'</span><span class="p">,</span><span class="s1">'Germany'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">KeyError</span>                                  Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">~\AppData\Local\Temp/ipykernel_9988/479734681.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>g7_pop<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">'Canada'</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-blue-intense-fg ansi-bold">'Germany'</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">]</span>
+
+<span class="ansi-green-intense-fg ansi-bold">C:\ProgramData\Miniconda3\envs\machine-learning\lib\site-packages\pandas\core\series.py</span> in <span class="ansi-cyan-fg">__getitem__</span><span class="ansi-blue-intense-fg ansi-bold">(self, key)</span>
+<span class="ansi-green-fg">    964</span>             <span class="ansi-green-intense-fg ansi-bold">return</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_get_values<span class="ansi-yellow-intense-fg ansi-bold">(</span>key<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    965</span> 
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 966</span><span class="ansi-yellow-intense-fg ansi-bold">         </span><span class="ansi-green-intense-fg ansi-bold">return</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_get_with<span class="ansi-yellow-intense-fg ansi-bold">(</span>key<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    967</span> 
+<span class="ansi-green-fg">    968</span>     <span class="ansi-green-intense-fg ansi-bold">def</span> _get_with<span class="ansi-yellow-intense-fg ansi-bold">(</span>self<span class="ansi-yellow-intense-fg ansi-bold">,</span> key<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+
+<span class="ansi-green-intense-fg ansi-bold">C:\ProgramData\Miniconda3\envs\machine-learning\lib\site-packages\pandas\core\series.py</span> in <span class="ansi-cyan-fg">_get_with</span><span class="ansi-blue-intense-fg ansi-bold">(self, key)</span>
+<span class="ansi-green-fg">    979</span>             )
+<span class="ansi-green-fg">    980</span>         <span class="ansi-green-intense-fg ansi-bold">elif</span> isinstance<span class="ansi-yellow-intense-fg ansi-bold">(</span>key<span class="ansi-yellow-intense-fg ansi-bold">,</span> tuple<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 981</span><span class="ansi-yellow-intense-fg ansi-bold">             </span><span class="ansi-green-intense-fg ansi-bold">return</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_get_values_tuple<span class="ansi-yellow-intense-fg ansi-bold">(</span>key<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    982</span> 
+<span class="ansi-green-fg">    983</span>         <span class="ansi-green-intense-fg ansi-bold">elif</span> <span class="ansi-green-intense-fg ansi-bold">not</span> is_list_like<span class="ansi-yellow-intense-fg ansi-bold">(</span>key<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+
+<span class="ansi-green-intense-fg ansi-bold">C:\ProgramData\Miniconda3\envs\machine-learning\lib\site-packages\pandas\core\series.py</span> in <span class="ansi-cyan-fg">_get_values_tuple</span><span class="ansi-blue-intense-fg ansi-bold">(self, key)</span>
+<span class="ansi-green-fg">   1014</span> 
+<span class="ansi-green-fg">   1015</span>         <span class="ansi-green-intense-fg ansi-bold">if</span> <span class="ansi-green-intense-fg ansi-bold">not</span> isinstance<span class="ansi-yellow-intense-fg ansi-bold">(</span>self<span class="ansi-yellow-intense-fg ansi-bold">.</span>index<span class="ansi-yellow-intense-fg ansi-bold">,</span> MultiIndex<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1016</span><span class="ansi-yellow-intense-fg ansi-bold">             </span><span class="ansi-green-intense-fg ansi-bold">raise</span> KeyError<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">"key of type tuple not found and not a MultiIndex"</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">   1017</span> 
+<span class="ansi-green-fg">   1018</span>         <span class="ansi-red-intense-fg ansi-bold"># If key is contained, would have returned by now</span>
+
+<span class="ansi-red-intense-fg ansi-bold">KeyError</span>: 'key of type tuple not found and not a MultiIndex'</pre>
+</div>
+</div>
+
 </div>
 </div>
 
