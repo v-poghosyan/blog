@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      4 min read
+      6 min read
     
 </span></p>
 
@@ -167,7 +167,12 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Filtering">Filtering </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#DataFrame">DataFrame </a></li>
+<li class="toc-entry toc-h2"><a href="#DataFrame">DataFrame </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Common-Methods">Common Methods </a></li>
+<li class="toc-entry toc-h3"><a href="#Indexing">Indexing </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -380,9 +385,33 @@ window.onload = wrap_img;
     <span class="s1">'UK'</span> <span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
     <span class="s1">'US'</span> <span class="p">:</span> <span class="mi">318</span>
 <span class="p">})</span>
+<span class="n">g7_pop</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Canada      35
+France      63
+Germany     80
+Italy       60
+Japan      127
+UK          64
+US         318
+dtype: int64</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -482,7 +511,7 @@ dtype: int64</pre>
 <p>Since it's based on a NumPy array, a <code>Series</code> object also supports vectorization and broadcasted operations.</p>
 <p>As a quick reminder, <em>vectorization</em> is the process by which NumPy optimizes looping in Python. It stores the array internally in a contiguous block of memory and restricts its contents to only one data type. Letting Python know this data type in advance, NumPy can then skip the per-iteration type checking that Python normally does in order to speed up our code. In fact, NumPy delegates most of the operations on such optimized arrays to pre-written C code under the hood.</p>
 <p><em>Broadcasting</em>, on the other hand, is the optimized process by which NumPy performs arithmetic and Boolean operations on arrays of unequal dimensions.</p>
-<p>For instance, suppose the projected population growth of each G-7 country <code>10 mln</code> by the year 2030. Instead of looping through the <code>Series</code> object and adding <code>10</code> to each row, or using a list comprehension, we can simply use broadcasted addition.</p>
+<p>For instance, suppose the projected population growth of each G-7 country is <code>10 mln</code> by the year 2030. Instead of looping through the <code>Series</code> object and adding <code>10</code> to each row or using a list comprehension, we can simply use broadcasted addition.</p>
 
 </div>
 </div>
@@ -535,7 +564,7 @@ dtype: int64</pre>
 <a class="anchor" href="#Filtering" aria-hidden="true"><span class="octicon octicon-link"></span></a>Filtering<a class="anchor-link" href="#Filtering"> </a>
 </h3>
 <p>Thanks to broadcasted Boolean operations and multi-indexing with a Boolean mask, it's possible to write concise and readable filtering expressions on <code>Series</code>.</p>
-<p>For instance, let's return the list of countries with a population over <code>80 mln</code>.</p>
+<p>For instance, let's return the list of countries with a population over <code>70 mln</code>.</p>
 
 </div>
 </div>
@@ -626,9 +655,254 @@ dtype: int64</pre>
 <h2 id="DataFrame">
 <a class="anchor" href="#DataFrame" aria-hidden="true"><span class="octicon octicon-link"></span></a>DataFrame<a class="anchor-link" href="#DataFrame"> </a>
 </h2>
-<p>DataFrame is</p>
-<p>Reading a CSV into a DataFrame is done through the <code>pandas.read_csv()</code> command.</p>
+<p>Each <code>DataFrame</code> is composed of one or more <code>Series</code>. Whereas a <code>Series</code> is analogous to a column of an Excel table, a <code>DataFrame</code> is analogous to the table itself.</p>
+<p>The <code>DataFrame</code> constructor accepts a variety of input types, among them an ndarray and a dictionary.<br>
+If we're passing an ndarray, it becomes necessary to specify the column labels separately. Additionally, we may overwrite the integer-based indexing as we did with the <code>Series</code> object.</p>
 
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'R1'</span><span class="p">,</span><span class="s1">'R2'</span><span class="p">,</span><span class="s1">'R3'</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'C1'</span><span class="p">,</span> <span class="s1">'C2'</span><span class="p">,</span> <span class="s1">'C3'</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>C1</th>
+      <th>C2</th>
+      <th>C3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>R1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>R2</th>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>R3</th>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We may bypass specifying columns manually by passing in a dictionary instead:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'C1'</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="s1">'C2'</span> <span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="s1">'C3'</span> <span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'R1'</span><span class="p">,</span><span class="s1">'R2'</span><span class="p">,</span><span class="s1">'R3'</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>C1</th>
+      <th>C2</th>
+      <th>C3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>R1</th>
+      <td>1</td>
+      <td>4</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>R2</th>
+      <td>2</td>
+      <td>5</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>R3</th>
+      <td>3</td>
+      <td>6</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>Whereas in a <code>Series</code> the keys of the input dictionary were the row labels, in a <code>DataFrame</code> they’re the column labels.
+</div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In practice we often create a <code>DataFrame</code> from a CSV file using the <code>pandas.read_csv()</code> method like so:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">csv_path</span> <span class="o">=</span> <span class="s1">'file.csv'</span> <span class="c1">#Stores the path to a CSV</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pandas also supports reading an Excel file into a <code>DataFrame</code> using the <code>pandas.read_excel()</code> method.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Common-Methods">
+<a class="anchor" href="#Common-Methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Common Methods<a class="anchor-link" href="#Common-Methods"> </a>
+</h3>
+<p>Here are the common <code>DataFrame</code> methods that we should keep in our toolbox. These methods gives us an overview of our data, and help us clean it up.</p>
+<ul>
+<li>
+<code>df.head()</code> shows, by default, the first 5 rows of the dataset. Accepts an integer parameter for the number of rows to display.</li>
+<li>
+<code>df.info()</code> gives a bird's eye overview of the dataset by showing the total rows/columns, the number of non-null datapoints, and the data types.</li>
+<li>
+<code>df.describe()</code> returns statistically significant values for each column such as, the mean, standard deviation, minimum, and maximum values.</li>
+<li>
+<code>df.shape</code> - returns the dimension of the dataset as an $(m,n)$ tuple.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Indexing">
+<a class="anchor" href="#Indexing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Indexing<a class="anchor-link" href="#Indexing"> </a>
+</h3>
 </div>
 </div>
 </div>
