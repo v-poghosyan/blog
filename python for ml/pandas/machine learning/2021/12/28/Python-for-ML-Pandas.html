@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      8 min read
+      11 min read
     
 </span></p>
 
@@ -172,6 +172,8 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Common-Methods">Common Methods </a></li>
 <li class="toc-entry toc-h3"><a href="#Indexing">Indexing </a></li>
 <li class="toc-entry toc-h3"><a href="#Filtering">Filtering </a></li>
+<li class="toc-entry toc-h3"><a href="#Adding,-Dropping,-and-Renaming-Columns">Adding, Dropping, and Renaming Columns </a></li>
+<li class="toc-entry toc-h3"><a href="#Manipulating-Columns">Manipulating Columns </a></li>
 </ul>
 </li>
 </ul>
@@ -999,7 +1001,7 @@ dtype: int64</pre>
 <p></p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>We may optionally pass <code>header = None</code> as an attribute to <code>read_csv()</code> after <code>csv_path</code> if the first row of the CSV file itself is a data point, and not a header.  
+    <strong>Note: </strong>We may optionally pass <code>header = None</code> as an attribute to <code>read_csv()</code> after <code>csv_path</code> if the first row of the CSV file itself is a data point, and not a header.
 </div>
 <div class="flash flash-success">
     <svg class="octicon octicon-checklist" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path></svg>
@@ -1382,7 +1384,7 @@ Name: GDP, dtype: float64</pre>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If we're only interested in the population and GDP of the first three countries, then we could instead do:</p>
+<p>If we're only interested in the population and GDP of the first three countries, then we could instead do the following:</p>
 
 </div>
 </div>
@@ -1462,7 +1464,7 @@ Name: GDP, dtype: float64</pre>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Or more concisely:</p>
+<p>Noting that <code>loc</code> accepts two inputs, one for the selection of rows and one for columns, we can achieve the above more concisely as follows:</p>
 
 </div>
 </div>
@@ -1589,8 +1591,778 @@ Name: GDP, dtype: float64</pre>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As additional exercise, suppose we are only interested in the population of countries that are smaller than</p>
+<p>As additional exercise, suppose we are only interested in the population and GDP of countries that are smaller than <code>1.0 mln</code> square kilometers.</p>
 
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">g7_df</span><span class="p">[</span><span class="s1">'Surface Area'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Population'</span><span class="p">,</span><span class="s1">'GDP'</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Adding,-Dropping,-and-Renaming-Columns">
+<a class="anchor" href="#Adding,-Dropping,-and-Renaming-Columns" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding, Dropping, and Renaming Columns<a class="anchor-link" href="#Adding,-Dropping,-and-Renaming-Columns"> </a>
+</h3>
+<p>Let's add a <code>'Languages'</code> column to <code>g7_df</code>. We simply follow the same syntax as adding a key to a dictionary...</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">languages</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
+    <span class="s1">'Canada'</span> <span class="p">:</span> <span class="s1">'French, English'</span><span class="p">,</span>
+    <span class="s1">'France'</span> <span class="p">:</span> <span class="s1">'French'</span><span class="p">,</span>
+    <span class="s1">'Germany'</span> <span class="p">:</span> <span class="s1">'German'</span><span class="p">,</span>
+    <span class="s1">'Italy'</span> <span class="p">:</span> <span class="s1">'Italian'</span><span class="p">,</span>
+    <span class="s1">'Japan'</span> <span class="p">:</span> <span class="s1">'Japanese'</span><span class="p">,</span>
+    <span class="s1">'UK'</span> <span class="p">:</span> <span class="s1">'English'</span><span class="p">,</span>
+    <span class="s1">'US'</span> <span class="p">:</span> <span class="s1">'English'</span>
+<span class="p">})</span>
+<span class="c1"># Next, we add the series as a column to the DataFrame</span>
+<span class="n">g7_df</span><span class="p">[</span><span class="s1">'Languages'</span><span class="p">]</span> <span class="o">=</span> <span class="n">languages</span>
+<span class="n">g7_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+      <th>Languages</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+      <td>French, English</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+      <td>French</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+      <td>German</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+      <td>0.3</td>
+      <td>Italian</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+      <td>Japanese</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+      <td>English</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+      <td>English</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also drop a column or a row using the <code>drop()</code> method.</p>
+<p>Let's drop the newly created <code>'Languages'</code> column. To drop a coulumn, we specify a <code>columns</code> attribute in the <code>drop()</code> method like so:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">'Languages'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The method <code>drop()</code> returns a new <code>DataFrame</code> which does not contain the unneeded column, but the original <code>g7_df</code> still contains this column. To prove this, let's print it:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+      <th>Languages</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+      <td>French, English</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+      <td>French</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+      <td>German</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+      <td>0.3</td>
+      <td>Italian</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+      <td>Japanese</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+      <td>English</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+      <td>English</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we can see the <code>'Languages'</code> column is still there. The solution is to specify an <code>inplace = True</code> attribute so that the column is dropped in-place.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">'Languages'</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">g7_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In order to drop rows, we specify the <code>index</code> attribute instead. Suppose we want to remove Canada and  Italy from the dataset.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Canada'</span><span class="p">,</span> <span class="s1">'Italy'</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is also possible to rename a column or a row using the <code>rename()</code> method.</p>
+<p>Suppose we'd like to rename the columns to include the units of measurement, and suppose we'd also like to expand the UK and US to their full names.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'Population'</span> <span class="p">:</span> <span class="s1">'Population (mln)'</span><span class="p">,</span>
+        <span class="s1">'GDP'</span> <span class="p">:</span> <span class="s1">'GDP (USD)'</span><span class="p">,</span>
+        <span class="s1">'Surface Area'</span> <span class="p">:</span> <span class="s1">'Surface Area (mln sq. km)'</span>
+    <span class="p">},</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'UK'</span> <span class="p">:</span> <span class="s1">'United Kingdom'</span><span class="p">,</span>
+        <span class="s1">'US'</span> <span class="p">:</span> <span class="s1">'United States'</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population (mln)</th>
+      <th>GDP (USD)</th>
+      <th>Surface Area (mln sq. km)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>United Kingdom</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>United States</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Manipulating-Columns">
+<a class="anchor" href="#Manipulating-Columns" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manipulating Columns<a class="anchor-link" href="#Manipulating-Columns"> </a>
+</h3>
 </div>
 </div>
 </div>
