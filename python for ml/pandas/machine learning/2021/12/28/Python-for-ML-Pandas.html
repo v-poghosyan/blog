@@ -171,6 +171,7 @@ window.onload = wrap_img;
 <ul>
 <li class="toc-entry toc-h3"><a href="#Common-Methods">Common Methods </a></li>
 <li class="toc-entry toc-h3"><a href="#Indexing">Indexing </a></li>
+<li class="toc-entry toc-h3"><a href="#Filtering">Filtering </a></li>
 </ul>
 </li>
 </ul>
@@ -999,7 +1000,11 @@ dtype: int64</pre>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
     <strong>Note: </strong>We may optionally pass <code>header = None</code> as an attribute to <code>read_csv()</code> after <code>csv_path</code> if the first row of the CSV file itself is a data point, and not a header.  
-</div>&gt; Info:Pandas also supports reading an Excel file into a <code>DataFrame</code> using the <code>pandas.read_excel()</code> method.
+</div>
+<div class="flash flash-success">
+    <svg class="octicon octicon-checklist" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path></svg>
+    <strong>Tip: </strong>Pandas also supports reading an Excel file into a <code>DataFrame</code> using the <code>pandas.read_excel()</code> method.
+</div>
 
 </div>
 </div>
@@ -1292,7 +1297,7 @@ Name: GDP, dtype: float64</pre>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If we want to index rows, however, we must use the <code>'loc'</code> or <code>'iloc'</code> methods.</p>
+<p>If we want to index rows, however, we must use the <code>loc</code> or <code>iloc</code> methods.</p>
 <p>For instance, say we are interested in the population, GDP, and surface area of only the first three countries. We could query the dataset like so:</p>
 
 </div>
@@ -1534,6 +1539,61 @@ Name: GDP, dtype: float64</pre>
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Filtering">
+<a class="anchor" href="#Filtering" aria-hidden="true"><span class="octicon octicon-link"></span></a>Filtering<a class="anchor-link" href="#Filtering"> </a>
+</h3>
+<p>Since the <code>loc</code> method also accepts a Boolean mask as input, we use it to filter the <code>DataFrame</code> by row. For instance, suppose we want the GDP of countries with a population over <code>70 mln</code>. We query the dataset as follows:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">g7_df</span><span class="p">[</span><span class="s1">'Population'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">70</span><span class="p">,</span> <span class="s1">'GDP'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Germany    3.8
+Japan      4.6
+US         1.7
+Name: GDP, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As additional exercise, suppose we are only interested in the population of countries that are smaller than</p>
+
+</div>
+</div>
+</div>
 </div>
 
 
