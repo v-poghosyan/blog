@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      6 min read
+      8 min read
     
 </span></p>
 
@@ -421,11 +421,135 @@ dtype: int64</pre>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p></p>
-<div class="flash">
-    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>In the event of overwritting the integer-based indices, it’s still possible to access the elements of a <code>Series</code> sequentially using the <code>iloc</code> property (short for "integer location") like so: <code>g7_pop.iloc[0]</code>.
+<p>In the event of overwritting the integer-based indices, it's still possible to access the elements of a <code>Series</code> sequentially using the <code>iloc</code> method (short for "integer location"). To retrieve the population of Canada, we can do as follows:</p>
+
 </div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>35</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It's also possible to use a range when indexing. For instance, suppose we'd like to retrieve the populations of the first three countries from <code>g7_pop</code>. We can simply write:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="p">[</span><span class="s1">'Canada'</span><span class="p">:</span><span class="s1">'Germany'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Canada     35
+France     63
+Germany    80
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Or equivalently:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Canada     35
+France     63
+Germany    80
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Since the <code>Series</code> object is based on a Numpy array, it also supports <em>multi-indexing</em> through passing a list of indices or a Boolean mask.</p>
 <p>For instance, to print the populations of Canada and Germany at the same time, we can pass in the list <code>['Canada','Germany']</code> or the Boolean mask <code>[True, False, True, False, False, False, False]</code>.</p>
 
@@ -871,7 +995,11 @@ dtype: int64</pre>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Pandas also supports reading an Excel file into a <code>DataFrame</code> using the <code>pandas.read_excel()</code> method.</p>
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>We may optionally pass <code>header = None</code> as an attribute to <code>read_csv()</code> after <code>csv_path</code> if the first row of the CSV file itself is a data point, and not a header.  
+</div>&gt; Info:Pandas also supports reading an Excel file into a <code>DataFrame</code> using the <code>pandas.read_excel()</code> method.
 
 </div>
 </div>
@@ -1016,7 +1144,7 @@ dtype: int64</pre>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Whereas in a <code>Series</code>, the primary axis of indexing are the rows, in a <code>DataFrame</code> the primary axis are the columns. Indexing a column works as expected.</p>
+<p>Whereas in a <code>Series</code>, the primary axis of indexing are the rows, in a <code>DataFrame</code> the primary axis are the columns. Thus, indexing a column works as expected.</p>
 
 </div>
 </div>
@@ -1064,7 +1192,7 @@ Name: GDP, dtype: float64</pre>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Multi-indexing also works:</p>
+<p>Multi-indexing also works in the familiar way:</p>
 
 </div>
 </div>
@@ -1147,6 +1275,251 @@ Name: GDP, dtype: float64</pre>
       <th>US</th>
       <td>318</td>
       <td>1.7</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we want to index rows, however, we must use the <code>'loc'</code> or <code>'iloc'</code> methods.</p>
+<p>For instance, say we are interested in the population, GDP, and surface area of only the first three countries. We could query the dataset like so:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'Canada'</span><span class="p">:</span><span class="s1">'Germany'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we're only interested in the population and GDP of the first three countries, then we could instead do:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="p">[[</span><span class="s1">'Population'</span><span class="p">,</span> <span class="s1">'GDP'</span><span class="p">]]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'Canada'</span><span class="p">:</span><span class="s1">'Germany'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Or more concisely:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'Canada'</span><span class="p">:</span><span class="s1">'Germany'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Population'</span><span class="p">,</span> <span class="s1">'GDP'</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
     </tr>
   </tbody>
 </table>
