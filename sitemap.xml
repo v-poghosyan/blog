@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://v-poghosyan.github.io/blog/leetcode/toy%20problems/proofs/2021/12/28/LeetCode-11.html</loc>
-<lastmod>2021-12-28T00:00:00-06:00</lastmod>
+<loc>https://v-poghosyan.github.io/blog/leetcode/toy%20problems/proofs/2021/12/23/LeetCode-11.html</loc>
+<lastmod>2021-12-23T00:00:00-06:00</lastmod>
 </url>
 <url>
 <loc>https://v-poghosyan.github.io/blog/python%20for%20ml/pandas/machine%20learning/2021/12/28/Python-for-ML-Pandas.html</loc>
@@ -11,6 +11,10 @@
 <url>
 <loc>https://v-poghosyan.github.io/blog/machine%20learning/decision%20trees/random%20forests/2021/12/29/Machine-Learning-Decision-Trees.html</loc>
 <lastmod>2021-12-29T00:00:00-06:00</lastmod>
+</url>
+<url>
+<loc>https://v-poghosyan.github.io/blog/python%20for%20ml/numpy/machine%20learning/2022/01/14/Python-for-ML-NumPy.html</loc>
+<lastmod>2022-01-14T00:00:00-06:00</lastmod>
 </url>
 <url>
 <loc>https://v-poghosyan.github.io/blog/about/</loc>
