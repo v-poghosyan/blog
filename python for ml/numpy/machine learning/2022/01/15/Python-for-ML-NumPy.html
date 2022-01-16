@@ -792,14 +792,16 @@ $:</p>
 <p>A few of the useful properties and methods of <code>ndarray</code> are highlighted in this section.</p>
 <ul>
 <li>
-<code>arange()</code> - Takes an integer $n$ input and creates a sequential array from $0,...,n-1$.<div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># array([0, 1, 2, 3, 4])</span>
-</pre></div>
-</li>
-<li>
-<code>shape</code> - returns the shape of the matrix as an $(m,n)$ pair<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># (2,3)</span>
-</pre></div>
-</li>
+<code>arange()</code> - Takes an integer $n$ input and creates a sequential array from $0,...,n-1$.</li>
 </ul>
+<div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># array([0, 1, 2, 3, 4])</span>
+</pre></div>
+<ul>
+<li>
+<code>shape</code> - returns the shape of the matrix as an $(m,n)$ pair</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># (2,3)</span>
+</pre></div>
 
 </div>
 </div>
@@ -814,8 +816,8 @@ $:</p>
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
     <strong>Note: </strong>The output of the <code>ndim</code> property can be understood in a linear angebraic sense as the dimension of the column vectors of the matrix (i.e. the domain of the transform), or in the data structure sense as the level of nestedness of the array.
 </div>
-<code>python
-A.ndim # 2</code>
+<br><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">ndim</span> <span class="c1"># 2</span>
+</pre></div>
 </li>
 </ul>
 
@@ -827,10 +829,10 @@ A.ndim # 2</code>
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>
-<code>size</code> - returns the total number of elements in the matrix<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">size</span> <span class="c1"># 6</span>
-</pre></div>
-</li>
+<code>size</code> - returns the total number of elements in the matrix</li>
 </ul>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">size</span> <span class="c1"># 6</span>
+</pre></div>
 
 </div>
 </div>
@@ -845,8 +847,8 @@ A.ndim # 2</code>
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
     <strong>Note: </strong>If the <code>ndarray</code> does not represent a matrix, such as <code>B = np.array([[1,2,3],[4,5]])</code> then <code>dtype</code> outputs <code>O</code> signifying that the entries are general Python objects. In such a case, the array loses its optimizations. 
 </div>
-<code>python
-A.dtype # dtype('int32')</code>
+<br><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">dtype</span> <span class="c1"># dtype('int32')</span>
+</pre></div>
 </li>
 </ul>
 
@@ -862,25 +864,32 @@ A.dtype # dtype('int32')</code>
 <p>There is also a vast selection of statstical, and more generally, mathematical methods that <code>ndarrays</code> come with. Here are a few of the common ones:</p>
 <ul>
 <li>
-<code>sum()</code> - returns the sum of all the entries<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># 21</span>
+<code>sum()</code> - returns the sum of all the entries</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># 21</span>
 </pre></div>
-It also accepts an <code>axis</code> attribute where <code>axis = 0</code> refers to the sum along the columns, and <code>axis = 1</code> refers to the sum along the rows.<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># [5,7,9]</span>
+<p>It also accepts an <code>axis</code> attribute where <code>axis = 0</code> refers to the sum along the columns, and <code>axis = 1</code> refers to the sum along the rows.</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># [5,7,9]</span>
 <span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># [6,15]</span>
 </pre></div>
-</li>
+<ul>
 <li>
-<code>mean()</code> - returns the empirical mean of all the entries <div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># 3.5</span>
-</pre></div>
-</li>
-<li>
-<code>var()</code> - returns the variance of the entries<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">var</span><span class="p">()</span> <span class="c1"># 2.9166666666666665</span>
-</pre></div>
-</li>
-<li>
-<code>std()</code> - returns the standard deviation of the entries<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="c1"># 1.707825127659933</span>
-</pre></div>
-</li>
+<code>mean()</code> - returns the empirical mean of all the entries </li>
 </ul>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># 3.5</span>
+</pre></div>
+<ul>
+<li>
+<code>var()</code> - returns the variance of the entries</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">var</span><span class="p">()</span> <span class="c1"># 2.9166666666666665</span>
+</pre></div>
+<ul>
+<li>
+<code>std()</code> - returns the standard deviation of the entries</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="c1"># 1.707825127659933</span>
+</pre></div>
 
 </div>
 </div>
