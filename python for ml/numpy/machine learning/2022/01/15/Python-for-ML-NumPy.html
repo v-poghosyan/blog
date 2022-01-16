@@ -792,16 +792,16 @@ $:</p>
 <p>A few of the useful properties and methods of <code>ndarray</code> are highlighted in this section.</p>
 <ul>
 <li>
-<code>arange()</code> - Takes an integer $n$ input and creates a sequential array from $0,...,n-1$.</li>
-</ul>
+<p><code>arange()</code> - Takes an integer $n$ input and creates a sequential array from $0,...,n-1$.</p>
 <div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># array([0, 1, 2, 3, 4])</span>
 </pre></div>
-<ul>
+</li>
 <li>
-<code>shape</code> - returns the shape of the matrix as an $(m,n)$ pair</li>
-</ul>
+<p><code>shape</code> - returns the shape of the matrix as an $(m,n)$ pair</p>
 <div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># (2,3)</span>
 </pre></div>
+</li>
+</ul>
 
 </div>
 </div>
@@ -829,10 +829,11 @@ $:</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>
-<code>size</code> - returns the total number of elements in the matrix</li>
-</ul>
+<p><code>size</code> - returns the total number of elements in the matrix</p>
 <div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">size</span> <span class="c1"># 6</span>
 </pre></div>
+</li>
+</ul>
 
 </div>
 </div>
@@ -864,32 +865,30 @@ $:</p>
 <p>There is also a vast selection of statstical, and more generally, mathematical methods that <code>ndarrays</code> come with. Here are a few of the common ones:</p>
 <ul>
 <li>
-<code>sum()</code> - returns the sum of all the entries</li>
-</ul>
+<p><code>sum()</code> - returns the sum of all the entries</p>
 <div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># 21</span>
 </pre></div>
 <p>It also accepts an <code>axis</code> attribute where <code>axis = 0</code> refers to the sum along the columns, and <code>axis = 1</code> refers to the sum along the rows.</p>
 <div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># [5,7,9]</span>
-<span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># [6,15]</span>
+  <span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># [6,15]</span>
 </pre></div>
-<ul>
+</li>
 <li>
-<code>mean()</code> - returns the empirical mean of all the entries </li>
-</ul>
+<p><code>mean()</code> - returns the empirical mean of all the entries</p>
 <div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># 3.5</span>
 </pre></div>
-<ul>
+</li>
 <li>
-<code>var()</code> - returns the variance of the entries</li>
-</ul>
+<p><code>var()</code> - returns the variance of the entries</p>
 <div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">var</span><span class="p">()</span> <span class="c1"># 2.9166666666666665</span>
 </pre></div>
-<ul>
+</li>
 <li>
-<code>std()</code> - returns the standard deviation of the entries</li>
-</ul>
+<p><code>std()</code> - returns the standard deviation of the entries</p>
 <div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="c1"># 1.707825127659933</span>
 </pre></div>
+</li>
+</ul>
 
 </div>
 </div>
