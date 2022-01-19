@@ -309,7 +309,7 @@ In contrast to Python 3.x's scalable memory representation of numeric values suc
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>314 ms ± 5.73 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<pre>320 ms ± 2.81 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre>
 </div>
 </div>
@@ -566,10 +566,8 @@ using NumPy:</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
-<span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
 <span class="n">A</span>
 </pre></div>
 
@@ -1408,8 +1406,56 @@ $:</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is, first and foremost, because per-element operations require the number of elements of the operands to be the same. If they're not the same, which is clearly the case here, NumPy will attempt to broadcast the one operand to match the shape of the other. But broadcasting is clearly impossible between matrices of shapes $2 \times 3$ and $3 \times 4$ per the <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html#general-broadcasting-rules">broadcasting rules</a> of NumPy.</p>
-<p>Matrix multiplication where each entry of the resulting matrix is a dot product of the corresponding row of the left operand and the corresponding column of the right operand, as is its mathematical definiton, is done through the <code>@</code> operator.</p>
+<p>This is, first and foremost, because per-element operations require the number of elements of the operands to be the same. If they're not the same, which is clearly the case here, NumPy will attempt to broadcast one operand to match the shape of the other. But broadcasting is clearly impossible between matrices of shapes $2 \times 3$ and $3 \times 4$ per the <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html#general-broadcasting-rules">broadcasting rules</a> of NumPy.</p>
+<p>Since NumPy overloads the <code>*</code> operator, it works as we expect matrix multiplication to work for <code>numpy.matrix</code> data structures.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]])</span>
+<span class="n">A</span> <span class="o">*</span> <span class="n">B</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>matrix([[18, 18, 18, 18],
+        [18, 18, 18, 18]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, this is not the recommended way to do matrix multiplication in NumPy. The reason being that overloaded operators can produce convoluted code. We may have many different <code>matrix</code> and <code>ndarray</code> data structures and be unable to anticipate the result of a <code>*</code> operation.</p>
+<p>Instead, the recommended way to do matrix multiplicatio is through the <code>@</code> operator.</p>
 <p>When we use <code>@</code> NumPy internally uses its <code>matmul()</code> method. So, the following are equivalent, and both produce the matrix product of <code>A</code> and <code>B</code>.</p>
 
 </div>
@@ -1490,7 +1536,51 @@ $:</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>NumPy also offers, <code>dot()</code> which is equivalent to <code>matmul()</code> for 1D arrays and 2D matrices.</p>
+<p>NumPy also offers, <code>dot()</code> which is equivalent to <code>matmul()</code> for 1D arrays and 2D matrices. So, the following is equivalent to the above.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[18, 18, 18, 18],
+       [18, 18, 18, 18]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, <code>matmul()</code> is preferred over <code>dot()</code> because of the clarity of its name, and since the <em>dot product</em> has a distinct mathematical meaning separate from matrix multiplication.</p>
 
 </div>
 </div>
