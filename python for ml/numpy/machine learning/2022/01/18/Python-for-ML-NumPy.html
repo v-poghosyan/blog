@@ -1358,7 +1358,7 @@ $:</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>But this, as we know, isn't matrix multiplication as it's commonly defined in mathematics. For instance, if we try to multiply an $m \times n$ matrix with an $n \times p$ matrix, NumPy will throw an error.</p>
+<p>But this, as we know, isn't matrix multiplication as it's commonly defined in mathematics. For instance, if we try to multiply an $m \times n$ matrix with an $n \times p$ matrix, NumPy will throw the following error:</p>
 
 </div>
 </div>
@@ -1379,35 +1379,16 @@ $:</p>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">~\AppData\Local\Temp/ipykernel_10592/926174947.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">      1</span> A <span class="ansi-yellow-intense-fg ansi-bold">=</span> np<span class="ansi-yellow-intense-fg ansi-bold">.</span>full<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">2</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">2</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> dtype <span class="ansi-yellow-intense-fg ansi-bold">=</span> int<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">      2</span> B <span class="ansi-yellow-intense-fg ansi-bold">=</span> np<span class="ansi-yellow-intense-fg ansi-bold">.</span>full<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-cyan-intense-fg ansi-bold">4</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> dtype <span class="ansi-yellow-intense-fg ansi-bold">=</span> int<span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-intense-fg ansi-bold">----&gt; 3</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>A <span class="ansi-yellow-intense-fg ansi-bold">*</span> B
-
-<span class="ansi-red-intense-fg ansi-bold">ValueError</span>: operands could not be broadcast together with shapes (2,3) (3,4) </pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     
 
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is, first and foremost, because per-element operations require the number of elements of the operands to be the same. If they're not the same, which is clearly the case here, NumPy will attempt to broadcast one operand to match the shape of the other. But broadcasting is clearly impossible between matrices of shapes $2 \times 3$ and $3 \times 4$ per the <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html#general-broadcasting-rules">broadcasting rules</a> of NumPy.</p>
-<p>Since NumPy overloads the <code>*</code> operator, it works as we expect matrix multiplication to work for <code>numpy.matrix</code> data structures.</p>
+
+<pre><code>ValueError: operands could not be broadcast together with shapes (2,3) (3,4)</code></pre>
+<p>This is because per-element operations require the shapes of the operands to be the same. Here, since the shapes are different, NumPy attempts to broadcast one operand to match the shape of the other. But broadcasting is impossible between matrices of shapes $2 \times 3$ and $3 \times 4$ per the <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html#general-broadcasting-rules">broadcasting rules</a>.</p>
+<p>There's a workaround that lets us use <code>*</code>. Since NumPy overloads the <code>*</code> operator, it works as we expect matrix multiplication to work for <code>numpy.matrix</code> types.</p>
 
 </div>
 </div>
@@ -1536,7 +1517,7 @@ $:</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>NumPy also offers, <code>dot()</code> which is equivalent to <code>matmul()</code> for 1D arrays and 2D matrices. So, the following is equivalent to the above.</p>
+<p>NumPy also offers, <code>dot()</code> which is equivalent to <code>matmul()</code> for 1D and 2D matrices. So, the following is equivalent to the above.</p>
 
 </div>
 </div>
