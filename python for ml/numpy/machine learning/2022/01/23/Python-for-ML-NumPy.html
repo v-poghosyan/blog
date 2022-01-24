@@ -235,7 +235,7 @@ window.onload = wrap_img;
 <a class="anchor" href="#Scalable-Memory-Representation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scalable Memory Representation<a class="anchor-link" href="#Scalable-Memory-Representation"> </a>
 </h2>
 <p>One of the things NumPy optimizes is data storage. 
-In contrast to Python 3.x's scalable memory representation of numeric values, such as integers, which can grow to accomodate a given number, NumPy stores numeric types in fixed-sized blocks of memory (e.g. <code>int32</code> or <code>int64</code>). This means NumPy is able to take advantage of the low-level CPU instructions of modern processors that are designed for fixed-sized numeric types. Another advantage of fixed-sized storage is that consecutive blocks of memory can ba allocated, which enables the libraries upon which NumPy relies to do extremely performant computations. This enforcement of fixed-sized data types is part of the  optimization strategy NumPy uses called <em>vectorization</em>.</p>
+In contrast to Python 3.x's scalable memory representation of numeric values, such as integers, which can grow to accomodate a given number, NumPy stores numeric types in fixed-sized blocks of memory (e.g. <code>int32</code> or <code>int64</code>). This means NumPy is able to take advantage of the low-level CPU instructions of modern processors that are designed for fixed-sized numeric types. Another advantage of fixed-sized storage is that consecutive blocks of memory can be allocated, which enables the libraries upon which NumPy relies to do extremely performant computations. This enforcement of fixed-sized data types is part of the  optimization strategy NumPy uses called <em>vectorization</em>.</p>
 <h2 id="Vectorization">
 <a class="anchor" href="#Vectorization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vectorization<a class="anchor-link" href="#Vectorization"> </a>
 </h2>
@@ -1436,7 +1436,7 @@ $:</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>However, this is not the recommended way to do matrix multiplication in NumPy. Overloaded operators can produce convoluted code. For instance, we may have many different <code>matrix</code> and <code>ndarray</code> data structures and be unable to anticipate the result of a given <code>*</code> operation.</p>
-<p>Instead, the recommended way to do matrix multiplicatio is through the <code>@</code> operator.</p>
+<p>Instead, the recommended way to do matrix multiplication is through the <code>@</code> operator.</p>
 <p>When we use <code>@</code> NumPy internally uses its <code>matmul()</code> method. So, the following are equivalent and both produce the matrix product of <code>A</code> and <code>B</code>.</p>
 
 </div>
