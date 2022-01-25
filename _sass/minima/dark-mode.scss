@@ -60,6 +60,10 @@ pre, code {
     background-color: $overlay;
 }
 
+.output_subarea.output_stream.output_stdout.output_text pre {
+  margin-left: 0px !important;
+}
+
 .highlighter-rouge .highlight {
   background: $overlay !important;
 }
