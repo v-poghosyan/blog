@@ -435,6 +435,8 @@ a { text-decoration: none !important; font-weight: bold !important; color: rgba(
 
 .footnotes { border-top: 1px solid rgba(255, 255, 255, 0.87) !important; }
 
+a.footnote.footnotes { border: none !important; }
+
 a:hover { color: #de9240 !important; }
 
 .flash a { color: #121212 !important; }
