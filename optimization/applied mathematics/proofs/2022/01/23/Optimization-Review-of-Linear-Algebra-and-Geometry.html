@@ -245,8 +245,12 @@ $</p>
 <h3 id="Convex-Hull-of-a-Set">
 <a class="anchor" href="#Convex-Hull-of-a-Set" aria-hidden="true"><span class="octicon octicon-link"></span></a>Convex Hull of a Set<a class="anchor-link" href="#Convex-Hull-of-a-Set"> </a>
 </h3>
-<p>Let $C$ be a non-convex set. Choose any $n$ points in this set and construct their convex hull. Now take the union of all such convex hulls of $n$ points in $C$. The result will be the smallest convex set that contains $C$, also know as its convex hull.</p>
-<p>To visualize the convex hull of a non-convex set, imagine the shape enclosed by a rubber band stretched around the non-convex set.</p>
+<p>The convex hull of a set can similarly be defined as all the convex combinations of the elements in the set. However, there's an alternate, equivalent definition...</p>
+<p>Let $C$ be a non-convex set. The convex hull of $C$ is the intersection of all convex supersets of $C$. That is, it's the intersection of all convex sets containing $C$. The result of this intersection will, obviously, be the smallest convex superset of $C$.</p>
+<p>In fact, this minimal convext superset is unique and can be taken as yet another equivalent equivalent definition of the convex hull.</p>
+<p>Visualizing the convex hull of a non-convex set is similar to visualizing that of $n$ points — simply imagine the shape enclosed by a rubber band stretched around the non-convex set.</p>
+<p>Proof:</p>
+<p>Suppose $C_1$ is some minimal, convex superset of $C$. Suppose there's a different minimal, convex superset of <em>C</em> called $C_2 \ne C_1$. Since these sets are different, there must be at least one element that they do not share in common. Without loss of generalit, let $\hat x$ be a point in $C_2$ that's not in $C_1$. Note that $\hat x$ cannot be in $C$, otherwise both supersets would contain it by definition. If we remove $\hat x$ from $C_2$ we obtain $C_2 \setminus \{\hat x\}$ a superset of $C$. This is because $\hat x$ is not in $C_1$</p>
 
 </div>
 </div>
