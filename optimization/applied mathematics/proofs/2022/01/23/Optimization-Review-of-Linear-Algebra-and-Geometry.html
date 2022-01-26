@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      4 min read
+      5 min read
     
 </span></p>
 
@@ -166,8 +166,13 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#Convexity">Convexity </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Some-Operations-that-Preserve-Convexity">Some Operations that Preserve Convexity </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Examples-of-Convex-Sets">Examples of Convex Sets </a>
+<ul>
 <li class="toc-entry toc-h3"><a href="#Convex-Hull-of-$n$-Points">Convex Hull of $n$ Points </a></li>
 <li class="toc-entry toc-h3"><a href="#Convex-Hull-of-a-Set">Convex Hull of a Set </a></li>
+<li class="toc-entry toc-h3"><a href="#Affine-Combination-of-$n$-Points">Affine Combination of $n$ Points </a></li>
 </ul>
 </li>
 </ul>
@@ -230,6 +235,10 @@ $</p>
 <p>Shifting, scaling, and rotation (i.e. <em>affine</em> transformations) preserve convexity. Let the matrix $A$ define such a transformation, and $b$ be a shift vector. Then $C' = \{Ax + b \ |  \ x \in C \}$ is convex provided that $C$ was convex.</p>
 <p>An <em>intersection</em> of convex sets is also convex. That is, $C' = \{ x \ | \ x \in C_1 \cap x \in C_2 \}$ is convex provided that $C_1$ and $C_2$ were convex to begin with. The proof follows directly from the definition of intersection...</p>
 <p>However, <em>unions</em> of convex sets need not be convex...</p>
+<h2 id="Examples-of-Convex-Sets">
+<a class="anchor" href="#Examples-of-Convex-Sets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples of Convex Sets<a class="anchor-link" href="#Examples-of-Convex-Sets"> </a>
+</h2>
+<p>The following are some common convex sets we will come across in practice.</p>
 <h3 id="Convex-Hull-of-$n$-Points">
 <a class="anchor" href="#Convex-Hull-of-%24n%24-Points" aria-hidden="true"><span class="octicon octicon-link"></span></a>Convex Hull of $n$ Points<a class="anchor-link" href="#Convex-Hull-of-%24n%24-Points"> </a>
 </h3>
@@ -249,6 +258,10 @@ $</p>
 <p>Let $C$ be a non-convex set. The convex hull of $C$ is the intersection of all convex supersets of $C$. That is, it's the intersection of all convex sets containing $C$. The result of such an intersection will be the smallest convex superset of $C$.</p>
 <p>In fact, this minimal convex superset is unique <sup id="fnref-1" class="footnote-ref"><a href="#fn-1">1</a></sup> and can therefore be taken as yet another, equivalent, definition for the convex hull of a set.</p>
 <p>Visualizing the convex hull of a non-convex set is similar to visualizing that of $n$ points — simply imagine the shape enclosed by a rubber band stretched around the non-convex set.</p>
+<h3 id="Affine-Combination-of-$n$-Points">
+<a class="anchor" href="#Affine-Combination-of-%24n%24-Points" aria-hidden="true"><span class="octicon octicon-link"></span></a>Affine Combination of $n$ Points<a class="anchor-link" href="#Affine-Combination-of-%24n%24-Points"> </a>
+</h3>
+<p>An <em>affine combination</em> of points $x_1,...,x_n$ is all points of the form $x = \theta_1 x_1 + ... + \theta_n x_n$ with the $\sum_{i=1}^{n}\theta_i = 1$ but the $\theta_i$s need not be non-negative. For two points $x_1, x_2$ it's the <em>line</em> that passes through them. For three points $x_1, x_2, x_3$ it's the <em>plane</em>, and in general it is the <em>hyperplane</em> passing through $n$ points.</p>
 
 </div>
 </div>
