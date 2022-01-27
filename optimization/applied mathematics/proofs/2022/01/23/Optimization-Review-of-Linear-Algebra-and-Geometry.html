@@ -179,6 +179,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#Halfspaces">Halfspaces </a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h3"><a href="#Conic-Combinations-of-$n$-Points">Conic Combinations of $n$ Points </a></li>
 </ul>
 </li>
 </ul>
@@ -288,11 +289,31 @@ $</p>
     <strong>Note: </strong>A hyperplane is, of course, also a span. It’s a span in which the roles of the weights and vectors are interchanged. Rather than being a span of $x_1, ..., x_n$ in the weights $a_1, ..., a_n$, it’s the span of $a_1, ..., a_n$ in the weights $x_1, ..., x_n$. Conversely, the span is a hyperplane — a term we’ve been avoiding until now by referring to it instead as <em>’a plane in $n$-dimensions’</em>. 
 </div>
 <br>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Halfspaces">
 <a class="anchor" href="#Halfspaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Halfspaces<a class="anchor-link" href="#Halfspaces"> </a>
 </h4>
-<p>A <em>halfspace</em> is either of the two sub-spaces a hyperplane partitions the whole space into. Since the dot-product between vectors which are roughly in the same direction is positive, and vice versa, the two halfspaces associated to a hyperplane $\{ x \ \ | \ \ a_1 x_1 + ... a_n x_n = b\} = \{ x \ \ | \ \ a^T x = b\}$ are:</p>
-<p>$\textrm{Halfspaces} = \{ x \ \ | \ \ a^T x \geq b\} \ \ \textrm{&amp;} \ \ \{ x \ \ | \ \ a^T x \leq b\}$</p>
+<p>A <em>halfspace</em> is either of the two sub-spaces a hyperplane partitions the whole space into. Since the dot-product between vectors which are roughly in the same direction is positive, and vice versa, the two halfspaces associated to a hyperplane $\{ x \ \ | \ \ a^T x = b\}$ are:</p>
+<p>$ \textrm{Halfspaces} = \{ x \ \ | \ \ a^T x \geq b\} \ \ \textrm{&amp;} \ \ \{ x \ \ | \ \ a^T x \leq b\} $</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Conic-Combinations-of-$n$-Points">
+<a class="anchor" href="#Conic-Combinations-of-%24n%24-Points" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conic Combinations of $n$ Points<a class="anchor-link" href="#Conic-Combinations-of-%24n%24-Points"> </a>
+</h3>
+<p>A <em>conic combination</em> of $x_1,...x_n$ is a point $x = \sum_{i=1}^{n} \theta_i x_i$ where $\theta_i \geq 0 \ \ \forall i$. Note that the absence of the restriction that $\sum_{i=1}^{n} \theta_i = 1$ is what distinguishes a conic combination from a convex combination.</p>
+<p>A visual example</p>
+<p><img src="/blog/images/copied_from_nb/my_icons/conic-combination.png" alt=""></p>
 
 </div>
 </div>
