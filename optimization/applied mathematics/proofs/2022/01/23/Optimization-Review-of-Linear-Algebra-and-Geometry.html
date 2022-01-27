@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      5 min read
+      7 min read
     
 </span></p>
 
@@ -173,6 +173,12 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Convex-Hull-of-$n$-Points">Convex Hull of $n$ Points </a></li>
 <li class="toc-entry toc-h3"><a href="#Convex-Hull-of-a-Set">Convex Hull of a Set </a></li>
 <li class="toc-entry toc-h3"><a href="#Affine-Combination-of-$n$-Points">Affine Combination of $n$ Points </a></li>
+<li class="toc-entry toc-h3"><a href="#Hyperplanes-and-Halfspaces">Hyperplanes and Halfspaces </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Hyperplanes">Hyperplanes </a></li>
+<li class="toc-entry toc-h4"><a href="#Halfspaces">Halfspaces </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -242,9 +248,11 @@ $</p>
 <h3 id="Convex-Hull-of-$n$-Points">
 <a class="anchor" href="#Convex-Hull-of-%24n%24-Points" aria-hidden="true"><span class="octicon octicon-link"></span></a>Convex Hull of $n$ Points<a class="anchor-link" href="#Convex-Hull-of-%24n%24-Points"> </a>
 </h3>
-<p>Let $x_1,x_2,...,x_n$ be $n$ points in space. The <em>convex hull</em> is the set of all points which can be written as a non-negative linear combination (also known as a <em>convex combination</em>) of these $n$ points.</p>
+<p>A <em>convex combination</em> of points $x_1, ..., x_n$ is a point of the form $x = \theta_1 x_1 + ... + \theta_n x_n$ where $\sum_{i = 1}^{n} \theta_i = 1$ and $\theta_i \geq 0 \ \ \forall i$.</p>
+<p>Let $x_1,x_2,...,x_n$ be $n$ points in space. Their <em>convex hull</em> is the set of all points which can be written as some convex combination of them. Equivalently, by varying the $theta_i$'s we generate the convex hull as the set of all convex combinations of these points.</p>
+<p>The convex hull (i.e. set of all convex combinations) of two points is the line segment joining them. That of three points is the polygon (complete with the region it bounds). In general, for $n$ points, the concept generalizes to a convex hull.</p>
 <p>Formally, $\textrm{Convex Hull} = \{ \theta_1 x_1 + ... + \theta_n x_n \ | \ \theta_1 + ... + \theta_n = 1 \ \ \textrm{and} \ \ \theta_i \geq 0 \ \ \forall i \}$</p>
-<p>As we vary the $\theta$s, we generate the convex hull which can be visualized as the closed polygon formed when a rubber band is stretched around the $n$ points. 
+<p>The convex hull can be visualized as the closed polygon formed when a rubber band is stretched around the $n$ points. 
 </p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
@@ -261,7 +269,29 @@ $</p>
 <h3 id="Affine-Combination-of-$n$-Points">
 <a class="anchor" href="#Affine-Combination-of-%24n%24-Points" aria-hidden="true"><span class="octicon octicon-link"></span></a>Affine Combination of $n$ Points<a class="anchor-link" href="#Affine-Combination-of-%24n%24-Points"> </a>
 </h3>
-<p>An <em>affine combination</em> of points $x_1,...,x_n$ is all points of the form $x = \theta_1 x_1 + ... + \theta_n x_n$ with the $\sum_{i=1}^{n}\theta_i = 1$ but the $\theta_i$s need not be non-negative. For two points $x_1, x_2$ it's the <em>line</em> that passes through them. For three points $x_1, x_2, x_3$ it's the <em>plane</em>, and in general it is the <em>hyperplane</em> passing through $n$ points.</p>
+<p>An <em>affine combination</em> of points $x_1,...,x_n$ is a point of the form $x = \theta_1 x_1 + ... + \theta_n x_n$ with $\sum_{i=1}^{n}\theta_i = 1$ but where the $\theta_i$'s need not be non-negative.</p>
+<p>For two points, the set of all affine combinations is the <em>line</em> that passes through them, whereas for three points it's the <em>plane</em>. in general, it is the plane in $(n-1)$-dimensions passing through the $n$ points.</p>
+<h3 id="Hyperplanes-and-Halfspaces">
+<a class="anchor" href="#Hyperplanes-and-Halfspaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hyperplanes and Halfspaces<a class="anchor-link" href="#Hyperplanes-and-Halfspaces"> </a>
+</h3>
+<p>A <em>linear combination</em> of $n$ points is all points of the form $x = \theta_1 x_1 + ... + \theta_n x_n$ with the $\theta_i$'s totally unrestricted.</p>
+<p>The set of all linear combinations of a point, i.e. its <em>span</em>, is the line passing through it. for two points, the span is the plane passing through them. In general, the span of $n$ points is a plane in $n$-dimensions that contains these points.</p>
+<h4 id="Hyperplanes">
+<a class="anchor" href="#Hyperplanes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hyperplanes<a class="anchor-link" href="#Hyperplanes"> </a>
+</h4>
+<p>For a fixed linear combination, that is for fixed weights $\theta_i = a_i \ \ \forall i$, a <em>hyperplane</em> is the set of all points $x \in \mathbb{R^n}$ whose fixed linear combination equals a fixed constant $b \in \mathbb{R}$.</p>
+<p>Formally, $\textrm{Hyperplane} = \{ x \ \ | \ \ a_1 x_1 + ... a_n x_n = b\} = \{ x \ \ | \ \ a^T x = b\}$</p>
+<p>There's a geometric interpretation to the parameters $a \in \mathbb{R^n}$ and $b \in \mathbb{R}$. Since the dot-product between perpendicular vectors is $0$, $\{ x \ \ | \ \  a^T x = 0\}$ is simply the set of all vectors perpendicuar to $a$ (the tail of which, as with all vectors in Linear Algebra, is considered to be fixed at the origin), making $a$ the <em>normal vector</em> to the hyperplane passing through the origin. To allow for parallel hyperplanes that are translated from the origin, the <em>offset</em> $b \in \mathbb{R}$ is introduced in the generalization $\{ x \ \ | \ \ a^T x = b \}$. This is now the set of all vectors whose dot-product with $a$ is constant. These vectors are not quite perpendicular to $a$, but they form the hyperplane that's shifted from the origin by a distance $\frac{|b|}{\|a\|_2}$.
+</p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>A hyperplane is, of course, a span. But, rather than being a span of $x_1, ..., x_n$, it’s the span of $a_1, ..., a_n$ in the weights $x_1, ..., x_n$.
+</div>
+<br>
+<h4 id="Halfspaces">
+<a class="anchor" href="#Halfspaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Halfspaces<a class="anchor-link" href="#Halfspaces"> </a>
+</h4>
+<p>A halfspace is the space bounded by a hyperplane.</p>
 
 </div>
 </div>
