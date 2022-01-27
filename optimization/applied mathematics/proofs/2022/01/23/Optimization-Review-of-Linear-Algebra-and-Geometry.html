@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      8 min read
+      9 min read
     
 </span></p>
 
@@ -173,13 +173,14 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Convex-Hull-of-$n$-Points">Convex Hull of $n$ Points </a></li>
 <li class="toc-entry toc-h3"><a href="#Convex-Hull-of-a-Set">Convex Hull of a Set </a></li>
 <li class="toc-entry toc-h3"><a href="#Affine-Combination-of-$n$-Points">Affine Combination of $n$ Points </a></li>
-<li class="toc-entry toc-h3"><a href="#Hyperplanes-and-Halfspaces">Hyperplanes and Halfspaces </a>
+<li class="toc-entry toc-h3"><a href="#Linear-Combinations---Hyperplanes-and-Halfspaces">Linear Combinations - Hyperplanes and Halfspaces </a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#Hyperplanes">Hyperplanes </a></li>
 <li class="toc-entry toc-h4"><a href="#Halfspaces">Halfspaces </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h3"><a href="#Conic-Combinations-of-$n$-Points">Conic Combinations of $n$ Points </a></li>
+<li class="toc-entry toc-h3"><a href="#Ellipses">Ellipses </a></li>
 </ul>
 </li>
 </ul>
@@ -272,8 +273,8 @@ $</p>
 </h3>
 <p>An <em>affine combination</em> of points $x_1,...,x_n$ is a point of the form $x = \theta_1 x_1 + ... + \theta_n x_n$ with $\sum_{i=1}^{n}\theta_i = 1$ but where the $\theta_i$'s need not be non-negative.</p>
 <p>For two points, the set of all affine combinations is the <em>line</em> that passes through them, whereas for three points it's the <em>plane</em>. in general, it is the plane in $(n-1)$-dimensions passing through the $n$ points.</p>
-<h3 id="Hyperplanes-and-Halfspaces">
-<a class="anchor" href="#Hyperplanes-and-Halfspaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hyperplanes and Halfspaces<a class="anchor-link" href="#Hyperplanes-and-Halfspaces"> </a>
+<h3 id="Linear-Combinations---Hyperplanes-and-Halfspaces">
+<a class="anchor" href="#Linear-Combinations---Hyperplanes-and-Halfspaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Linear Combinations - Hyperplanes and Halfspaces<a class="anchor-link" href="#Linear-Combinations---Hyperplanes-and-Halfspaces"> </a>
 </h3>
 <p>A <em>linear combination</em> of $n$ points is all points of the form $x = \theta_1 x_1 + ... + \theta_n x_n$ with the $\theta_i$'s totally unrestricted.</p>
 <p>The set of all linear combinations of a point, called its <em>span</em>, is simply the line passing through it. For two points the span is the plane passing through them and, in general, the span of $n$ points is a plane in $n$-dimensions that contains these points.</p>
@@ -281,8 +282,8 @@ $</p>
 <a class="anchor" href="#Hyperplanes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hyperplanes<a class="anchor-link" href="#Hyperplanes"> </a>
 </h4>
 <p>For fixed weights $\theta_i = a_i \ \ \forall i$, a <em>hyperplane</em> is the set of all points $x \in \mathbb{R^n}$ whose linear combination equals a fixed constant $b \in \mathbb{R}$.</p>
-<p>Formally, $\textrm{Hyperplane} = \{ x \ \ | \ \ a_1 x_1 + ... a_n x_n = b\} = \{ x \ \ | \ \ a^T x = b\}$</p>
-<p>There's a geometric interpretation to the parameters $a \in \mathbb{R^n}$ and $b \in \mathbb{R}$. Since the dot-product between perpendicular vectors is $0$, $\{ x \ \ | \ \  a^T x = 0\}$ is simply the set of all vectors perpendicuar to $a$ (the tail of which, as with all vectors in Linear Algebra, is considered to be fixed at the origin), making $a$ the <em>normal vector</em> to the hyperplane passing through the origin. To allow for parallel hyperplanes that are translated from the origin, the <em>offset</em> $b \in \mathbb{R}$ is introduced in the generalization $\{ x \ \ | \ \ a^T x = b \}$. This is now the set of all vectors whose dot-product with $a$ is constant. These vectors are not quite perpendicular to $a$, but they form the hyperplane that's shifted from the origin by a distance $\frac{|b|}{\|a\|_2}$.
+<p>Formally, $\{ x \ \ | \ \ a_1 x_1 + ... a_n x_n = b\} = \{ x \ \ | \ \ a^T x = b\}$</p>
+<p>There's a geometric interpretation of the parameters $a \in \mathbb{R^n}$ and $b \in \mathbb{R}$. Since the dot-product between perpendicular vectors is $0$, $\{ x \ \ | \ \  a^T x = 0\}$ is simply the set of all vectors perpendicuar to $a$ (whose tail, as with all vectors in linear algebra, is considered to be fixed at the origin), making $a$ the <em>normal vector</em> to the hyperplane passing through the origin. To allow for parallel hyperplanes that are translated from the origin, the <em>offset</em> $b \in \mathbb{R}$ is introduced in the generalization $\{ x \ \ | \ \ a^T x = b \}$. This is now the set of all vectors whose dot-product with $a$ is constant. These vectors are not quite perpendicular to $a$, but they form a parallel hyperplane that's been shifted from the origin by a distance of $\frac{|b|}{\|a\|_2}$.
 </p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
@@ -311,8 +312,28 @@ $</p>
 <a class="anchor" href="#Conic-Combinations-of-%24n%24-Points" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conic Combinations of $n$ Points<a class="anchor-link" href="#Conic-Combinations-of-%24n%24-Points"> </a>
 </h3>
 <p>A <em>conic combination</em> of $x_1,...x_n$ is a point $x = \sum_{i=1}^{n} \theta_i x_i$ where $\theta_i \geq 0 \ \ \forall i$. Note that the absence of the restriction that $\sum_{i=1}^{n} \theta_i = 1$ is what distinguishes a conic combination from a convex combination.</p>
-<p>A visual example</p>
+<p><strong>A visual example:</strong></p>
 <p><img src="/blog/images/copied_from_nb/my_icons/conic-combination.png" alt="" title="The conic combination of vectors (0,1) and (1,1)"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Ellipses">
+<a class="anchor" href="#Ellipses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ellipses<a class="anchor-link" href="#Ellipses"> </a>
+</h3>
+<p>Recall from Euclidean geometry that ellipses are conic sections. In general we define ellipses in $n$-dimensions as the <a href="https://en.wikipedia.org/wiki/Level_set">sub-level sets</a> of <a href="https://en.wikipedia.org/wiki/Quadratic_form">quadratic forms</a>. That is $\{ x \ \ | \ \ (x-c)^T M (x-c) \leq 1 \}$ where $M \succeq 0$ defines its strech along each principal axis, and $c \in \mathbb{R^n}$ is the center.</p>
+<p>An equivalent norm-definition of an ellipse is $\{ x | \|Ax - b\|_2 \leq 1 \}$. That is, for a given $M$ and $c$ in the sub-level set definition, we can find an $A$ and $b$ in the norm-definition.</p>
+<p>To convince ourselves in this, we take the simple case where $b = 0$.</p>
+<p>$\begin{align}
+  \|Ax\|_2 &amp;= ((Ax)^T(Ax))^{1/2} \\
+  &amp;= (x^TA^TAx)^{1/2} \\
+  &amp;= (x^TU D U^Tx)^{1/2} \\
+  &amp;= x^TU D^{1/2} U^Tx \\
+  \end{align}$</p>
+<p>Where the third equality is by the <em>spectral decomposition</em> of $A^TA$, which is possible since any matrix of the form $X^TX$ is positive semidefinite. Taking $M= UD^{1/2}U^T$, we have the equivalent sub-level set definitonn of the ellipse.</p>
 
 </div>
 </div>
