@@ -330,12 +330,12 @@ $</p>
 <p>An equivalent definition of an ellipse using the L2-norm is $\{ x  \ \ |  \ \ \|Ax - b\|_2 \leq 1 \}$. That is, for a given $M$ and $c$ in the sub-level set definition, we can find an $A$ and $b$ in the new definition.</p>
 <p>To quickly convince ourselves in this, we take the simple case where $b = 0$.</p>
 $$
-\begin{align}
+\begin{aligned}
   \|Ax\|_2 &amp;= ((Ax)^T(Ax))^{1/2} \\
   &amp;= (x^TA^TAx)^{1/2} \\
   &amp;= (x^TU D U^Tx)^{1/2} \\
   &amp;= x^TU D^{1/2} U^Tx \\
-  \end{align}
+  \end{aligned}
 $$<p>Where the third equality is by the <em>spectral decomposition</em> of $A^TA \succeq 0$. Taking $M= UD^{1/2}U^T$, we have the equivalent sub-level set definiton of the ellipse.</p>
 
 </div>
