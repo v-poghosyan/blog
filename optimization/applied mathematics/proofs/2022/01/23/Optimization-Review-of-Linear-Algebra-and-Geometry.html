@@ -329,8 +329,14 @@ $</p>
 <a class="anchor" href="#Ellipses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ellipses<a class="anchor-link" href="#Ellipses"> </a>
 </h3>
 <p>Recall from Euclidean geometry that ellipses are conic sections. In general we define ellipses in $n$-dimensions as the <a href="https://en.wikipedia.org/wiki/Level_set">sub-level sets</a> of <a href="https://en.wikipedia.org/wiki/Quadratic_form">quadratic forms</a>. That is $\{ x \ \ | \ \ (x-c)^T M (x-c) \leq 1 \}$ where $M \succeq 0$ defines the strech along each principal axis, and $c \in \mathbb{R^n}$ is the center.</p>
-<p>An equivalent definition of an ellipse using the L2-norm is $\{ x  \ \ |  \ \ \|Ax - b\|_2 \leq 1 \}$. That is, for a given $A$ and $b$ in the L2-norm definition, we can find an $M$ and $c$ in the sub-level set definition and vice versa.</p>
-<p>To quickly convince ourselves in this, we take the simple case where $b = 0$.</p>
+<p>An equivalent definition of an ellipse using the L2-norm is $\{ x  \ \ |  \ \ \|Ax - b\|_2 \leq 1 \}$. That is, for a given $A$ and $b$ in the L2-norm definition, we can find an $M$ and $c$ in the sub-level set definition and vice versa.<br>
+</p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>More generally, the ellipse is $\{ x \ \ | \ \ (x-c)^T M (x-c) \leq r \}$. However, since the scaling factor $r$ is positive, it can simply be absorbed into $Q$ without affecting $Q$’s positive semidefiniteness.
+</div>
+<br>
+<p>To quickly convince ourselves in the equivalence of these definitions, we take the simple case where $b = 0$.</p>
 $$
 \begin{aligned}
   \|Ax\|_2 &amp;= ((Ax)^T(Ax))^{1/2} \\
@@ -350,6 +356,7 @@ $$<p>Where the third equality is by the <a href="https://en.wikipedia.org/wiki/E
 <a class="anchor" href="#Norm-Balls" aria-hidden="true"><span class="octicon octicon-link"></span></a>Norm Balls<a class="anchor-link" href="#Norm-Balls"> </a>
 </h3>
 <p>Related to ellipses are <em>Euclidean balls</em>, which are <em>norm balls</em> for the choice of the L2-norm. A Euclidean ball has the form $\{ x \ \ | \ \ \|x\|_2 \leq r \}$, and is clearly convex as it's a generalizations of the sphere in $n$-dimensions.</p>
+<p>But also, a Euclidean ball is the special ellipse for the choice of $M = rI$, and $c = 0$.</p>
 <p>In general, norm balls $\{ x \ \ | \ \ \|x\|_p \leq r\}$ where $\|x\|_p = (x_1^p + ... + x_n^p)^{1/p}$ are convex for any choice of $p \geq 1$.</p>
 
 </div>
