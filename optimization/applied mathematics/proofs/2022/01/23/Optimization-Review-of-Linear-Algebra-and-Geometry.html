@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      9 min read
+      11 min read
     
 </span></p>
 
@@ -183,7 +183,9 @@ window.onload = wrap_img;
 </li>
 <li class="toc-entry toc-h3"><a href="#Conic-Combinations-of-$n$-Points">Conic Combinations of $n$ Points </a></li>
 <li class="toc-entry toc-h3"><a href="#Ellipses">Ellipses </a></li>
+<li class="toc-entry toc-h3"><a href="#Norm-Balls">Norm Balls </a></li>
 <li class="toc-entry toc-h3"><a href="#Polyhedra">Polyhedra </a></li>
+<li class="toc-entry toc-h3"><a href="#The-Set-of-All-Positive-Semidefinite-Matrices">The Set of All Positive Semidefinite Matrices </a></li>
 </ul>
 </li>
 </ul>
@@ -344,10 +346,35 @@ $$<p>Where the third equality is by the <a href="https://en.wikipedia.org/wiki/E
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Norm-Balls">
+<a class="anchor" href="#Norm-Balls" aria-hidden="true"><span class="octicon octicon-link"></span></a>Norm Balls<a class="anchor-link" href="#Norm-Balls"> </a>
+</h3>
+<p>Related to ellipses are <em>Euclidean balls</em>, which are <em>norm balls</em> for the choice of the L2-norm. A Euclidean ball has the form $\{ x \ \ | \ \ \|x\|_2 \leq r \}$, and is clearly convex as it's a generalizations of the sphere in $n$-dimensions.</p>
+<p>In general, norm balls $\{ x \ \ | \ \ \|x\|_p \leq r\}$ where $\|x\|_p = (x_1^p + ... + x_n^p)^{1/p}$ are convex for any choice of $p \geq 1$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Polyhedra">
 <a class="anchor" href="#Polyhedra" aria-hidden="true"><span class="octicon octicon-link"></span></a>Polyhedra<a class="anchor-link" href="#Polyhedra"> </a>
 </h3>
-<p>Where a halfspace is a set with one linear inequality constraint, a <em>polyhedron</em> is a set with multiple such linear inequality constraints. These constraints can be packed into a matrix $A \in \mathbb{R^{m \times n}}$ and vector $b \in \mathbb{R^m}$ making the polyhedron the set $\{x \ \ | \ \ Ax \leq b\}$.</p>
+<p>Where a halfspace is a set with one linear inequality constraint, a <em>polyhedron</em> is a set with many, but finite, such linear inequality constraints. These constraints can be packed into a matrix $A \in \mathbb{R^{m \times n}}$ by vector $b \in \mathbb{R^m}$ multiplication form, making the polyhedron into the set $\{x \ \ | \ \ Ax \leq b\}$.</p>
+<p>Since polyhedra are simply intersections of halfspaces and hyperplanes, and the latter are both convex, polyhedra are also convex sets.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-Set-of-All-Positive-Semidefinite-Matrices">
+<a class="anchor" href="#The-Set-of-All-Positive-Semidefinite-Matrices" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Set of All Positive Semidefinite Matrices<a class="anchor-link" href="#The-Set-of-All-Positive-Semidefinite-Matrices"> </a>
+</h3>
+<p>The set of all PSD matrices $\{ Q \ \ | \ \ x^TQx \geq 0 \ \ \forall x \in \mathbb{R^m}\}$ is convex. We can, of course, use the definition of convexity to show this. But, a more elucidative approach would be the following remark.</p>
+<p>Note that $Q \mapsto x^TQx$ is a <a href="https://en.wikipedia.org/wiki/Linear_form">linear functional</a> that maps the space of all PSD matrices to its field of scalars. This is analogous to how $a \mapsto x^Ta$ is a linear functional so, just as $\{ a \ \ | \ \ x^Ta \geq 0 \}$ is a halfspace in the space of vectors, $H_x = \{ Q \ \ | \ \ x^TQx \geq 0 \}$ for a given choice of $x \in \mathbb{R^m}$ is a halfspace in the space of PSD matrices. Halfspaces, as we already know, are convex and $\{ Q \ \ | \ \ x^TQx \geq 0 \ \ \forall x \in \mathbb{R^m}\}$ is nothing but an intersection of halfspaces for each choice of $x$. That is, $\{ Q \ \ | \ \ x^TQx \geq 0 \ \ \forall x \in \mathbb{R^m}\} = \bigcap_x H_x$, concluding the proof of its convexity.</p>
 
 </div>
 </div>
