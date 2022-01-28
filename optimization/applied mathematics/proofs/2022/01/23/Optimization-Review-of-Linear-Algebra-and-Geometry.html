@@ -281,19 +281,15 @@ $</p>
 <a class="anchor" href="#Linear-Combinations---Hyperplanes-and-Halfspaces" aria-hidden="true"><span class="octicon octicon-link"></span></a>Linear Combinations - Hyperplanes and Halfspaces<a class="anchor-link" href="#Linear-Combinations---Hyperplanes-and-Halfspaces"> </a>
 </h3>
 <p>A <em>linear combination</em> of $n$ points is all points of the form $x = \theta_1 x_1 + ... + \theta_n x_n$ with the $\theta_i$'s totally unrestricted.</p>
-<p>The set of all linear combinations of a point, called its <em>span</em>, is simply the line passing through it. For two points the span is the plane passing through them and, in general, the span of $n$ points is a plane in $n$-dimensions that contains these points.</p>
+<p>The set of all linear combinations of a point, called its <em>span</em>, is simply the line passing through it. Formally, the span of $n$ points is $\{ \theta_1 x_1 + ... + \theta_n x_n \ \ | \ \ \forall \theta_1,...,\theta_n \}$. For two points the span is the plane passing through them and, in general, the span of $n$ points is a plane in $n$-dimensions that contains these points.</p>
 <h4 id="Hyperplanes">
 <a class="anchor" href="#Hyperplanes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hyperplanes<a class="anchor-link" href="#Hyperplanes"> </a>
 </h4>
 <p>For fixed weights $\theta_i = a_i \ \ \forall i$, a <em>hyperplane</em> is the set of all points $x \in \mathbb{R^n}$ whose linear combination equals a fixed constant $b \in \mathbb{R}$.</p>
 <p>Formally, a hyperplane is the set $\{ x \ \ | \ \ a_1 x_1 + ... a_n x_n = b\} = \{ x \ \ | \ \ a^T x = b\}$</p>
-<p>There's a geometric interpretation of the parameters $a \in \mathbb{R^n}$ and $b \in \mathbb{R}$. Since the dot-product between perpendicular vectors is $0$, $\{ x \ \ | \ \  a^T x = 0\}$ is simply the set of all vectors perpendicuar to $a$ (whose tail, as with all vectors in linear algebra, is considered to be fixed at the origin), making $a$ the <em>normal vector</em> to the hyperplane passing through the origin. To allow for parallel hyperplanes that are translated from the origin, the <em>offset</em> $b \in \mathbb{R}$ is introduced in the generalization $\{ x \ \ | \ \ a^T x = b \}$. This is now the set of all vectors whose dot-product with $a$ is constant. These vectors are not quite perpendicular to $a$, but they form a parallel hyperplane that's been shifted from the origin by a distance of $\frac{|b|}{\|a\|_2}$.
-</p>
-<div class="flash">
-    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>A hyperplane is, of course, also a span. It’s a span in which the roles of the weights and vectors are interchanged. Rather than being a span of $x_1, ..., x_n$ in the weights $a_1, ..., a_n$, it’s the span of $a_1, ..., a_n$ in the weights $x_1, ..., x_n$. However, since the sum is fixed as $b$, the last weight $x_k$ is fixed by the choice of the other $n-1$ weights. Therefore, the hyperplane with a normal vector in $\mathbb{R^n}$ spans $n-1$ dimensions instead of $n$. Conversely, the span is a hyperplane — a term we’ve been avoiding until now by referring to it instead as <em>’a plane in $n$-dimensions’</em>. 
-</div>
-<br>
+<p>There's a geometric interpretation of the parameters $a \in \mathbb{R^n}$ and $b \in \mathbb{R}$. Since the dot-product between perpendicular vectors is $0$, $\{ x \ \ | \ \  a^T x = 0\}$ is simply the set of all vectors perpendicuar to $a$ (whose tail, as with all vectors in linear algebra, is considered to be fixed at the origin), making $a$ the <em>normal vector</em> to the hyperplane passing through the origin. To allow for parallel hyperplanes that are translated from the origin, the <em>offset</em> $b \in \mathbb{R}$ is introduced in the generalization $\{ x \ \ | \ \ a^T x = b \}$. This is now the set of all vectors whose dot-product with $a$ is constant. These vectors are not quite perpendicular to $a$, but they form a parallel hyperplane that's been shifted from the origin by a distance of $\frac{|b|}{\|a\|_2}$.</p>
+<p>Since the sum $a_1 x_1 + ... a_n x_n = b$ is fixed, the last coordinate, which we'll call $x_k$ for some $k \in [1,...,n]$, is fixed by the choice of the other $n-1$ coordinates. Therefore, a hyperplane  in $\mathbb{R^n}$ spans $n-1$ dimensions instead of $n$.
+<br></p>
 
 </div>
 </div>
