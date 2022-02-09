@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Optimization - Review of Linear Algebra and Geometry | Vahram Poghosyan</title>
 <meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Optimization - Review of Linear Algebra and Geometry" />
@@ -20,7 +20,7 @@
 <meta property="twitter:image" content="https://v-poghosyan.github.io/blog/images/conic-combination.png" />
 <meta property="twitter:title" content="Optimization - Review of Linear Algebra and Geometry" />
 <script type="application/ld+json">
-{"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/01/23/Optimization-Review-of-Linear-Algebra-and-Geometry.html","@type":"BlogPosting","image":"https://v-poghosyan.github.io/blog/images/conic-combination.png","headline":"Optimization - Review of Linear Algebra and Geometry","dateModified":"2022-01-23T00:00:00-06:00","datePublished":"2022-01-23T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/01/23/Optimization-Review-of-Linear-Algebra-and-Geometry.html"},"description":"Preliminary mathematical concepts in the study of optimization - Eigenpairs, Fundamental Subspaces, Symmetry, Spectral Decomposition, Convexity, etc.","@context":"https://schema.org"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-01-23T00:00:00-06:00","datePublished":"2022-01-23T00:00:00-06:00","description":"Preliminary mathematical concepts in the study of optimization - Eigenpairs, Fundamental Subspaces, Symmetry, Spectral Decomposition, Convexity, etc.","headline":"Optimization - Review of Linear Algebra and Geometry","image":"https://v-poghosyan.github.io/blog/images/conic-combination.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/01/23/Optimization-Review-of-Linear-Algebra-and-Geometry.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/01/23/Optimization-Review-of-Linear-Algebra-and-Geometry.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://v-poghosyan.github.io/blog/feed.xml" title="Vahram Poghosyan" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -256,7 +256,7 @@ $</p>
 <a class="anchor" href="#Convex-Hull-of-%24n%24-Points" aria-hidden="true"><span class="octicon octicon-link"></span></a>Convex Hull of $n$ Points<a class="anchor-link" href="#Convex-Hull-of-%24n%24-Points"> </a>
 </h3>
 <p>A <em>convex combination</em> of points $x_1, ..., x_n$ is a point of the form $x = \theta_1 x_1 + ... + \theta_n x_n$ where $\sum_{i = 1}^{n} \theta_i = 1$ and $\theta_i \geq 0 \ \ \forall i$.</p>
-<p>Let $x_1,x_2,...,x_n$ be $n$ points in space. Their <em>convex hull</em> is the set of all points which can be written as some convex combination of them. Equivalently, by varying the $theta_i$'s we generate the convex hull as the set of all convex combinations of these points.</p>
+<p>Let $x_1,x_2,...,x_n$ be $n$ points in space. Their <em>convex hull</em> is the set of all points which can be written as some convex combination of them. Equivalently, by varying the $\theta_i$'s we generate the convex hull as the set of all convex combinations of these points.</p>
 <p>The convex hull can be visualized as the closed polygon formed when a rubber band is stretched around the $n$ points. The convex hull of two points is the line segment joining them. That of three points is the polygon (complete with its inner region). In general, for $n$ points, the concept generalizes to an $n$-dimensional polygon.</p>
 <p>Formally, the convex hull is the set $\{ \theta_1 x_1 + ... + \theta_n x_n \ | \ \theta_1 + ... + \theta_n = 1 \ \ \textrm{and} \ \ \theta_i \geq 0 \ \ \forall i \}$
 </p>
