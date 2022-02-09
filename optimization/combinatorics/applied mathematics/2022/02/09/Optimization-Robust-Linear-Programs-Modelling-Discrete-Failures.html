@@ -181,9 +181,10 @@ window.onload = wrap_img;
 \begin{cases}
 \textrm{min}: c^Tx
 \\
-\textrm{s.t.}: Ax \leq b
+\textrm{s.t.}: \begin{align} &amp; Ax \leq b
 \\ 
-\ \ \ \ \ \ \ \ a_R^Tx \leq b_R \ \ \forall a_r \in D_k
+&amp; a_R^Tx \leq b_R \ \ \forall a_r \in D_k
+\end{align}
 \end{cases}
 $</p>
 <p>Which is not in standard form. 
@@ -196,9 +197,9 @@ But for a fixed $x$, $a_R^Tx \leq b_R \ \ \forall a_r \ \ \implies \ \ a_{R \ ma
 \textrm{s.t.}: Ax \leq b
 \\
 \begin{cases}
-\ \ \ \ \ \ \ \ \textrm{max_{a_R}}: a_R^Tx 
+\textrm{max_{a_R}}: a_R^Tx 
 \\
-\ \ \ \ \ \ \ \ \textrm{s.t.}: a_R \in D_k
+\textrm{s.t.}: a_R \in D_k
 \end{cases} \leq b_R
 \end{cases}
 $</p>
