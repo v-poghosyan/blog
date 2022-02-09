@@ -178,20 +178,16 @@ window.onload = wrap_img;
 <p>Let's attempt to formulate this problem as a robust LP in the standard form.</p>
 <p>So far we have:</p>
 <p>$
-\begin{cases}
 \textrm{min}: c^Tx
 \\
-\textrm{s.t.}: \begin{align} &amp; Ax \leq b
+\textrm{s.t.}: Ax \leq b
 \\ 
-&amp; a_R^Tx \leq b_R \ \ \forall a_r \in D_k
-\end{align}
-\end{cases}
+\ \ \ \ \ \ \ \ \ a_R^Tx \leq b_R \ \ \forall a_r \in D_k
 $</p>
 <p>Which is not in standard form. 
 But for a fixed $x$, $a_R^Tx \leq b_R \ \ \forall a_r \ \ \implies \ \ a_{R \ max}^Tx \leq b_R$.</p>
 <p>So we can equivalently state the following nested optimization problem:</p>
 <p>$
-\begin{cases}
 \textrm{min}: c^Tx
 \\
 \textrm{s.t.}: Ax \leq b
@@ -201,7 +197,6 @@ But for a fixed $x$, $a_R^Tx \leq b_R \ \ \forall a_r \ \ \implies \ \ a_{R \ ma
 \\
 \textrm{s.t.}: a_R \in D_k
 \end{cases} \leq b_R
-\end{cases}
 $</p>
 
 </div>
