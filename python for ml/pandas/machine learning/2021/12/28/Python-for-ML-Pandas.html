@@ -1,0 +1,3467 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Python for Machine Learning - Pandas | Vahram Poghosyan</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Python for Machine Learning - Pandas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction to Pandas and common Pandas workflows in Machine Learning." />
+<meta property="og:description" content="Introduction to Pandas and common Pandas workflows in Machine Learning." />
+<link rel="canonical" href="https://v-poghosyan.github.io/blog/python%20for%20ml/pandas/machine%20learning/2021/12/28/Python-for-ML-Pandas.html" />
+<meta property="og:url" content="https://v-poghosyan.github.io/blog/python%20for%20ml/pandas/machine%20learning/2021/12/28/Python-for-ML-Pandas.html" />
+<meta property="og:site_name" content="Vahram Poghosyan" />
+<meta property="og:image" content="https://v-poghosyan.github.io/blog/images/pandas-logo.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-28T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://v-poghosyan.github.io/blog/images/pandas-logo.jpg" />
+<meta property="twitter:title" content="Python for Machine Learning - Pandas" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-12-28T00:00:00-06:00","datePublished":"2021-12-28T00:00:00-06:00","description":"Introduction to Pandas and common Pandas workflows in Machine Learning.","headline":"Python for Machine Learning - Pandas","image":"https://v-poghosyan.github.io/blog/images/pandas-logo.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/python%20for%20ml/pandas/machine%20learning/2021/12/28/Python-for-ML-Pandas.html"},"url":"https://v-poghosyan.github.io/blog/python%20for%20ml/pandas/machine%20learning/2021/12/28/Python-for-ML-Pandas.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://v-poghosyan.github.io/blog/feed.xml" title="Vahram Poghosyan" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QB9Q6T3YNL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QB9Q6T3YNL');
+</script>
+
+
+<link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Vahram Poghosyan</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Python for Machine Learning - Pandas</h1><p class="page-description">Introduction to Pandas and common Pandas workflows in Machine Learning.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-28T00:00:00-06:00" itemprop="datePublished">
+        Dec 28, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      17 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#Python for ML">Python for ML</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#Pandas">Pandas</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#Machine Learning">Machine Learning</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/v-poghosyan/blog/tree/master/_notebooks/2021-12-28-Python-for-ML-Pandas.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/v-poghosyan/blog/master?filepath=_notebooks%2F2021-12-28-Python-for-ML-Pandas.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/v-poghosyan/blog/blob/master/_notebooks/2021-12-28-Python-for-ML-Pandas.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Importing-Pandas">Importing Pandas </a></li>
+<li class="toc-entry toc-h1"><a href="#Two-Underlying-Data-Types">Two Underlying Data Types </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Series">Series </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Indexing">Indexing </a></li>
+<li class="toc-entry toc-h3"><a href="#Broadcasted-and-Vectorized-Operations">Broadcasted and Vectorized Operations </a></li>
+<li class="toc-entry toc-h3"><a href="#Filtering">Filtering </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#DataFrame">DataFrame </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Common-Methods">Common Methods </a></li>
+<li class="toc-entry toc-h3"><a href="#Indexing">Indexing </a></li>
+<li class="toc-entry toc-h3"><a href="#Filtering">Filtering </a></li>
+<li class="toc-entry toc-h3"><a href="#Adding,-Dropping,-and-Renaming-Columns-and-Rows">Adding, Dropping, and Renaming Columns and Rows </a></li>
+<li class="toc-entry toc-h3"><a href="#Manipulating-Columns">Manipulating Columns </a></li>
+<li class="toc-entry toc-h3"><a href="#Worked-Example---Bitcoin-Price-Timeseries:-Cleaning-and-Reindexing">Worked Example - Bitcoin Price Timeseries: Cleaning and Reindexing </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Common-Workflows">Common Workflows </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Finding-the-Unique-Elements-in-a-Column">Finding the Unique Elements in a Column </a></li>
+<li class="toc-entry toc-h2"><a href="#Saving-Data">Saving Data </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-12-28-Python-for-ML-Pandas.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Importing-Pandas">
+<a class="anchor" href="#Importing-Pandas" aria-hidden="true"><span class="octicon octicon-link"></span></a>Importing Pandas<a class="anchor-link" href="#Importing-Pandas"> </a>
+</h1>
+<p><a href="https://pandas.pydata.org/">Pandas</a> is a library that contains pre-written code to help wrangle with data. We can think of it as Python's equivalent of Excel.</p>
+<p>We import Pandas into our development environment as we import any other library — using the <code>import</code> command.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span>
+</pre></div>
+<p>It's standard to import Pandas with the shorthand <code>pd</code> in order to avoid typing <code>pandas</code> all the time.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+<p>This gives us access to a vast array of pre-built objects, functions, and methods which are detailed in the <a href="https://pandas.pydata.org/docs/reference/index.html#api">API reference</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Two-Underlying-Data-Types">
+<a class="anchor" href="#Two-Underlying-Data-Types" aria-hidden="true"><span class="octicon octicon-link"></span></a>Two Underlying Data Types<a class="anchor-link" href="#Two-Underlying-Data-Types"> </a>
+</h1>
+<h2 id="Series">
+<a class="anchor" href="#Series" aria-hidden="true"><span class="octicon octicon-link"></span></a>Series<a class="anchor-link" href="#Series"> </a>
+</h2>
+<p>The basic unit of Pandas is the <code>pandas.Series</code> object which, in keeping with the Excel analogy, can be thought of as a column in an Excel table. It's a one-dimensional data structure that's derived from a <a href="https://numpy.org/">NumPy</a> array. However, unlike a NumPy array, the indices of a <code>Series</code> object aren't limited to the integer values $0,1,...n$ — they can also be descriptive labels.</p>
+<p>Let's create a <code>Series</code> object representing the populations of the G-7 countries in units of millions.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">g7_pop</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">35</span><span class="p">,</span><span class="mi">63</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">318</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we can see, creating a series is a matter of passing a Python list (or a Numpy array) into the <code>Series</code> constructor.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Indexing">
+<a class="anchor" href="#Indexing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Indexing<a class="anchor-link" href="#Indexing"> </a>
+</h3>
+<p>Indexing a <code>Series</code> object is similar to indexing a Python list. For instance, let's print the first element in the above series.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>35</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's now swap out the integer-based indices with descriptive labels. Each <code>Series</code> object has an <code>index</code> argument that can be overwritten.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'Canada'</span><span class="p">,</span>
+    <span class="s1">'France'</span><span class="p">,</span>
+    <span class="s1">'Germany'</span><span class="p">,</span>
+    <span class="s1">'Italy'</span><span class="p">,</span>
+    <span class="s1">'Japan'</span><span class="p">,</span>
+    <span class="s1">'UK'</span><span class="p">,</span>
+    <span class="s1">'US'</span>
+<span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, we can print the first element of the series using its descriptive label.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="p">[</span><span class="s1">'Canada'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>35</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We may notice a similarity between a standard Python dictionary and a labeled <code>Series</code> object. Namely, indexing a series with a label and keying into a Python dictionary have similar syntax. In fact, it's possible to create a labeled <code>Series</code> object directly from a Python dictionary.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
+    <span class="s1">'Canada'</span> <span class="p">:</span> <span class="mi">35</span><span class="p">,</span>
+    <span class="s1">'France'</span> <span class="p">:</span> <span class="mi">63</span><span class="p">,</span>
+    <span class="s1">'Germany'</span> <span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+    <span class="s1">'Italy'</span> <span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+    <span class="s1">'Japan'</span> <span class="p">:</span> <span class="mi">127</span><span class="p">,</span>
+    <span class="s1">'UK'</span> <span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+    <span class="s1">'US'</span> <span class="p">:</span> <span class="mi">318</span>
+<span class="p">})</span>
+<span class="n">g7_pop</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Canada      35
+France      63
+Germany     80
+Italy       60
+Japan      127
+UK          64
+US         318
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the event of overwritting the integer-based indices, it's still possible to access the elements of a <code>Series</code> sequentially using the <code>iloc</code> method (short for "integer location"). To retrieve the population of Canada, we can do as follows:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>35</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It's also possible to use a range when indexing. For instance, suppose we'd like to retrieve the populations of the first three countries from <code>g7_pop</code>. We can simply write:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="p">[</span><span class="s1">'Canada'</span><span class="p">:</span><span class="s1">'Germany'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Canada     35
+France     63
+Germany    80
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Or equivalently:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Canada     35
+France     63
+Germany    80
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since the <code>Series</code> object is based on a Numpy array, it also supports <em>multi-indexing</em> through passing a list of indices or a Boolean mask.</p>
+<p>For instance, to print the populations of Canada and Germany at the same time, we can pass in the list <code>['Canada','Germany']</code> or the Boolean mask <code>[True, False, True, False, False, False, False]</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="p">[[</span><span class="s1">'Canada'</span><span class="p">,</span><span class="s1">'Germany'</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Canada     35
+Germany    80
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="p">[[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Canada     35
+Germany    80
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Broadcasted-and-Vectorized-Operations">
+<a class="anchor" href="#Broadcasted-and-Vectorized-Operations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Broadcasted and Vectorized Operations<a class="anchor-link" href="#Broadcasted-and-Vectorized-Operations"> </a>
+</h3>
+<p>Since it's based on a NumPy array, a <code>Series</code> object also supports vectorization and broadcasted operations.</p>
+<p>As a quick reminder, <em>vectorization</em> is the process by which NumPy optimizes looping in Python. It stores the array internally in a contiguous block of memory and restricts its contents to only one data type. Letting Python know this data type in advance, NumPy can then skip the per-iteration type checking that Python normally does in order to speed up our code. In fact, NumPy delegates most of the operations on such optimized arrays to pre-written C code under the hood.</p>
+<p><em>Broadcasting</em>, on the other hand, is the optimized process by which NumPy performs arithmetic and Boolean operations on arrays of unequal dimensions.</p>
+<p>For instance, suppose the projected population growth of each G-7 country is <code>10 mln</code> by the year 2030. Instead of looping through the <code>Series</code> object and adding <code>10</code> to each row or using a list comprehension, we can simply use broadcasted addition.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_2030_pop</span> <span class="o">=</span> <span class="n">g7_pop</span> <span class="o">+</span> <span class="mi">10</span>
+<span class="n">g7_2030_pop</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Canada      45
+France      73
+Germany     90
+Italy       70
+Japan      137
+UK          74
+US         328
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Filtering">
+<a class="anchor" href="#Filtering" aria-hidden="true"><span class="octicon octicon-link"></span></a>Filtering<a class="anchor-link" href="#Filtering"> </a>
+</h3>
+<p>Thanks to broadcasted Boolean operations and multi-indexing with a Boolean mask, it's possible to write concise and readable filtering expressions on <code>Series</code>.</p>
+<p>For instance, let's return the list of countries with a population over <code>70 mln</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="p">[</span><span class="n">g7_pop</span> <span class="o">&gt;=</span> <span class="mi">70</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Germany     80
+Japan      127
+US         318
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The expression <code>g7_pop &gt;= 70</code> is a broadcasted Boolean operation on the <code>Series</code> object <code>g7_pop</code> which returns a Boolean array <code>[False, False, True, False, True, False, True]</code>. Then <code>g7_pop</code> is multi-indexed using this Boolean mask.</p>
+<p>As another example of readable filtering expressions, we can return the list of countries whose populations exceed the mean population.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_pop</span><span class="p">[</span><span class="n">g7_pop</span> <span class="o">&gt;=</span> <span class="n">g7_pop</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Japan    127
+US       318
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="DataFrame">
+<a class="anchor" href="#DataFrame" aria-hidden="true"><span class="octicon octicon-link"></span></a>DataFrame<a class="anchor-link" href="#DataFrame"> </a>
+</h2>
+<p>Each <code>DataFrame</code> is composed of one or more <code>Series</code>. Whereas a <code>Series</code> is analogous to a column of an Excel table, a <code>DataFrame</code> is analogous to the table itself.</p>
+<p>The <code>DataFrame</code> constructor accepts a variety of input types, among them an ndarray and a dictionary.</p>
+<p>If we're passing an ndarray, it becomes necessary to specify the column labels separately. Additionally, we may overwrite the integer-based indexing as we did with the <code>Series</code> object.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'R1'</span><span class="p">,</span><span class="s1">'R2'</span><span class="p">,</span><span class="s1">'R3'</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'C1'</span><span class="p">,</span> <span class="s1">'C2'</span><span class="p">,</span> <span class="s1">'C3'</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>C1</th>
+      <th>C2</th>
+      <th>C3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>R1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>R2</th>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>R3</th>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We may bypass specifying columns manually by passing in a dictionary instead:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'C1'</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="s1">'C2'</span> <span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="s1">'C3'</span> <span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'R1'</span><span class="p">,</span><span class="s1">'R2'</span><span class="p">,</span><span class="s1">'R3'</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>C1</th>
+      <th>C2</th>
+      <th>C3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>R1</th>
+      <td>1</td>
+      <td>4</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>R2</th>
+      <td>2</td>
+      <td>5</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>R3</th>
+      <td>3</td>
+      <td>6</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>Whereas in a <code>Series</code> the keys of the input dictionary were the row labels, in a <code>DataFrame</code> they’re the column labels.
+</div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In practice we often create a <code>DataFrame</code> from a CSV file using the <code>pandas.read_csv()</code> method like so:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">csv_path</span> <span class="o">=</span> <span class="s1">'file.csv'</span> <span class="c1">#Stores the path to a CSV</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="flash flash-success">
+    <svg class="octicon octicon-checklist" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path></svg>
+    <strong>Tip: </strong>We may optionally pass <code>header = None</code> as an argument to <code>read_csv()</code> after <code>csv_path</code> if the first row of the CSV file itself is a data point, and not a header.
+</div>
+<br>
+<div class="flash flash-success">
+    <svg class="octicon octicon-checklist" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path></svg>
+    <strong>Tip: </strong>Pandas also supports reading an Excel file into a <code>DataFrame</code> using the <code>pandas.read_excel()</code> method.
+</div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Common-Methods">
+<a class="anchor" href="#Common-Methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Common Methods<a class="anchor-link" href="#Common-Methods"> </a>
+</h3>
+<p>Here are the common <code>DataFrame</code> methods that we should keep in our toolbox. These methods give us an overview of our data, and help us clean it up.</p>
+<ul>
+<li>
+<code>df.head()</code> shows, by default, the first 5 rows of the dataset. Accepts an integer argument for the number of rows to display.</li>
+<li>
+<code>df.tail()</code> shows the last 5 rows, and also accepts an integer argument.</li>
+<li>
+<code>df.info()</code> gives a bird's eye overview of the dataset by showing the total rows/columns, the number of non-null datapoints, and the data types.</li>
+<li>
+<code>df.describe()</code> returns statistically significant values for each column such as, the mean, standard deviation, minimum, and maximum values.</li>
+<li>
+<code>df.shape</code> - returns the dimension of the dataset as an $(m,n)$ tuple.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Indexing">
+<a class="anchor" href="#Indexing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Indexing<a class="anchor-link" href="#Indexing"> </a>
+</h3>
+<p>Let's add to the dataset of G-7 countries the columns <code>'GDP'</code> and <code>'Surface Area'</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'Population'</span> <span class="p">:</span> <span class="n">g7_pop</span><span class="p">,</span>
+    <span class="s1">'GDP'</span> <span class="p">:</span> <span class="p">[</span><span class="mf">1.7</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">],</span>
+    <span class="s1">'Surface Area'</span> <span class="p">:</span> <span class="p">[</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="n">g7_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Whereas in a <code>Series</code>, the primary axis of indexing are the rows, in a <code>DataFrame</code> the primary axis are the columns. Thus, indexing a column works as expected.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="p">[</span><span class="s1">'GDP'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Canada     1.7
+France     2.8
+Germany    3.8
+Italy      2.1
+Japan      4.6
+UK         2.9
+US         1.7
+Name: GDP, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Multi-indexing also works in the familiar way:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="p">[[</span><span class="s1">'Population'</span><span class="p">,</span><span class="s1">'GDP'</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>318</td>
+      <td>1.7</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we want to index rows, however, we must use the <code>loc</code> or <code>iloc</code> methods.</p>
+<p>For instance, say we are interested in the population, GDP, and surface area of only the first three countries. We could query the dataset like so:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'Canada'</span><span class="p">:</span><span class="s1">'Germany'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we're only interested in the population and GDP of the first three countries, then we could instead do the following:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="p">[[</span><span class="s1">'Population'</span><span class="p">,</span> <span class="s1">'GDP'</span><span class="p">]]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'Canada'</span><span class="p">:</span><span class="s1">'Germany'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Noting that <code>loc</code> accepts two inputs, one for the selection of rows and one for columns, we can achieve the above more concisely as follows:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'Canada'</span><span class="p">:</span><span class="s1">'Germany'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Population'</span><span class="p">,</span> <span class="s1">'GDP'</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Filtering">
+<a class="anchor" href="#Filtering" aria-hidden="true"><span class="octicon octicon-link"></span></a>Filtering<a class="anchor-link" href="#Filtering"> </a>
+</h3>
+<p>Since the <code>loc</code> method also accepts a Boolean mask as input, we use it to filter the <code>DataFrame</code> by row. For instance, suppose we want the GDP of countries with a population over <code>70 mln</code>. We query the dataset as follows:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">g7_df</span><span class="p">[</span><span class="s1">'Population'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">70</span><span class="p">,</span> <span class="s1">'GDP'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Germany    3.8
+Japan      4.6
+US         1.7
+Name: GDP, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As additional exercise, suppose we are only interested in the population and GDP of countries that are smaller than <code>1.0 mln</code> square kilometers.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">g7_df</span><span class="p">[</span><span class="s1">'Surface Area'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Population'</span><span class="p">,</span><span class="s1">'GDP'</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Adding,-Dropping,-and-Renaming-Columns-and-Rows">
+<a class="anchor" href="#Adding,-Dropping,-and-Renaming-Columns-and-Rows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding, Dropping, and Renaming Columns and Rows<a class="anchor-link" href="#Adding,-Dropping,-and-Renaming-Columns-and-Rows"> </a>
+</h3>
+<p>Let's add a <code>'Languages'</code> column to <code>g7_df</code>. We simply follow the same syntax as adding a key to a dictionary...</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">languages</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
+    <span class="s1">'Canada'</span> <span class="p">:</span> <span class="s1">'French, English'</span><span class="p">,</span>
+    <span class="s1">'France'</span> <span class="p">:</span> <span class="s1">'French'</span><span class="p">,</span>
+    <span class="s1">'Germany'</span> <span class="p">:</span> <span class="s1">'German'</span><span class="p">,</span>
+    <span class="s1">'Italy'</span> <span class="p">:</span> <span class="s1">'Italian'</span><span class="p">,</span>
+    <span class="s1">'Japan'</span> <span class="p">:</span> <span class="s1">'Japanese'</span><span class="p">,</span>
+    <span class="s1">'UK'</span> <span class="p">:</span> <span class="s1">'English'</span><span class="p">,</span>
+    <span class="s1">'US'</span> <span class="p">:</span> <span class="s1">'English'</span>
+<span class="p">})</span>
+<span class="c1"># Next, we add the series as a column to the DataFrame</span>
+<span class="n">g7_df</span><span class="p">[</span><span class="s1">'Languages'</span><span class="p">]</span> <span class="o">=</span> <span class="n">languages</span>
+<span class="n">g7_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+      <th>Languages</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+      <td>French, English</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+      <td>French</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+      <td>German</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+      <td>0.3</td>
+      <td>Italian</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+      <td>Japanese</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+      <td>English</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+      <td>English</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also drop a column or a row using the <code>drop()</code> method.</p>
+<p>Let's drop the newly created <code>'Languages'</code> column. To drop a coulumn, we specify a <code>columns</code> argument in the <code>drop()</code> method like so:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">'Languages'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The method <code>drop()</code> returns a new <code>DataFrame</code> which does not contain the unneeded column, but the original <code>g7_df</code> still contains this column. To prove this, let's print it:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+      <th>Languages</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+      <td>French, English</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+      <td>French</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+      <td>German</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+      <td>0.3</td>
+      <td>Italian</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+      <td>Japanese</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+      <td>English</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+      <td>English</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we can see the <code>'Languages'</code> column is still there. The solution is to specify an <code>inplace = True</code> argument so that the column is dropped in-place.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">'Languages'</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">g7_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In order to drop rows, we specify the <code>index</code> argument instead. Suppose we want to remove Canada and  Italy from the dataset.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Canada'</span><span class="p">,</span> <span class="s1">'Italy'</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is also possible to rename a column or a row using the <code>rename()</code> method.</p>
+<p>Suppose we'd like to rename the columns to include the units of measurement, and suppose we'd also like to expand the UK and US to their full names.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'Population'</span> <span class="p">:</span> <span class="s1">'Population (mln)'</span><span class="p">,</span>
+        <span class="s1">'GDP'</span> <span class="p">:</span> <span class="s1">'GDP (USD)'</span><span class="p">,</span>
+        <span class="s1">'Surface Area'</span> <span class="p">:</span> <span class="s1">'Surface Area (mln sq. km)'</span>
+    <span class="p">},</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'UK'</span> <span class="p">:</span> <span class="s1">'United Kingdom'</span><span class="p">,</span>
+        <span class="s1">'US'</span> <span class="p">:</span> <span class="s1">'United States'</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population (mln)</th>
+      <th>GDP (USD)</th>
+      <th>Surface Area (mln sq. km)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+    </tr>
+    <tr>
+      <th>United Kingdom</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>United States</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Manipulating-Columns">
+<a class="anchor" href="#Manipulating-Columns" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manipulating Columns<a class="anchor-link" href="#Manipulating-Columns"> </a>
+</h3>
+<p>Those of us familiar with Excel know the <em>functions</em> feature which allows users to select specific cells or combinations of cells, perform algebraic or logical operations with their contents, and store the results in new cells. The way to do that in Pandas is, once again, through broadcasted operations.</p>
+<p>For instance, suppose we'd like to add a new <code>'GDP Per Capita'</code> column to the <code>g7_df</code> dataset. This is simply a matter of dividing the GDP of each country by its population.</p>
+<p>Using broadcasted division, the code is simply:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g7_df</span><span class="p">[</span><span class="s1">'GDP Per Capita'</span><span class="p">]</span> <span class="o">=</span> <span class="n">g7_df</span><span class="p">[</span><span class="s1">'GDP'</span><span class="p">]</span> <span class="o">/</span> <span class="n">g7_df</span><span class="p">[</span><span class="s1">'Population'</span><span class="p">]</span>
+<span class="n">g7_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Population</th>
+      <th>GDP</th>
+      <th>Surface Area</th>
+      <th>GDP Per Capita</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Canada</th>
+      <td>35</td>
+      <td>1.7</td>
+      <td>9.0</td>
+      <td>0.048571</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>63</td>
+      <td>2.8</td>
+      <td>0.6</td>
+      <td>0.044444</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>80</td>
+      <td>3.8</td>
+      <td>0.3</td>
+      <td>0.047500</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>60</td>
+      <td>2.1</td>
+      <td>0.3</td>
+      <td>0.035000</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>127</td>
+      <td>4.6</td>
+      <td>0.3</td>
+      <td>0.036220</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>64</td>
+      <td>2.9</td>
+      <td>0.2</td>
+      <td>0.045312</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>318</td>
+      <td>1.7</td>
+      <td>9.0</td>
+      <td>0.005346</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Worked-Example---Bitcoin-Price-Timeseries:-Cleaning-and-Reindexing">
+<a class="anchor" href="#Worked-Example---Bitcoin-Price-Timeseries:-Cleaning-and-Reindexing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Worked Example - Bitcoin Price Timeseries: Cleaning and Reindexing<a class="anchor-link" href="#Worked-Example---Bitcoin-Price-Timeseries:-Cleaning-and-Reindexing"> </a>
+</h3>
+<p>Sometimes we may wish to use a certain column to index a <code>DataFrame</code>. For instance, if we're working with a dataset of Bitcoin prices, it would be wise to use the <code>'Time'</code> column as the index so that we can easily access the value of Bitcoin at a given time. 
+</p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>Data that’s indexed by time is called a <a href="https://en.wikipedia.org/wiki/Time_series">timeseries</a>... 
+</div>
+<p>For this example, we will retrieve the actual daily Bitcoin price history from <a href="https://docs.coincap.io/#ee30bea9-bb6b-469d-958a-d3e35d442d7a">CoinCap API 2.0</a>. Feel free to check out the code that fetches the data as JSON and converts it into a Pandas <code>DataFrame</code> in the collapsable code below.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># Specifying request URL, payload, and headers</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">'https://api.coincap.io/v2/assets/bitcoin/history?interval=d1'</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="c1"># Making the request and parsing it as JSON</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">headers</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">payload</span><span class="p">)</span>
+<span class="n">json_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)[</span><span class="s1">'data'</span><span class="p">]</span>
+<span class="c1"># Converting the result into a DataFrame</span>
+<span class="n">bitcoin_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span>
+<span class="c1"># Cleanup</span>
+<span class="n">bitcoin_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'priceUsd'</span> <span class="p">:</span> <span class="s1">'priceInUSD'</span><span class="p">,</span>
+        <span class="s1">'time'</span> <span class="p">:</span> <span class="s1">'Time'</span><span class="p">,</span>
+        <span class="s1">'date'</span> <span class="p">:</span> <span class="s1">'Date'</span>
+    <span class="p">},</span>
+    <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The result of this is the following <code>DataFrame</code>:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bitcoin_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>priceInUSD</th>
+      <th>Time</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>37480.8939504110899664</td>
+      <td>1610668800000</td>
+      <td>2021-01-15T00:00:00.000Z</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>36853.8623471143090244</td>
+      <td>1610755200000</td>
+      <td>2021-01-16T00:00:00.000Z</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>35670.6623897365179078</td>
+      <td>1610841600000</td>
+      <td>2021-01-17T00:00:00.000Z</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>36061.4760792230247237</td>
+      <td>1610928000000</td>
+      <td>2021-01-18T00:00:00.000Z</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>36868.3293610208260669</td>
+      <td>1611014400000</td>
+      <td>2021-01-19T00:00:00.000Z</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we have the dataset as a cleaned-up Pandas <code>DataFrame</code> called <code>bitcoin_df</code>, we can get to work.</p>
+<p>First order of business is to reindex the dataset based on the <code>'Time'</code> column. We can set a column as index using the <code>set_index()</code> method in the following way:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bitcoin_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'Time'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bitcoin_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># The index column shouldn't have a name — this removes the name 'Time'</span>
+<span class="n">bitcoin_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>priceInUSD</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1610668800000</th>
+      <td>37480.8939504110899664</td>
+      <td>2021-01-15T00:00:00.000Z</td>
+    </tr>
+    <tr>
+      <th>1610755200000</th>
+      <td>36853.8623471143090244</td>
+      <td>2021-01-16T00:00:00.000Z</td>
+    </tr>
+    <tr>
+      <th>1610841600000</th>
+      <td>35670.6623897365179078</td>
+      <td>2021-01-17T00:00:00.000Z</td>
+    </tr>
+    <tr>
+      <th>1610928000000</th>
+      <td>36061.4760792230247237</td>
+      <td>2021-01-18T00:00:00.000Z</td>
+    </tr>
+    <tr>
+      <th>1611014400000</th>
+      <td>36868.3293610208260669</td>
+      <td>2021-01-19T00:00:00.000Z</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we can see the column that was previously named <code>'Time'</code> now acts as index.</p>
+<p>Next, we should convert the entries of the index from a Unix <code>timestamp</code> into a Python <code>datetime</code> for more clarity. While doing this, let's also convert the entries of the <code>'Date'</code> column which are currently in string format.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bitcoin_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">bitcoin_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'us'</span><span class="p">)</span> <span class="c1"># Converting index to datetime from Unix seconds</span>
+<span class="n">bitcoin_df</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">bitcoin_df</span><span class="p">[</span><span class="s1">'Date'</span><span class="p">])</span> <span class="c1"># Converting 'Date' to datetime from string</span>
+<span class="n">bitcoin_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>priceInUSD</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-01-15</th>
+      <td>37480.8939504110899664</td>
+      <td>2021-01-15 00:00:00+00:00</td>
+    </tr>
+    <tr>
+      <th>2021-01-16</th>
+      <td>36853.8623471143090244</td>
+      <td>2021-01-16 00:00:00+00:00</td>
+    </tr>
+    <tr>
+      <th>2021-01-17</th>
+      <td>35670.6623897365179078</td>
+      <td>2021-01-17 00:00:00+00:00</td>
+    </tr>
+    <tr>
+      <th>2021-01-18</th>
+      <td>36061.4760792230247237</td>
+      <td>2021-01-18 00:00:00+00:00</td>
+    </tr>
+    <tr>
+      <th>2021-01-19</th>
+      <td>36868.3293610208260669</td>
+      <td>2021-01-19 00:00:00+00:00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can comfortably access the price of Bitcoin on any given day. Suppose we'd like to know its price on <code>2021-12-28</code>, the day of writing this post... We can simply do:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bitcoin_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'2021-12-28'</span><span class="p">,</span> <span class="s1">'priceInUSD'</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>'48995.0145281203441155'</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Common-Workflows">
+<a class="anchor" href="#Common-Workflows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Common Workflows<a class="anchor-link" href="#Common-Workflows"> </a>
+</h1>
+<h2 id="Finding-the-Unique-Elements-in-a-Column">
+<a class="anchor" href="#Finding-the-Unique-Elements-in-a-Column" aria-hidden="true"><span class="octicon octicon-link"></span></a>Finding the Unique Elements in a Column<a class="anchor-link" href="#Finding-the-Unique-Elements-in-a-Column"> </a>
+</h2>
+<p>Pandas comes with the method <code>unique()</code> which can be applied to a <code>Series</code> object.</p>
+<p>Let's fetch some data about the planets in our solar system from the <a href="https://github.com/devstronomy/nasa-data-scraper/blob/master/data/csv/planets.csv">devstronomy repository</a>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">planets_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'https://raw.githubusercontent.com/devstronomy/nasa-data-scraper/master/data/csv/planets.csv'</span><span class="p">)</span>
+<span class="n">planets_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>planet</th>
+      <th>mass</th>
+      <th>diameter</th>
+      <th>density</th>
+      <th>gravity</th>
+      <th>escape_velocity</th>
+      <th>rotation_period</th>
+      <th>length_of_day</th>
+      <th>distance_from_sun</th>
+      <th>perihelion</th>
+      <th>...</th>
+      <th>orbital_period</th>
+      <th>orbital_velocity</th>
+      <th>orbital_inclination</th>
+      <th>orbital_eccentricity</th>
+      <th>obliquity_to_orbit</th>
+      <th>mean_temperature</th>
+      <th>surface_pressure</th>
+      <th>number_of_moons</th>
+      <th>has_ring_system</th>
+      <th>has_global_magnetic_field</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Mercury</td>
+      <td>0.3300</td>
+      <td>4879</td>
+      <td>5427</td>
+      <td>3.7</td>
+      <td>4.3</td>
+      <td>1407.6</td>
+      <td>4222.6</td>
+      <td>57.9</td>
+      <td>46.0</td>
+      <td>...</td>
+      <td>88.0</td>
+      <td>47.4</td>
+      <td>7.0</td>
+      <td>0.205</td>
+      <td>0.034</td>
+      <td>167</td>
+      <td>0</td>
+      <td>0</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Venus</td>
+      <td>4.8700</td>
+      <td>12104</td>
+      <td>5243</td>
+      <td>8.9</td>
+      <td>10.4</td>
+      <td>-5832.5</td>
+      <td>2802.0</td>
+      <td>108.2</td>
+      <td>107.5</td>
+      <td>...</td>
+      <td>224.7</td>
+      <td>35.0</td>
+      <td>3.4</td>
+      <td>0.007</td>
+      <td>177.400</td>
+      <td>464</td>
+      <td>92</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Earth</td>
+      <td>5.9700</td>
+      <td>12756</td>
+      <td>5514</td>
+      <td>9.8</td>
+      <td>11.2</td>
+      <td>23.9</td>
+      <td>24.0</td>
+      <td>149.6</td>
+      <td>147.1</td>
+      <td>...</td>
+      <td>365.2</td>
+      <td>29.8</td>
+      <td>0.0</td>
+      <td>0.017</td>
+      <td>23.400</td>
+      <td>15</td>
+      <td>1</td>
+      <td>1</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Mars</td>
+      <td>0.6420</td>
+      <td>6792</td>
+      <td>3933</td>
+      <td>3.7</td>
+      <td>5.0</td>
+      <td>24.6</td>
+      <td>24.7</td>
+      <td>227.9</td>
+      <td>206.6</td>
+      <td>...</td>
+      <td>687.0</td>
+      <td>24.1</td>
+      <td>1.9</td>
+      <td>0.094</td>
+      <td>25.200</td>
+      <td>-65</td>
+      <td>0.01</td>
+      <td>2</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Jupiter</td>
+      <td>1898.0000</td>
+      <td>142984</td>
+      <td>1326</td>
+      <td>23.1</td>
+      <td>59.5</td>
+      <td>9.9</td>
+      <td>9.9</td>
+      <td>778.6</td>
+      <td>740.5</td>
+      <td>...</td>
+      <td>4331.0</td>
+      <td>13.1</td>
+      <td>1.3</td>
+      <td>0.049</td>
+      <td>3.100</td>
+      <td>-110</td>
+      <td>Unknown*</td>
+      <td>79</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Saturn</td>
+      <td>568.0000</td>
+      <td>120536</td>
+      <td>687</td>
+      <td>9.0</td>
+      <td>35.5</td>
+      <td>10.7</td>
+      <td>10.7</td>
+      <td>1433.5</td>
+      <td>1352.6</td>
+      <td>...</td>
+      <td>10747.0</td>
+      <td>9.7</td>
+      <td>2.5</td>
+      <td>0.057</td>
+      <td>26.700</td>
+      <td>-140</td>
+      <td>Unknown*</td>
+      <td>62</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Uranus</td>
+      <td>86.8000</td>
+      <td>51118</td>
+      <td>1271</td>
+      <td>8.7</td>
+      <td>21.3</td>
+      <td>-17.2</td>
+      <td>17.2</td>
+      <td>2872.5</td>
+      <td>2741.3</td>
+      <td>...</td>
+      <td>30589.0</td>
+      <td>6.8</td>
+      <td>0.8</td>
+      <td>0.046</td>
+      <td>97.800</td>
+      <td>-195</td>
+      <td>Unknown*</td>
+      <td>27</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Neptune</td>
+      <td>102.0000</td>
+      <td>49528</td>
+      <td>1638</td>
+      <td>11.0</td>
+      <td>23.5</td>
+      <td>16.1</td>
+      <td>16.1</td>
+      <td>4495.1</td>
+      <td>4444.5</td>
+      <td>...</td>
+      <td>59800.0</td>
+      <td>5.4</td>
+      <td>1.8</td>
+      <td>0.011</td>
+      <td>28.300</td>
+      <td>-200</td>
+      <td>Unknown*</td>
+      <td>14</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Pluto</td>
+      <td>0.0146</td>
+      <td>2370</td>
+      <td>2095</td>
+      <td>0.7</td>
+      <td>1.3</td>
+      <td>-153.3</td>
+      <td>153.3</td>
+      <td>5906.4</td>
+      <td>4436.8</td>
+      <td>...</td>
+      <td>90560.0</td>
+      <td>4.7</td>
+      <td>17.2</td>
+      <td>0.244</td>
+      <td>122.500</td>
+      <td>-225</td>
+      <td>0.00001</td>
+      <td>5</td>
+      <td>No</td>
+      <td>Unknown</td>
+    </tr>
+  </tbody>
+</table>
+<p>9 rows × 21 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we want to find out the unique number of moons each planet has, we can simply do:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">planets_df</span><span class="p">[</span><span class="s1">'number_of_moons'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 0,  1,  2, 79, 62, 27, 14,  5], dtype=int64)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we can see, the 9 planets in our solar system (counting Pluto) have 8 unique number of moons. This is because, as we can see from the dataset, Mercury and Venus both have 0 moons.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Saving-Data">
+<a class="anchor" href="#Saving-Data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Saving Data<a class="anchor-link" href="#Saving-Data"> </a>
+</h2>
+<p>After all the data manipulation, it would be useful to save the resulting dataset locally on our machine. Pandas offers us a way to do that using the <code>DataFrame.to_csv()</code> method.</p>
+<p>Working with the <code>planets_df</code> defined above, we can narrow the dataset down to the planets which have a gravitational force that's close to that of the Earth ($9.8  \ m/s^2$).</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">earthlike_planets_df</span> <span class="o">=</span> <span class="n">planets_df</span><span class="p">[(</span><span class="n">planets_df</span><span class="p">[</span><span class="s1">'gravity'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">9.8</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">planets_df</span><span class="p">[</span><span class="s1">'gravity'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">9.8</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="n">earthlike_planets_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>planet</th>
+      <th>mass</th>
+      <th>diameter</th>
+      <th>density</th>
+      <th>gravity</th>
+      <th>escape_velocity</th>
+      <th>rotation_period</th>
+      <th>length_of_day</th>
+      <th>distance_from_sun</th>
+      <th>perihelion</th>
+      <th>...</th>
+      <th>orbital_period</th>
+      <th>orbital_velocity</th>
+      <th>orbital_inclination</th>
+      <th>orbital_eccentricity</th>
+      <th>obliquity_to_orbit</th>
+      <th>mean_temperature</th>
+      <th>surface_pressure</th>
+      <th>number_of_moons</th>
+      <th>has_ring_system</th>
+      <th>has_global_magnetic_field</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Venus</td>
+      <td>4.87</td>
+      <td>12104</td>
+      <td>5243</td>
+      <td>8.9</td>
+      <td>10.4</td>
+      <td>-5832.5</td>
+      <td>2802.0</td>
+      <td>108.2</td>
+      <td>107.5</td>
+      <td>...</td>
+      <td>224.7</td>
+      <td>35.0</td>
+      <td>3.4</td>
+      <td>0.007</td>
+      <td>177.4</td>
+      <td>464</td>
+      <td>92</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Earth</td>
+      <td>5.97</td>
+      <td>12756</td>
+      <td>5514</td>
+      <td>9.8</td>
+      <td>11.2</td>
+      <td>23.9</td>
+      <td>24.0</td>
+      <td>149.6</td>
+      <td>147.1</td>
+      <td>...</td>
+      <td>365.2</td>
+      <td>29.8</td>
+      <td>0.0</td>
+      <td>0.017</td>
+      <td>23.4</td>
+      <td>15</td>
+      <td>1</td>
+      <td>1</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Saturn</td>
+      <td>568.00</td>
+      <td>120536</td>
+      <td>687</td>
+      <td>9.0</td>
+      <td>35.5</td>
+      <td>10.7</td>
+      <td>10.7</td>
+      <td>1433.5</td>
+      <td>1352.6</td>
+      <td>...</td>
+      <td>10747.0</td>
+      <td>9.7</td>
+      <td>2.5</td>
+      <td>0.057</td>
+      <td>26.7</td>
+      <td>-140</td>
+      <td>Unknown*</td>
+      <td>62</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 21 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="flash flash-success">
+    <svg class="octicon octicon-checklist" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 01.25-.25h8.5a.25.25 0 01.25.25v7.736a.75.75 0 101.5 0V1.75A1.75 1.75 0 0011.25 0h-8.5A1.75 1.75 0 001 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 000-1.5H2.75a.25.25 0 01-.25-.25V1.75zM4.75 4a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM4 7.75A.75.75 0 014.75 7h2a.75.75 0 010 1.5h-2A.75.75 0 014 7.75zm11.774 3.537a.75.75 0 00-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 00-1.062 1.058l1.943 1.95a.75.75 0 001.055.008l4.557-4.45z"></path></svg>
+    <strong>Tip: </strong>Pandas prefers the use of bitwise Boolean operators <code>&amp;</code> and <code>|</code>, instead of the Python’s default <code>and</code> and <code>or</code>. This is because Pandas relies on NumPy, which in turn relies on the capacity of the bitwise operators to be overloaded.
+</div>
+<br>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can now save this new dataset to our desktop as follows:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">earthlike_planets_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'C:/Users/Vahram/Desktop/earthlike_planets.csv'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><a class="u-url" href="/blog/python%20for%20ml/pandas/machine%20learning/2021/12/28/Python-for-ML-Pandas.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Personal blog about Machine Learning, Data Science, Mathematics, Software Engineering, and various other topics. Created by Vahram Poghosyan, © 2021 - Present.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/v-poghosyan" target="_blank" title="v-poghosyan"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/Vahram31680593" target="_blank" title="Vahram31680593"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
