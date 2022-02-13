@@ -4,21 +4,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Optimization - Geometry of Linear Programs | Vahram Poghosyan</title>
+<title>Optimization - Linear Programs in Standard Form and LP Geometry | Vahram Poghosyan</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Optimization - Geometry of Linear Programs" />
+<meta property="og:title" content="Optimization - Linear Programs in Standard Form and LP Geometry" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Preliminary mathematical concepts in the study of optimization - Eigenpairs, Fundamental Subspaces, Symmetry, Spectral Decomposition, Convexity, etc." />
-<meta property="og:description" content="Preliminary mathematical concepts in the study of optimization - Eigenpairs, Fundamental Subspaces, Symmetry, Spectral Decomposition, Convexity, etc." />
+<meta name="description" content="Linear Programs, converting to standard form, feasibility and boundedness, The Extreme Point Theorem" />
+<meta property="og:description" content="Linear Programs, converting to standard form, feasibility and boundedness, The Extreme Point Theorem" />
 <link rel="canonical" href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/12/Optimization-Geometry-of-Linear-Programs.html" />
 <meta property="og:url" content="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/12/Optimization-Geometry-of-Linear-Programs.html" />
 <meta property="og:site_name" content="Vahram Poghosyan" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-02-12T00:00:00-06:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Optimization - Geometry of Linear Programs" />
+<meta property="twitter:title" content="Optimization - Linear Programs in Standard Form and LP Geometry" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-12T00:00:00-06:00","datePublished":"2022-02-12T00:00:00-06:00","description":"Preliminary mathematical concepts in the study of optimization - Eigenpairs, Fundamental Subspaces, Symmetry, Spectral Decomposition, Convexity, etc.","headline":"Optimization - Geometry of Linear Programs","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/12/Optimization-Geometry-of-Linear-Programs.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/12/Optimization-Geometry-of-Linear-Programs.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-12T00:00:00-06:00","datePublished":"2022-02-12T00:00:00-06:00","description":"Linear Programs, converting to standard form, feasibility and boundedness, The Extreme Point Theorem","headline":"Optimization - Linear Programs in Standard Form and LP Geometry","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/12/Optimization-Geometry-of-Linear-Programs.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/12/Optimization-Geometry-of-Linear-Programs.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://v-poghosyan.github.io/blog/feed.xml" title="Vahram Poghosyan" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -104,13 +104,13 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Optimization - Geometry of Linear Programs</h1><p class="page-description">Preliminary mathematical concepts in the study of optimization - Eigenpairs, Fundamental Subspaces, Symmetry, Spectral Decomposition, Convexity, etc.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-12T00:00:00-06:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Optimization - Linear Programs in Standard Form and LP Geometry</h1><p class="page-description">Linear Programs, converting to standard form, feasibility and boundedness, The Extreme Point Theorem</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-12T00:00:00-06:00" itemprop="datePublished">
         Feb 12, 2022
       </time>
        • <span class="read-time" title="Estimated read time">
     
     
-      7 min read
+      9 min read
     
 </span></p>
 
@@ -161,12 +161,18 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#Feasibility-and-Boundedness">Feasibility and Boundedness </a></li>
+<li class="toc-entry toc-h1"><a href="#Converting-to-Standard-Form">Converting to Standard Form </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Introducing-Slack-Variables">Introducing Slack Variables </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h1"><a href="#Geometry-of-Linear-Programs">Geometry of Linear Programs </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Extreme-Points---Geometric-Definitions">Extreme Points - Geometric Definitions </a></li>
-<li class="toc-entry toc-h2"><a href="#Extreme-Points---Algebraic-Definitions">Extreme Points - Algebraic Definitions </a>
+<li class="toc-entry toc-h2"><a href="#Extreme-Points---Algebraic-Definition">Extreme Points - Algebraic Definition </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Basic-Feasible-Solution">Basic Feasible Solution </a></li>
+<li class="toc-entry toc-h3"><a href="#Vector-Matrix-Formulation-of-Basic-Feasible-Solutions">Vector-Matrix Formulation of Basic Feasible Solutions </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#The-Extreme-Point-Theorem">The Extreme Point Theorem </a>
@@ -191,7 +197,7 @@ window.onload = wrap_img;
 <h1 id="Introduction">
 <a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
 </h1>
-<p>A linear program is an optimization problem in $n$-dimensions with a linear objective and a polytope of a constraint set. That is a linear, convex constraint set — the intersection of $n$-dimentsional linear inequalities (<em>halfspaces</em>) and linear equalities (<em>hyperplanes</em>).</p>
+<p>A linear program is a convex optimization problem in $n$-dimensions with a linear objective and a polytope constraint. That is, its constraint set is an intersection of $n$-dimentsional linear inequalities (<em>halfspaces</em>) and linear equalities (<em>hyperplanes</em>).</p>
 <p>In matrix form, it may be stated as</p>
 
 </div>
@@ -204,9 +210,35 @@ window.onload = wrap_img;
 \begin{cases}
 min_x: c^Tx
 \\
-s.t.: \begin{aligned} &amp;Ax \leq b
+s.t.: \begin{aligned} &amp;A_1x \leq b
 \\ 
-&amp;Dx = f
+&amp;A_2x = f
+\end{aligned}
+\end{cases}
+$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>where $c \in \mathbb{R}^n$ is the <em>cost vector</em> of the objective function, $x \in \mathbb{R^n}$ is the <em>decision variable</em>, $A_1 \in \mathbb{R}^{m \times n}$ and $b \in \mathbb{R}^m$ together define the collection of linear inequality constraints, and $A_2 \in \mathbb{R}^{p \times n}$ and $f \in \mathbb{R}^p$ define the collection of linear equality constraints.</p>
+<p>An LP in any form such as the one above can be converted into its <em>standard form</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$
+\begin{cases}
+min_x: c^Tx
+\\
+s.t.: \begin{aligned} &amp;Ax = b
+\\ 
+&amp;x \geq 0
 \end{aligned}
 \end{cases} \dagger
 $</p>
@@ -217,7 +249,14 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>where $c \in \mathbb{R}^n$ is the <em>cost vector</em>, $x \in \mathbb{R^n}$ is the <em>decision variable</em>, $A \in \mathbb{R}^{m \times n}$ and $b \in \mathbb{R}^m$ together define the collection of linear inequality constraints, and $D \in \mathbb{R}^{p \times n}$ and $f \in \mathbb{R}^p$ define the collection of linear equality constraints.</p>
+<p>We will prove that this conversion possible for a general LP shortly.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Applications">
 <a class="anchor" href="#Applications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Applications<a class="anchor-link" href="#Applications"> </a>
 </h2>
@@ -270,7 +309,111 @@ $$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The first problem is unbounded, since $x_1$ can be taken arbitrarily small. However, the secomnd problem is bounded despite having an open constraint set. The optimal value of $(2)$ is $x_1 = 4$.</p>
-<p>So, an LP is said to be unbounded if it's feasible but has no optimal solution.</p>
+<p>Thus, an LP is said to be unbounded not when its constraint polytope is open, but when it's feasible and has no optimal solution.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Converting-to-Standard-Form">
+<a class="anchor" href="#Converting-to-Standard-Form" aria-hidden="true"><span class="octicon octicon-link"></span></a>Converting to Standard Form<a class="anchor-link" href="#Converting-to-Standard-Form"> </a>
+</h1>
+<p>Given any starting point, an LP can be written in standard form $\dagger$. This is useful for standardization of the problem from an algorithmic perspective, and it's what the <a href="https://en.wikipedia.org/wiki/Simplex_algorithm">Simplex algorithm</a> relies on to solve LP's.</p>
+<p>In the most general case an LP can be stated with inequality constraints going in both directions and equality constraints as follows</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$
+\begin{cases}
+min_x: c^Tx
+\\
+s.t.: \begin{aligned} &amp;A_1x \leq  b_1
+\\
+&amp;A_2x \geq  b_2
+\\ 
+&amp;A_3x = f
+\end{aligned}
+\end{cases}
+$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But the inequality constraints can always be combined into $Ax \leq b$ for $A = [A_1, A_2]$ where the columns of $A_2$ are concatenated with those of $A_1$, and $b = [b_1, -b_2]^T$.</p>
+<p>So there's no qualitative difference between this form and the one introduced as the very first example of an LP in this post. Simply relabel the matrices...</p>
+<p>The real challenge lies in converting the inequality constraints $A_1x \leq b$ into equality constraints $A_1x = b$.</p>
+<h2 id="Introducing-Slack-Variables">
+<a class="anchor" href="#Introducing-Slack-Variables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introducing Slack Variables<a class="anchor-link" href="#Introducing-Slack-Variables"> </a>
+</h2>
+<p>The inequality constraint $A_1x \leq b$ has <em>slack</em>. Formally, we can define vector $s \geq 0$ (component-wise), that bridges the gap between $A_1x$ and $b$, that is s.t. $A_1x + s = b$.</p>
+<p>Since this introduces new variables, we have to represent those in the objective and the equality constraints in a way that doesn't affect the optimization outcome.</p>
+<p>The LP becomes</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$
+\begin{cases}
+min_x: c^Tx + \mathbf{0}^Ts
+\\
+s.t.: \begin{aligned} &amp;A_1x + s = b
+\\ 
+&amp;A_2x + 0s = f
+\\
+&amp;s \geq 0
+\end{aligned}
+\end{cases}
+$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This LP is equivalent to the one before. Namely, if the previous optimizer was $x^*$, the optimizer in the new LP is the concatenation $[x^*, b - Ax]$ which gives the same optimal value in the objective function.</p>
+<p>This is almost in standard form, an LP with only equality constraints, and non-negativity constraints. However, the decision variable of this LP is the concatenation $[x,s]^T$, whereas the non-negativity applies to $s$ alone.</p>
+<p>The next step is to decompose $x$ as $x = x^+ - x^-$ where $x^+,x^- \geq 0$ respectively contain only the positive and only the negative entries of $x$. That is, $x^+$, and $x^-$ have entries $x_i^+ = max\{0, x_i\}$ and $x_i^- = -min\{0, x_i\}$.</p>
+<p>With this substitution we get</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$
+\begin{cases}
+min_x: c^Tx^+ - c^Tx^- + \mathbf{0}^Ts
+\\
+s.t.: \begin{aligned} &amp;A_1x^+ - Ax^- + s = b
+\\ 
+&amp;A_2x^+ - A_2x^- + 0s = f
+\\
+&amp;x^+, x^-, s \geq 0
+\end{aligned}
+\end{cases}
+$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Which is an LP in standard form $\dagger$.</p>
 
 </div>
 </div>
@@ -302,8 +445,8 @@ $$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Extreme-Points---Algebraic-Definitions">
-<a class="anchor" href="#Extreme-Points---Algebraic-Definitions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extreme Points - Algebraic Definitions<a class="anchor-link" href="#Extreme-Points---Algebraic-Definitions"> </a>
+<h2 id="Extreme-Points---Algebraic-Definition">
+<a class="anchor" href="#Extreme-Points---Algebraic-Definition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extreme Points - Algebraic Definition<a class="anchor-link" href="#Extreme-Points---Algebraic-Definition"> </a>
 </h2>
 <p>It's useful to define an extreme point algebraically. To that end, let's define the concept of a <em>basic feasible solution (BFS)</em>.</p>
 <p>Suppose we have the polytope $\{x : Ax \leq b, Dx = f\}$.</p>
@@ -330,7 +473,9 @@ $$
 <li>$x$ is an extreme point by <em>Definition 2</em>.</li>
 <li>$x$ is a basic feasible solution.</li>
 </ul>
-
+<h3 id="Vector-Matrix-Formulation-of-Basic-Feasible-Solutions">
+<a class="anchor" href="#Vector-Matrix-Formulation-of-Basic-Feasible-Solutions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vector-Matrix Formulation of Basic Feasible Solutions<a class="anchor-link" href="#Vector-Matrix-Formulation-of-Basic-Feasible-Solutions"> </a>
+</h3>
 </div>
 </div>
 </div>
@@ -342,14 +487,10 @@ $$
 </h2>
 <p>Why devote so much time formalizing the defininion of extreme points? As hinted earlier and as shall be proved shortly, optima of linear programs can only occur at extreme points. This is the reason LP's are a class of easy convex optimization problems — the search space for their optima can be reduced to a finite number of extreme points.</p>
 <blockquote>
-<p>The Extreme Point Theorem:  If a linear program:&gt;</p>
+<p>The Extreme Point Theorem:&gt;&gt; If a linear program</p>
 <ul>
-<li>
-<p>has a finite optimum, and</p>
-</li>
-<li>
-<p>its constraint polytope has at least one extreme point,</p>
-</li>
+<li>has a finite optimum, and </li>
+<li>its constraint polytope has at least one extreme point,</li>
 </ul>
 <p>then there is an extreme point which is optimal.
 <br></p>
