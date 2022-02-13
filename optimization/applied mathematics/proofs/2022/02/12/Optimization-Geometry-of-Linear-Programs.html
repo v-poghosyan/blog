@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      5 min read
+      7 min read
     
 </span></p>
 
@@ -167,6 +167,11 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#Extreme-Points---Algebraic-Definitions">Extreme Points - Algebraic Definitions </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Basic-Feasible-Solution">Basic Feasible Solution </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#The-Extreme-Point-Theorem">The Extreme Point Theorem </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Proof">Proof </a></li>
 </ul>
 </li>
 </ul>
@@ -283,11 +288,11 @@ $$
 </h2>
 <p>First, let's give a couple of geometric definitions of an extreme point.</p>
 <blockquote>
-<p>Definition 1:A point $x$ is an <strong>extreme point</strong> of a polytope $P$ if it is <em>not</em> the convex combination of any other two points in the polytope.<br></p>
+<p>Definition 1:  A point $x$ is an <strong>extreme point</strong> of a polytope $P$ if it is <em>not</em> the convex combination of any other two points in the polytope.<br></p>
 </blockquote>
 <p>That is, if $\exists y,z \in P$ and $\lambda \in [0,1]$ s.t. $x = \lambda y + (1- \lambda)z$ then $x$ is <strong>not</strong> an extreme point of $P$.</p>
 <blockquote>
-<p>Definition 2:A point $x$ is an <strong>extreme point</strong> of a polytope $P$ if it is the <em>unique</em> optimum for some cost vector $c$.<br></p>
+<p>Definition 2:  A point $x$ is an <strong>extreme point</strong> of a polytope $P$ if it is the <em>unique</em> optimum for some cost vector $c$.<br></p>
 </blockquote>
 <p>That is, if $\exists c \in \mathbb{R}^n$ s.t. $c^Tx &lt; c^Ty \ \ \forall y \in P$ then $x$ is an extreme point.</p>
 
@@ -303,7 +308,7 @@ $$
 <p>It's useful to define an extreme point algebraically. To that end, let's define the concept of a <em>basic feasible solution (BFS)</em>.</p>
 <p>Suppose we have the polytope $\{x : Ax \leq b, Dx = f\}$.</p>
 <blockquote>
-<p>Definition:An <strong>active constraint at $x$</strong> is a constraint that's satisfied through strict equality.<br></p>
+<p>Definition:  An <strong>active constraint at $x$</strong> is a constraint that's satisfied through strict equality.<br></p>
 </blockquote>
 <p>That is, the $i$-th constraint is said to be active at x if $a_i^Tx = b_i$.</p>
 <p>This can be thought of as $x$ being on the edge of the halfspace defined by $a_i^Tx \leq b_i$.</p>
@@ -314,7 +319,7 @@ $$
 </h3>
 <p>We are now ready to define what it means for a point $x$ to be a basic feasible solution of a linear program.</p>
 <blockquote>
-<p>Definition:The point $x$ is a <strong>basic feasible solution (BFS)</strong> of the linear program if its active set $\mathcal{A}_x$ contains exactly $n$ linearly independent vectors where $n$ is the  dimension of $x$.<br></p>
+<p>Definition:  The point $x$ is a <strong>basic feasible solution (BFS)</strong> of the linear program if its active set $\mathcal{A}_x$ contains exactly $n$ linearly independent vectors where $n$ is the  dimension of $x$.<br></p>
 </blockquote>
 <p>Let's ponder the BFS definition for a minute.</p>
 <p>Imagine a closed polytope in 2D. Each of its vertices are defined by, at least, two intersecting lines. It's possible that a vertex is the result of the intersection of three or more lines, but deleting all but two non-parallel lines will still retain the vertex. In other words, two linearly independent constraints define an extreme point in 2D.</p>
@@ -325,6 +330,69 @@ $$
 <li>$x$ is an extreme point by <em>Definition 2</em>.</li>
 <li>$x$ is a basic feasible solution.</li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-Extreme-Point-Theorem">
+<a class="anchor" href="#The-Extreme-Point-Theorem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Extreme Point Theorem<a class="anchor-link" href="#The-Extreme-Point-Theorem"> </a>
+</h2>
+<p>Why devote so much time formalizing the defininion of extreme points? As hinted earlier and as shall be proved shortly, optima of linear programs can only occur at extreme points. This is the reason LP's are a class of easy convex optimization problems — the search space for their optima can be reduced to a finite number of extreme points.</p>
+<blockquote>
+<p>The Extreme Point Theorem:  If a linear program:&gt; * has a finite optimum, and</p>
+<ul>
+<li>its constraint polytope has at least one extreme point,
+then there is an extreme point which is optimal.
+<br>
+</li>
+</ul>
+</blockquote>
+<p>So, if we want to solve linear programs we need only consider the extreme points.</p>
+<p>Let's prove the theorem through induction on the dimension.</p>
+<h3 id="Proof">
+<a class="anchor" href="#Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof<a class="anchor-link" href="#Proof"> </a>
+</h3>
+<p>Take the following general LP and assume it has a finite optimum. Assume also that its constraint polytope has, at least, one extreme point.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$
+\begin{cases}
+min_{x}: c^Tx
+\\
+s.t.: x \in P
+\end{cases}
+$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Assume the theorem is true for this LP with an $(n-1)$-dimensional constraint polytope. The objective is to show that it's also true for the same LP with an $n$-dimensional constraint polytope.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let $v$ be the optimal value of the LP.</p>
+<p>Let $Q = P \cap \{ x : c^Tx = v \}$ be the intersection of the constraint polytope with the level set of the objective function at the optimal value.</p>
+<p>Since $Q$ is the intersection of an $n$-dimensional polytope $P$ with an additional linear constraint (a hyperplane), it is $(n-1)$-dimensional.</p>
+<p>By the inductive hypothesis, there is an extreme point $x^* \in Q$ that's optimal for the LP.</p>
+<p>By a contradiction argument, $x^*$ is also an extreme point in $P$.</p>
+<p>Suppose it is <em>not</em> an extreme point in $P$. Then by <em>Definition 1</em> of extreme point, $x^*$ is a comvex combination of some two points in $P$. That is, $\exists x,y \in P$ s.t. $\lambda x + (1- \lambda)y = x^*$ for some $\lambda \in [0,1]$.</p>
+<p>But then $\lambda c^Ty + (1- \lambda)c^Tz = c^Tx^* = v$, since $x^*$ is optimal. But the right hand side is a convex combination of scalars, so $c^Ty = c^Tz = v$. This means $x,y \in Q$, which contradicts the fact that $x^*$ is an extreme point in $Q$.</p>
+<p>Hence, $x^*$ must be an extreme point in $P$.</p>
 
 </div>
 </div>
