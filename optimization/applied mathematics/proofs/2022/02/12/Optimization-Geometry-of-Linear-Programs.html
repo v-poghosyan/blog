@@ -172,7 +172,8 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#Extreme-Points---Algebraic-Definition">Extreme Points - Algebraic Definition </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Basic-Feasible-Solution">Basic Feasible Solution </a></li>
-<li class="toc-entry toc-h3"><a href="#Matrix-Vector-Formulation-of-Basic-Feasible-Solutions">Matrix-Vector Formulation of Basic Feasible Solutions </a>
+<li class="toc-entry toc-h3"><a href="#Matrix-Vector-Formulation-of-Basic-Feasible-Solutions">Matrix-Vector Formulation of Basic Feasible Solutions </a></li>
+<li class="toc-entry toc-h3"><a href="#Basic-Feasible-Solutions-and-Extreme-Points-are-Equivalent">Basic Feasible Solutions and Extreme Points are Equivalent </a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#Proof">Proof </a></li>
 </ul>
@@ -506,6 +507,9 @@ $</p>
 </blockquote>
 <p>Note that, for the case we're in, this is considtent with the earlier definition of a BFS.</p>
 <p>Let $x$ be a BFS according to this definition. $Ax = b$ poses a set of $m$ linearly independent constraints since $rank(A) = m$, whereas $x \geq 0$ poses a set of $n$. Since feasibility demands the equality constraints be satisfied, $n-m$ of the constrains in $x \geq 0$ must be active at $x$. $x = [x_B, 0]^T$ is a vector at which all $m$ of the equality constraints $Ax = b$ are active, and $n-m$ of the inequality constraints $x \geq 0$ are also active. So in total $n$ linearly independent constraints are active at a BFS.</p>
+<h3 id="Basic-Feasible-Solutions-and-Extreme-Points-are-Equivalent">
+<a class="anchor" href="#Basic-Feasible-Solutions-and-Extreme-Points-are-Equivalent" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Feasible Solutions and Extreme Points are Equivalent<a class="anchor-link" href="#Basic-Feasible-Solutions-and-Extreme-Points-are-Equivalent"> </a>
+</h3>
 <p>To formally prove basic feasible solutions to be extreme points in the geometric sense, consider the following theorem and its proof.</p>
 <blockquote>
 <p>Theorem:  The point $x$ is an extreme point of $\Omega = \{ Ax =b, x \geq 0 \}$ if and only if it is a basic feasible solution.<br></p>
