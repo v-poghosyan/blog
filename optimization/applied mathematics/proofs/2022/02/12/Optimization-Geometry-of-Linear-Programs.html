@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      14 min read
+      15 min read
     
 </span></p>
 
@@ -502,9 +502,11 @@ $</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For a constraint set that satisfied Assumptions 1-4, the basic feasible solutions can be reformulated as follows.</p>
 <blockquote>
-<p>Definition:  Let $x_B \geq 0$ be such that. $Bx_B = b$. Then the concatenation $x = [x_B, 0]^T$ is a solution to $Ax = b$. Such solutions are called <strong>basic feasible solutions</strong>. <br></p>
+<p>Definition:  Let $x_B$ be such that. $Bx_B = b$. Then the concatenation $x = [x_B, 0]^T$ is a solution to $Ax = b$. Such solutions are called <strong>feasible solutions</strong>. Furthermore, if $x_B \geq 0$, such solutions are called <strong>basic ferasible solutions</strong>.<br></p>
 </blockquote>
-<p>We will now prove a theorem that relates this formulation of BFS to extreme points to convince ourselves of their equivalence.</p>
+<p>Note that, for the case we're in, this is considtent with the earlier definition of a BFS.</p>
+<p>Let $x$ be a BFS according to this definition. $Ax = b$ poses a set of $m$ linearly independent constraints since $rank(A) = m$, whereas $x \geq 0$ poses a set of $n$. Since feasibility demands the equality constraints be satisfied, $n-m$ of the constrains in $x \geq 0$ must be active at $x$. $x = [x_B, 0]^T$ is a vector at which all $m$ of the equality constraints $Ax = b$ are active, and $n-m$ of the inequality constraints $x \geq 0$ are also active. So in total $n$ linearly independent constraints are active at a BFS.</p>
+<p>To formally prove basic feasible solutions to be extreme points in the geometric sense, consider the following theorem and its proof.</p>
 <blockquote>
 <p>Theorem:  The point $x$ is an extreme point of $\Omega = \{ Ax =b, x \geq 0 \}$ if and only if it is a basic feasible solution.<br></p>
 </blockquote>
@@ -530,8 +532,8 @@ $</p>
 <p>Towards contradiction, assume $a_1, ..., a_m$ are linearly dependent. Then $\exists y_1, ..., y_m \in \mathbb{R}$ not all zero s.t. $y_1a_1 + ... + y_ma_m = 0$</p>
 <p>Take $\epsilon &gt; 0$ to be very small. Small enoiugh so that $x_i \pm \epsilon y_i &gt; 0 \ \ \forall i = 1,...,m$.</p>
 <p>Define two points as</p>
-<p>$z^1 = [x_1 - \epsilon y_1, ..., x_p - \epsilon y_p, 0, ..., 0]$ and, 
-$z^2 = [x_1 + \epsilon y_1, ..., x_p + \epsilon y_p, 0, ..., 0]$.</p>
+<p>$z^1 = [x_1 - \epsilon y_1, ..., x_p - \epsilon y_p, 0, ..., 0]^T$ and, 
+$z^2 = [x_1 + \epsilon y_1, ..., x_p + \epsilon y_p, 0, ..., 0]^T$.</p>
 <p>These points clearly satisfy $z_1,z_2 \geq 0$, so they they satisfy one of $\Omega$'s constraints.</p>
 <p>Furthermore,</p>
 <p>$Az^1 = \sum_{i=1}^m z^1_ia_i = \sum_{i=1}^m x_ia_i - \epsilon \sum_{i=1}^m y_ia_i = b$ since $\sum_{i=1}^m y_ia_i = 0$.</p>
@@ -543,7 +545,8 @@ $z^2 = [x_1 + \epsilon y_1, ..., x_p + \epsilon y_p, 0, ..., 0]$.</p>
 <p><strong>Necessity: $\impliedby$</strong></p>
 <p>Suppose $x$ is a BFS and assume, towards contradiction, that it's <em>not</em> and extreme point of $\Omega$.</p>
 <p>Then $\exists y,z \in \Omega$ with $y \ne z$ s.t. $x = \alpha y + (1- \alpha) z$ for some $\alpha \in (0,1)$.</p>
-<p>But since $y,z \in \Omega$ they satisfy $Ay = Az = b$, so $Ay - Az = A(y - z) 0$. That is $(y_1 - z_1)a_1 + ... + (y_m - z_m)a_m = 0$.</p>
+<p>But since $y,z \in \Omega$ they satisfy $Ay = Az = b$, so $Ay - Az = A(y - z) 0$.</p>
+<p>That is $(y_1 - z_1)a_1 + ... + (y_m - z_m)a_m = 0$.</p>
 <p>But since $y \ne z$, not all $(y_i - z_i) = 0$. So, $a_1,..., a_m$ are linearly dependent. This contradicts the assumption that $x$ was a BFS.</p>
 
 </div>
