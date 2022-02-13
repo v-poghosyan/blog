@@ -342,13 +342,17 @@ $$
 </h2>
 <p>Why devote so much time formalizing the defininion of extreme points? As hinted earlier and as shall be proved shortly, optima of linear programs can only occur at extreme points. This is the reason LP's are a class of easy convex optimization problems — the search space for their optima can be reduced to a finite number of extreme points.</p>
 <blockquote>
-<p>The Extreme Point Theorem:  If a linear program:&gt; * has a finite optimum, and</p>
+<p>The Extreme Point Theorem:  If a linear program:&gt;</p>
 <ul>
-<li>its constraint polytope has at least one extreme point,
-then there is an extreme point which is optimal.
-<br>
+<li>
+<p>has a finite optimum, and</p>
+</li>
+<li>
+<p>its constraint polytope has at least one extreme point,</p>
 </li>
 </ul>
+<p>then there is an extreme point which is optimal.
+<br></p>
 </blockquote>
 <p>So, if we want to solve linear programs we need only consider the extreme points.</p>
 <p>Let's prove the theorem through induction on the dimension.</p>
@@ -390,7 +394,7 @@ $</p>
 <p>Since $Q$ is the intersection of an $n$-dimensional polytope $P$ with an additional linear constraint (a hyperplane), it is $(n-1)$-dimensional.</p>
 <p>By the inductive hypothesis, there is an extreme point $x^* \in Q$ that's optimal for the LP.</p>
 <p>By a contradiction argument, $x^*$ is also an extreme point in $P$.</p>
-<p>Suppose it is <em>not</em> an extreme point in $P$. Then by <em>Definition 1</em> of extreme point, $x^*$ is a comvex combination of some two points in $P$. That is, $\exists x,y \in P$ s.t. $\lambda x + (1- \lambda)y = x^*$ for some $\lambda \in [0,1]$.</p>
+<p>Suppose it is <em>not</em> an extreme point in $P$. Then by <em>Definition 1</em> of extreme point, $x^*$ is a comvex combination of two points in $P$. That is, $\exists x,y \in P$ s.t. $\lambda x + (1- \lambda)y = x^*$ for some $\lambda \in [0,1]$.</p>
 <p>But then $\lambda c^Ty + (1- \lambda)c^Tz = c^Tx^* = v$, since $x^*$ is optimal. But the right hand side is a convex combination of scalars, so $c^Ty = c^Tz = v$. This means $x,y \in Q$, which contradicts the fact that $x^*$ is an extreme point in $Q$.</p>
 <p>Hence, $x^*$ must be an extreme point in $P$.</p>
 
