@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      3 min read
+      5 min read
     
 </span></p>
 
@@ -164,6 +164,11 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#Geometry-of-Linear-Programs">Geometry of Linear Programs </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Extreme-Points---Geometric-Definitions">Extreme Points - Geometric Definitions </a></li>
+<li class="toc-entry toc-h2"><a href="#Extreme-Points---Algebraic-Definitions">Extreme Points - Algebraic Definitions </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Basic-Feasible-Solution">Basic Feasible Solution </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -233,21 +238,26 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$
+$$
 \begin{cases}
 min_{x_1}: x_1
 \\
 s.t.: x_1 \leq 4
 \end{cases} \tag{1}
-$</p>
-<p>$
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
 \begin{cases}
 min_{x_1}: x_1
 \\
 s.t.: x_1 \geq 4
 \end{cases} \tag{2}
-$</p>
-
+$$
 </div>
 </div>
 </div>
@@ -277,9 +287,44 @@ $</p>
 </blockquote>
 <p>That is, if $\exists y,z \in P$ and $\lambda \in [0,1]$ s.t. $x = \lambda y + (1- \lambda)z$ then $x$ is <strong>not</strong> an extreme point of $P$.</p>
 <blockquote>
-<p>Definition 2:A point $x$ is an <strong>extreme point</strong> of a polytope $P$ if it is the <em>unique</em> optimum for some cost vector $c$.
-That is, if $\exists c \in \mathbb{R}^n$ s.t. $c^Tx &lt; c^Ty \ \ \forall y \in P$ then $x$ is an extreme point.</p>
+<p>Definition 2:A point $x$ is an <strong>extreme point</strong> of a polytope $P$ if it is the <em>unique</em> optimum for some cost vector $c$.<br></p>
 </blockquote>
+<p>That is, if $\exists c \in \mathbb{R}^n$ s.t. $c^Tx &lt; c^Ty \ \ \forall y \in P$ then $x$ is an extreme point.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Extreme-Points---Algebraic-Definitions">
+<a class="anchor" href="#Extreme-Points---Algebraic-Definitions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extreme Points - Algebraic Definitions<a class="anchor-link" href="#Extreme-Points---Algebraic-Definitions"> </a>
+</h2>
+<p>It's useful to define an extreme point algebraically. To that end, let's define the concept of a <em>basic feasible solution (BFS)</em>.</p>
+<p>Suppose we have the polytope $\{x : Ax \leq b, Dx = f\}$.</p>
+<blockquote>
+<p>Definition:An <strong>active constraint at $x$</strong> is a constraint that's satisfied through strict equality.<br></p>
+</blockquote>
+<p>That is, the $i$-th constraint is said to be active at x if $a_i^Tx = b_i$.</p>
+<p>This can be thought of as $x$ being on the edge of the halfspace defined by $a_i^Tx \leq b_i$.</p>
+<p>We can also define the <em>active set</em> at $x$ as the set of all active constraints at $x$.</p>
+<p>So, the active set at $x$ is $\mathcal{A}_x = \{ a_i : a_i^Tx = b_i \} \cup \{ d_i : d_i^Tx = f_i \}$, where $\{ d_i : d_i^Tx = f_i \}$ is included for completion.</p>
+<h3 id="Basic-Feasible-Solution">
+<a class="anchor" href="#Basic-Feasible-Solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Feasible Solution<a class="anchor-link" href="#Basic-Feasible-Solution"> </a>
+</h3>
+<p>We are now ready to define what it means for a point $x$ to be a basic feasible solution of a linear program.</p>
+<blockquote>
+<p>Definition:The point $x$ is a <strong>basic feasible solution (BFS)</strong> of the linear program if its active set $\mathcal{A}_x$ contains exactly $n$ linearly independent vectors where $n$ is the  dimension of $x$.<br></p>
+</blockquote>
+<p>Let's ponder the BFS definition for a minute.</p>
+<p>Imagine a closed polytope in 2D. Each of its vertices are defined by, at least, two intersecting lines. It's possible that a vertex is the result of the intersection of three or more lines, but deleting all but two non-parallel lines will still retain the vertex. In other words, two linearly independent constraints define an extreme point in 2D.</p>
+<p>The BFS definition is simply a generalization of this insight to $n$-dimensions. So, a BFS is nothing but the algebraic framing of an extreme point of the polytope.</p>
+<p>In fact, the following are equivalent:</p>
+<ul>
+<li>$x$ is an extreme point by <em>Definition 1</em>. </li>
+<li>$x$ is an extreme point by <em>Definition 2</em>.</li>
+<li>$x$ is a basic feasible solution.</li>
+</ul>
 
 </div>
 </div>
