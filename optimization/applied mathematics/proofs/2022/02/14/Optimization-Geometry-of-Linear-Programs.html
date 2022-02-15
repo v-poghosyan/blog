@@ -10,15 +10,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem" />
 <meta property="og:description" content="Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem" />
-<link rel="canonical" href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/13/Optimization-Geometry-of-Linear-Programs.html" />
-<meta property="og:url" content="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/13/Optimization-Geometry-of-Linear-Programs.html" />
+<link rel="canonical" href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/14/Optimization-Geometry-of-Linear-Programs.html" />
+<meta property="og:url" content="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/14/Optimization-Geometry-of-Linear-Programs.html" />
 <meta property="og:site_name" content="Vahram Poghosyan" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-02-13T00:00:00-06:00" />
+<meta property="article:published_time" content="2022-02-14T00:00:00-06:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Optimization - Linear Programs and LP Geometry" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-13T00:00:00-06:00","datePublished":"2022-02-13T00:00:00-06:00","description":"Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem","headline":"Optimization - Linear Programs and LP Geometry","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/13/Optimization-Geometry-of-Linear-Programs.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/13/Optimization-Geometry-of-Linear-Programs.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-14T00:00:00-06:00","datePublished":"2022-02-14T00:00:00-06:00","description":"Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem","headline":"Optimization - Linear Programs and LP Geometry","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/14/Optimization-Geometry-of-Linear-Programs.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/14/Optimization-Geometry-of-Linear-Programs.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://v-poghosyan.github.io/blog/feed.xml" title="Vahram Poghosyan" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -104,8 +104,8 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Optimization - Linear Programs and LP Geometry</h1><p class="page-description">Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-13T00:00:00-06:00" itemprop="datePublished">
-        Feb 13, 2022
+    <h1 class="post-title p-name" itemprop="name headline">Optimization - Linear Programs and LP Geometry</h1><p class="page-description">Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-14T00:00:00-06:00" itemprop="datePublished">
+        Feb 14, 2022
       </time>
        • <span class="read-time" title="Estimated read time">
     
@@ -260,7 +260,7 @@ $</p>
 <h2 id="Applications">
 <a class="anchor" href="#Applications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Applications<a class="anchor-link" href="#Applications"> </a>
 </h2>
-<p>Linear programs are only a small subset of convex optimization problems but they're robust enough to model many real-life scenarios. For instance, even though they are continous optimization problems, due to their geometry — namely the fact that optimal solutions to an LP may occur only at the extreme points of the constraint set — they have a stong combinatorial flavor. This is why LP's are highly succesful at modelling problems that are inherently combinatorial — problems of scheduling, finding the shortest path, modelling a <a href="https://v-poghosyan.github.io/blog/optimization/combinatorics/applied%20mathematics/2022/02/09/Optimization-Robust-Linear-Programs-Modelling-Discrete-Failures.html">discrete failures scenario</a>, etc.</p>
+<p>Linear programs are only a small subset of convex optimization problems but they're robust enough to model many real-life scenarios. For instance, even though they are continuous optimization problems, due to their geometry — namely the fact that optimal solutions to an LP may occur only at the extreme points of the constraint set — they have a strong combinatorial flavor. This is why LP's are highly successful at modeling problems that are inherently combinatorial — problems of scheduling, finding the shortest path, modeling a <a href="https://v-poghosyan.github.io/blog/optimization/combinatorics/applied%20mathematics/2022/02/09/Optimization-Robust-Linear-Programs-Modelling-Discrete-Failures.html">discrete failures scenario</a>, etc.</p>
 <p>The reason LP's are of special interest in the study of optimization is due to the availability of fast algorithms that solve them. So, if a convex optimization problem happens to also be an LP, we can solve it much faster.</p>
 
 </div>
@@ -308,7 +308,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The first problem is unbounded, since $x_1$ can be taken arbitrarily small. However, the secomnd problem is bounded despite having an open constraint set. The optimal value of $(2)$ is $x_1 = 4$.</p>
+<p>The first problem is unbounded, since $x_1$ can be taken arbitrarily small. However, the second problem is bounded despite having an open constraint set. The optimal value of $(2)$ is $x_1 = 4$.</p>
 <p>Thus, an LP is said to be unbounded not when its constraint polytope is open, but when it's feasible and has no optimal solution.</p>
 
 </div>
@@ -509,7 +509,7 @@ $</p>
 <li>$b \geq 0$</li>
 <li>$A$ has form $A = [B,D]$ where $B$ is an $m \times m$ full-rank matrix and $D$ is the rest of $A$.</li>
 </ol>
-<p>Some of these assumnptions impose restrictions on $\Omega$, whereas others are without loss of generality.</p>
+<p>Some of these assumptions impose restrictions on $\Omega$, whereas others are without loss of generality.</p>
 <p>Assumption 1 is simply there to make the problem interesting. Were $n &gt; m$, the system of equalities would be over-determined and the constraint set would either be empty or contain a single point, which itself would be the optimum. It is, therefore an assumption which is <em>not</em> done without loss of generality.</p>
 <p>Assumption 2 is equivalent to saying $rank(A) = m$. That is to say, all $m$ rows of $A$, as well as $m$ of the $n$ columns of $A$, are linearly independent. This assumption is also <em>not</em> done without loss of generality. Having less linearly independent rows corresponds to having less non-redundant constraints which clearly affects the constraint set $\Omega$.</p>
 <p>Assumption 3 is done W.L.O.G. since the signs of $A$'s row entries can always be flipped.</p>
@@ -525,7 +525,7 @@ $</p>
 <blockquote>
 <p>Definition:  Let $x_B$ be such that. $Bx_B = b$. Then the concatenation $x = [x_B, 0]^T$ is a solution to $Ax = b$. Such solutions are called <strong>feasible solutions</strong>. Furthermore, if $x_B \geq 0$, such solutions are called <strong>basic ferasible solutions</strong>.<br></p>
 </blockquote>
-<p>Note that, for the case we're in, this is considtent with the earlier definition of a BFS.</p>
+<p>Note that, for the case we're in, this is consistent with the earlier definition of a BFS.</p>
 <p>Let $x$ be a BFS according to this definition. $Ax = b$ poses a set of $m$ linearly independent constraints since $rank(A) = m$, whereas $x \geq 0$ poses a set of $n$. But $x = [x_B, 0]^T$ is a vector at which all $m$ of the equality constraints $Ax = b$ are active, and $n-m$ of the inequality constraints $x \geq 0$ are also active. So in total $n$ linearly independent constraints are active at a BFS, which is consistent with the earlier definition.</p>
 <h3 id="Basic-Feasible-Solutions-and-Extreme-Points-are-Equivalent">
 <a class="anchor" href="#Basic-Feasible-Solutions-and-Extreme-Points-are-Equivalent" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Feasible Solutions and Extreme Points are Equivalent<a class="anchor-link" href="#Basic-Feasible-Solutions-and-Extreme-Points-are-Equivalent"> </a>
@@ -550,11 +550,11 @@ $</p>
 <p>Note that $x$ <em>must</em> contain zero entries, since it takes $n$ linearly independent active constraints to be an extreme point and only $m$ come from the equality constraints $Ax = b$.</p>
 <p>By Assumption 1, $m$ of $A$'s columns are linearly independent. We'd like to claim that these $m$ are exactly those corresponding to the non-zero $x_i$ entries.</p>
 <p>If this claim turns out to be true, then the full-rank $m \times m$ submatrix $B$ will contain exactly those $m$ columns. And $x = [x_B, 0]^T$, where $x_B$ are the non-zero entries of $x$, would be a BFS. $\ast$</p>
-<p>So, let's prove the linear indepedence claim using a contradiction argument.</p>
+<p>So, let's prove the linear independence claim using a contradiction argument.</p>
 <p>Without loss of generality, through rearrangement, let the first $m$ elements be the nonzero entries. That is, $x_1, ..., x_m &gt; 0$, and $x_{m+1}, ... ,x_n = 0$.</p>
 <p>Then $\sum_{i=1}^n x_ia_i = \sum_{i=1}^m x_ia_i = b$.</p>
 <p>Towards contradiction, assume $a_1, ..., a_m$ are linearly dependent. Then $\exists y_1, ..., y_m \in \mathbb{R}$ not all zero s.t. $y_1a_1 + ... + y_ma_m = 0$</p>
-<p>Take $\epsilon &gt; 0$ to be very small. Small enoiugh so that $x_i \pm \epsilon y_i &gt; 0 \ \ \forall i = 1,...,m$.</p>
+<p>Take $\epsilon &gt; 0$ to be very small. Small enough so that $x_i \pm \epsilon y_i &gt; 0 \ \ \forall i = 1,...,m$.</p>
 <p>Define two points as</p>
 <p>$z^1 = [x_1 - \epsilon y_1, ..., x_p - \epsilon y_p, 0, ..., 0]^T$ and, 
 $z^2 = [x_1 + \epsilon y_1, ..., x_p + \epsilon y_p, 0, ..., 0]^T$.</p>
@@ -581,7 +581,7 @@ $z^2 = [x_1 + \epsilon y_1, ..., x_p + \epsilon y_p, 0, ..., 0]^T$.</p>
 <h2 id="The-Extreme-Point-Theorem">
 <a class="anchor" href="#The-Extreme-Point-Theorem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Extreme Point Theorem<a class="anchor-link" href="#The-Extreme-Point-Theorem"> </a>
 </h2>
-<p>Why devote so much time definining extreme points geometrically, and then again algebraically? As hinted earlier and as shall be proved shortly, optima of linear programs can <em>only</em> occur at extreme points. This is the reason LP's are a class of easy convex optimization problems — the search space for their optima can be reduced to a finite number of extreme points.</p>
+<p>Why devote so much time defining extreme points geometrically, and then again algebraically? As hinted earlier and as shall be proved shortly, optima of linear programs can <em>only</em> occur at extreme points. This is the reason LP's are a class of easy convex optimization problems — the search space for their optima can be reduced to a finite number of extreme points.</p>
 <blockquote>
 <p>The Extreme Point Theorem:  If a linear program&gt;</p>
 <ul>
@@ -631,8 +631,8 @@ $</p>
 <p>Since $Q$ is the intersection of an $n$-dimensional polytope $P$ with an additional linear constraint (a hyperplane), it is $(n-1)$-dimensional.</p>
 <p>By the inductive hypothesis, there is an extreme point $x^* \in Q$ that's optimal for the LP.</p>
 <p>By a contradiction argument, $x^*$ is also an extreme point in $P$.</p>
-<p>Suppose it is <em>not</em> an extreme point in $P$. Then by <em>Definition 1</em> of extreme point, $x^*$ is a comvex combination of two points in $P$. That is, $\exists x,y \in P$ s.t. $\lambda x + (1- \lambda)y = x^*$ for some $\lambda \in [0,1]$.</p>
-<p>But then $\lambda c^Ty + (1- \lambda)c^Tz = c^Tx^* = v$, since $x^*$ is optimal. But the right hand side is a convex combination of scalars, so $c^Ty = c^Tz = v$. This means $x,y \in Q$, which contradicts the fact that $x^*$ is an extreme point in $Q$.</p>
+<p>Suppose it is <em>not</em> an extreme point in $P$. Then by <em>Definition 1</em> of extreme point, $x^*$ is a convex combination of two points in $P$. That is, $\exists y,z \in P$ s.t. $\lambda y + (1- \lambda)z = x^*$ for some $\lambda \in [0,1]$.</p>
+<p>But then $\lambda c^Ty + (1- \lambda)c^Tz = c^Tx^* = v$, since $x^*$ is optimal. But the right hand side is a convex combination of scalars, so $c^Ty = c^Tz = v$. This means $y,z \in Q$, which contradicts the fact that $x^*$ is an extreme point in $Q$.</p>
 <p>Hence, $x^*$ must be an extreme point in $P$.</p>
 
 </div>
@@ -653,7 +653,7 @@ $</p>
 
 
 
-  </div><a class="u-url" href="/blog/optimization/applied%20mathematics/proofs/2022/02/13/Optimization-Geometry-of-Linear-Programs.html" hidden></a>
+  </div><a class="u-url" href="/blog/optimization/applied%20mathematics/proofs/2022/02/14/Optimization-Geometry-of-Linear-Programs.html" hidden></a>
 </article>
 
       </div>

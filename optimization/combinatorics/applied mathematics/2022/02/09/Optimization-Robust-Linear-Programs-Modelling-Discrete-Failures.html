@@ -160,7 +160,7 @@ window.onload = wrap_img;
 <ul>
 <li class="toc-entry toc-h2"><a href="#Formulating-the-Inner-Problem-as-a-Linear-Program">Formulating the Inner Problem as a Linear Program </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Relaxing-the-Combinatorial-Constraint-with-a-Continous-Constraint">Relaxing the Combinatorial Constraint with a Continous Constraint </a></li>
+<li class="toc-entry toc-h3"><a href="#Relaxing-the-Combinatorial-Constraint-with-a-Continuous-Constraint">Relaxing the Combinatorial Constraint with a Continuous Constraint </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#Putting-the-Inner-and-Outer-Problems-Together">Putting the Inner and Outer Problems Together </a>
@@ -187,7 +187,7 @@ window.onload = wrap_img;
 <h1 id="Model">
 <a class="anchor" href="#Model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Model<a class="anchor-link" href="#Model"> </a>
 </h1>
-<p>We are faced with the task of modelling a scenario in which at most $k$ of the total $n$ workers, machines, sensors, or other system components can fail. The task is to minimize the amount of system components needed, thereby minimizing cost, subject to certain known and robust constraints.</p>
+<p>We are faced with the task of modeling a scenario in which at most $k$ of the total $n$ workers, machines, sensors, or other system components can fail. The task is to minimize the amount of system components needed, thereby minimizing cost, subject to certain known and robust constraints.</p>
 <p>We will assume the linear cost function to be $c^Tx$, and the known constraints to be $Ax \leq b$. The robust constraint is $a_R^Tx \leq b_R, \ \ \forall a_R \in D_k$ where $b_R$ is a known vector, and $D_k$ is the following interval uncertainty set with an additional combinatorial constraint:</p>
 <p>$D_k = \{ a : a_i \in [\hat a_i - \delta_i, \hat a_i + \delta_i] \wedge \textrm{at least $n-k$ of the $a_i$'s exactly equal $\hat a_i$}\}$</p>
 <p>In $D_k$, we can think of each $\hat a_i$ as the spec at which the $i$-th component should operate, and the $\delta_i$'s as the $i$-th component's deviation from this spec. Thus, $D_k$ models the discrete failures scenario exactly...</p>
@@ -355,8 +355,8 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Relaxing-the-Combinatorial-Constraint-with-a-Continous-Constraint">
-<a class="anchor" href="#Relaxing-the-Combinatorial-Constraint-with-a-Continous-Constraint" aria-hidden="true"><span class="octicon octicon-link"></span></a>Relaxing the Combinatorial Constraint with a Continous Constraint<a class="anchor-link" href="#Relaxing-the-Combinatorial-Constraint-with-a-Continous-Constraint"> </a>
+<h3 id="Relaxing-the-Combinatorial-Constraint-with-a-Continuous-Constraint">
+<a class="anchor" href="#Relaxing-the-Combinatorial-Constraint-with-a-Continuous-Constraint" aria-hidden="true"><span class="octicon octicon-link"></span></a>Relaxing the Combinatorial Constraint with a Continuous Constraint<a class="anchor-link" href="#Relaxing-the-Combinatorial-Constraint-with-a-Continuous-Constraint"> </a>
 </h3>
 <p>We will relax the combinatorial constraint 'at most $k$ of the $z_i \ne 0$' by replacing it with $\sum z_i \leq k$.</p>
 <p>Although this is a relaxation of the constraint, we will show that it makes no difference within the context of preserving the optimization problem. That is, it does not affect the optimal value of the problem.</p>
@@ -410,7 +410,7 @@ $</p>
 <h2 id="Putting-the-Inner-and-Outer-Problems-Together">
 <a class="anchor" href="#Putting-the-Inner-and-Outer-Problems-Together" aria-hidden="true"><span class="octicon octicon-link"></span></a>Putting the Inner and Outer Problems Together<a class="anchor-link" href="#Putting-the-Inner-and-Outer-Problems-Together"> </a>
 </h2>
-<p>The combined optimization problem becomnes</p>
+<p>The combined optimization problem becomes</p>
 
 </div>
 </div>

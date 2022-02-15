@@ -280,7 +280,7 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 <h2 id="Optimal-Substructure">
 <a class="anchor" href="#Optimal-Substructure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimal Substructure<a class="anchor-link" href="#Optimal-Substructure"> </a>
 </h2>
-<p>The procedure is inspired by the following recurisve <a href="https://en.wikipedia.org/wiki/Optimal_substructure#:~:text=In%20computer%20science%2C%20a%20problem,greedy%20algorithms%20for%20a%20problem.">optimal substructure</a> of the problem:</p>
+<p>The procedure is inspired by the following recursive <a href="https://en.wikipedia.org/wiki/Optimal_substructure#:~:text=In%20computer%20science%2C%20a%20problem,greedy%20algorithms%20for%20a%20problem.">optimal substructure</a> of the problem:</p>
 <ul>
 <li>
 <p>Let $h(i)$ denote the height of the $i$-th vertical line.</p>
@@ -328,7 +328,7 @@ as was the claim.</p>
 </h4>
 <p>Suppose for an array of length $m$, the procedure $maxArea$ is correct. We would like to show that for an array of length $m+1$ it is still correct.</p>
 <p>Assume, <em>WLOG</em>, ${h(1) &lt; h(m+1)}$.
-Note that by the optimal substructure shown above, ${maxArea([1:m+1]) = max\{a(1,m+1), maxArea([2:m+1])\}}$. In omiting the first element of the input array, the only pairs we remove from consideration are ${(1,m), (1,m-1),..., (1,2)}$ which we have already shown to be suboptimal to ${(1,m+1)}$ in the proof of the optimal substructure. And since by assumption the procedure $maxArea$ on the $m$-element subarray ${[2:m+1]}$ is correct, we are done!</p>
+Note that by the optimal substructure shown above, ${maxArea([1:m+1]) = max\{a(1,m+1), maxArea([2:m+1])\}}$. In omitting the first element of the input array, the only pairs we remove from consideration are ${(1,m), (1,m-1),..., (1,2)}$ which we have already shown to be suboptimal to ${(1,m+1)}$ in the proof of the optimal substructure. And since by assumption the procedure $maxArea$ on the $m$-element subarray ${[2:m+1]}$ is correct, we are done!</p>
 
 </div>
 </div>

@@ -288,7 +288,7 @@ $</p>
 </h4>
 <p>For fixed weights $\theta_i = a_i \ \ \forall i$, a <em>hyperplane</em> is the set of all points $x \in \mathbb{R^n}$ whose linear combination equals a fixed constant $b \in \mathbb{R}$.</p>
 <p>Formally, a hyperplane is the set $\{ x \ \ | \ \ a_1 x_1 + ... a_n x_n = b\} = \{ x \ \ | \ \ a^T x = b\}$</p>
-<p>There's a geometric interpretation of the parameters $a \in \mathbb{R^n}$ and $b \in \mathbb{R}$. Since the dot-product between perpendicular vectors is $0$, $\{ x \ \ | \ \  a^T x = 0\}$ is simply the set of all vectors perpendicuar to $a$ (whose tail, as with all vectors in linear algebra, is considered to be fixed at the origin), making $a$ the <em>normal vector</em> to the hyperplane passing through the origin. To allow for parallel hyperplanes that are translated from the origin, the <em>offset</em> $b \in \mathbb{R}$ is introduced in the generalization $\{ x \ \ | \ \ a^T x = b \}$. This is now the set of all vectors whose dot-product with $a$ is constant. These vectors are not quite perpendicular to $a$, but they form a parallel hyperplane that's been shifted from the origin by a distance of $\frac{|b|}{\|a\|_2}$.</p>
+<p>There's a geometric interpretation of the parameters $a \in \mathbb{R^n}$ and $b \in \mathbb{R}$. Since the dot-product between perpendicular vectors is $0$, $\{ x \ \ | \ \  a^T x = 0\}$ is simply the set of all vectors perpendicular to $a$ (whose tail, as with all vectors in linear algebra, is considered to be fixed at the origin), making $a$ the <em>normal vector</em> to the hyperplane passing through the origin. To allow for parallel hyperplanes that are translated from the origin, the <em>offset</em> $b \in \mathbb{R}$ is introduced in the generalization $\{ x \ \ | \ \ a^T x = b \}$. This is now the set of all vectors whose dot-product with $a$ is constant. These vectors are not quite perpendicular to $a$, but they form a parallel hyperplane that's been shifted from the origin by a distance of $\frac{|b|}{\|a\|_2}$.</p>
 <p>Since the sum $a_1 x_1 + ... a_n x_n = b$ is fixed, the last coordinate, which we'll call $x_k$ for some $k \in [1,...,n]$, is fixed by the choice of the other $n-1$ coordinates. Therefore, a hyperplane  in $\mathbb{R^n}$ spans $n-1$ dimensions instead of $n$.
 <br></p>
 
@@ -325,7 +325,7 @@ $</p>
 <h3 id="Ellipses">
 <a class="anchor" href="#Ellipses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ellipses<a class="anchor-link" href="#Ellipses"> </a>
 </h3>
-<p>Recall from Euclidean geometry that ellipses are conic sections. In general we define ellipses in $n$-dimensions as the <a href="https://en.wikipedia.org/wiki/Level_set">sub-level sets</a> of <a href="https://en.wikipedia.org/wiki/Quadratic_form">quadratic forms</a>. That is $\{ x \ \ | \ \ (x-c)^T M (x-c) \leq 1 \}$ where $M \succeq 0$ defines the strech along each principal axis, and $c \in \mathbb{R^n}$ is the center.</p>
+<p>Recall from Euclidean geometry that ellipses are conic sections. In general we define ellipses in $n$-dimensions as the <a href="https://en.wikipedia.org/wiki/Level_set">sub-level sets</a> of <a href="https://en.wikipedia.org/wiki/Quadratic_form">quadratic forms</a>. That is $\{ x \ \ | \ \ (x-c)^T M (x-c) \leq 1 \}$ where $M \succeq 0$ defines the stretch along each principal axis, and $c \in \mathbb{R^n}$ is the center.</p>
 <p>An equivalent definition of an ellipse using the L2-norm is $\{ x  \ \ |  \ \ \|Ax - b\|_2 \leq 1 \}$. That is, for a given $A$ and $b$ in the L2-norm definition, we can find an $M$ and $c$ in the sub-level set definition and vice versa.<br>
 </p>
 <div class="flash">
@@ -341,7 +341,7 @@ $$
   &amp;= (x^TU D U^Tx)^{1/2} \\
   &amp;= x^TU D^{1/2} U^Tx \\
   \end{aligned}
-$$<p>Where the third equality is by the <a href="https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Real_symmetric_matrices">spectral decomposition</a> of the real symmetric matrix $A^TA$, in which $D = diag(\lambda_1,...,\lambda_n)$ is the diagnonal matrix of eigenvalues and the columns of $U$ are the corresponding eigenvectors. Taking $M= UD^{1/2}U^T$, where $D^{1/2}$ is simply $D^{1/2} = diag(\sqrt\lambda_1,...,\sqrt\lambda_n)$, we have the equivalent sub-level set definiton of the ellipse.</p>
+$$<p>Where the third equality is by the <a href="https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Real_symmetric_matrices">spectral decomposition</a> of the real symmetric matrix $A^TA$, in which $D = diag(\lambda_1,...,\lambda_n)$ is the diagnonal matrix of eigenvalues and the columns of $U$ are the corresponding eigenvectors. Taking $M= UD^{1/2}U^T$, where $D^{1/2}$ is simply $D^{1/2} = diag(\sqrt\lambda_1,...,\sqrt\lambda_n)$, we have the equivalent sub-level set definition of the ellipse.</p>
 
 </div>
 </div>
