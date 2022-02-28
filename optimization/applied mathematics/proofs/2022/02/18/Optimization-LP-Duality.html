@@ -352,7 +352,7 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min f(x,y) \right\}
 <p>---INSERT PICTURE---</p>
 <p>We state Farkas' Lemma without offering proof, since it has such an obvious geometric interpretation.</p>
 <blockquote>
-<p><strong>Farkas' Lemma:</strong> For any vector $c$ and $a_i \ \ (i \in I)$ either the first or the second statement holds:&gt; * $\exists p \geq 0$ s.t. $c = \sum_{i \in I} a_ip_i$</p>
+<p><strong>Farkas' Lemma:</strong> For any vector $c$ and $a_i \ \ (i \in I)$ either the first or the second statement holds:  &gt; * $\exists p \geq 0$ s.t. $c = \sum_{i \in I} a_ip_i$</p>
 <ul>
 <li>$\exists$ vector $d$ s.t. $d^Ta_i \geq 0 \ \ \forall i \in I$ but $d^Tc &lt; 0$</li>
 </ul>
@@ -407,7 +407,7 @@ $$b^Tp^* = \sum_{i} b_ip_i^* = \sum_{i \in I_{x^*}} a_i^Tx^*p_i^* = (\sum_{i \in
 </h2>
 <p>To see how we can prove a theorem of the alternative, it helps to state one.</p>
 <blockquote>
-<p><strong>Theorem:</strong> Exactly one of the following two statements most hold for a given matrix A.&gt; &gt; 1. $\exists x \ne 0$ s.t. $Ax = 0$ and $x \geq 0$</p>
+<p><strong>Theorem:</strong> Exactly one of the following two statements most hold for a given matrix A.  &gt; 1. $\exists x \ne 0$ s.t. $Ax = 0$ and $x \geq 0$</p>
 <ol>
 <li>$\exists p$ s.t. $p^TA &gt; 0$
 <br>
@@ -419,9 +419,9 @@ $$b^Tp^* = \sum_{i} b_ip_i^* = \sum_{i \in I_{x^*}} a_i^Tx^*p_i^* = (\sum_{i \in
 </h3>
 <p>At the heart of separation arguments lies this simple fact.</p>
 <blockquote>
-<p><strong>Separating Hyperplane Theorem:</strong> For any convex set $C$, if a point $\omega \notin C$ then there exists a hyperplane separating $\omega$ and $C$.
-Farkas' Lemma, for instance, is proved by a separation argument that uses, as its convex set, the conic combination of the $a_i$'s. The conclusion is immediate since in Farkas' Lemma the first statement plainly says that a vector belongs to the convex set, and the second statement plainly says there exists a separating hyperplane between the two.</p>
+<p><strong>Separating Hyperplane Theorem:</strong> For any convex set $C$, if a point $\omega \notin C$ then there exists a hyperplane separating $\omega$ and $C$.<br></p>
 </blockquote>
+<p>Farkas' Lemma, for instance, is proved by a separation argument that uses, as its convex set, the conic combination of the $a_i$'s. The conclusion is immediate since in Farkas' Lemma the first statement plainly says that a vector belongs to the convex set, and the second statement plainly says there exists a separating hyperplane between the two.</p>
 <p>This is the pattern all separation arguments must follow. However, in general, it may take a bit of work to define the problem-specific convex set and also to show that the two statements are <em>really</em> talking about belonging to this set, and separation from it. However, once these three things are accomplished the proof is complete.</p>
 <p>Using this idea, let's give a proof of the above theorem of the alternative using a separation argument.</p>
 <h4 id="Proof">
@@ -518,7 +518,7 @@ $</p>
 <p>If a primal's constraint is loose at a some primal optimal, then the corresponding variable in the dual optimal is zero, and vice versa.</p>
 <p>Formally, this can be stated as</p>
 <blockquote>
-<p><strong>Complementary Slackness:</strong> if $x$ is primal feasible and $p$ is dual feasible, then $x$ and $p$ are respectively optimal iff:&gt;1. $(b_i - \sum_{j} a_{ij}x_j)p_i = 0 \ \ \forall i$</p>
+<p><strong>Complementary Slackness:</strong> if $x$ is primal feasible and $p$ is dual feasible, then $x$ and $p$ are respectively optimal iff:  &gt;1. $(b_i - \sum_{j} a_{ij}x_j)p_i = 0 \ \ \forall i$</p>
 <ol>
 <li>$(\sum_{i} a_{ij}p_i - c_j)x_j = 0  \ \ \forall j$
 <br>
