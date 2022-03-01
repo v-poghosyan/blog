@@ -309,7 +309,7 @@ $$ \max_y f(x,y) \geq \max_y \left\{ \min_x f(x,y) \right\}$$
 
 The right hand side is now a constant, so minimizing both sides w.r.t. $x$ results in the desired conclusion.
 
-$$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min f(x,y) \right\}$$
+$$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right\}$$
 </p>
 <h2 id="Game-Theoretic-Intuition-of-Max-Min-Theorem">
 <a class="anchor" href="#Game-Theoretic-Intuition-of-Max-Min-Theorem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Game-Theoretic Intuition of Max-Min Theorem<a class="anchor-link" href="#Game-Theoretic-Intuition-of-Max-Min-Theorem"> </a>
@@ -352,8 +352,9 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min f(x,y) \right\}
 <p>---INSERT PICTURE---</p>
 <p>We state Farkas' Lemma without offering proof, since it has such an obvious geometric interpretation.</p>
 <blockquote>
-<p><strong>Farkas' Lemma:</strong>   For any vector $c$ and $a_i \ \ (i \in I)$ either the first or the second statement holds:  &gt; * $\exists p \geq 0$ s.t. $c = \sum_{i \in I} a_ip_i$</p>
+<p><strong>Farkas' Lemma:</strong>   For any vector $c$ and $a_i \ \ (i \in I)$ either the first or the second statement holds:   </p>
 <ul>
+<li>$\exists p \geq 0$ s.t. $c = \sum_{i \in I} a_ip_i$</li>
 <li>$\exists$ vector $d$ s.t. $d^Ta_i \geq 0 \ \ \forall i \in I$ but $d^Tc &lt; 0$</li>
 </ul>
 </blockquote>
@@ -407,7 +408,7 @@ $$b^Tp^* = \sum_{i} b_ip_i^* = \sum_{i \in I_{x^*}} a_i^Tx^*p_i^* = (\sum_{i \in
 </h2>
 <p>To see how we can prove a theorem of the alternative, it helps to state one.</p>
 <blockquote>
-<p><strong>Theorem:</strong>   Exactly one of the following two statements most hold for a given matrix A.&gt;  </p>
+<p><strong>Theorem:</strong>   Exactly one of the following two statements most hold for a given matrix A. </p>
 <ol>
 <li>$\exists x \ne 0$ s.t. $Ax = 0$ and $x \geq 0$</li>
 <li>$\exists p$ s.t. $p^TA &gt; 0$
@@ -519,7 +520,7 @@ $</p>
 <p>If a primal's constraint is loose at a some primal optimal, then the corresponding variable in the dual optimal is zero, and vice versa.</p>
 <p>Formally, this can be stated as</p>
 <blockquote>
-<p><strong>Complementary Slackness:</strong> if $x$ is primal feasible and $p$ is dual feasible, then $x$ and $p$ are respectively optimal iff:&gt;  </p>
+<p><strong>Complementary Slackness:</strong> if $x$ is primal feasible and $p$ is dual feasible, then $x$ and $p$ are respectively optimal iff: </p>
 <ol>
 <li>$(b_i - \sum_{j} a_{ij}x_j)p_i = 0 \ \ \forall i$</li>
 <li>$(\sum_{i} a_{ij}p_i - c_j)x_j = 0  \ \ \forall j$
