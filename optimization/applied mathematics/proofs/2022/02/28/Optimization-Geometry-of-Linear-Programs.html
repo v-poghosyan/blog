@@ -10,17 +10,17 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem" />
 <meta property="og:description" content="Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem" />
-<link rel="canonical" href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/27/Optimization-Geometry-of-Linear-Programs.html" />
-<meta property="og:url" content="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/27/Optimization-Geometry-of-Linear-Programs.html" />
+<link rel="canonical" href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/28/Optimization-Geometry-of-Linear-Programs.html" />
+<meta property="og:url" content="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/28/Optimization-Geometry-of-Linear-Programs.html" />
 <meta property="og:site_name" content="Vahram Poghosyan" />
 <meta property="og:image" content="https://v-poghosyan.github.io/blog/images/lp-geometry.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-02-27T00:00:00-06:00" />
+<meta property="article:published_time" content="2022-02-28T00:00:00-06:00" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:image" content="https://v-poghosyan.github.io/blog/images/lp-geometry.png" />
 <meta property="twitter:title" content="Optimization - Linear Programs and LP Geometry" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-27T00:00:00-06:00","datePublished":"2022-02-27T00:00:00-06:00","description":"Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem","headline":"Optimization - Linear Programs and LP Geometry","image":"https://v-poghosyan.github.io/blog/images/lp-geometry.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/27/Optimization-Geometry-of-Linear-Programs.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/27/Optimization-Geometry-of-Linear-Programs.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-28T00:00:00-06:00","datePublished":"2022-02-28T00:00:00-06:00","description":"Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem","headline":"Optimization - Linear Programs and LP Geometry","image":"https://v-poghosyan.github.io/blog/images/lp-geometry.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/28/Optimization-Geometry-of-Linear-Programs.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/28/Optimization-Geometry-of-Linear-Programs.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://v-poghosyan.github.io/blog/feed.xml" title="Vahram Poghosyan" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -106,8 +106,8 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Optimization - Linear Programs and LP Geometry</h1><p class="page-description">Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-27T00:00:00-06:00" itemprop="datePublished">
-        Feb 27, 2022
+    <h1 class="post-title p-name" itemprop="name headline">Optimization - Linear Programs and LP Geometry</h1><p class="page-description">Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-28T00:00:00-06:00" itemprop="datePublished">
+        Feb 28, 2022
       </time>
        • <span class="read-time" title="Estimated read time">
     
@@ -525,7 +525,7 @@ $</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For $\Omega$ that satisfies Assumptions 1-4, the basic feasible solutions can be reformulated as follows.</p>
 <blockquote>
-<p>Definition:  Let $x_B$ be such that. $Bx_B = b$. Then the concatenation $x = [x_B, 0]^T$ is a solution to $Ax = b$. Such solutions are called <strong>feasible solutions</strong>. Furthermore, if $x_B \geq 0$, such solutions are called <strong>basic ferasible solutions</strong>.<br></p>
+<p>Definition:  Let $x_B$ be such that. $Bx_B = b$. Then the concatenation $x = [x_B, 0]^T$ is a solution to $Ax = b$. Such solutions are called <strong>feasible solutions</strong>. Furthermore, if $x_B \geq 0$, such solutions are called <strong>basic feasible solutions</strong>.<br></p>
 </blockquote>
 <p>Note that, for the case we're in, this is consistent with the earlier definition of a BFS.</p>
 <p>Let $x$ be a BFS according to this definition. $Ax = b$ poses a set of $m$ linearly independent constraints since $rank(A) = m$, whereas $x \geq 0$ poses a set of $n$. But $x = [x_B, 0]^T$ is a vector at which all $m$ of the equality constraints $Ax = b$ are active, and $n-m$ of the inequality constraints $x \geq 0$ are also active. So in total $n$ linearly independent constraints are active at a BFS, which is consistent with the earlier definition.</p>
@@ -655,7 +655,7 @@ $</p>
 
 
 
-  </div><a class="u-url" href="/blog/optimization/applied%20mathematics/proofs/2022/02/27/Optimization-Geometry-of-Linear-Programs.html" hidden></a>
+  </div><a class="u-url" href="/blog/optimization/applied%20mathematics/proofs/2022/02/28/Optimization-Geometry-of-Linear-Programs.html" hidden></a>
 </article>
 
       </div>
