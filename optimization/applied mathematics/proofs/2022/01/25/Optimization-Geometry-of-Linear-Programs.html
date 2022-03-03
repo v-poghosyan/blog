@@ -10,17 +10,17 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem" />
 <meta property="og:description" content="Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem" />
-<link rel="canonical" href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/28/Optimization-Geometry-of-Linear-Programs.html" />
-<meta property="og:url" content="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/28/Optimization-Geometry-of-Linear-Programs.html" />
+<link rel="canonical" href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/01/25/Optimization-Geometry-of-Linear-Programs.html" />
+<meta property="og:url" content="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/01/25/Optimization-Geometry-of-Linear-Programs.html" />
 <meta property="og:site_name" content="Vahram Poghosyan" />
 <meta property="og:image" content="https://v-poghosyan.github.io/blog/images/lp-geometry.png" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-02-28T00:00:00-06:00" />
+<meta property="article:published_time" content="2022-01-25T00:00:00-06:00" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:image" content="https://v-poghosyan.github.io/blog/images/lp-geometry.png" />
 <meta property="twitter:title" content="Optimization - Linear Programs and LP Geometry" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-28T00:00:00-06:00","datePublished":"2022-02-28T00:00:00-06:00","description":"Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem","headline":"Optimization - Linear Programs and LP Geometry","image":"https://v-poghosyan.github.io/blog/images/lp-geometry.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/28/Optimization-Geometry-of-Linear-Programs.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/28/Optimization-Geometry-of-Linear-Programs.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-01-25T00:00:00-06:00","datePublished":"2022-01-25T00:00:00-06:00","description":"Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem","headline":"Optimization - Linear Programs and LP Geometry","image":"https://v-poghosyan.github.io/blog/images/lp-geometry.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/01/25/Optimization-Geometry-of-Linear-Programs.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/01/25/Optimization-Geometry-of-Linear-Programs.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://v-poghosyan.github.io/blog/feed.xml" title="Vahram Poghosyan" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -106,8 +106,8 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Optimization - Linear Programs and LP Geometry</h1><p class="page-description">Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-28T00:00:00-06:00" itemprop="datePublished">
-        Feb 28, 2022
+    <h1 class="post-title p-name" itemprop="name headline">Optimization - Linear Programs and LP Geometry</h1><p class="page-description">Linear Programs, Feasibility and Boundedness, Basic Feasible Solutions, and The Extreme Point Theorem</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-01-25T00:00:00-06:00" itemprop="datePublished">
+        Jan 25, 2022
       </time>
        • <span class="read-time" title="Estimated read time">
     
@@ -136,19 +136,19 @@ window.onload = wrap_img;
         <div class="pb-5 d-flex flex-justify-center">
           <div class="px-2">
 
-    <a href="https://github.com/v-poghosyan/blog/tree/master/_notebooks/Optimization - Geometry of Linear Programs.ipynb" role="button" target="_blank">
+    <a href="https://github.com/v-poghosyan/blog/tree/master/_notebooks/2022-01-25-Optimization - Geometry of Linear Programs.ipynb" role="button" target="_blank">
 <img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/v-poghosyan/blog/master?filepath=_notebooks%2FOptimization+-+Geometry+of+Linear+Programs.ipynb" target="_blank">
+    <a href="https://mybinder.org/v2/gh/v-poghosyan/blog/master?filepath=_notebooks%2F2022-01-25-Optimization+-+Geometry+of+Linear+Programs.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://colab.research.google.com/github/v-poghosyan/blog/blob/master/_notebooks/Optimization - Geometry of Linear Programs.ipynb" target="_blank">
+    <a href="https://colab.research.google.com/github/v-poghosyan/blog/blob/master/_notebooks/2022-01-25-Optimization - Geometry of Linear Programs.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
     </a>
 </div>
@@ -194,7 +194,7 @@ window.onload = wrap_img;
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
-# file to edit: _notebooks/Optimization - Geometry of Linear Programs.ipynb
+# file to edit: _notebooks/2022-01-25-Optimization - Geometry of Linear Programs.ipynb
 -->
 
 <div class="container" id="notebook-container">
@@ -458,11 +458,11 @@ $</p>
 </h2>
 <p>First, let's give a couple of geometric definitions of an extreme point.</p>
 <blockquote>
-<p>Definition 1:  A point $x$ is an <strong>extreme point</strong> of a polytope $P$ if it is <em>not</em> the convex combination of any other two points in the polytope.<br></p>
+<p><strong>Definition 1:</strong>   A point $x$ is an <strong>extreme point</strong> of a polytope $P$ if it is <em>not</em> the convex combination of any other two points in the polytope.<br></p>
 </blockquote>
 <p>That is, if $\exists y,z \in P$ and $\lambda \in [0,1]$ s.t. $x = \lambda y + (1- \lambda)z$ then $x$ is <strong>not</strong> an extreme point of $P$.</p>
 <blockquote>
-<p>Definition 2:  A point $x$ is an <strong>extreme point</strong> of a polytope $P$ if it is the <em>unique</em> optimum for some cost vector $c$.<br></p>
+<p><strong>Definition 2:</strong>   A point $x$ is an <strong>extreme point</strong> of a polytope $P$ if it is the <em>unique</em> optimum for some cost vector $c$.<br></p>
 </blockquote>
 <p>That is, if $\exists c \in \mathbb{R}^n$ s.t. $c^Tx &lt; c^Ty \ \ \forall y \in P$ then $x$ is an extreme point.</p>
 
@@ -478,7 +478,7 @@ $</p>
 <p>It's useful to define an extreme point algebraically. To that end, let's define the concept of a <em>basic feasible solution (BFS)</em>.</p>
 <p>Suppose we have the polytope $\{x : Ax \leq b, Dx = f\}$.</p>
 <blockquote>
-<p>Definition:  An <strong>active constraint at $x$</strong> is a constraint that's satisfied through strict equality.<br></p>
+<p><strong>Definition:</strong>   An <strong>active constraint at $x$</strong> is a constraint that's satisfied through strict equality.<br></p>
 </blockquote>
 <p>That is, the $i$-th constraint is said to be active at x if $a_i^Tx = b_i$.</p>
 <p>This can be thought of as $x$ being on the edge of the halfspace defined by $a_i^Tx \leq b_i$.</p>
@@ -489,7 +489,7 @@ $</p>
 </h3>
 <p>We are now ready to define what it means for a point $x$ to be a basic feasible solution of a linear program.</p>
 <blockquote>
-<p>Definition:  The point $x$ is a <strong>basic feasible solution (BFS)</strong> of the linear program if its active set $\mathcal{A}_x$ contains exactly $n$ linearly independent vectors where $n$ is the  dimension of $x$.<br></p>
+<p><strong>Definition:</strong>   The point $x$ is a <strong>basic feasible solution (BFS)</strong> of the linear program if its active set $\mathcal{A}_x$ contains exactly $n$ linearly independent vectors where $n$ is the  dimension of $x$.<br></p>
 </blockquote>
 <p>Let's ponder the BFS definition for a minute.</p>
 <p>Imagine a closed polytope in 2D. Each of its vertices are defined by, at least, two intersecting lines. It's possible that a vertex is the result of the intersection of three or more lines, but deleting all but two of those lines will still retain the vertex. In other words, two linearly independent (i.e. non-parallel) constraints define an extreme point in 2D.</p>
@@ -525,7 +525,7 @@ $</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For $\Omega$ that satisfies Assumptions 1-4, the basic feasible solutions can be reformulated as follows.</p>
 <blockquote>
-<p>Definition:  Let $x_B$ be such that. $Bx_B = b$. Then the concatenation $x = [x_B, 0]^T$ is a solution to $Ax = b$. Such solutions are called <strong>feasible solutions</strong>. Furthermore, if $x_B \geq 0$, such solutions are called <strong>basic feasible solutions</strong>.<br></p>
+<p><strong>Definition:</strong>   Let $x_B$ be such that. $Bx_B = b$. Then the concatenation $x = [x_B, 0]^T$ is a solution to $Ax = b$. Such solutions are called <strong>feasible solutions</strong>. Furthermore, if $x_B \geq 0$, such solutions are called <strong>basic feasible solutions</strong>.<br></p>
 </blockquote>
 <p>Note that, for the case we're in, this is consistent with the earlier definition of a BFS.</p>
 <p>Let $x$ be a BFS according to this definition. $Ax = b$ poses a set of $m$ linearly independent constraints since $rank(A) = m$, whereas $x \geq 0$ poses a set of $n$. But $x = [x_B, 0]^T$ is a vector at which all $m$ of the equality constraints $Ax = b$ are active, and $n-m$ of the inequality constraints $x \geq 0$ are also active. So in total $n$ linearly independent constraints are active at a BFS, which is consistent with the earlier definition.</p>
@@ -534,7 +534,7 @@ $</p>
 </h3>
 <p>To formally prove that basic feasible solutions are extreme points in the geometric sense, consider the following theorem and its proof.</p>
 <blockquote>
-<p>Theorem:  The point $x$ is an extreme point of $\Omega = \{ Ax =b, x \geq 0 \}$ if and only if it is a basic feasible solution.<br></p>
+<p><strong>Theorem:</strong>   The point $x$ is an extreme point of $\Omega = \{ Ax =b, x \geq 0 \}$ if and only if it is a basic feasible solution.<br></p>
 </blockquote>
 
 </div>
@@ -546,7 +546,7 @@ $</p>
 <h4 id="Proof">
 <a class="anchor" href="#Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof<a class="anchor-link" href="#Proof"> </a>
 </h4>
-<p><strong>Sufficiency: $\implies$</strong></p>
+<p><strong>Sufficiency $\implies$:</strong></p>
 <p>Let $x$ be an extreme point of $\Omega$. Since it's in $\Omega$, $x \geq 0$ and $Ax = b$.</p>
 <p>Equivalently, $\sum_{i=1}^n x_ia_i = b$ where the $a_i$'s are the column vectors of $A$.</p>
 <p>Note that $x$ <em>must</em> contain zero entries, since it takes $n$ linearly independent active constraints to be an extreme point and only $m$ come from the equality constraints $Ax = b$.</p>
@@ -567,7 +567,7 @@ $z^2 = [x_1 + \epsilon y_1, ..., x_p + \epsilon y_p, 0, ..., 0]^T$.</p>
 <p>So, $z^1$, and $z^2$ are indeed in $\Omega$.</p>
 <p>But note that $x = \frac{z^1 + z^2}{2}$ is a convex combination of two points in $\Omega$, which contradicts the assumption that it's an extreme point.</p>
 <p>Hence, $a_1,...,a_m$ must be linearly independent. This concludes the proof by $\ast$.</p>
-<p><strong>Necessity: $\impliedby$</strong></p>
+<p><strong>Necessity $\impliedby$:</strong></p>
 <p>Suppose $x$ is a BFS and assume, towards contradiction, that it's <em>not</em> and extreme point of $\Omega$.</p>
 <p>Then $\exists y,z \in \Omega$ with $y \ne z$ s.t. $x = \alpha y + (1- \alpha) z$ for some $\alpha \in (0,1)$.</p>
 <p>But since $y,z \in \Omega$ they satisfy $Ay = Az = b$, so $Ay - Az = A(y - z) 0$.</p>
@@ -585,7 +585,7 @@ $z^2 = [x_1 + \epsilon y_1, ..., x_p + \epsilon y_p, 0, ..., 0]^T$.</p>
 </h2>
 <p>Why devote so much time defining extreme points geometrically, and then again algebraically? As hinted earlier and as shall be proved shortly, optima of linear programs can <em>only</em> occur at extreme points. This is the reason LP's are a class of easy convex optimization problems — the search space for their optima can be reduced to a finite number of extreme points.</p>
 <blockquote>
-<p>The Extreme Point Theorem:  If a linear program   </p>
+<p><strong>The Extreme Point Theorem:</strong>   If a linear program   </p>
 <ul>
 <li>has a finite optimum, and </li>
 <li>its constraint polytope has at least one extreme point,</li>
@@ -655,7 +655,7 @@ $</p>
 
 
 
-  </div><a class="u-url" href="/blog/optimization/applied%20mathematics/proofs/2022/02/28/Optimization-Geometry-of-Linear-Programs.html" hidden></a>
+  </div><a class="u-url" href="/blog/optimization/applied%20mathematics/proofs/2022/01/25/Optimization-Geometry-of-Linear-Programs.html" hidden></a>
 </article>
 
       </div>
