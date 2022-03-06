@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      4 min read
+      5 min read
     
 </span></p>
 
@@ -166,18 +166,14 @@ window.onload = wrap_img;
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="The-Lagrangian">The Lagrangian<a class="anchor-link" href="#The-Lagrangian"> </a></h1><p>Consider the simple convex program with one equality constraint</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>$
 \begin{cases}
 \min_x: f(x)
 \\
-s.t.: h(x) = 0
+s.t.: \begin{aligned} &amp;g_i(x) \leq 0 \ \ \forall i = 1,...,m
+\\ 
+&amp;h_j(x) = 0 \ \ \forall j = 1,...,p
+\end{aligned}
 \end{cases}
 $</p>
 
@@ -186,16 +182,30 @@ $</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The key observation is that, if the convex program is feasible at all, the optima, if any exist, occur at a level set of the objective function that is tangent to the constraint boundary. The picture below illustrates this situation with a level set of the function $f(x_1,x_2) = x_1^2 e^x_2 x^2$ and a circular equality constraint.</p>
-<p><img src="/blog/images/copied_from_nb/my_icons/lagrange-condition.png" alt="" title="Optima occur on the tangent point (or space) of the level sets of the objective function and the constraint boundary" />
+<p>Where $f(x)$ is a convex objective, the $g_i$'s define $m$ convex inequality constraints, and the $h_j$'s are $p$ linear equality constraints. Note that the equality constraints <em>must</em> be linear because, for a more general convex function $h_j$, $\{ x : h_j(x) = 0 \}$ does <em>not</em> represent a convex set.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="The-Lagrangian">The Lagrangian<a class="anchor-link" href="#The-Lagrangian"> </a></h1><p>Consider the simple convex problem with an objective $f(x)$ and only one equality constraint $h(x)=0$.</p>
+<p>The picture below illustrates this situation using a maximization problem with the objective function $f(x_1,x_2) = x_1^2 e^x_2 x^2$ and a circular equality constraint.</p>
+<p>Note that the circular equality constraint does not define a convex set, so the given problem is not a CP. However it's intended as a general example that demonstrates a key geometric property of optimal solutions.</p>
+<p><img src="/blog/images/copied_from_nb/my_icons/lagrange-condition.png" alt="" title="Optima occur on the tangent point(s) or tangent space(s) of the level sets of the objective function and the constraint boundary" />
 <br /></p>
-<p>That is, $x^*$ is a local minimum if and only if $\nabla_x f(x^*) = \pm \lambda \nabla_x h(x^*)$ for some $\lambda &gt; 0$. Note that $\lambda$ may either be added or subtracted, depending on the direction of $\nabla_x h(x^*)$.</p>
-<p>Interestingly, this condition is general enough that for an unconstrained convex problem it reduces to $\nabla_x f(x^*) = 0$, which is the familiar first-order necessary condition for an interior point (such as the optimal solution of an unconstrained problem) to be a local optimizer. And, since the objective functions in this post are all assumed to be convex, the second-order conditions are satisfied at any <em>stationary point</em> (a point that satisfies the first-order necessary condition). Hence, $\nabla_x f(x^*) = 0$ is the only optimality condition we need.</p>
+<p>The key observation is that, if the convex problem is feasible at all, its optima, if any exist, occur at a level set of the objective function that is tangent to the constraint boundary.</p>
+<p>That is, $x^*$ is a local maximum if and only if $\nabla_x f(x^*) = \pm \lambda \nabla_x h(x^*)$ for some $\lambda &gt; 0$. Note that $\lambda$ may either be added or subtracted, depending on whether the problem is that of minimization or maximization.</p>
+<p>Interestingly, this condition is general enough that for an unconstrained convex problem it reduces to $\nabla_x f(x^*) = 0$, which is the familiar first-order necessary condition for an interior point (such as the optimal solution of an unconstrained problem) to be a <em>stationary point</em>. And, since the objectives in this post are all assumed to be convex, the second-order optimality conditions hold at any stationary point. Hence, $\nabla_x f(x^*) = 0$ is the only condition we need to determine that $x^*$ is a local optimizer.</p>
 <p>Since the stationary points of an unconstrained problem can be found with such relative ease, the goal is to construct an unconstrained problem related to a given constrained problem so that the former's stationary points are optimal and feasible for the constrained problem.</p>
 <p>With this in mind, we define the <em>Lagrangian</em> as the function $\mathcal{L}(x, \lambda) :=f(x) - \lambda h(x)$. Now, any $(x^*, \lambda^*)$ that satisfies $\nabla \mathcal{L}(x^*, \lambda^*) = 0$ is a stationary point of the Lagrangian function, as well as an optimal, feasible solution to the constrained problem.</p>
 <p>To see this, note that $\nabla \mathcal{L} = [\nabla_x  \mathcal{L}, \nabla_{\lambda} \mathcal{L}]^T = [0,0]^T$ implies $\nabla_x f(x^*) = \pm \lambda \nabla_x h(x^*)$ which is the optimality condition, and $h(x^*) = 0$ which is the feasibility condition.</p>
-<p>From the above, we see that the convention that $\lambda &gt; 0$ is there simply to disallow the case where $\lambda = 0$ since that would disrespect the equality constraint $\nabla_x f(x^*) = 0$.</p>
-<h2 id="Convex-Problem-with-Multiple-Equality-Constraints">Convex Problem with Multiple Equality Constraints<a class="anchor-link" href="#Convex-Problem-with-Multiple-Equality-Constraints"> </a></h2><p>For a convex program with multiple equality constraints, the condition becomes $\nabla_x f(x^*) = \lambda_1 \nabla_x h_1(x^*) \pm \lambda_2 \nabla_x h_2(x^*) \pm ... \pm \lambda_n \nabla_x h_n(x^*)$ with $$</p>
+<p>So, $\nabla \mathcal{L} = 0$ is taken as a <em>certificate of optimality</em>.</p>
+<p>From the above discussion, we also see that $\lambda = 0$ would result in disrespecting the equality constraint $h(x^*) = 0$. Hence the need for $\lambda &gt; 0$...</p>
+<h2 id="Convex-Problem-with-Multiple-Equality-Constraints">Convex Problem with Multiple Equality Constraints<a class="anchor-link" href="#Convex-Problem-with-Multiple-Equality-Constraints"> </a></h2><p>For a convex program with multiple equality constraints, the condition generalizes to:</p>
+<p>$\nabla_x f(x^*) = \lambda_1 \nabla_x h_1(x^*) \pm \lambda_2 \nabla_x h_2(x^*) \pm ... \pm \lambda_n \nabla_x h_n(x^*)$ with $\lambda_1, \lambda_2, ... \lambda_n &gt; 0$.</p>
+<p>That is, the gradient of the objective function at the optimizer should be a conic combination of the $\pm$ gradients of the equality constraints.</p>
+<p>This is pointless to illustrate in two dimensions, since the feasible set would either be $\emptyset$ or contain a single point which is optimal by default. Instead, we can imagine the spherical level sets of $f(x) = x_1^2 + x_2^2 + x_3^2$ and the line of intersection of two planes in $\mathbb{R}^3$, h_1(x) = 0$ and $h_2(x) = 0$. The maximizer would then be the point at which the line of intersection is tangent to a spherical level set of the objective.</p>
 
 </div>
 </div>
@@ -214,9 +224,9 @@ $</p>
 \begin{cases}
 \min_x: f(x)
 \\
-s.t.: \begin{aligned} &amp;g_i(x) \leq 0 \ \ \forall i
+s.t.: \begin{aligned} &amp;g_i(x) \leq 0 \ \ \forall i = 1,...,m
 \\ 
-&amp;h_j(x) = 0 \ \ \forall j
+&amp;h_j(x) = 0 \ \ \forall j = 1,...,p
 \end{aligned}
 \end{cases}
 $</p>
@@ -235,11 +245,11 @@ $</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote><p><strong>KKT Conditions:</strong> &nbsp; $x^*, (\lambda^*, \mu^*)$ satisfy the KKT conditions if the following hold:&nbsp;</p>
 <ol>
-<li>$g_i(x^*) \leq 0$ - Primal feasibility</li>
-<li>$h_j(x^*) = 0$ - Primal feasibility</li>
-<li>$\lambda^* \geq 0$ - Dual feasibility</li>
-<li>$\lambda^*_ig_i(x^*) = 0 \ \ \forall i$ - Complementary slackness</li>
-<li>$\nabla_x f(x^*) + \sum \lambda^*_i\nabla_xg_i(x^*) + \sum \mu^*_j\nabla_xh_j(x^*) = 0$ - Stationarity condition
+<li>$g_i(x^*) \leq 0$</li>
+<li>$h_j(x^*) = 0$ </li>
+<li>$\lambda^* \geq 0$</li>
+<li>$\lambda^*_ig_i(x^*) = 0 \ \ \forall i$</li>
+<li>$\nabla_x f(x^*) + \sum \lambda^*_i\nabla_xg_i(x^*) + \sum \mu^*_j\nabla_xh_j(x^*) = 0$ where the $h_j$'s are the active inequality constraints at $x^*$
 <br /></li>
 </ol>
 <p>Note:If there are no inequality constraints, the KKT conditions turn into the Lagrange conditions. Then condition $5$ is simply a statement about the gradient of the Lagrangian being zero, i.e. $\nabla \mathcal{L} = 0$. However, as we shall soon see, it has a strong geometric interpretation as well. 
