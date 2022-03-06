@@ -570,7 +570,7 @@ $z^2 = [x_1 + \epsilon y_1, ..., x_p + \epsilon y_p, 0, ..., 0]^T$.</p>
 <p><strong>Necessity $\impliedby$:</strong></p>
 <p>Suppose $x$ is a BFS and assume, towards contradiction, that it's <em>not</em> and extreme point of $\Omega$.</p>
 <p>Then $\exists y,z \in \Omega$ with $y \ne z$ s.t. $x = \alpha y + (1- \alpha) z$ for some $\alpha \in (0,1)$.</p>
-<p>But since $y,z \in \Omega$ they satisfy $Ay = Az = b$, so $Ay - Az = A(y - z) 0$.</p>
+<p>But since $y,z \in \Omega$ they satisfy $Ay = Az = b$, so $Ay - Az = A(y - z) = 0$.</p>
 <p>That is $(y_1 - z_1)a_1 + ... + (y_m - z_m)a_m = 0$.</p>
 <p>But since $y \ne z$, not all $(y_i - z_i) = 0$. So, $a_1,..., a_m$ are linearly dependent. This contradicts the assumption that $x$ was a BFS.</p>
 
@@ -634,7 +634,7 @@ $</p>
 <p>By the inductive hypothesis, there is an extreme point $x^* \in Q$ that's optimal for the LP.</p>
 <p>By a contradiction argument, $x^*$ is also an extreme point in $P$.</p>
 <p>Suppose it is <em>not</em> an extreme point in $P$. Then by <em>Definition 1</em> of extreme point, $x^*$ is a convex combination of two points in $P$. That is, $\exists y,z \in P$ s.t. $\lambda y + (1- \lambda)z = x^*$ for some $\lambda \in [0,1]$.</p>
-<p>But then $\lambda c^Ty + (1- \lambda)c^Tz = c^Tx^* = v$, since $x^*$ is optimal. But the right hand side is a convex combination of scalars, so $c^Ty = c^Tz = v$. This means $y,z \in Q$, which contradicts the fact that $x^*$ is an extreme point in $Q$.</p>
+<p>But then $\lambda c^Ty + (1- \lambda)c^Tz = c^Tx^* = v$, since $x^*$ is optimal. But the left hand side is a convex combination of scalars, so $c^Ty = c^Tz = v$. This means $y,z \in Q$, which contradicts the fact that $x^*$ is an extreme point in $Q$.</p>
 <p>Hence, $x^*$ must be an extreme point in $P$.</p>
 
 </div>
