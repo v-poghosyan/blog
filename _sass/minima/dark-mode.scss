@@ -37,6 +37,15 @@ a:hover {
   border-color: #6886a1 !important;
 }
 
+// Removing code output margin
+.output_text.output_execute_result pre {
+  margin-left: 0em !important;
+}
+
+.output_subarea.output_stream.output_stdout.output_text pre {
+  margin-left: 0em !important;
+}
+
 .search-result .search-result-title {
   text-decoration: none !important;
   color: $high-emph !important;
@@ -66,10 +75,6 @@ pre, code {
     // BVas a lighter colour to better highlight short code words
     border-color: $overlay-light;
     background-color: $overlay;
-}
-
-.output_subarea.output_stream.output_stdout.output_text pre {
-  margin-left: 0px !important;
 }
 
 .highlighter-rouge .highlight {
