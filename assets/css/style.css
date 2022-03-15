@@ -443,6 +443,10 @@ a:hover { color: #de9240 !important; }
 
 .flash code { background-color: #819db8 !important; border-color: #6886a1 !important; }
 
+.output_text.output_execute_result pre { margin-left: 0em !important; }
+
+.output_subarea.output_stream.output_stdout.output_text pre { margin-left: 0em !important; }
+
 .search-result .search-result-title { text-decoration: none !important; color: rgba(255, 255, 255, 0.87) !important; }
 
 .search-result .search-result-highlight { color: #de9240 !important; }
@@ -456,8 +460,6 @@ a:hover { color: #de9240 !important; }
 * { scrollbar-color: #121212 #2a2a2a; }
 
 pre, code { border-color: #2a2a2a; background-color: #1e1e1e; }
-
-.output_subarea.output_stream.output_stdout.output_text pre { margin-left: 0px !important; }
 
 .highlighter-rouge .highlight { background: #1e1e1e !important; }
 
