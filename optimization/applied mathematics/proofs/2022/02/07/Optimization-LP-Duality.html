@@ -4,12 +4,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Optimization - LP Duality | Vahram Poghosyan</title>
+<title>Optimization - Duality | Vahram Poghosyan</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Optimization - LP Duality" />
+<meta property="og:title" content="Optimization - Duality" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="LP Weak and Strong Duality, Complementary Slackness, Farkas’ Lemma, Separation Arguments and Theorems of the Alternative" />
-<meta property="og:description" content="LP Weak and Strong Duality, Complementary Slackness, Farkas’ Lemma, Separation Arguments and Theorems of the Alternative" />
+<meta name="description" content="LP Duality, Convex Duality, Weak and Strong Duality, Complementary Slackness, Farkas’ Lemma, Separation Arguments and Theorems of the Alternative" />
+<meta property="og:description" content="LP Duality, Convex Duality, Weak and Strong Duality, Complementary Slackness, Farkas’ Lemma, Separation Arguments and Theorems of the Alternative" />
 <link rel="canonical" href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-LP-Duality.html" />
 <meta property="og:url" content="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-LP-Duality.html" />
 <meta property="og:site_name" content="Vahram Poghosyan" />
@@ -18,9 +18,9 @@
 <meta property="article:published_time" content="2022-02-07T00:00:00-06:00" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:image" content="https://v-poghosyan.github.io/blog/images/lp-duality.png" />
-<meta property="twitter:title" content="Optimization - LP Duality" />
+<meta property="twitter:title" content="Optimization - Duality" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-07T00:00:00-06:00","datePublished":"2022-02-07T00:00:00-06:00","description":"LP Weak and Strong Duality, Complementary Slackness, Farkas’ Lemma, Separation Arguments and Theorems of the Alternative","headline":"Optimization - LP Duality","image":"https://v-poghosyan.github.io/blog/images/lp-duality.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-LP-Duality.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-LP-Duality.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-07T00:00:00-06:00","datePublished":"2022-02-07T00:00:00-06:00","description":"LP Duality, Convex Duality, Weak and Strong Duality, Complementary Slackness, Farkas’ Lemma, Separation Arguments and Theorems of the Alternative","headline":"Optimization - Duality","image":"https://v-poghosyan.github.io/blog/images/lp-duality.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-LP-Duality.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-LP-Duality.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://v-poghosyan.github.io/blog/feed.xml" title="Vahram Poghosyan" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -106,7 +106,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Optimization -  LP Duality</h1><p class="page-description">LP Weak and Strong Duality, Complementary Slackness, Farkas' Lemma, Separation Arguments and Theorems of the Alternative</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-07T00:00:00-06:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Optimization -  Duality</h1><p class="page-description">LP Duality, Convex Duality, Weak and Strong Duality, Complementary Slackness, Farkas' Lemma, Separation Arguments and Theorems of the Alternative</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-07T00:00:00-06:00" itemprop="datePublished">
         Feb 7, 2022
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -169,7 +169,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#Strong-Duality">Strong Duality </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Farkas'-Lemma">Farkas&#39; Lemma </a></li>
-<li class="toc-entry toc-h2"><a href="#Proof-of-Strong-Duality">Proof of Strong Duality </a></li>
+<li class="toc-entry toc-h2"><a href="#Proof-of-Strong-Duality-in-LP's">Proof of Strong Duality in LP&#39;s </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#Theorems-of-the-Alternative">Theorems of the Alternative </a>
@@ -210,9 +210,9 @@ window.onload = wrap_img;
 <h1 id="Introduction">
 <a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
 </h1>
-<p>Every linear program (a primal) has a closely related linear program called its dual which can be thought of as its evil twin. If the primal LP is a minimization problem in $n$ variables and $m$ constraints, then its dual is a maximization problem in $m$ variables and $n$ constraints. In this post, we will closely examine the nature of the relationship between the primal and the dual.</p>
-<p>We will see that the key relationship between the primal and the dual is the fact that the dual's optimal value agrees with that of the primal. So, solving the dual guarantees that we've also solved the primal. Furthermore, as we shall see, taking the dual of the dual gives back the primal, so this relationship is a two way street. That is, if we've solved the primal then we've also solved the dual.</p>
-<p>This is what makes Duality Theory so useful in practice. To have a related, possibly easier, problem for a given optimization problem for free is a huge benefit. Even if the dual does not turn out to be easier to solve, it still has the potential to shed some light on the structure of the primal problem due to the various theoretical ties between the two.</p>
+<p>Every linear program, and convex optimization problem in general, has a closely related problem called its dual which can be colloquially thought of as its evil twin. If the primal is a minimization problem in $n$ variables and $m$ constraints, its dual is a maximization problem in $m$ variables and $n$ constraints. In this post, we will examine the nature of the relationship between the primal and its dual, as well as list the possible primal-dual outcomes. We will look at duality in linear programs (<em>LP Duality)</em> and, in general, duality in convex problems (<em>Convex Duality</em>).</p>
+<p>In the case of linear programs, we will see that the key relationship between the primal and its dual is <em>Strong Duality</em> — the fact that the primal and dual optimal values agree. So, solving the dual guarantees that we've also solved the primal. Furthermore, since taking the dual of the dual gives back the primal, this relationship is true in the converse. That is, if we've solved the primal then we've also solved the dual.</p>
+<p>This is what makes Duality Theory so useful in practice. To have a related, possibly easier optimization problem for a given problem is a huge computational benefit. However, even if the dual does not turn out to be easier to solve, it still has the potential to shed some light on the structure of the problem due to the various theoretical relationships between the primal and the dual. Theoretical relationships we will soon explore.</p>
 
 </div>
 </div>
@@ -333,8 +333,8 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <h1 id="Strong-Duality">
 <a class="anchor" href="#Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Strong Duality<a class="anchor-link" href="#Strong-Duality"> </a>
 </h1>
-<p>While Weak Duality is a useful result, the real strength of duality theory lies in <em>Strong Duality</em>. Strong duality is an LP-specific case of Von Neumann's <a href="https://en.wikipedia.org/wiki/Minimax_theorem">Minimax Theorem</a> which lays out the conditions for which the max-min inequality holds with equality. Roughly speaking, it holds for functions that are saddle-shaped — convex in one variable and concave in the another.</p>
-<p>Instead of proving the Minimax Theorem in the general case, we will stay topical and prove Strong Duality itself. That is, the Minimax Theorem as it pertains to the special case of linear programs...</p>
+<p>While Weak Duality is a useful result, the real strength of duality theory lies in <em>Strong Duality</em>. Strong duality is a re-statement of Von Neumann's <a href="https://en.wikipedia.org/wiki/Minimax_theorem">Minimax Theorem</a> which lays out the conditions for which the max-min inequality holds with strict equality. Roughly speaking, it holds for functions that are saddle-shaped — convex in one variable and concave in the another.</p>
+<p>Instead of proving the Minimax Theorem in the general case, we will stay topical and prove Strong Duality for LP's. That is, the Minimax Theorem as it pertains to the special case of linear programs...</p>
 <blockquote>
 <p><strong>Strong Duality:</strong>   If the primal is feasible and bounded with optimal $x^*$ then the dual is also feasible and bounded. Furthermore, if the dual has optimum $p^*$ then $c^Tx^* = b^Tp^*$.<br></p>
 </blockquote>
@@ -367,31 +367,36 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Proof-of-Strong-Duality">
-<a class="anchor" href="#Proof-of-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Strong Duality<a class="anchor-link" href="#Proof-of-Strong-Duality"> </a>
+<h2 id="Proof-of-Strong-Duality-in-LP's">
+<a class="anchor" href="#Proof-of-Strong-Duality-in-LP's" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Strong Duality in LP's<a class="anchor-link" href="#Proof-of-Strong-Duality-in-LP's"> </a>
 </h2>
 <p>The proof is by construction.</p>
 <p>Suppose $x^*$ is a primal optimal solution. Let the set $I_{x^*} = \{ i : a_i^Tx^* = b_i\}$ be the set of the indices of the active constraints at $x^*$. Our goal is to construct a dual optimal solution $p^*$ s.t. $c^Tx^* = b^Tp^*$.</p>
 <p>Let $d$ be any vector that satisfies $d^Ta_i \geq 0 \ \ \forall i \in I_{x^*}$. That is, $d$ is a feasible direction w.r.t. to all the active constraints.</p>
-<p>Then, a small, positive $\epsilon$-step in the direction of $d$ results in point $x^* + \epsilon d$ that's still feasible. The fact that the step is <em>small</em> guarantees no inactive constraints are violated.</p>
+<p>A small, positive $\epsilon$-step in the direction of $d$ results in point $x^* + \epsilon d$ that's still feasible. The fact that the step is small is what guarantees no inactive constraints are violated.</p>
 <p>Let's compare the value of the objective at $x^* + \epsilon d$ to the value of the objective at $x^*$.</p>
 <p>By the assumption that $x^*$ is optimal, we have $c^Tx^* \leq c^T(x^* + \epsilon d) = c^Tx^* + \epsilon c^Td$. Thus, $c^Td = d^Tc \geq 0$
 </p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>$d^Tc$ is nothing but the <em>directional derivative</em> at the minimizer $x^*$. It is a <em>first-order necessary-condition (FONC)</em> that the <em>directional derivative</em> in any feasible direction $d$ be non-negative at any minimizer $x^*$. This is analogous to the first-derivative test for scalar-valued functions. So, this result should have been expected...
+    <strong>Note: </strong>$d^Tc$ is nothing but the <em>directional derivative</em> at the minimizer $x^*$. It is a <em>first-order necessary-condition</em> that the <em>directional derivative</em> in any feasible direction $d$ be non-negative at any minimizer $x^*$. This is analogous to the first-derivative test for scalar-valued functions. So, this result should have been expected...
 </div>
 <br>
-<p>But since $d$ is a vector s.t. $d^Ta_i \geq 0 \ \ \forall i \in I_{x^*}$ and $d^Tc \geq 0$, then $d$ does <em>not</em> separate $c$ from the cone of the $a_i$'s. And since $d$ was arbitrary, this puts us in the setting of Farkas' Lemma. Namely, there exist <em>no</em> vectors $d$ that separate $c$ from the cone. This means the second statement in Farkas' Lemma is violated and the first must be true — $c$ must a conic combination of the $a_i$'s that are active at the minimizer. In other words, $\exists p \geq 0$ s.t. $c = \sum_{i \in I_{x^*}} p_ia_i$.</p>
-<p>But $p$ has dimension equal to only the number of active constraints at $x^*$. To be a dual variable at all, it must have dimension equal to the number of all primal constraints. We extend $p$ to $p^*$ by setting all the entries that do not correspond to the active constraints at $x^*$ to be zero.</p>
+<p>But since $d$ is a vector s.t. $d^Ta_i \geq 0 \ \ \forall i \in I_{x^*}$ and $d^Tc \geq 0$, then $d$ does <em>not</em> separate $c$ from the cone of the $a_i$'s. And since $d$ was arbitrary, this puts us in the setting of Farkas' Lemma. Namely, there exist <em>no</em> vectors $d$ that separate $c$ from the cone. This means the second statement in Farkas' Lemma is violated and the first must be true — $c$ must a conic combination of the $a_i$'s that are active at the minimizer. In other words, $\exists p \geq 0$ s.t. $c = \sum_{i \in I_{x^*}} p_ia_i$. 
+</p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>$c = \sum_{i \in I_{x^*}} p_ia_i$ should remind us of the Lagrange optimality condition in the general case of convex optimization. Recall that the Lagrange condition states that a point $x^*$ is optimal for a convex problem with objective $f(x)$ and constraints $g_i(x)=0$ if and only if $\exists  \lambda_i$ for each active constraint s.t. $\nabla f(x^*) = \sum_i \lambda_i \nabla g_i(x^*)$. In fact, Farka’s lemma is what underpins the Lagrange condition through the assumption that the non-linear objective $f$ and non-linear constraints $g_i$ behave linearly in a small neighborhood of $x^*$. 
+</div>
+But $p$ has dimension equal to only the number of active constraints at $x^*$. To be a dual variable at all, it must have dimension equal to the number of all primal constraints. We extend $p$ to $p^*$ by setting all the entries that do not correspond to the active constraints at $x^*$ to be zero.
 <p>That is $p^*_i = \begin{cases} p_i \ \ \textrm{if} \ \  i \in I_{x^*} \\ 0   \ \ \textrm{if} \ \  i \notin I_{x^*} \end{cases}$.</p>
-<p>Now $A^Tp^*  = \sum_{i} p^*_ia_i = c$, so any feasibility condition in the dual, whether it be $A^Tp \leq c$, $A^Tp \geq c$, or $A^Tp = c$, is satisfied. Also, the dual objective at $p^*$ agrees with the primal objective at $x^*$.</p>
+<p>Now $A^Tp^*  = \sum_{i} p^*_ia_i = c$, so any feasibility condition in the dual, whether it be $A^Tp \leq c$, $A^Tp \geq c$, or $A^Tp = c$, is satisfied by $p^*$.</p>
+<p>Furthermore, the dual objective at $p^*$ agrees with the primal objective at $x^*$.</p>
 <p>
-$$b^Tp^* = \sum_{i} b_ip_i^* = \sum_{i \in I_{x^*}} a_i^Tx^*p_i^* = (\sum_{i \in I_{x^*}} p_ia_i^T)x^* = c^Tx^* \dagger$$
+$$b^Tp^* = \sum_{i} b_ip_i^* = \sum_{i \in I_{x^*}} b_ip_i^* + \sum_{i \notin I_{x^*}} b_ip_i^* = \sum_{i \in I_{x^*}} a_i^Tx^*p_i^* = (\sum_{i \in I_{x^*}} p_ia_i^T)x^* = c^Tx^* $$
 </p>
 <p>However, it still remains to be shown that $p^*$ is dual optimal.</p>
-<p>It is the case that whenever the primal objective and the dual objective agree on a value, the respective solutions must be primal-dual optimal. This is true by Weak Duality, and  here's the argument to prove it...</p>
-<p>By Weak Duality, $b^Tp \leq c^Tx^*$. So, $c^Tx^*$ is an upper bound for any dual feasible solution. Recall that the dual is a maximization problem, so the optimal value must be $b^Tp^* = c^Tx^*$. Thus, by $\dagger$ $p^*$ is dual optimal.</p>
+<p>Whenever the primal objective and the dual objective agree on a value, the respective solutions must be primal-dual optimal. This is simply true by Weak Duality, which states that $b^Tp \leq c^Tx^*$ $\forall p$. So, $c^Tx^*$ is an upper bound for any dual feasible solution. But the dual is a maximization problem, so the dual optimal must be $p^*$ s.t. $b^Tp^* = c^Tx^*$.</p>
 
 </div>
 </div>
