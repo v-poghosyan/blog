@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      17 min read
+      23 min read
     
 </span></p>
 
@@ -158,6 +158,14 @@ window.onload = wrap_img;
   <div class="post-content e-content" itemprop="articleBody">
     <ul id="toc" class="section-nav">
 <li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a></li>
+<li class="toc-entry toc-h1"><a href="#Deriving-the-Dual-of-a-Constrained-Problem">Deriving the Dual of a Constrained Problem </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#The-Lagrangian">The Lagrangian </a></li>
+<li class="toc-entry toc-h2"><a href="#Weak-Duality---Lower-Bounds-on-the-Primal-Optimal">Weak Duality - Lower Bounds on the Primal Optimal </a></li>
+<li class="toc-entry toc-h2"><a href="#The-Max-Min-Formulation">The Max-Min Formulation </a></li>
+<li class="toc-entry toc-h2"><a href="#The-Lagrange-Dual-Problem">The Lagrange Dual Problem </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h1"><a href="#Weak-Duality">Weak Duality </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Proof-of-Weak-Duality">Proof of Weak Duality </a></li>
@@ -210,9 +218,137 @@ window.onload = wrap_img;
 <h1 id="Introduction">
 <a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
 </h1>
-<p>Every linear program, and convex optimization problem in general, has a closely related problem called its dual which can be colloquially thought of as its evil twin. If the primal is a minimization problem in $n$ variables and $m$ constraints, its dual is a maximization problem in $m$ variables and $n$ constraints. In this post, we will examine the nature of the relationship between the primal and its dual, as well as list the possible primal-dual outcomes. We will also look at duality in both linear programs (<em>LP Duality)</em> and in convex problems in general.</p>
-<p>In the case of linear programs, we will see that the key relationship between the primal and its dual is <em>Strong Duality</em> — the fact that the primal and dual optimal values agree. So, solving the dual guarantees that we've also solved the primal. Furthermore, since taking the dual of the dual gives back the primal, this relationship is true in the converse. That is, if we've solved the primal then we've also solved the dual.</p>
-<p>This is what makes duality so useful in practice. To have a related, possibly easier optimization problem is a huge computational benefit. However, even if the dual does not turn out to be easier to solve, it still has the potential to shed light on the structure of the primal problem due to the various theoretical relationships between the two. Relationships we will shortly explore.</p>
+<p>Every linear program, and every optimization problem in general, has a closely related problem called its dual which can be colloquially thought of as its evil twin. The primal and the dual represent two different perspectives on the same problem.</p>
+<p>In the most general case, if the primal is a minimization problem, its  dual is a maximization problem. In the case of constrained optimization, if the primal is minimization in $n$ variables and $m$ constraints, its dual is a maximization in $m$ variables and $n$ constraints.</p>
+<p>Furthermore, any feasible solution of the dual problem is a lower bound of all the feasible solutions of the primal and, in particular, the primal optimal. This property is called <em>Weak Duality</em> and it's true by construction since one of the ideas behind duality is to obtain, at least, a useful lower bound to the primal optimal.</p>
+<p>In the case of linear programs and all other problems which exhibit <em>Strong Duality</em>, the primal and the dual optimal values are strictly equal. That is, solving the dual guarantees that we've also solved the primal. Furthermore, since taking the dual of the dual gives back the primal, this relationship is true in the converse — if we've solved the primal then we've also solved its dual.</p>
+<p>This is what makes <em>Duality Theory</em> useful in practice. To have a related, possibly easier optimization problem gives us a huge computational advantage. However, even if the dual does not turn out to be easier to solve and/or its optimal value disagrees with the primal optimal, by the various theoretical ties between the two (such as Weak Duality) we still stand to learn something about the structure of the primal problem.</p>
+<p>In this post, we will examine the nature of the relationship between the primal and its dual, and we will list the possible primal-dual outcomes. In doing so, we will look at duality in linear programs (<em>LP Duality)</em>, in convex optimization problems, and optimization problems in general.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Deriving-the-Dual-of-a-Constrained-Problem">
+<a class="anchor" href="#Deriving-the-Dual-of-a-Constrained-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deriving the Dual of a Constrained Problem<a class="anchor-link" href="#Deriving-the-Dual-of-a-Constrained-Problem"> </a>
+</h1>
+<p>At first, we focus our attention on deriving the dual problem of a constrained optimization problem. For problems of this sort, duality comes from the <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian relaxation</a> which augments the constrained problem by turning it into an unconstrained problem that, nevertheless, respects the constraints of the original. So, in a sense, it is the constraints of a problem that give rise to its dual...</p>
+<p>However, as we shall see later, certain types of unconstrained problems also have duals which arise from the <a href="https://en.wikipedia.org/wiki/Convex_conjugate">Fenchel-Legendre Transform</a>.</p>
+<p>Take the most general form of constrained optimization problem with $m$ inequality and $n$ equality constraints and assume nothing, as of yet, about its convexity. To make the discussion interesting, assume the problem is non-trivial (i.e. its constraint set is non-empty and contains more than one feasible point), and also that it's bounded with a finite optimum $p^*$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$
+\begin{cases}
+\min_x: f_0(x)
+\\
+s.t.: \begin{aligned} &amp;f_i(x) \leq 0 \ \ i = 1, ...,m
+\\ 
+&amp;h_i(x) = 0 \ \ i = 1, ... ,p
+\end{aligned}
+\end{cases}
+$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The idea is to penalize infeasible choices of $x$ using functions of $x$ that express our <em>displeasure</em> for certain choices.</p>
+<p>At first we use an <em>infinitely hard</em> penalty by introducing indicator functions $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
+<p>These are defined as follows:</p>
+<p>$\mathbb{1}_-(u) = 
+\begin{cases}
+\begin{align} 
+&amp;0  &amp;\textrm{if} \  &amp;u \leq 0
+\\
+&amp;\infty  &amp;\textrm{if} \  &amp;u &gt; 0
+\end{align}
+\end{cases}$</p>
+<p>$\mathbb{1}_0(u) = 
+\begin{cases}
+\begin{align} 
+&amp;0  &amp;\textrm{if} \  &amp;u = 0
+\\
+&amp;\infty  &amp;\textrm{if} \  &amp;u \ne 0
+\end{align}
+\end{cases}$</p>
+<p>Then the equivalent unconstrained problem is:</p>
+<p>$\min_x: \mathcal{J}(x)$</p>
+<p>Where $\mathcal{J}(x) = f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x)).$</p>
+<p>We can easily see that the two problems are equivalent. If $x$ is chosen s.t $f_i(x) &gt; 0$ and/or $h_i(x) \ne 0$ for any $i$, the minimization incurs an infinitely positive penalty. Therefore, such an $x$ will never be selected over an optimal solution $x^*$ which gives the finite optimum $p^*$. Since the two are equivalent, it suffices to optimize this unconstrained problem instead of the original.</p>
+<p>Unconstrained problems can be locally optimized by simply finding their stationary points using a first-order necessary condition, and evaluating the objective at each stationary point. The first-order necessary condition concerns the directional derivative, namely that  the latter should be zero in all feasible directions. Since all points of an unconstrained problem are, effectively, interior points, this amounts to simply taking the gradient and setting it to zero. However, both $\mathbb{1}_-$ and $\mathbb{1}_0$ are discontinuous, and therefore also non-differentiable. To sidestep this difficulty, we use a linear relaxation instead of the infinitely hard penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
+<h2 id="The-Lagrangian">
+<a class="anchor" href="#The-Lagrangian" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrangian<a class="anchor-link" href="#The-Lagrangian"> </a>
+</h2>
+<p>The Lagrangian linear relaxation, sometimes simply referred to as the <em>Lagrangian</em>, is:</p>
+<p>$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=1}^p \mu_i h_i(x)$</p>
+<p>We call the $\lambda_i$'s the <em>Lagrange multipliers</em> corresponding to the inequality constraints, and the $\mu_i$'s the <em>Lagrange multipliers</em> corresponding to the equality constraints. The vector $[\lambda, \mu]^T$ is called the <em>Lagrange multiplier vector</em> or, for reasons that will soon become apparent, the <em>dual variable</em>.</p>
+<p>Furthermore, for the same reasons as above, $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ is called the <em>dual function</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Weak-Duality---Lower-Bounds-on-the-Primal-Optimal">
+<a class="anchor" href="#Weak-Duality---Lower-Bounds-on-the-Primal-Optimal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - Lower Bounds on the Primal Optimal<a class="anchor-link" href="#Weak-Duality---Lower-Bounds-on-the-Primal-Optimal"> </a>
+</h2>
+<p>The first thing to note about the Lagrangian is that $\lambda \geq 0$ is necessary. This is because, in the event that $f_i(x) &gt; 0$ for some $i$, the corresponding $\lambda_i$ must be non-negative in order to apply a positive penalty for violating the $i$-th constraint as needed. This extends to all the entries of $\lambda \geq 0$, where the inequality is meant to be read coordinate-wise.</p>
+<p>On the other hand, $\mu$ is free to assume any value since the equality constraints can be violated in either direction, and both events must be penalized.</p>
+<p>The second thing to note about the Lagrangian is that, even though do we apply a positive penalty that's linear in the the severity of the violation, this penalty is, nevertheless, not as severe as the infinite penalty we were applying before. Also, in the Lagrangian, we actually <em>reward</em> feasible choices of $x$ that have margin. That is, in the event that $f_i(x) &lt; 0$ strictly for some $i$, $\lambda_if_i(x)$ is a non-positive reward for the minimization problem.</p>
+<p>So, $\forall$ feasible $x$, $\mathcal{L}(x,\lambda,\mu) \leq f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$.</p>
+<p>This is also evident from the fact that, for any fixed $i$, $\lambda_i f_i(x)$ is a lower bound of $\mathbb{1}_-(f_i(x))$ and $\mu_i h_i(x)$ is, likewise, a lower bound of $\mathbb{1}_0(h_i(x))$.</p>
+<p>But, in particular this means that:</p>
+<p>$g(\lambda, \mu) = \min_x \mathcal{L}(x,\lambda,\mu) \leq \min_x f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$ $\forall$ feasible $x$.</p>
+<p>But recall that the expression on the right-hand side is the optimal value of the original problem. So the dual function value for any $\mu$ and $\lambda \geq 0$ is, as desired, a lower bound on the primal optimal value.</p>
+<p>That is $g(\lambda, \mu) \leq p^*$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-Max-Min-Formulation">
+<a class="anchor" href="#The-Max-Min-Formulation" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Max-Min Formulation<a class="anchor-link" href="#The-Max-Min-Formulation"> </a>
+</h2>
+<p>As we saw above minimizing the Lagrangian over $x$ gives the dual function $g(\lambda, \mu)$ — a lower bound on the primal optimal $p^*$. On the other hand, maximizing the Lagrangian over $\lambda$ and $\mu$ recovers $\mathcal{J)(x)$. That is, $\max_{\lambda, \mu} \mathcal{L} (x, \lambda, \mu) = \mathcal{J}(x)$.</p>
+<p>If a constraint is respected, that is $f_i(x) \leq 0$ for some $i$, then $$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-Lagrange-Dual-Problem">
+<a class="anchor" href="#The-Lagrange-Dual-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrange Dual Problem<a class="anchor-link" href="#The-Lagrange-Dual-Problem"> </a>
+</h2>
+<p>It's natural, at this point, to ask what the tightest lower bound $g(\lambda^*, \mu^*$ on the primal optimal $p^*$ is.</p>
+<p>This gives rise to the <em>dual problem</em>, which can be stated as follows.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$
+\begin{cases}
+\max_{\lambda, \mu}: g(\lambda, \mu)
+\\
+s.t.: \lambda \geq  0
+\end{cases}
+$</p>
 
 </div>
 </div>
