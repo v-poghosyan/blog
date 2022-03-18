@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      23 min read
+      25 min read
     
 </span></p>
 
@@ -160,10 +160,15 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a></li>
 <li class="toc-entry toc-h1"><a href="#Deriving-the-Dual-of-a-Constrained-Problem">Deriving the Dual of a Constrained Problem </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#The-Lagrangian">The Lagrangian </a></li>
-<li class="toc-entry toc-h2"><a href="#Weak-Duality---Lower-Bounds-on-the-Primal-Optimal">Weak Duality - Lower Bounds on the Primal Optimal </a></li>
-<li class="toc-entry toc-h2"><a href="#The-Max-Min-Formulation">The Max-Min Formulation </a></li>
+<li class="toc-entry toc-h2"><a href="#The-Lagrangian,--The-Dual-Variables-,-and-The-Dual-Function">The Lagrangian,  The Dual Variables , and The Dual Function </a></li>
+<li class="toc-entry toc-h2"><a href="#Weak-Duality---A-Lagrangian-Lower-Bound-on-the-Primal-Optimal">Weak Duality - A Lagrangian Lower Bound on the Primal Optimal </a></li>
 <li class="toc-entry toc-h2"><a href="#The-Lagrange-Dual-Problem">The Lagrange Dual Problem </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Weak-Duality---The-Max-Min-Characterization">Weak Duality - The Max-Min Characterization </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#The-Saddle-Point-Interpretation">The Saddle-Point Interpretation </a></li>
+<li class="toc-entry toc-h3"><a href="#Game-Theoretic-Interpretation">Game-Theoretic Interpretation </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#Weak-Duality">Weak Duality </a>
@@ -282,16 +287,22 @@ $</p>
 \end{cases}$</p>
 <p>Then the equivalent unconstrained problem is:</p>
 <p>$\min_x: \mathcal{J}(x)$</p>
-<p>Where $\mathcal{J}(x) = f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x)).$</p>
-<p>We can easily see that the two problems are equivalent. If $x$ is chosen s.t $f_i(x) &gt; 0$ and/or $h_i(x) \ne 0$ for any $i$, the minimization incurs an infinitely positive penalty. Therefore, such an $x$ will never be selected over an optimal solution $x^*$ which gives the finite optimum $p^*$. Since the two are equivalent, it suffices to optimize this unconstrained problem instead of the original.</p>
-<p>Unconstrained problems can be locally optimized by simply finding their stationary points using a first-order necessary condition, and evaluating the objective at each stationary point. The first-order necessary condition concerns the directional derivative, namely that  the latter should be zero in all feasible directions. Since all points of an unconstrained problem are, effectively, interior points, this amounts to simply taking the gradient and setting it to zero. However, both $\mathbb{1}_-$ and $\mathbb{1}_0$ are discontinuous, and therefore also non-differentiable. To sidestep this difficulty, we use a linear relaxation instead of the infinitely hard penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
-<h2 id="The-Lagrangian">
-<a class="anchor" href="#The-Lagrangian" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrangian<a class="anchor-link" href="#The-Lagrangian"> </a>
+<p>Where $\mathcal{J}(x) = f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$</p>
+<p>We can also express $\mathcal{J}$ as $\mathcal{J}(x) = \begin{cases}\begin{align} 
+&amp;f_0(x) \ \ \textrm{if $x$ is feasible}
+\\
+&amp;\infty \ \ \textrm{otherwise}
+\end{align}\end{cases}$</p>
+<p>We can easily see that the two minimization problems are equivalent. If $x$ is chosen s.t $f_i(x) &gt; 0$ and/or $h_i(x) \ne 0$ for any $i$, the minimization incurs an infinitely positive penalty. Therefore, such an $x$ will never be selected over an optimal solution $x^*$ which gives the finite optimum $p^*$.</p>
+<p>Since the two are equivalent, it suffices to optimize this unconstrained problem instead of the original.</p>
+<p>Unconstrained problems can be locally optimized by simply finding their stationary points using a first-order necessary condition, and evaluating the objective at each stationary point. The first-order necessary condition concerns the directional derivative, namely it attests that the latter should be zero at a local optimizer in all feasible directions. Since all points of an unconstrained problem are, effectively, interior points, this amounts to simply taking the gradient and setting it to zero. However, both $\mathbb{1}_-$ and $\mathbb{1}_0$ are discontinuous, and therefore also non-differentiable. To sidestep this difficulty, we use a linear relaxation instead of the infinitely hard penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
+<h2 id="The-Lagrangian,--The-Dual-Variables-,-and-The-Dual-Function">
+<a class="anchor" href="#The-Lagrangian,--The-Dual-Variables-,-and-The-Dual-Function" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrangian,  The Dual Variables , and The Dual Function<a class="anchor-link" href="#The-Lagrangian,--The-Dual-Variables-,-and-The-Dual-Function"> </a>
 </h2>
 <p>The Lagrangian linear relaxation, sometimes simply referred to as the <em>Lagrangian</em>, is:</p>
 <p>$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=1}^p \mu_i h_i(x)$</p>
-<p>We call the $\lambda_i$'s the <em>Lagrange multipliers</em> corresponding to the inequality constraints, and the $\mu_i$'s the <em>Lagrange multipliers</em> corresponding to the equality constraints. The vector $[\lambda, \mu]^T$ is called the <em>Lagrange multiplier vector</em> or, for reasons that will soon become apparent, the <em>dual variable</em>.</p>
-<p>Furthermore, for the same reasons as above, $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ is called the <em>dual function</em></p>
+<p>We call the $\lambda_i$'s the <em>Lagrange multipliers</em> corresponding to the inequality constraints, and the $\mu_i$'s the <em>Lagrange multipliers</em> corresponding to the equality constraints. The vectors $\lambda$ and $\mu$ are called the <em>Lagrange multiplier vectors</em> or, for reasons that will soon become apparent, the <em>dual variables</em>.</p>
+<p>Furthermore, for the same reasons we call $\lambda$ and $\mu$ the dual variables, $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ is called the <em>dual function</em></p>
 
 </div>
 </div>
@@ -299,8 +310,8 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Weak-Duality---Lower-Bounds-on-the-Primal-Optimal">
-<a class="anchor" href="#Weak-Duality---Lower-Bounds-on-the-Primal-Optimal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - Lower Bounds on the Primal Optimal<a class="anchor-link" href="#Weak-Duality---Lower-Bounds-on-the-Primal-Optimal"> </a>
+<h2 id="Weak-Duality---A-Lagrangian-Lower-Bound-on-the-Primal-Optimal">
+<a class="anchor" href="#Weak-Duality---A-Lagrangian-Lower-Bound-on-the-Primal-Optimal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - A Lagrangian Lower Bound on the Primal Optimal<a class="anchor-link" href="#Weak-Duality---A-Lagrangian-Lower-Bound-on-the-Primal-Optimal"> </a>
 </h2>
 <p>The first thing to note about the Lagrangian is that $\lambda \geq 0$ is necessary. This is because, in the event that $f_i(x) &gt; 0$ for some $i$, the corresponding $\lambda_i$ must be non-negative in order to apply a positive penalty for violating the $i$-th constraint as needed. This extends to all the entries of $\lambda \geq 0$, where the inequality is meant to be read coordinate-wise.</p>
 <p>On the other hand, $\mu$ is free to assume any value since the equality constraints can be violated in either direction, and both events must be penalized.</p>
@@ -310,19 +321,7 @@ $</p>
 <p>But, in particular this means that:</p>
 <p>$g(\lambda, \mu) = \min_x \mathcal{L}(x,\lambda,\mu) \leq \min_x f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$ $\forall$ feasible $x$.</p>
 <p>But recall that the expression on the right-hand side is the optimal value of the original problem. So the dual function value for any $\mu$ and $\lambda \geq 0$ is, as desired, a lower bound on the primal optimal value.</p>
-<p>That is $g(\lambda, \mu) \leq p^*$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-Max-Min-Formulation">
-<a class="anchor" href="#The-Max-Min-Formulation" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Max-Min Formulation<a class="anchor-link" href="#The-Max-Min-Formulation"> </a>
-</h2>
-<p>As we saw above minimizing the Lagrangian over $x$ gives the dual function $g(\lambda, \mu)$ — a lower bound on the primal optimal $p^*$. On the other hand, maximizing the Lagrangian over $\lambda$ and $\mu$ recovers $\mathcal{J)(x)$. That is, $\max_{\lambda, \mu} \mathcal{L} (x, \lambda, \mu) = \mathcal{J}(x)$.</p>
-<p>If a constraint is respected, that is $f_i(x) \leq 0$ for some $i$, then $$</p>
+<p>That is $g(\lambda, \mu) \leq p^*$.</p>
 
 </div>
 </div>
@@ -333,8 +332,7 @@ $</p>
 <h2 id="The-Lagrange-Dual-Problem">
 <a class="anchor" href="#The-Lagrange-Dual-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrange Dual Problem<a class="anchor-link" href="#The-Lagrange-Dual-Problem"> </a>
 </h2>
-<p>It's natural, at this point, to ask what the tightest lower bound $g(\lambda^*, \mu^*$ on the primal optimal $p^*$ is.</p>
-<p>This gives rise to the <em>dual problem</em>, which can be stated as follows.</p>
+<p>In our quest to find the primal optimal $p^*$ it's natural, at this point, to ask what the tightest lower bound $d^*$ on $p^*$ is. This amounts to finding the values $\lambda^*$, and $\mu^*$ which maximize $g(\lambda, \mu)$, giving rise to the <em>dual problem</em>.</p>
 
 </div>
 </div>
@@ -350,6 +348,47 @@ s.t.: \lambda \geq  0
 \end{cases}
 $</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But we know $g(\lambda, \mu)$ to be $\min_{x} \mathcal{L}(x, \lambda, \mu)$. So, the dual optimal $d^*$ can be expressed as:</p>
+$$d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$$<p></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Weak-Duality---The-Max-Min-Characterization">
+<a class="anchor" href="#Weak-Duality---The-Max-Min-Characterization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - The Max-Min Characterization<a class="anchor-link" href="#Weak-Duality---The-Max-Min-Characterization"> </a>
+</h1>
+<p>As we saw above, the dual optimal can be expressed as $d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$.</p>
+<p>We will now see that the primal optimal can be similarly expressed as $p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$.</p>
+<p>To see this, note that maximizing the Lagrangian over $\lambda \geq 0$ and $\mu$ recovers $\mathcal{J}(x)$ which, as we recall, was the associated unconstrained problem with an infinitely hard penalty.</p>
+<p>That is $\max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) = \mathcal{J}(x)$.</p>
+<p>Consider, for a fixed, feasible $x$, two possibilities. If all inequality constraints are respected, that is $f_i(x) \leq 0$ $\forall i$, then, in our attempt to maximize $\mathcal{L}$, the best we can do is set $\lambda_i = 0$ $\forall i$ which results in the optimal value $f_0(x)$. In the case when <em>any</em> inequality constraint is violated, that is $f_i(x) &gt; 0$ for some $i$, the result of maximizing $\mathcal{L}$ is $\infty$ by choosing $\lambda_i \rightarrow \infty$ and $\lambda_j = 0$ $\forall j \ne i$.</p>
+<p>Using similar logic, if all equality constraints are respected, then $h_i(x) = 0$ $\forall i$. In this case, any choice of $\mu$ results in the optimal value of $f_0(x)$. If, on the other hand, some equality constraint is violated then $h_i(x) \ne 0$ for some $i$. In this case by choosing $\mu \rightarrow \pm \infty$, depending on the direction of violation, the result can be made $\infty$.</p>
+<p>In summary:</p>
+<p>$\max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) = \mathcal{J}(x) = \begin{cases}\begin{align} 
+&amp;f_0(x) \ \ \textrm{if $x$ is feasible}
+\\
+&amp;\infty \ \ \textrm{otherwise}
+\end{align}\end{cases}$</p>
+<p>But since $\min_x: \mathcal{J}(x)$ is equivalent to the original, constrained problem. We have that $p^* = \min_x \mathcal{J}(x) = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) \right\}$</p>
+<p>So, we can also express Weak Duality in the following, symmetric form: 
+
+$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
+</p>
+<h3 id="The-Saddle-Point-Interpretation">
+<a class="anchor" href="#The-Saddle-Point-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Saddle-Point Interpretation<a class="anchor-link" href="#The-Saddle-Point-Interpretation"> </a>
+</h3>
+<h3 id="Game-Theoretic-Interpretation">
+<a class="anchor" href="#Game-Theoretic-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Game-Theoretic Interpretation<a class="anchor-link" href="#Game-Theoretic-Interpretation"> </a>
+</h3>
 </div>
 </div>
 </div>
