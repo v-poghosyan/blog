@@ -374,9 +374,9 @@ $$d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) 
 <p>Using similar logic, if all equality constraints are respected, then $h_i(x) = 0$ $\forall i$. In this case, any choice of $\mu$ results in the optimal value of $f_0(x)$. If, on the other hand, some equality constraint is violated then $h_i(x) \ne 0$ for some $i$. In this case by choosing $\mu \rightarrow \pm \infty$, depending on the direction of violation, the result can be made $\infty$.</p>
 <p>In summary:</p>
 <p>$\max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) = \mathcal{J}(x) = \begin{cases}\begin{align} 
-&amp;f_0(x) \ \ \textrm{if $x$ is feasible}
+&amp;f_0(x) \ \ if \ x \ is \ feasible
 \\
-&amp;\infty \ \ \textrm{otherwise}
+&amp;\infty \ \ otherwise
 \end{align}\end{cases}$</p>
 <p>But since $\min_x: \mathcal{J}(x)$ is equivalent to the original, constrained problem. We have that $p^* = \min_x \mathcal{J}(x) = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) \right\}$</p>
 <p>So, we can also express Weak Duality in the following, symmetric form: 
