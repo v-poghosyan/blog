@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      25 min read
+      26 min read
     
 </span></p>
 
@@ -160,24 +160,27 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a></li>
 <li class="toc-entry toc-h1"><a href="#Deriving-the-Dual-of-a-Constrained-Problem">Deriving the Dual of a Constrained Problem </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#The-Lagrangian,--The-Dual-Variables-,-and-The-Dual-Function">The Lagrangian,  The Dual Variables , and The Dual Function </a></li>
+<li class="toc-entry toc-h2"><a href="#The-Lagrangian,--The-Dual-Variables,-and-The-Dual-Function">The Lagrangian,  The Dual Variables, and The Dual Function </a></li>
 <li class="toc-entry toc-h2"><a href="#Weak-Duality---A-Lagrangian-Lower-Bound-on-the-Optimal">Weak Duality - A Lagrangian Lower Bound on the Optimal </a></li>
 <li class="toc-entry toc-h2"><a href="#The-Lagrange-Dual-Problem">The Lagrange Dual Problem </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#Weak-Duality---The-Max-Min-Characterization">Weak Duality - The Max-Min Characterization </a>
+<li class="toc-entry toc-h1"><a href="#Weak-Duality---The-Max-Min-Characterization">Weak Duality - The Max-Min Characterization </a></li>
+<li class="toc-entry toc-h1"><a href="#Weak-Duality---Max-Min-Inequality-and-Various-Interpretations">Weak Duality - Max-Min Inequality and Various Interpretations </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#The-Saddle-Point-Interpretation">The Saddle-Point Interpretation </a></li>
-<li class="toc-entry toc-h3"><a href="#Game-Theoretic-Interpretation">Game-Theoretic Interpretation </a></li>
-<li class="toc-entry toc-h3"><a href="#Price-or-Tax-Interpretation">Price or Tax Interpretation </a></li>
+<li class="toc-entry toc-h2"><a href="#Max-Min-Inequality">Max-Min Inequality </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Proof-of-Max-Min-Inequality">Proof of Max-Min Inequality </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#The-Saddle-Point-Interpretation">The Saddle-Point Interpretation </a></li>
+<li class="toc-entry toc-h2"><a href="#Game-Theoretic-Interpretation">Game-Theoretic Interpretation </a></li>
+<li class="toc-entry toc-h2"><a href="#Price-or-Tax-Interpretation">Price or Tax Interpretation </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#Weak-Duality-in-Linear-Programs">Weak Duality in Linear Programs </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Proof-of-Weak-Duality">Proof of Weak Duality </a></li>
-<li class="toc-entry toc-h2"><a href="#Max-Min-Theorem">Max-Min Theorem </a></li>
-<li class="toc-entry toc-h2"><a href="#Proof-of-Max-Min-Theorem">Proof of Max-Min Theorem </a></li>
-<li class="toc-entry toc-h2"><a href="#Game-Theoretic-Intuition-of-Max-Min-Theorem">Game-Theoretic Intuition of Max-Min Theorem </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#Strong-Duality">Strong Duality </a>
@@ -242,7 +245,7 @@ window.onload = wrap_img;
 </h1>
 <p>At first, we focus our attention on deriving the dual problem of a constrained optimization problem. For problems of this sort, duality comes from the <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian relaxation</a> which augments the constrained problem by turning it into an unconstrained problem that, nevertheless, respects the constraints of the original. So, in a sense, it is the constraints of a problem that give rise to its dual...</p>
 <p>However, as we shall see later, certain types of unconstrained problems also have duals which arise from the <a href="https://en.wikipedia.org/wiki/Convex_conjugate">Fenchel-Legendre Transform</a>.</p>
-<p>Take the most general form of constrained optimization problem with $m$ inequality and $n$ equality constraints and assume nothing, as of yet, about its convexity. To make the discussion interesting, assume the problem is non-trivial (i.e. its constraint set is non-empty and contains more than one feasible point), and also that it's bounded with a finite optimum $p^*$.</p>
+<p>Take the most general form of constrained optimization problem with $m$ inequality and $n$ equality constraints and assume nothing, as of yet, about its convexity. To make the discussion interesting, assume the problem is non-trivial (i.e. its constraint set is non-empty and contains more than one feasible point), and also that it's bounded with a finite optimal value $p^*$.</p>
 
 </div>
 </div>
@@ -310,7 +313,7 @@ $</p>
 <p>Then the equivalent unconstrained problem is:</p>
 <p>$\min_x: \mathcal{J}(x)$</p>
 <p>Where $\mathcal{J}(x) = f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$</p>
-<p>We can also express $\mathcal{J}$ as</p>
+<p>Which can also be expressed as</p>
 
 </div>
 </div>
@@ -330,14 +333,18 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can easily see that the two minimization problems are equivalent. If $x$ is chosen s.t $f_i(x) &gt; 0$ and/or $h_i(x) \ne 0$ for any $i$, the minimization incurs an infinitely positive penalty. Therefore, such an $x$ will never be selected over an optimal solution $x^*$ which gives the finite optimum $p^*$.</p>
+<p>We can easily see that the two minimization problems are equivalent. If $x$ is chosen s.t $f_i(x) &gt; 0$ and/or $h_i(x) \ne 0$ for any $i$, the minimization incurs an infinitely positive penalty. Therefore, such an $x$ will never be selected over a solution that gives the finite optimal value $p^*$.</p>
 <p>Since the two are equivalent, it suffices to optimize this unconstrained problem instead of the original.</p>
-<p>Unconstrained problems can be locally optimized by simply finding their stationary points using the first-order necessary condition and evaluating the objective function at each of the stationary points. The first-order necessary condition concerns the directional derivative of the objective. Namely, it attests that the directional derivative should be zero at a local optimizer in all feasible directions. Since all points of an unconstrained problem are, effectively, interior points, this amounts to simply taking the gradient and setting it to zero. However, both $\mathbb{1}_-$ and $\mathbb{1}_0$ are discontinuous and, therefore also, non-differentiable. To sidestep this difficulty we use linear relaxations of the infinitely hard penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
-<h2 id="The-Lagrangian,--The-Dual-Variables-,-and-The-Dual-Function">
-<a class="anchor" href="#The-Lagrangian,--The-Dual-Variables-,-and-The-Dual-Function" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrangian,  The Dual Variables , and The Dual Function<a class="anchor-link" href="#The-Lagrangian,--The-Dual-Variables-,-and-The-Dual-Function"> </a>
+<p>As we may know, unconstrained problems can be locally optimized simply by finding their stationary points using a first-order necessary optimality condition. Once the stationary points are found, we can evaluate the objective function at each point, and discern to optimizer.</p>
+<p>The first-order necessary optimality condition concerns the directional derivative of the objective. Namely, it attests that the directional derivative at a local optimizer should be zero in all feasible directions. But all points of an unconstrained problem are, effectively, interior points. Thus, all directions are feasible. So the first-order necessary optimality condition amounts to simply taking the gradient and setting it to zero.</p>
+<p>However, both infinitely hard penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$ are discontinuous and, therefore also, non-differentiable. To sidestep this difficulty we use linear relaxations instead of $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
+<h2 id="The-Lagrangian,--The-Dual-Variables,-and-The-Dual-Function">
+<a class="anchor" href="#The-Lagrangian,--The-Dual-Variables,-and-The-Dual-Function" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrangian,  The Dual Variables, and The Dual Function<a class="anchor-link" href="#The-Lagrangian,--The-Dual-Variables,-and-The-Dual-Function"> </a>
 </h2>
 <p>The Lagrangian linear relaxation, sometimes simply referred to as the <em>Lagrangian</em>, is:</p>
-<p>$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=1}^p \mu_i h_i(x)$ where $\lambda \geq 0$</p>
+<p>
+$$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=1}^p \mu_i h_i(x) \ \ \textrm{where} \ \lambda \geq 0$$
+</p>
 <p>We call the $\lambda_i$'s the <em>Lagrange multipliers</em> corresponding to the inequality constraints, and the $\mu_i$'s the <em>Lagrange multipliers</em> corresponding to the equality constraints. The vectors $\lambda$ and $\mu$ are called the <em>Lagrange multiplier vectors</em> or, for reasons that will soon become apparent, the <em>dual variables</em>.</p>
 <p>Furthermore, for the same reasons we call $\lambda$ and $\mu$ the dual variables, $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ is called the <em>dual function</em></p>
 
@@ -350,16 +357,18 @@ $</p>
 <h2 id="Weak-Duality---A-Lagrangian-Lower-Bound-on-the-Optimal">
 <a class="anchor" href="#Weak-Duality---A-Lagrangian-Lower-Bound-on-the-Optimal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - A Lagrangian Lower Bound on the Optimal<a class="anchor-link" href="#Weak-Duality---A-Lagrangian-Lower-Bound-on-the-Optimal"> </a>
 </h2>
-<p>The first thing to note about the Lagrangian is that $\lambda \geq 0$ is necessary. This is because, in the event that $f_i(x) &gt; 0$ for some $i$, the corresponding $\lambda_i$ must be non-negative in order to apply a positive penalty for violating the $i$-th constraint as needed. This extends to all the entries of $\lambda$, necessitating the $\lambda \geq 0$ condition. Note that, since $\lambda$ is a vector, the inequality is meant coordinate-wise.</p>
+<p>Far from simply augmenting a constrained problem into an unconstrained problem which is solvable by using a familiar optimality condition, the Lagrangian also happens to give us the <em>dual problem</em>.</p>
+<p>The first thing to note about the Lagrangian is that $\lambda \geq 0$ is necessary. This is because, in the event that an inequality constraint is violated, say $f_i(x) &gt; 0$ for some $i$, the corresponding $\lambda_i$ must be non-negative in order to apply a positive penalty for the violation. This extends to all the entries of $\lambda$, resulting in the $\lambda \geq 0$ condition. Note that, since $\lambda$ is a vector, the inequality is meant coordinate-wise.</p>
 <p>On the other hand, $\mu$ is free to assume any value since the equality constraints can be violated in either direction, and both scenarios must be penalized.</p>
-<p>The second thing to note about the Lagrangian is that, even though we apply a positive penalty that's linear in the the severity of the violation, this penalty is not as severe as the infinite penalty we were applying before. Also, in the Lagrangian, we actually <em>reward</em> feasible choices of $x$ that have margin. That is, in the event that $f_i(x) &lt; 0$ strictly for some $i$, $\lambda_if_i(x)$ is a non-positive reward for the minimization problem.</p>
-<p>So, $\forall$ feasible $x$, $\mathcal{L}(x,\lambda,\mu) \leq f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$.</p>
-<p>This is also evident from the fact that, for any fixed $i$, $\lambda_i f_i(x)$ is a lower bound of $\mathbb{1}_-(f_i(x))$ and $\mu_i h_i(x)$ is, likewise, a lower bound of $\mathbb{1}_0(h_i(x))$.</p>
-<p>But, in particular this means</p>
+<p>The second thing to note about the $\mathcal{L}$ is that, even though we apply a positive penalty that scales linearly in the severity of the violation, this penalty is not as severe as the infinite penalty we were applying in $\mathcal{J}$. Also, in the Lagrangian, we actually <em>reward</em> feasible choices of $x$ that have margin. That is, in the event that $f_i(x) &lt; 0$ strictly for some $i$, $\lambda_if_i(x)$ is a non-positive reward for the minimization problem.</p>
+<p>All of this is to say that $\forall$ feasible $x$, $\mathcal{L}(x,\lambda,\mu) \leq f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$. This is also evident from the fact that, for any fixed $i$, $\lambda_i f_i(x)$ is a lower bound of $\mathbb{1}_-(f_i(x))$ and $\mu_i h_i(x)$ is a lower bound of $\mathbb{1}_0(h_i(x))$.</p>
+<p>In particular this means that</p>
 <p>$g(\lambda, \mu) = \min_x \mathcal{L}(x,\lambda,\mu) \leq \min_x f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$ $\forall$ feasible $x$</p>
-<p>But recall that the expression on the right-hand side is the optimal value of the original problem. So the dual function value for any $\mu$ and $\lambda \geq 0$ is a lower bound on the primal optimal value.</p>
-<p>That is $g(\lambda, \mu) \leq p^*$.</p>
-<p>This establishes Weak Duality and explains why we chose to call $g$ the <em>dual function</em> — it represents a lower bound on the primal optimal.</p>
+<p>But recall that the expression on the right-hand side is the optimal value of the original problem. So $g(\lambda, \mu)$ for any $\lambda \geq 0$ and $\mu$ is a lower bound on the primal optimal value. That is</p>
+<p>
+$$g(\lambda, \mu) \leq p^*$$
+</p>
+<p>This result is called Weak Duality and it explains why we called $g(\lambda, \mu)$ the <em>dual function</em>: it exhibits the desired properties of a dual.</p>
 
 </div>
 </div>
@@ -370,7 +379,8 @@ $</p>
 <h2 id="The-Lagrange-Dual-Problem">
 <a class="anchor" href="#The-Lagrange-Dual-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrange Dual Problem<a class="anchor-link" href="#The-Lagrange-Dual-Problem"> </a>
 </h2>
-<p>In our quest to find the primal optimal $p^*$ it's natural, at this point, to ask what the tightest lower bound $d^*$ on $p^*$ is. This amounts to finding the values $\lambda^*$, and $\mu^*$ which maximize $g(\lambda, \mu)$, giving rise to the <em>dual problem</em>.</p>
+<p>In our quest to find the primal optimal $p^*$ it's natural, at this point, to ask what the <em>tightest</em> lower bound $d^*$ on $p^*$ is. That is, what's the largest $d^*$ s.t. $d^* \leq p^*$?</p>
+<p>This amounts to finding the values $\lambda^*$, and $\mu^*$ which maximize $g(\lambda, \mu)$, giving rise to the <em>Lagrange dual problem</em> or simply the <em>dual problem</em></p>
 
 </div>
 </div>
@@ -392,7 +402,7 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Looking at the above, we can see why the Lagrange multipliers are also referred to as the <em>dual variables</em> — they are the variables of the dual problem.</p>
+<p>Looking at the above, we can see why the Lagrange multipliers are also referred to as the <em>dual variables</em>: they are the variables of the dual problem.</p>
 
 </div>
 </div>
@@ -414,17 +424,18 @@ $$</p>
 <h1 id="Weak-Duality---The-Max-Min-Characterization">
 <a class="anchor" href="#Weak-Duality---The-Max-Min-Characterization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - The Max-Min Characterization<a class="anchor-link" href="#Weak-Duality---The-Max-Min-Characterization"> </a>
 </h1>
-<p>As we saw above, the dual optimal can be expressed as
-
-$$d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \label{eq:eq1}$$
-
-We will now see that the primal optimal can be similarly expressed as 
-$$p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}
-\label{eq:eq2}$$
-To see this, note that maximizing the Lagrangian over $\lambda \geq 0$ and $\mu$ recovers $\mathcal{J}(x)$ which, as we recall, was the associated unconstrained problem with an infinitely hard penalty.</p>
+<p>As we saw above, the dual optimal can be expressed as</p>
+<p>
+$$d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$$
+</p>
+<p>We will now see that the primal optimal can be similarly expressed as</p>
+<p>
+$$p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
+</p>
+<p>To see this, note that maximizing the Lagrangian over $\lambda \geq 0$ and $\mu$ recovers $\mathcal{J}(x)$ which, as we recall, was the unconstrained problem with an infinitely hard penalty.</p>
 <p>That is $\max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) = \mathcal{J}(x)$.</p>
-<p>Consider, for a fixed, feasible $x$, two possibilities. If all inequality constraints are respected, that is $f_i(x) \leq 0$ $\forall i$, then, in order to maximize $\mathcal{L}$, the best we can do is set $\lambda_i = 0$ $\forall i$ which results in the optimal value $f_0(x)$. In the case when <em>any</em> inequality constraint is violated, that is $f_i(x) &gt; 0$ for some $i$, the result of maximizing $\mathcal{L}$ is $\infty$ by choosing $\lambda_i \rightarrow \infty$ and $\lambda_j = 0$ $\forall j \ne i$.</p>
-<p>Using similar logic, if all equality constraints are respected, then $h_i(x) = 0$ $\forall i$. In this case, any choice of $\mu$ results in $f_0(x)$. If, on the other hand, some equality constraint is violated then $h_i(x) \ne 0$ for some $i$. In this case, by choosing $\mu \rightarrow \pm \infty$, where the sign depends on the direction of the violation, the result can be made $\infty$.</p>
+<p>Consider, for a fixed feasible $x$, two possibilities. If all inequality constraints are respected, that is $f_i(x) \leq 0$ $\forall i$, then, in order to maximize $\mathcal{L}$, the best we can do is set $\lambda_i = 0$ $\forall i$ which results in the optimal value $f_0(x)$. In case when <em>any</em> inequality constraint is violated, that is $f_i(x) &gt; 0$ for some $i$, the result of maximizing $\mathcal{L}$ is $\infty$ by choosing $\lambda_i \rightarrow \infty$ and $\lambda_j = 0$ $\forall j \ne i$.</p>
+<p>Using similar logic, if all equality constraints are respected then $h_i(x) = 0$ $\forall i$. In this case any choice of $\mu$ results in $f_0(x)$. If, on the other hand, some equality constraint is violated then $h_i(x) \ne 0$ for some $i$. In this case, by choosing $\mu \rightarrow \pm \infty$, where the sign depends on the direction of the violation, the result can be made $\infty$.</p>
 <p>In summary</p>
 <p>$\max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) = \mathcal{J}(x) = \begin{cases}\begin{aligned} 
 &amp;f_0(x) \ \ \textrm{if $x$ is feasible}
@@ -432,20 +443,64 @@ To see this, note that maximizing the Lagrangian over $\lambda \geq 0$ and $\mu$
 &amp;\infty \ \ \textrm{otherwise}
 \end{aligned}\end{cases}$</p>
 <p>But since $\min_x: \mathcal{J}(x)$ is equivalent to the original, constrained problem. We have that $p^* = \min_x \mathcal{J}(x) = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) \right\}$</p>
-<p>This gives us a new way to express Weak Duality in a more symmetric way.</p>
+<p>This gives us a way to express Weak Duality in a more symmetric way.</p>
 <p>
 $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
 </p>
-<p>Weak Duality can also be derived from $\eqref{eq:eq}$ and $\eqref{eq:eq2}$ directly using the <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality">max-min inequality</a>.</p>
-<h3 id="The-Saddle-Point-Interpretation">
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Weak-Duality---Max-Min-Inequality-and-Various-Interpretations">
+<a class="anchor" href="#Weak-Duality---Max-Min-Inequality-and-Various-Interpretations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - Max-Min Inequality and Various Interpretations<a class="anchor-link" href="#Weak-Duality---Max-Min-Inequality-and-Various-Interpretations"> </a>
+</h1>
+<p>Weak Duality can also be derived from the quantities $\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$ and $\min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$ directly, through a non-optimization lens, using the <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality">max-min inequality</a>.</p>
+<h2 id="Max-Min-Inequality">
+<a class="anchor" href="#Max-Min-Inequality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Max-Min Inequality<a class="anchor-link" href="#Max-Min-Inequality"> </a>
+</h2>
+<p>The max-min inequality makes no assumptions about the function. It's simply true for all functions of the form $f: X \times Y \rightarrow \mathbb{R}$, and it states that:
+$$
+\inf_{y\in Y} \left\{ \sup_{x\in X} f(x,y) \right\} \geq \sup_{x\in X} \left\{ \inf_{y\in Y} f(x,y) \right\}
+$$
+Since no assumption is made on $f$, the inequality certainly also holds for $\mathcal{L}$. And, since we're in the special case where the optima are assumed to exist, the functions do attain their optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$. This results in the exact formulation of Weak Duality as above</p>
+<p>
+$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
+</p>
+<p>All that remains in establishing this result is proving the max-min inequality.</p>
+<h3 id="Proof-of-Max-Min-Inequality">
+<a class="anchor" href="#Proof-of-Max-Min-Inequality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Max-Min Inequality<a class="anchor-link" href="#Proof-of-Max-Min-Inequality"> </a>
+</h3>
+<p>For any $f$, and $x \in X$, $y \in Y$ we have:
+
+$$f(x,y) \geq \min_x f(x,y)$$
+
+The right hand side is now only a function of $y$, so maximizing both sides w.r.t. $y$ yields: 
+
+$$ \max_y f(x,y) \geq \max_y \left\{ \min_x f(x,y) \right\}$$
+
+The right hand side is now a constant, so minimizing both sides w.r.t. $x$ results in the desired conclusion.
+
+$$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right\}$$
+</p>
+<h2 id="The-Saddle-Point-Interpretation">
 <a class="anchor" href="#The-Saddle-Point-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Saddle-Point Interpretation<a class="anchor-link" href="#The-Saddle-Point-Interpretation"> </a>
-</h3>
-<h3 id="Game-Theoretic-Interpretation">
+</h2>
+<h2 id="Game-Theoretic-Interpretation">
 <a class="anchor" href="#Game-Theoretic-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Game-Theoretic Interpretation<a class="anchor-link" href="#Game-Theoretic-Interpretation"> </a>
-</h3>
-<h3 id="Price-or-Tax-Interpretation">
+</h2>
+<p>An intuitive way to see the validity of the max-min theorem comes from Game Theory.</p>
+<p>Suppose two players $A$, and $B$, are playing a game in which player $A$'s goal is to minimize the score $S_1$ whereas player $B$'s goal is to maximize it. Suppose, per the rules of the game, player $A$ has the first turn. Then player $B$'s choice is final and it restricts the actions player $A$ can take. So player $B$ has an advantage in this game.</p>
+<p>However, if a second game is played such that player $B$ goes first, then the advantage lies with player $A$.</p>
+<p>Formally, suppose the game is described by $f(x,y)$ where $x \in X$ and $y \in Y$ represent player $A$'s and player $B$'s choices respectively.</p>
+<p>In the first game player $A$ is restricted to choosing $x$ that will minimize $S_1(x) = \max_y f(x,y)$. Consequently, the payoff in the first game will be $ S_1 = \min_x \left\{ \max_y f(x,y) \right\}$.</p>
+<p>Similarly, in the second game the payoff will be $S_2 = \max_y \left\{ \max_x f(x,y) \right\}$.</p>
+<p>Since player $B$, whose goal is to minimize the score, has an advantage in the first game, $S_1 \geq S_2$ which is the max-min inequality.</p>
+<h2 id="Price-or-Tax-Interpretation">
 <a class="anchor" href="#Price-or-Tax-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Price or Tax Interpretation<a class="anchor-link" href="#Price-or-Tax-Interpretation"> </a>
-</h3>
+</h2>
 </div>
 </div>
 </div>
@@ -515,47 +570,6 @@ $</p>
 <a class="anchor" href="#Proof-of-Weak-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Weak Duality<a class="anchor-link" href="#Proof-of-Weak-Duality"> </a>
 </h2>
 <p>Let $(p, x)$ be respectively dual-primal feasible. Then $c^Tx = x^Tc \geq x^TA^Tp \geq b^Tp$.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Max-Min-Theorem">
-<a class="anchor" href="#Max-Min-Theorem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Max-Min Theorem<a class="anchor-link" href="#Max-Min-Theorem"> </a>
-</h2>
-<p>In the case of primal-dual optimal points $(x^*, p^*)$, Weak Duality states $c^Tx^* \geq b^Tp^*$. This is simply a restatement of the <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality">max-min inequality</a> within the context of LP's.</p>
-<p>As we may recall, the min-max inequality makes no assumptions about the function. It's simply true for all functions of the form $f: X \times Y \rightarrow \mathbb{R}$, and it states that:
-$$
-\inf_{y\in Y} \left\{ \sup_{x\in X} f(x,y) \right\} \geq \sup_{x\in X} \left\{ \inf_{y\in Y} f(x,y) \right\}
-$$
-Since no assumption on $f$ is made, the max-min inequality certainly also applies to the special case of linear objective functions of LP's. And since we're in the special case where the optima are assumed to exist, the functions attain their optima. That is, we can replace $\sup$ and $\inf$ in the max-min inequality with $\max$ and $\min$.</p>
-<h2 id="Proof-of-Max-Min-Theorem">
-<a class="anchor" href="#Proof-of-Max-Min-Theorem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Max-Min Theorem<a class="anchor-link" href="#Proof-of-Max-Min-Theorem"> </a>
-</h2>
-<p>For any $f$, and $x \in X$, $y \in Y$ we have:
-
-$$f(x,y) \geq \min_x f(x,y)$$
-
-The right hand side is now only a function of $y$, so maximizing both sides w.r.t. $y$ yields: 
-
-$$ \max_y f(x,y) \geq \max_y \left\{ \min_x f(x,y) \right\}$$
-
-The right hand side is now a constant, so minimizing both sides w.r.t. $x$ results in the desired conclusion.
-
-$$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right\}$$
-</p>
-<h2 id="Game-Theoretic-Intuition-of-Max-Min-Theorem">
-<a class="anchor" href="#Game-Theoretic-Intuition-of-Max-Min-Theorem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Game-Theoretic Intuition of Max-Min Theorem<a class="anchor-link" href="#Game-Theoretic-Intuition-of-Max-Min-Theorem"> </a>
-</h2>
-<p>An intuitive way to see the validity of the max-min theorem comes from <a href="https://en.wikipedia.org/wiki/Game_theory">game theory</a>.</p>
-<p>Suppose two players $A$, and $B$, are playing a game in which player $A$'s goal is to minimize the score $s$ whereas player $B$'s goal is to maximize it. Suppose, per the rules of the game, player $A$ has the first turn. Then player $B$'s choice is final and it restricts the actions player $A$ can take. So player $B$ has an advantage in this game.</p>
-<p>However, if a second game is played such that player $B$ must go first, then the advantage lies with player $A$.</p>
-<p>Formally, suppose the game is described by $f(x,y)$ where $x \in X$ and $y \in Y$ represent player $A$'s and player $B$'s choices respectively.</p>
-<p>In the first game player $A$ is restricted to choosing $x$ that will minimize $s_1(x) = \max_y f(x,y)$. Consequently, the payoff in the first game will be $ s_1 = \min_x \left\{ \max_y f(x,y) \right\}$.</p>
-<p>Similarly, in the second game the payoff will be $s_2 = \max_y \left\{ \max_x f(x,y) \right\}$.</p>
-<p>Since player $B$, whose goal is to minimize the score, has an advantage in the first game, $s_1 \geq s_2$ which concludes the game-theoretic proof of max-min inequality.</p>
 
 </div>
 </div>
