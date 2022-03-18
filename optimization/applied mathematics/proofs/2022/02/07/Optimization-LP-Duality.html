@@ -278,11 +278,11 @@ $</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>$\mathbb{1}_-(u) = 
 \begin{cases}
-\begin{align} 
-&amp;0  &amp;\textrm{if} \  &amp;u \leq 0
+\begin{aligned} 
+&amp;0  &amp;\textrm{if} \ u \leq 0
 \\
-&amp;\infty  &amp;\textrm{if} \  &amp;u &gt; 0
-\end{align}
+&amp;\infty  &amp;\textrm{if} \ u &gt; 0
+\end{aligned}
 \end{cases}$</p>
 
 </div>
@@ -293,11 +293,11 @@ $</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>$\mathbb{1}_0(u) = 
 \begin{cases}
-\begin{align} 
-&amp;0  &amp;\textrm{if} \  &amp;u = 0
+\begin{aligned} 
+&amp;0  &amp;\textrm{if} \ u = 0
 \\
-&amp;\infty  &amp;\textrm{if} \  &amp;u \ne 0
-\end{align}
+&amp;\infty  &amp;\textrm{if} \ u \ne 0
+\end{aligned}
 \end{cases}$</p>
 
 </div>
@@ -317,11 +317,11 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$\mathcal{J}(x) = \begin{cases}\begin{align} 
+<p>$\mathcal{J}(x) = \begin{cases}\begin{aligned} 
 &amp;f_0(x) \ \ \textrm{if $x$ is feasible}
 \\
 &amp;\infty \ \ \textrm{otherwise}
-\end{align}\end{cases}$</p>
+\end{aligned}\end{cases}$</p>
 
 </div>
 </div>
@@ -411,9 +411,9 @@ $$d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) 
 <a class="anchor" href="#Weak-Duality---The-Max-Min-Characterization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - The Max-Min Characterization<a class="anchor-link" href="#Weak-Duality---The-Max-Min-Characterization"> </a>
 </h1>
 <p>As we saw above, the dual optimal can be expressed as</p>
-<p>$d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \tag{1}$</p>
+<p>$d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \label{eq:1}$</p>
 <p>We will now see that the primal optimal can be similarly expressed as</p>
-<p>$p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{2}$</p>
+<p>$p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \label{eq:2}$</p>
 <p>To see this, note that maximizing the Lagrangian over $\lambda \geq 0$ and $\mu$ recovers $\mathcal{J}(x)$ which, as we recall, was the associated unconstrained problem with an infinitely hard penalty.</p>
 <p>That is $\max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) = \mathcal{J}(x)$.</p>
 <p>Consider, for a fixed, feasible $x$, two possibilities. If all inequality constraints are respected, that is $f_i(x) \leq 0$ $\forall i$, then, in our attempt to maximize $\mathcal{L}$, the best we can do is set $\lambda_i = 0$ $\forall i$ which results in the optimal value $f_0(x)$. In the case when <em>any</em> inequality constraint is violated, that is $f_i(x) &gt; 0$ for some $i$, the result of maximizing $\mathcal{L}$ is $\infty$ by choosing $\lambda_i \rightarrow \infty$ and $\lambda_j = 0$ $\forall j \ne i$.</p>
@@ -426,11 +426,11 @@ $$d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) 
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$\max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) = \mathcal{J}(x) = \begin{cases}\begin{align} 
+<p>$\max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) = \mathcal{J}(x) = \begin{cases}\begin{aligned} 
 &amp;f_0(x) \ \ \textrm{if $x$ is feasible}
 \\
 &amp;\infty \ \ \textrm{otherwise}
-\end{align}\end{cases}$</p>
+\end{aligned}\end{cases}$</p>
 
 </div>
 </div>
@@ -439,11 +439,11 @@ $$d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>But since $\min_x: \mathcal{J}(x)$ is equivalent to the original, constrained problem. We have that $p^* = \min_x \mathcal{J}(x) = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) \right\}$</p>
-<p>So, we can also express Weak Duality in the following, symmetric form
+<p>So, we can also express Weak Duality in the following, more symmetric form
 
 $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
 </p>
-<p>Weak Duality can also be derived from the fact that</p>
+<p>Weak Duality can also be derived from $\tag{1}$</p>
 <h3 id="The-Saddle-Point-Interpretation">
 <a class="anchor" href="#The-Saddle-Point-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Saddle-Point Interpretation<a class="anchor-link" href="#The-Saddle-Point-Interpretation"> </a>
 </h3>
