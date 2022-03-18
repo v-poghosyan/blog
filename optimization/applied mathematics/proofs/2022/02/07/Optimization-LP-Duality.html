@@ -269,6 +269,13 @@ $</p>
 <p>The idea is to penalize infeasible choices of $x$ using functions of $x$ that express our <em>displeasure</em> for certain choices.</p>
 <p>At first we use an <em>infinitely hard</em> penalty by introducing indicator functions $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
 <p>These are defined as follows:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>$\mathbb{1}_-(u) = 
 \begin{cases}
 \begin{align} 
@@ -277,6 +284,13 @@ $</p>
 &amp;\infty  &amp;\textrm{if} \  &amp;u &gt; 0
 \end{align}
 \end{cases}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>$\mathbb{1}_0(u) = 
 \begin{cases}
 \begin{align} 
@@ -285,14 +299,36 @@ $</p>
 &amp;\infty  &amp;\textrm{if} \  &amp;u \ne 0
 \end{align}
 \end{cases}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Then the equivalent unconstrained problem is:</p>
 <p>$\min_x: \mathcal{J}(x)$</p>
 <p>Where $\mathcal{J}(x) = f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$</p>
-<p>We can also express $\mathcal{J}$ as $\mathcal{J}(x) = \begin{cases}\begin{align} 
+<p>We can also express $\mathcal{J}$ as</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\mathcal{J}(x) = \begin{cases}\begin{align} 
 &amp;f_0(x) \ \ \textrm{if $x$ is feasible}
 \\
 &amp;\infty \ \ \textrm{otherwise}
 \end{align}\end{cases}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>We can easily see that the two minimization problems are equivalent. If $x$ is chosen s.t $f_i(x) &gt; 0$ and/or $h_i(x) \ne 0$ for any $i$, the minimization incurs an infinitely positive penalty. Therefore, such an $x$ will never be selected over an optimal solution $x^*$ which gives the finite optimum $p^*$.</p>
 <p>Since the two are equivalent, it suffices to optimize this unconstrained problem instead of the original.</p>
 <p>Unconstrained problems can be locally optimized by simply finding their stationary points using a first-order necessary condition, and evaluating the objective at each stationary point. The first-order necessary condition concerns the directional derivative, namely it attests that the latter should be zero at a local optimizer in all feasible directions. Since all points of an unconstrained problem are, effectively, interior points, this amounts to simply taking the gradient and setting it to zero. However, both $\mathbb{1}_-$ and $\mathbb{1}_0$ are discontinuous, and therefore also non-differentiable. To sidestep this difficulty, we use a linear relaxation instead of the infinitely hard penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
@@ -372,12 +408,26 @@ $$d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) 
 <p>That is $\max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) = \mathcal{J}(x)$.</p>
 <p>Consider, for a fixed, feasible $x$, two possibilities. If all inequality constraints are respected, that is $f_i(x) \leq 0$ $\forall i$, then, in our attempt to maximize $\mathcal{L}$, the best we can do is set $\lambda_i = 0$ $\forall i$ which results in the optimal value $f_0(x)$. In the case when <em>any</em> inequality constraint is violated, that is $f_i(x) &gt; 0$ for some $i$, the result of maximizing $\mathcal{L}$ is $\infty$ by choosing $\lambda_i \rightarrow \infty$ and $\lambda_j = 0$ $\forall j \ne i$.</p>
 <p>Using similar logic, if all equality constraints are respected, then $h_i(x) = 0$ $\forall i$. In this case, any choice of $\mu$ results in the optimal value of $f_0(x)$. If, on the other hand, some equality constraint is violated then $h_i(x) \ne 0$ for some $i$. In this case by choosing $\mu \rightarrow \pm \infty$, depending on the direction of violation, the result can be made $\infty$.</p>
-<p>In summary:</p>
+<p>In summary</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>$\max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) = \mathcal{J}(x) = \begin{cases}\begin{align} 
-&amp;f_0(x) \ \ if \ x \ is \ feasible
+&amp;f_0(x) \ \ \textrm{if $x$ is feasible}
 \\
-&amp;\infty \ \ otherwise
+&amp;\infty \ \ \textrm{otherwise}
 \end{align}\end{cases}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>But since $\min_x: \mathcal{J}(x)$ is equivalent to the original, constrained problem. We have that $p^* = \min_x \mathcal{J}(x) = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) \right\}$</p>
 <p>So, we can also express Weak Duality in the following, symmetric form: 
 
