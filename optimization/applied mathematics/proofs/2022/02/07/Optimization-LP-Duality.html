@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      26 min read
+      27 min read
     
 </span></p>
 
@@ -166,7 +166,7 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#Weak-Duality---The-Max-Min-Characterization">Weak Duality - The Max-Min Characterization </a></li>
-<li class="toc-entry toc-h1"><a href="#Weak-Duality---Max-Min-Inequality-and-Various-Interpretations">Weak Duality - Max-Min Inequality and Various Interpretations </a>
+<li class="toc-entry toc-h1"><a href="#Duality---Max-Min-Inequality-and-Various-Interpretations">Duality - Max-Min Inequality and Various Interpretations </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Max-Min-Inequality">Max-Min Inequality </a>
 <ul>
@@ -174,7 +174,11 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#Game-Theoretic-Interpretation">Game-Theoretic Interpretation </a></li>
-<li class="toc-entry toc-h2"><a href="#The-Saddle-Point-Interpretation">The Saddle-Point Interpretation </a></li>
+<li class="toc-entry toc-h2"><a href="#Strong-Duality">Strong Duality </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#The-Saddle-Point-Interpretation">The Saddle-Point Interpretation </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#Price-or-Tax-Interpretation">Price or Tax Interpretation </a></li>
 </ul>
 </li>
@@ -364,11 +368,11 @@ $$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=
 <p>All of this is to say that $\forall$ feasible $x$, $\mathcal{L}(x,\lambda,\mu) \leq f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$. This is also evident from the fact that, for any fixed $i$, $\lambda_i f_i(x)$ is a lower bound of $\mathbb{1}_-(f_i(x))$ and $\mu_i h_i(x)$ is a lower bound of $\mathbb{1}_0(h_i(x))$.</p>
 <p>In particular this means that</p>
 <p>$g(\lambda, \mu) = \min_x \mathcal{L}(x,\lambda,\mu) \leq \min_x f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$ $\forall$ feasible $x$</p>
-<p>But recall that the expression on the right-hand side is the optimal value of the original problem. So $g(\lambda, \mu)$ for any $\lambda \geq 0$ and $\mu$ is a lower bound on the primal optimal value. That is</p>
-<p>
-$$g(\lambda, \mu) \leq p^*$$
-</p>
-<p>This result is called Weak Duality and it explains why we called $g(\lambda, \mu)$ the <em>dual function</em>: it exhibits the desired properties of a dual.</p>
+<p>But recall that the expression on the right-hand side is the optimal value of the original problem. So $g(\lambda, \mu)$ for any $\lambda \geq 0$ and $\mu$ is a lower bound on the primal optimal value. That is, we get Weak Duality as</p>
+<blockquote>
+<p><em>Weak Duality:</em> $$g(\lambda, \mu) \leq p^*$$<br></p>
+</blockquote>
+<p>This explains why we called $g(\lambda, \mu)$ the <em>dual function</em>: it exhibits the desired Weak Duality property of a dual.</p>
 
 </div>
 </div>
@@ -446,7 +450,7 @@ $$p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) 
 <p>Thus, we have that $p^* = \min_x \mathcal{J}(x) = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) \right\}$</p>
 <p>This gives us a way to express Weak Duality in a more symmetric way.</p>
 <blockquote>
-<p><em>Weak Duality</em>:$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$<br></p>
+<p><em>Weak Duality:</em> $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$<br></p>
 </blockquote>
 
 </div>
@@ -455,8 +459,8 @@ $$p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) 
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Weak-Duality---Max-Min-Inequality-and-Various-Interpretations">
-<a class="anchor" href="#Weak-Duality---Max-Min-Inequality-and-Various-Interpretations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - Max-Min Inequality and Various Interpretations<a class="anchor-link" href="#Weak-Duality---Max-Min-Inequality-and-Various-Interpretations"> </a>
+<h1 id="Duality---Max-Min-Inequality-and-Various-Interpretations">
+<a class="anchor" href="#Duality---Max-Min-Inequality-and-Various-Interpretations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Duality - Max-Min Inequality and Various Interpretations<a class="anchor-link" href="#Duality---Max-Min-Inequality-and-Various-Interpretations"> </a>
 </h1>
 <p>Weak Duality can also be derived from the quantities</p>
 <p>$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$</p>
@@ -500,9 +504,24 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <p>In the first game player $A$ is restricted to choosing $x$ that will minimize $S_1(x) = \max_y f(x,y)$. Consequently, the payoff in the first game will be $ S_1 = \min_x \left\{ \max_y f(x,y) \right\}$.</p>
 <p>Similarly, in the second game the payoff will be $S_2 = \max_y \left\{ \max_x f(x,y) \right\}$.</p>
 <p>Since player $B$, whose goal is to minimize the score, has an advantage in the first game, $S_1 \geq S_2$ which is the max-min inequality.</p>
-<h2 id="The-Saddle-Point-Interpretation">
-<a class="anchor" href="#The-Saddle-Point-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Saddle-Point Interpretation<a class="anchor-link" href="#The-Saddle-Point-Interpretation"> </a>
+<h2 id="Strong-Duality">
+<a class="anchor" href="#Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Strong Duality<a class="anchor-link" href="#Strong-Duality"> </a>
 </h2>
+<p>For certain types of functions, roughly speaking those that are saddle-shaped (i.e. convex in one variable and concave in the other), the max-min inequality holds with strict equality.</p>
+<p>Confining our discussion to the Lagrangian of a constrained problem, Strong Duality holds in most cases where $\mathcal{L}$ is saddle-shaped (with the exception of some edge cases). That is, convex in $x$ and concave in $\lambda$, and $\mu$. In fact, $\mathcal{L}$ is <em>always</em> concave in $\lambda$ and $\mu$ since, for a fixed $x$, it's linear in those variables. It's additionally convex in $x$ if the objective $f_0(x)$ and all the constraints $f_i(x)$, and $h_i(x)$ $\forall i$ are convex functions.</p>
+<p>While convexity alone isn't a sufficient condition for Strong Duality, a convex problem which also satisfies <em>Slater's Condition</em> does have Strong Duality.</p>
+<blockquote>
+<p><em>Slater's Condition:</em> $\exists \hat x$ s.t. $f_i(\hat x) &lt; 0$, and $h_i(\hat x) = 0$ $\forall i$. <br></p>
+</blockquote>
+<p>That is, the existence of a feasible solution with margin w.r.t. all the inequality constraints is needed on top of convexity.</p>
+<p>If a convex optimization problem satisfies Slater's Condition, it has Strong Duality. That is, for such a problem, the following holds</p>
+<blockquote>
+<p><em>Strong Duality:</em> $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
+<br></p>
+</blockquote>
+<h3 id="The-Saddle-Point-Interpretation">
+<a class="anchor" href="#The-Saddle-Point-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Saddle-Point Interpretation<a class="anchor-link" href="#The-Saddle-Point-Interpretation"> </a>
+</h3>
 <h2 id="Price-or-Tax-Interpretation">
 <a class="anchor" href="#Price-or-Tax-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Price or Tax Interpretation<a class="anchor-link" href="#Price-or-Tax-Interpretation"> </a>
 </h2>
