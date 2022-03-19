@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      30 min read
+      31 min read
     
 </span></p>
 
@@ -181,11 +181,15 @@ window.onload = wrap_img;
 <ul>
 <li class="toc-entry toc-h2"><a href="#Slater's-Condition">Slater&#39;s Condition </a></li>
 <li class="toc-entry toc-h2"><a href="#Geometric-Intuition-Behind-Slater's-Condition">Geometric Intuition Behind Slater&#39;s Condition </a></li>
+<li class="toc-entry toc-h2"><a href="#Complementary-Slackness---A-Consequence-of-Strong-Duality">Complementary Slackness - A Consequence of Strong Duality </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Proof">Proof </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#Strong-Duality---Saddle-Point-Interpretation">Strong Duality - Saddle Point Interpretation </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Max-Min-Equality-at-Saddle-Points">Max-Min Equality at Saddle Points </a></li>
 <li class="toc-entry toc-h3"><a href="#Proof-of-Saddle-Point-Theorem">Proof of Saddle Point Theorem </a></li>
-<li class="toc-entry toc-h3"><a href="#Proof">Proof </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#ASASDADA">ASASDADA </a></li>
@@ -534,10 +538,10 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <p><strong>Strong Duality:</strong> $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$<br></p>
 </blockquote>
 <p>Optimization problems that exhibit this property are called Strongly Dual.</p>
-<p>First, let's give a sufficient condition for Strong Duality,</p>
 <h2 id="Slater's-Condition">
 <a class="anchor" href="#Slater's-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slater's Condition<a class="anchor-link" href="#Slater's-Condition"> </a>
 </h2>
+<p>Let's give a sufficient condition for Strong Duality.</p>
 <p>Even though not all Strongly Dual problems are convex and not all convex programs are Strongly Dual, convexity together with <em>Slater's Condition</em> is sufficient for Strong Duality.</p>
 <blockquote>
 <p><strong>Slater's Condition:</strong> $\exists \hat x$ s.t. $f_i(\hat x) &lt; 0$, and $h_i(\hat x) = 0$ $\forall i$. <br></p>
@@ -556,6 +560,25 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <a class="anchor" href="#Geometric-Intuition-Behind-Slater's-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Geometric Intuition Behind Slater's Condition<a class="anchor-link" href="#Geometric-Intuition-Behind-Slater's-Condition"> </a>
 </h2>
 <p>\\  TO BE ADDED ///</p>
+<h2 id="Complementary-Slackness---A-Consequence-of-Strong-Duality">
+<a class="anchor" href="#Complementary-Slackness---A-Consequence-of-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Complementary Slackness - A Consequence of Strong Duality<a class="anchor-link" href="#Complementary-Slackness---A-Consequence-of-Strong-Duality"> </a>
+</h2>
+<p>Suppose $x^*$ is a primal optimal solution and $(\lambda^*, \mu^*)$ is a dual optimal solution. An immediate consequence of Strong Duality is the fact that $\lambda^*_i f_i(x^*) = 0 \ \ \forall i$: a fact which is often called <em>Complementary Slackness</em> for reasons that will become apparent later.</p>
+<h3 id="Proof">
+<a class="anchor" href="#Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof<a class="anchor-link" href="#Proof"> </a>
+</h3>
+<p>By Strong Duality, we have $p^* = d^*$ or $f_0(x^*) = g(\lambda^*, \mu^*)$. But then,
+$$\begin{aligned} 
+f_0(x^*) = g(\lambda^*, \mu^*) &amp;= \min_x \mathcal{L}(x, \lambda, \mu) \\
+&amp;\leq \mathcal{L}(x, \lambda, \mu) \\
+&amp;= f_0(x^*) + \sum_{i=1}^m \lambda^*_i f_i(x^*) + \sum_{i=1}^p \mu^*_i h_i(x^*) \\
+&amp;\leq f_0(x^*)
+\end{aligned}
+$$</p>
+<p>Let's see why the last inequality holds.
+Note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$ by feasibility of $x^*$. Furthermore, again by feasibility of $x^*$, $\forall i$ $f_i(x^*) \leq 0$. And since, by construction of $\mathcal{L}$, $\lambda \geq 0$ we have $\sum_{i=1}^m \lambda^*_i f_i(x^*) \leq 0$.</p>
+<p>But taken altogether this says $f_0(x^*) \leq f_0(x^*)$ which can <em>only</em> be true through strict equality. Then it must be the case that $\sum_{i=1}^m \lambda^*_i f_i(x^*) = 0$.</p>
+<p>Being a sum of non-positive terms, this can <em>only</em> happen if $\lambda^*_i f_i(x^*) = 0 \ \ \forall i$ which is what we wanted to show.</p>
 <h2 id="Strong-Duality---Saddle-Point-Interpretation">
 <a class="anchor" href="#Strong-Duality---Saddle-Point-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Strong Duality - Saddle Point Interpretation<a class="anchor-link" href="#Strong-Duality---Saddle-Point-Interpretation"> </a>
 </h2>
@@ -567,7 +590,7 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 </p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>This isn’t a necessary condition of Strong Duality since not all Strongly Dual problems satisfy the Sufficient Condition of Strong Duality. That is, it would be incorrect to replace ’a convex problem which satisfies Slater’s Condition’ in the above theorem with ’a Strongly Dual problem.’ In fact, not all Strongly Dual problems are convex to begin with, in which case the Lagrangian has no saddle points to speak of. 
+    <strong>Note: </strong>This isn’t a necessary condition of Strong Duality since not all Strongly Dual problems satisfy the Sufficient Condition for Strong Duality. That is, it would be incorrect to replace ’a convex problem which satisfies Slater’s Condition’ in the above theorem with ’a Strongly Dual problem.’ In fact, not all Strongly Dual problems are convex to begin with, in which case the Lagrangian has no saddle points to speak of. 
 </div>
 <br>
 <p>First, let's show that the max-min inequality holds with strict equality at saddle points. This will yield one direction of the Saddle Point Theorem proof.</p>
@@ -593,9 +616,9 @@ $$\sup_{y \in Y} \left\{ \inf_{x \in X} f(x,y) \right\} = \inf_{x \in X} \left\{
 <h3 id="Proof-of-Saddle-Point-Theorem">
 <a class="anchor" href="#Proof-of-Saddle-Point-Theorem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Saddle Point Theorem<a class="anchor-link" href="#Proof-of-Saddle-Point-Theorem"> </a>
 </h3>
-<h3 id="Proof">
-<a class="anchor" href="#Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof<a class="anchor-link" href="#Proof"> </a>
-</h3>
+<p><strong>$\implies$:</strong></p>
+<p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal and dual optimal solutions for a convex problem which satisfies Slater's Condition.</p>
+<p>Then the problem is Strongly Convex by the Sufficient Condition for Strong Duality. Then <a href="">KKT conditions</a> must be satisfied by the triplet $(x^*, \lambda^*, \mu^*)$</p>
 <p>\\  NEED KKT CONDITIONS  ///</p>
 <h2 id="ASASDADA">
 <a class="anchor" href="#ASASDADA" aria-hidden="true"><span class="octicon octicon-link"></span></a>ASASDADA<a class="anchor-link" href="#ASASDADA"> </a>
@@ -736,6 +759,7 @@ $</p>
 <h2 id="Proof-of-Strong-Duality-in-LP's">
 <a class="anchor" href="#Proof-of-Strong-Duality-in-LP's" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Strong Duality in LP's<a class="anchor-link" href="#Proof-of-Strong-Duality-in-LP's"> </a>
 </h2>
+<p>\\ ANOTHER SUFFICIENT CONDITION FOR STRONG DUALITY IS BEING A LINEAR PROGRAM. THE PROOF BELOW IS INDEPENDENT OF PAST SUFFICIENT CONDITIONS. ///</p>
 <p>The proof is by construction.</p>
 <p>Suppose $x^*$ is a primal optimal solution. Let the set $I_{x^*} = \{ i : a_i^Tx^* = b_i\}$ be the set of the indices of the active constraints at $x^*$. Our goal is to construct a dual optimal solution $p^*$ s.t. $c^Tx^* = b^Tp^*$.</p>
 <p>Let $d$ be any vector that satisfies $d^Ta_i \geq 0 \ \ \forall i \in I_{x^*}$. That is, $d$ is a feasible direction w.r.t. to all the active constraints.</p>
@@ -877,7 +901,7 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>... and since it's feasible, $\exists p$ s.t. $p^TA \geq 1 &gt; 0$ which means shows the truth of statement $2$.</p>
+<p>... and since it's feasible, $\exists p$ s.t. $p^TA \geq 1 &gt; 0$ which demonstrates the truth of statement $2$.</p>
 
 </div>
 </div>
