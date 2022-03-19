@@ -8,8 +8,8 @@
 <meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Optimization - Duality" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="LP Duality, Convex Duality, Weak and Strong Duality, Complementary Slackness, Farkas’ Lemma, Separation Arguments and Theorems of the Alternative" />
-<meta property="og:description" content="LP Duality, Convex Duality, Weak and Strong Duality, Complementary Slackness, Farkas’ Lemma, Separation Arguments and Theorems of the Alternative" />
+<meta name="description" content="Lagrangian Duality, Weak and Strong Duality, Complementary Slackness, Farkas’ Lemma, Separation Arguments and Theorems of the Alternative" />
+<meta property="og:description" content="Lagrangian Duality, Weak and Strong Duality, Complementary Slackness, Farkas’ Lemma, Separation Arguments and Theorems of the Alternative" />
 <link rel="canonical" href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-LP-Duality.html" />
 <meta property="og:url" content="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-LP-Duality.html" />
 <meta property="og:site_name" content="Vahram Poghosyan" />
@@ -20,7 +20,7 @@
 <meta property="twitter:image" content="https://v-poghosyan.github.io/blog/images/lp-duality.png" />
 <meta property="twitter:title" content="Optimization - Duality" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-07T00:00:00-06:00","datePublished":"2022-02-07T00:00:00-06:00","description":"LP Duality, Convex Duality, Weak and Strong Duality, Complementary Slackness, Farkas’ Lemma, Separation Arguments and Theorems of the Alternative","headline":"Optimization - Duality","image":"https://v-poghosyan.github.io/blog/images/lp-duality.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-LP-Duality.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-LP-Duality.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-07T00:00:00-06:00","datePublished":"2022-02-07T00:00:00-06:00","description":"Lagrangian Duality, Weak and Strong Duality, Complementary Slackness, Farkas’ Lemma, Separation Arguments and Theorems of the Alternative","headline":"Optimization - Duality","image":"https://v-poghosyan.github.io/blog/images/lp-duality.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-LP-Duality.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-LP-Duality.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://v-poghosyan.github.io/blog/feed.xml" title="Vahram Poghosyan" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -106,13 +106,13 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Optimization -  Duality</h1><p class="page-description">LP Duality, Convex Duality, Weak and Strong Duality, Complementary Slackness, Farkas' Lemma, Separation Arguments and Theorems of the Alternative</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-07T00:00:00-06:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Optimization -  Duality</h1><p class="page-description">Lagrangian Duality, Weak and Strong Duality, Complementary Slackness, Farkas' Lemma, Separation Arguments and Theorems of the Alternative</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-07T00:00:00-06:00" itemprop="datePublished">
         Feb 7, 2022
       </time>
        • <span class="read-time" title="Estimated read time">
     
     
-      29 min read
+      30 min read
     
 </span></p>
 
@@ -166,7 +166,7 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#Weak-Duality---The-Max-Min-Characterization">Weak Duality - The Max-Min Characterization </a></li>
-<li class="toc-entry toc-h1"><a href="#Duality---Max-Min-Inequality-and-its-Various-Interpretations">Duality - Max-Min Inequality and its Various Interpretations </a>
+<li class="toc-entry toc-h1"><a href="#Weak-Duality---Max-Min-Inequality-and-its-Interpretations">Weak Duality - Max-Min Inequality and its Interpretations </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Max-Min-Inequality">Max-Min Inequality </a>
 <ul>
@@ -174,14 +174,24 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#Game-Theoretic-Interpretation">Game-Theoretic Interpretation </a></li>
-<li class="toc-entry toc-h2"><a href="#Strong-Duality">Strong Duality </a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#The-Saddle-Point-Interpretation">The Saddle-Point Interpretation </a></li>
-</ul>
-</li>
 <li class="toc-entry toc-h2"><a href="#Price-or-Tax-Interpretation">Price or Tax Interpretation </a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h1"><a href="#Strong-Duality---Max-Min-Equality">Strong Duality - Max-Min Equality </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Saddle-Points-Satisfy-Max-Min-Equality">Saddle-Points Satisfy Max-Min Equality </a></li>
+<li class="toc-entry toc-h2"><a href="#Slater's-Condition">Slater&#39;s Condition </a></li>
+<li class="toc-entry toc-h2"><a href="#Geometric-Intuition-Behind-Slater's-Condition">Geometric Intuition Behind Slater&#39;s Condition </a></li>
+<li class="toc-entry toc-h2"><a href="#Saddle-Point-Interpretation">Saddle-Point Interpretation </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Proof">Proof </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#ASASDADA">ASASDADA </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Complementary-Slackness">Complementary Slackness </a></li>
+<li class="toc-entry toc-h1"><a href="#LINEAR-PROGRAMS">LINEAR PROGRAMS </a></li>
 <li class="toc-entry toc-h1"><a href="#Weak-Duality-in-Linear-Programs">Weak Duality in Linear Programs </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Proof-of-Weak-Duality">Proof of Weak Duality </a></li>
@@ -236,7 +246,7 @@ window.onload = wrap_img;
 <p>Furthermore, any feasible solution of the dual problem is a lower bound of all the feasible solutions of the primal and, in particular, the primal optimal. This property is called <em>Weak Duality</em> and it's true by construction since one of the ideas behind duality is to obtain, at least, a useful lower bound to the primal optimal.</p>
 <p>In the case of linear programs and all other problems which exhibit <em>Strong Duality</em>, the primal and the dual optimal values are strictly equal. That is, solving the dual guarantees that we've also solved the primal. Furthermore, since taking the dual of the dual gives back the primal, this relationship is true in the converse — if we've solved the primal then we've also solved its dual.</p>
 <p>This is what makes <em>Duality Theory</em> useful in practice. Having a related, possibly easier, optimization problem gives us a huge computational advantage. However, even if the dual does not turn out to be easier to solve and/or its optimal value disagrees with that of the primal, we still stand to learn something new about the structure of the primal problem due to the various theoretical ties between the two.</p>
-<p>In this post, we will examine the nature of the relationship between the primal and its dual, and we will list the possible primal-dual outcomes. In doing so, we will look at duality in optimization problems in general, and  duality in linear programs (<em>LP Duality)</em>.</p>
+<p>In this post, we will examine the nature of the relationship between the primal and its dual, and we will list the possible primal-dual outcomes. In doing so, we will look at duality in constrained optimization problems in general, and then duality in linear programs specifically (i.e. <em>LP Duality)</em>.</p>
 
 </div>
 </div>
@@ -459,13 +469,13 @@ $$p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) 
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Duality---Max-Min-Inequality-and-its-Various-Interpretations">
-<a class="anchor" href="#Duality---Max-Min-Inequality-and-its-Various-Interpretations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Duality - Max-Min Inequality and its Various Interpretations<a class="anchor-link" href="#Duality---Max-Min-Inequality-and-its-Various-Interpretations"> </a>
+<h1 id="Weak-Duality---Max-Min-Inequality-and-its-Interpretations">
+<a class="anchor" href="#Weak-Duality---Max-Min-Inequality-and-its-Interpretations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - Max-Min Inequality and its Interpretations<a class="anchor-link" href="#Weak-Duality---Max-Min-Inequality-and-its-Interpretations"> </a>
 </h1>
 <p>Weak Duality can also be derived from the quantities</p>
-<p>$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$</p>
-<p>and</p>
-<p>$\min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$</p>
+<p>
+$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \ \ \textrm{and} \ \ \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
+</p>
 <p>directly, through a non-optimization lens, using the <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality">max-min inequality</a>.</p>
 <h2 id="Max-Min-Inequality">
 <a class="anchor" href="#Max-Min-Inequality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Max-Min Inequality<a class="anchor-link" href="#Max-Min-Inequality"> </a>
@@ -474,11 +484,11 @@ $$p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) 
 $$
 \inf_{y\in Y} \left\{ \sup_{x\in X} f(x,y) \right\} \geq \sup_{x\in X} \left\{ \inf_{y\in Y} f(x,y) \right\}
 $$
-Since no assumption is made on $f$, the inequality certainly also holds for $\mathcal{L}$. And, since we're in the special case where the optima are assumed to exist, the functions do attain their optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$. This results in the exact formulation of Weak Duality as above</p>
+Since no assumption is made on $f$, the inequality certainly also holds for $\mathcal{L}$. And, since we're in the special case where the optima are assumed to exist, the functions  attain the optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$. This results in the symmetric formulation of Weak Duality as above</p>
 <p>
 $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
 </p>
-<p>All that remains in establishing this result is proving the max-min inequality.</p>
+<p>All that remains in establishing Weak Duality is to prove the max-min inequality.</p>
 <h3 id="Proof-of-Max-Min-Inequality">
 <a class="anchor" href="#Proof-of-Max-Min-Inequality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Max-Min Inequality<a class="anchor-link" href="#Proof-of-Max-Min-Inequality"> </a>
 </h3>
@@ -504,21 +514,31 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <p>In the first game player $A$ is restricted to choosing $x$ that will minimize $S_1(x) = \max_y f(x,y)$. Consequently, the payoff in the first game will be $ S_1 = \min_x \left\{ \max_y f(x,y) \right\}$.</p>
 <p>Similarly, in the second game the payoff will be $S_2 = \max_y \left\{ \max_x f(x,y) \right\}$.</p>
 <p>Since player $B$, whose goal is to minimize the score, has an advantage in the first game, $S_1 \geq S_2$ which is the max-min inequality.</p>
-<h2 id="Strong-Duality">
-<a class="anchor" href="#Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Strong Duality<a class="anchor-link" href="#Strong-Duality"> </a>
+<h2 id="Price-or-Tax-Interpretation">
+<a class="anchor" href="#Price-or-Tax-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Price or Tax Interpretation<a class="anchor-link" href="#Price-or-Tax-Interpretation"> </a>
 </h2>
-<p>For certain types of functions, roughly speaking those that are saddle-shaped, the max-min inequality holds with strict equality.</p>
-<p>Confining our discussion to the Lagrangian of a constrained problem, Strong Duality holds in most cases where $\mathcal{L}$ is saddle-shaped with the exception of some edge cases. That is, when $\mathcal{L}(x, \lambda, \mu)$ is convex in $x$ and concave in $\lambda$, and $\mu$. In fact, $\mathcal{L}$ is <em>always</em> concave in $\lambda$ and $\mu$ since, for a fixed $x$, it's linear in those variables. It's additionally convex in $x$ if the objective $f_0(x)$ and all the constraints $f_i(x)$, and $h_i(x)$ $\forall i$ are convex functions.</p>
-<p>While convexity alone isn't a sufficient condition for Strong Duality, a convex problem which <em>also</em> satisfies <em>Slater's Condition</em> is Strongly Dual.</p>
+<p>\\  NOT ESSENTIAL ///</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Strong-Duality---Max-Min-Equality">
+<a class="anchor" href="#Strong-Duality---Max-Min-Equality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Strong Duality - Max-Min Equality<a class="anchor-link" href="#Strong-Duality---Max-Min-Equality"> </a>
+</h1>
+<p>For certain types of functions, specifically those that are saddle-shaped, the max-min inequality holds with strict equality. Within the context of optimization, this yields Strong Duality.</p>
 <blockquote>
-<p><strong>Slater's Condition:</strong> $\exists \hat x$ s.t. $f_i(\hat x) &lt; 0$, and $h_i(\hat x) = 0$ $\forall i$. <br> 
-<strong>Note:</strong> The equality constraints $h_i(\hat x) = 0$ are often stated as linear equality constraints $A \hat x = b$ in certain sources. This is simply due to the observation that equality constraints are convex constraints if and only if all of the $h_i$'s are linear.<br></p>
+<p><strong>Strong Duality:</strong>$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
+<br></p>
 </blockquote>
-<p>Slater's Condition basically says that the existence of a feasible solution with margin w.r.t. all the inequality constraints is needed in addition to convexity. However, the proof of this is beyond what we're trying to achieve in this post.</p>
-<h3 id="The-Saddle-Point-Interpretation">
-<a class="anchor" href="#The-Saddle-Point-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Saddle-Point Interpretation<a class="anchor-link" href="#The-Saddle-Point-Interpretation"> </a>
-</h3>
-<p>We call a point $(\hat x, \hat y) \in X \times Y$ a <em>saddle-point</em> of $f: X \times  Y \rightarrow \mathbb{R}$ if $f(\hat x, y) \leq f(\hat x, \hat y) \leq f(x, \hat y)$ for all $x \in X$ and $y \in Y$.</p>
+<p>In this section we will see that the problems which are Strongly Dual have saddle-shaped Lagrangians. Furthermore, a saddle point of the Lagrangian coincides with a primal-dual optimal solution.</p>
+<h2 id="Saddle-Points-Satisfy-Max-Min-Equality">
+<a class="anchor" href="#Saddle-Points-Satisfy-Max-Min-Equality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Saddle-Points Satisfy Max-Min Equality<a class="anchor-link" href="#Saddle-Points-Satisfy-Max-Min-Equality"> </a>
+</h2>
+<p>First we prove that saddle-points of a general function $f: X \times Y \rightarrow \mathbb{R}$ satisfy the max-min inequality with strict equality.</p>
+<p>We call a point $(\hat x, \hat y) \in X \times Y$ a <em>saddle-point</em> of $f(x,y)$ if $f(\hat x, y) \leq f(\hat x, \hat y) \leq f(x, \hat y)$ for all $x \in X$ and $y \in Y$.</p>
 <p>In other words, $\hat x$ minimizes $f(x, \hat y)$ over $X$, and $\hat y$ maximizes $f(\hat x,y)$ over $Y$. That is</p>
 <p>
 $$f(\hat x, \hat y) = \inf_{x \in X} f(x, \hat y) \ \ \textrm{and} \ \ f(\hat x, \hat y) = \sup_{y \in Y} f(\hat x, y)$$
@@ -531,11 +551,64 @@ $$\sup_{y \in Y} \left\{ \inf_{x \in X} f(x,y) \right\} = \inf_{x \in X} f(x, \h
 <p>
 $$\sup_{y \in Y} \left\{ \inf_{x \in X} f(x,y) \right\} = \inf_{x \in X} \left\{ \sup_{y \in Y} f(x,y) \right\}$$
 </p>
-<p>Within the context of optimization, this says that if $(x^*, \lambda^*, \mu^*)$ is a saddle-point of the Lagrangian then $(x^*, \lambda^*, \mu^*)$ is a primal-dual optimal solution and the problem is Strongly Dual with the common optimal value $\mathcal{L}(x^*, \lambda^*, \mu^*)$.</p>
-<p>The converse is also true, but it's beyond the scope of this post to prove. If the problem is Strongly Dual with a primal-dual optimal solution $(x^*, \lambda^*, \mu^*)$ and the common optimal value $\mathcal{L}(x^*, \lambda^*, \mu^*)$, then $(x^*, \lambda^*, \mu^*)$ is a saddle-point of the Lagrangian.</p>
-<h2 id="Price-or-Tax-Interpretation">
-<a class="anchor" href="#Price-or-Tax-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Price or Tax Interpretation<a class="anchor-link" href="#Price-or-Tax-Interpretation"> </a>
+<h2 id="Slater's-Condition">
+<a class="anchor" href="#Slater's-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slater's Condition<a class="anchor-link" href="#Slater's-Condition"> </a>
 </h2>
+<p>We now give a sufficient condition for Strong Duality.</p>
+<p>Even though not all Strongly Dual problems are convex, convexity together with <em>Slater's Condition</em> is sufficient for Strong Duality.</p>
+<blockquote>
+<p><strong>Slater's Condition:</strong> $\exists \hat x$ s.t. $f_i(\hat x) &lt; 0$, and $h_i(\hat x) = 0$ $\forall i$. <br> 
+<strong>Note:</strong> The equality constraints $h_i(\hat x) = 0$ are often stated as linear equality constraints $A \hat x = b$ in certain sources. This is simply due to the observation that equality constraints are convex constraints if and only if all of the $h_i$'s are linear.<br></p>
+</blockquote>
+<p>Informally, Slater's Condition says that the existence of a feasible solution with margin w.r.t. all the inequality constraints is needed in addition to convexity. In even simpler terms, the feasible region must have an interior point.</p>
+<p>The sufficiency condition for Strong Duality is then.</p>
+<blockquote>
+<p><strong>Sufficient Condition for Strong Duality:</strong> Any convex optimization problem satisfying Slater's Condition has Strong Duality.<br></p>
+</blockquote>
+<p>The proof of Slater's Condition is beyond what we're trying to achieve in this post. However we motivate it geometrically in the following paragraph.</p>
+<h2 id="Geometric-Intuition-Behind-Slater's-Condition">
+<a class="anchor" href="#Geometric-Intuition-Behind-Slater's-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Geometric Intuition Behind Slater's Condition<a class="anchor-link" href="#Geometric-Intuition-Behind-Slater's-Condition"> </a>
+</h2>
+<p>\\  PUT GEOMETRIC PROOF OF SC  ///
+\\ EEE VVV EEE RRR YYY THING AFTER THIS LINE IS SUS ///</p>
+<h2 id="Saddle-Point-Interpretation">
+<a class="anchor" href="#Saddle-Point-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Saddle-Point Interpretation<a class="anchor-link" href="#Saddle-Point-Interpretation"> </a>
+</h2>
+<p>Confining our discussion to constrained optimization problems, when $f_0(x), \{f_i(x)\}_{i=1}^m,$ and $\{h_i(x)\}_{i=1}^p$ are convex the Lagrangian is convex in $x$ and concave in $\lambda$ and $\mu$. To see this, fix $x$ and observe that $\mathcal{L}(x, \lambda, \mu)$ is linear in $\lambda$ and $\mu$. Linear functions, as we already know, are both concave and convex...</p>
+<p>This squares well with our guess that a saddle-shaped Lagrangian implies Strong Duality, since for Slater's Condition  those points which  coincide with the primal-dual optimal solutions.</p>
+<p>Within the context of optimization, this says that if $(x^*, \lambda^*, \mu^*)$ is a saddle-point of the Lagrangian then $(x^*, \lambda^*, \mu^*)$ is a primal-dual optimal solution and the problem and the common optimal value is $\mathcal{L}(x^*, \lambda^*, \mu^*)$. This means the problem is Strongly Dual.</p>
+<p>The converse is also true, but it's beyond the scope of this post to prove. If the problem is Strongly Dual with a primal-dual optimal solution $(x^*, \lambda^*, \mu^*)$ and the common optimal value $\mathcal{L}(x^*, \lambda^*, \mu^*)$, then $(x^*, \lambda^*, \mu^*)$ is a saddle-point of the Lagrangian.</p>
+<h3 id="Proof">
+<a class="anchor" href="#Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof<a class="anchor-link" href="#Proof"> </a>
+</h3>
+<p>\\  NEED KKT CONDITIONS  ///</p>
+<h2 id="ASASDADA">
+<a class="anchor" href="#ASASDADA" aria-hidden="true"><span class="octicon octicon-link"></span></a>ASASDADA<a class="anchor-link" href="#ASASDADA"> </a>
+</h2>
+<p>Confining our discussion to constrained optimization problems, when $f_0(x), \{f_i(x)\}_{i=1}^m,$ and $\{h_i(x)\}_{i=1}^p$ are convex the Lagrangian is convex in $x$ and concave in $\lambda$ and $\mu$. To see this, fix $x$ and observe that $\mathcal{L}(x, \lambda, \mu)$ is linear in $\lambda$ and $\mu$. Linear functions, as we already know, are both concave and convex...</p>
+<p>This squares well with our guess that a saddle-shaped Lagrangian implies Strong Duality, since for Slater's Condition  those points which  coincide with the primal-dual optimal solutions.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Complementary-Slackness">
+<a class="anchor" href="#Complementary-Slackness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Complementary Slackness<a class="anchor-link" href="#Complementary-Slackness"> </a>
+</h1>
+<p>\\ THIS IS A RESULT OF STRONG DUALITY ///
+\\ CONVEX + SLATER'S CONDITION =&gt; STRONG DUALITY =&gt; COMPLEMENTARY SLACKNESS ///</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="LINEAR-PROGRAMS">
+<a class="anchor" href="#LINEAR-PROGRAMS" aria-hidden="true"><span class="octicon octicon-link"></span></a>LINEAR PROGRAMS<a class="anchor-link" href="#LINEAR-PROGRAMS"> </a>
+</h1>
 </div>
 </div>
 </div>
