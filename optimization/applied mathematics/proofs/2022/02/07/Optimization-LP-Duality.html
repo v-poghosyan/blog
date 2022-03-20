@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      34 min read
+      33 min read
     
 </span></p>
 
@@ -161,20 +161,20 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#Deriving-the-Dual-of-a-Constrained-Problem">Deriving the Dual of a Constrained Problem </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#The-Lagrangian,-Dual-Variables,-and-the-Dual-Function">The Lagrangian, Dual Variables, and the Dual Function </a></li>
-<li class="toc-entry toc-h2"><a href="#Weak-Duality---A-Lagrangian-Lower-Bound-on-the-Optimal">Weak Duality - A Lagrangian Lower Bound on the Optimal </a></li>
+<li class="toc-entry toc-h2"><a href="#A-Lagrangian-Lower-Bound-on-the-Optimal">A Lagrangian Lower Bound on the Optimal </a></li>
 <li class="toc-entry toc-h2"><a href="#The-Lagrange-Dual-Problem">The Lagrange Dual Problem </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#Weak-Duality---The-Max-Min-Characterization">Weak Duality - The Max-Min Characterization </a></li>
-<li class="toc-entry toc-h1"><a href="#Weak-Duality---Max-Min-Inequality-and-its-Interpretations">Weak Duality - Max-Min Inequality and its Interpretations </a>
+<li class="toc-entry toc-h1"><a href="#Weak-Duality">Weak Duality </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#Max-Min-Inequality">Max-Min Inequality </a>
+<li class="toc-entry toc-h2"><a href="#The-Max-Min-Characterization">The Max-Min Characterization </a></li>
+<li class="toc-entry toc-h2"><a href="#Max-Min-Inequality-and-its-Interpretations">Max-Min Inequality and its Interpretations </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Proof-of-Max-Min-Inequality">Proof of Max-Min Inequality </a></li>
+<li class="toc-entry toc-h3"><a href="#The-Max-Min-Inequality">The Max-Min Inequality </a></li>
+<li class="toc-entry toc-h3"><a href="#Game-Theoretic-Interpretation">Game-Theoretic Interpretation </a></li>
+<li class="toc-entry toc-h3"><a href="#Price-or-Tax-Interpretation">Price or Tax Interpretation </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#Game-Theoretic-Interpretation">Game-Theoretic Interpretation </a></li>
-<li class="toc-entry toc-h2"><a href="#Price-or-Tax-Interpretation">Price or Tax Interpretation </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#Strong-Duality">Strong Duality </a>
@@ -187,13 +187,13 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Proof-of-Complementary-Slackness">Proof of Complementary Slackness </a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-entry toc-h1"><a href="#Strong-Duality---Optimality-Conditions">Strong Duality - Optimality Conditions </a></li>
-<li class="toc-entry toc-h1"><a href="#Strong-Duality---Saddle-Point-Interpretation">Strong Duality - Saddle Point Interpretation </a>
+<li class="toc-entry toc-h2"><a href="#Optimality-Conditions">Optimality Conditions </a></li>
+<li class="toc-entry toc-h2"><a href="#Saddle-Point-Interpretation">Saddle Point Interpretation </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Max-Min-Equality-at-Saddle-Points">Max-Min Equality at Saddle Points </a></li>
 <li class="toc-entry toc-h3"><a href="#Proof-of-Saddle-Point-Theorem">Proof of Saddle Point Theorem </a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#LINEAR-PROGRAMS">LINEAR PROGRAMS </a></li>
@@ -372,8 +372,8 @@ $$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Weak-Duality---A-Lagrangian-Lower-Bound-on-the-Optimal">
-<a class="anchor" href="#Weak-Duality---A-Lagrangian-Lower-Bound-on-the-Optimal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - A Lagrangian Lower Bound on the Optimal<a class="anchor-link" href="#Weak-Duality---A-Lagrangian-Lower-Bound-on-the-Optimal"> </a>
+<h2 id="A-Lagrangian-Lower-Bound-on-the-Optimal">
+<a class="anchor" href="#A-Lagrangian-Lower-Bound-on-the-Optimal" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Lagrangian Lower Bound on the Optimal<a class="anchor-link" href="#A-Lagrangian-Lower-Bound-on-the-Optimal"> </a>
 </h2>
 <p>Far from simply augmenting a constrained problem into an unconstrained problem which is solvable by using a familiar optimality condition, the Lagrangian also happens to give us the <em>dual problem</em>.</p>
 <p>The first thing to note about the Lagrangian is that $\lambda \geq 0$ is necessary. This is because, in the event that an inequality constraint is violated, say $f_i(x) &gt; 0$ for some $i$, the corresponding $\lambda_i$ must be non-negative in order to apply a positive penalty for the violation. This extends to all the entries of $\lambda$, resulting in the $\lambda \geq 0$ condition. Note that, since $\lambda$ is a vector, the inequality is meant coordinate-wise.</p>
@@ -383,11 +383,7 @@ $$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=
 <p>In particular this means that</p>
 <p>$g(\lambda, \mu) = \min_x \mathcal{L}(x,\lambda,\mu) \leq \min_x f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$ $\forall$ feasible $x$</p>
 <p>But recall that the expression on the right-hand side is the optimal value of the original problem. So $g(\lambda, \mu)$ for any $\lambda \geq 0$ and $\mu$ is a lower bound on the primal optimal value.</p>
-<p>Since it's a lower bound to the primal optimum, we call $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ the <em>dual function</em>.</p>
-<p>Now we're ready to give a first statement of Weak Duality.</p>
-<blockquote>
-<p><strong>Weak Duality:</strong> $$g(\lambda, \mu) \leq p^*$$<br></p>
-</blockquote>
+<p>Since it's a lower bound to the primal optimum, we call $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ the <em>dual function</em> with the foresight to use it in the formulation for Weak Duality.</p>
 
 </div>
 </div>
@@ -429,9 +425,16 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Weak-Duality---The-Max-Min-Characterization">
-<a class="anchor" href="#Weak-Duality---The-Max-Min-Characterization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - The Max-Min Characterization<a class="anchor-link" href="#Weak-Duality---The-Max-Min-Characterization"> </a>
+<h1 id="Weak-Duality">
+<a class="anchor" href="#Weak-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality<a class="anchor-link" href="#Weak-Duality"> </a>
 </h1>
+<p>We are ready to give a first statement of Weak Duality based on the Lagrange dual function.</p>
+<blockquote>
+<p><strong>Weak Duality:</strong> $$g(\lambda, \mu) \leq p^*$$<br></p>
+</blockquote>
+<h2 id="The-Max-Min-Characterization">
+<a class="anchor" href="#The-Max-Min-Characterization" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Max-Min Characterization<a class="anchor-link" href="#The-Max-Min-Characterization"> </a>
+</h2>
 <p>We know $g(\lambda, \mu)$ to be $\min_{x} \mathcal{L}(x, \lambda, \mu)$. So, the dual optimal $d^*$ of the dual problem above can be immediately expressed as
 $$
 d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}
@@ -463,26 +466,23 @@ $$p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) 
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Weak-Duality---Max-Min-Inequality-and-its-Interpretations">
-<a class="anchor" href="#Weak-Duality---Max-Min-Inequality-and-its-Interpretations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - Max-Min Inequality and its Interpretations<a class="anchor-link" href="#Weak-Duality---Max-Min-Inequality-and-its-Interpretations"> </a>
-</h1>
+<h2 id="Max-Min-Inequality-and-its-Interpretations">
+<a class="anchor" href="#Max-Min-Inequality-and-its-Interpretations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Max-Min Inequality and its Interpretations<a class="anchor-link" href="#Max-Min-Inequality-and-its-Interpretations"> </a>
+</h2>
 <p>Weak Duality can also be derived from the quantities</p>
 <p>
 $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \ \ \textrm{and} \ \ \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
 </p>
 <p>directly, through a non-optimization lens, using the <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality">max-min inequality</a>.</p>
-<h2 id="Max-Min-Inequality">
-<a class="anchor" href="#Max-Min-Inequality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Max-Min Inequality<a class="anchor-link" href="#Max-Min-Inequality"> </a>
-</h2>
+<h3 id="The-Max-Min-Inequality">
+<a class="anchor" href="#The-Max-Min-Inequality" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Max-Min Inequality<a class="anchor-link" href="#The-Max-Min-Inequality"> </a>
+</h3>
 <p>The max-min inequality makes no assumptions about the function. It's simply true for all functions of the form $f: X \times Y \rightarrow \mathbb{R}$, and it states that:
 $$
 \inf_{y\in Y} \left\{ \sup_{x\in X} f(x,y) \right\} \geq \sup_{x\in X} \left\{ \inf_{y\in Y} f(x,y) \right\}
 $$
 Since no assumption is made on $f$, the inequality certainly also holds for $\mathcal{L}$. And, since we're in the special case where the optima are assumed to exist, the functions  attain the optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$. This results in the symmetric formulation of Weak Duality as stated above.</p>
 <p>All that remains in establishing Weak Duality is to prove the max-min inequality.</p>
-<h3 id="Proof-of-Max-Min-Inequality">
-<a class="anchor" href="#Proof-of-Max-Min-Inequality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Max-Min Inequality<a class="anchor-link" href="#Proof-of-Max-Min-Inequality"> </a>
-</h3>
 <p>For any $f$, and $x \in X$, $y \in Y$ we have:
 
 $$f(x,y) \geq \min_x f(x,y)$$
@@ -495,19 +495,19 @@ The right hand side is now a constant, so minimizing both sides w.r.t. $x$ resul
 
 $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right\}$$
 </p>
-<h2 id="Game-Theoretic-Interpretation">
+<h3 id="Game-Theoretic-Interpretation">
 <a class="anchor" href="#Game-Theoretic-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Game-Theoretic Interpretation<a class="anchor-link" href="#Game-Theoretic-Interpretation"> </a>
-</h2>
-<p>An intuitive way to see the validity of the max-min theorem comes from Game Theory.</p>
+</h3>
+<p>An intuitive way to see the validity of the max-min inequality comes from Game Theory.</p>
 <p>Suppose two players $A$, and $B$, are playing a game in which player $A$'s goal is to minimize the score $S_1$ whereas player $B$'s goal is to maximize it. Suppose, per the rules of the game, player $A$ has the first turn. Then player $B$'s choice is final and it restricts the actions player $A$ can take. So player $B$ has an advantage in this game.</p>
 <p>However, if a second game is played such that player $B$ goes first, then the advantage lies with player $A$.</p>
 <p>Formally, suppose the game is described by $f(x,y)$ where $x \in X$ and $y \in Y$ represent player $A$'s and player $B$'s choices respectively.</p>
 <p>In the first game player $A$ is restricted to choosing $x$ that will minimize $S_1(x) = \max_y f(x,y)$. Consequently, the payoff in the first game will be $ S_1 = \min_x \left\{ \max_y f(x,y) \right\}$.</p>
 <p>Similarly, in the second game the payoff will be $S_2 = \max_y \left\{ \max_x f(x,y) \right\}$.</p>
 <p>Since player $B$, whose goal is to minimize the score, has an advantage in the first game, $S_1 \geq S_2$ which is the max-min inequality.</p>
-<h2 id="Price-or-Tax-Interpretation">
+<h3 id="Price-or-Tax-Interpretation">
 <a class="anchor" href="#Price-or-Tax-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Price or Tax Interpretation<a class="anchor-link" href="#Price-or-Tax-Interpretation"> </a>
-</h2>
+</h3>
 <p>\\  TO BE ADDED ///</p>
 
 </div>
@@ -533,7 +533,7 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <p>The dual problem is that of finding the dual optimum $d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$</p>
 <p>Note that the dual function $g(\lambda, \mu) = \min_x \mathcal{x, \lambda, \mu}$ is easy to maximize over $\lambda \geq 0$ and $\mu$ since, for a fixed $x$, it's linear in $\lambda$ and $\mu$.</p>
 <p>Hence, if minimizing the Lagrangian over $x$ happens to be easy for our problem, and since we know that maximizing the resulting dual function over $\lambda$ and $\mu$ is also easy, we have found an easier approach to the original problem provided Strong Duality holds.
-However, if Strong Duality does not hold then we still have a useful lower bound for the primal optimum.</p>
+However, if Strong Duality does not hold then we still have a useful lower bound for the primal optimum by Weak Duality.</p>
 <h2 id="Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality">
 <a class="anchor" href="#Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slater's Condition - A Sufficient Condition for Strong Duality<a class="anchor-link" href="#Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality"> </a>
 </h2>
@@ -578,17 +578,10 @@ $$</p>
 Note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$ by feasibility of $x^*$. Furthermore, again by feasibility of $x^*$, $\forall i$ $f_i(x^*) \leq 0$. And since, by construction of $\mathcal{L}$, $\lambda \geq 0$ we have $\sum_{i=1}^m \lambda^*_i f_i(x^*) \leq 0$.</p>
 <p>But taken altogether this says $f_0(x^*) \leq f_0(x^*)$ which can <em>only</em> be true through strict equality. Then it must be the case that $\sum_{i=1}^m \lambda^*_i f_i(x^*) = 0$.</p>
 <p>Being a sum of non-positive terms, this can <em>only</em> happen if $\lambda^*_i f_i(x^*) = 0 \ \ \forall i$ which is what we wanted to show.</p>
-<h1 id="Strong-Duality---Optimality-Conditions">
-<a class="anchor" href="#Strong-Duality---Optimality-Conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Strong Duality - Optimality Conditions<a class="anchor-link" href="#Strong-Duality---Optimality-Conditions"> </a>
-</h1>
+<h2 id="Optimality-Conditions">
+<a class="anchor" href="#Optimality-Conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimality Conditions<a class="anchor-link" href="#Optimality-Conditions"> </a>
+</h2>
 <p>Strong Duality obtains powerful optimality conditions that only apply to Strongly Dual problems.</p>
-<p>Duality gives us an option of trying to solve our original (potentially
-nonconvex) constrained optimisation problem in another way. If minimising
-the Lagrangian over x happens to be easy for our problem, then we know that
-maximising the resulting dual function over λ is easy. If strong duality holds
-we have found an easier approach to our original problem: if not then we
-still have a lower bound which may be of use. Duality also lets us formulate
-optimality conditions for constrained optimisation problems</p>
 <p>KKT CONDITIONS</p>
 <p>Stationarity condition comes from the original idea of delta L = 0. It's geometric meaning becomes clear from looking at the Linear Program case. In the LP Strong Duality proof where we prove SD by constructing a dual optimal and showing Dual Opt = Primal Opt. The geometric meaning in the general case is the non-linear case of this!</p>
 
@@ -598,9 +591,9 @@ optimality conditions for constrained optimisation problems</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Strong-Duality---Saddle-Point-Interpretation">
-<a class="anchor" href="#Strong-Duality---Saddle-Point-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Strong Duality - Saddle Point Interpretation<a class="anchor-link" href="#Strong-Duality---Saddle-Point-Interpretation"> </a>
-</h1>
+<h2 id="Saddle-Point-Interpretation">
+<a class="anchor" href="#Saddle-Point-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Saddle Point Interpretation<a class="anchor-link" href="#Saddle-Point-Interpretation"> </a>
+</h2>
 <p>In this section, we will give the saddle point interpretation of Strong Duality through the <em>Saddle Point Theorem</em> which states the following.</p>
 <blockquote>
 <p><strong>Saddle Point Theorem:</strong>   If $x^*$ and $(\lambda^*, \mu^*)$ are primal and dual optimal solutions for a convex problem which satisfies Slater's Condition, they form a saddle point of the associated Lagrangian. Conversely, if $(x^*,\lambda^*, \mu^*)$ is a saddle point of a Lagrangian, then $x^*$ is a primal optimal, and $(\lambda^*, \mu^*)$ a is dual optimal of the associated Strongly Dual problem.
