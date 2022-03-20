@@ -179,7 +179,7 @@ window.onload = wrap_img;
 </li>
 <li class="toc-entry toc-h1"><a href="#Strong-Duality">Strong Duality </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#Slater's-Condition">Slater&#39;s Condition </a></li>
+<li class="toc-entry toc-h2"><a href="#Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality">Slater&#39;s Condition - A Sufficient Condition for Strong Duality </a></li>
 <li class="toc-entry toc-h2"><a href="#Geometric-Intuition-Behind-Slater's-Condition">Geometric Intuition Behind Slater&#39;s Condition </a></li>
 <li class="toc-entry toc-h2"><a href="#Complementary-Slackness---A-Consequence-of-Strong-Duality">Complementary Slackness - A Consequence of Strong Duality </a>
 <ul>
@@ -247,10 +247,10 @@ window.onload = wrap_img;
 </h1>
 <p>Every linear program, and every optimization problem in general, has a closely related problem called its dual which can be colloquially thought of as its evil twin. The primal and the dual represent two different perspectives on the same problem.</p>
 <p>In the most general case, if the primal is a minimization problem, its  dual is a maximization problem. In the case of constrained optimization, if the primal is minimization in $n$ variables and $m$ constraints, its dual is a maximization in $m$ variables and $n$ constraints.</p>
-<p>Furthermore, any feasible solution of the dual problem is a lower bound of all the feasible solutions of the primal and, in particular, the primal optimal. This property is called <em>Weak Duality</em> and it's true by construction since one of the ideas behind duality is to obtain, at least, a useful lower bound to the primal optimal.</p>
-<p>In the case of linear programs and all other problems which exhibit <em>Strong Duality</em>, the primal and the dual optimal values are strictly equal. That is, solving the dual guarantees that we've also solved the primal. Furthermore, since taking the dual of the dual gives back the primal, this relationship is true in the converse — if we've solved the primal then we've also solved its dual.</p>
-<p>This is what makes <em>Duality Theory</em> useful in practice. Having a related, possibly easier, optimization problem gives us a huge computational advantage. However, even if the dual does not turn out to be easier to solve and/or its optimal value disagrees with that of the primal, we still stand to learn something new about the structure of the primal problem due to the various theoretical ties between the two.</p>
-<p>In this post, we will examine the nature of the relationship between the primal and its dual, and we will list the possible primal-dual outcomes. In doing so, we will look at duality in constrained optimization problems in general, and then duality in linear programs specifically (i.e. <em>LP Duality)</em>.</p>
+<p>Furthermore, any feasible solution of the dual problem is a lower bound of all the feasible solutions of the primal and, in particular, the primal optimal. This property, called <em>Weak Duality</em>, is at the core of duality. Deriving a dual that obtains, at the very least, a useful lower bound to the primal optimal is one of the nascent ideas behind <em>Duality Theory</em>.</p>
+<p>In the case of problems which exhibit <em>Strong Duality</em>, such as linear programs and most convex optimization problems, the primal and the dual optima are strictly equal. That is, solving the dual guarantees that we've also solved the primal. Furthermore, since taking the dual of the dual gives back the primal, this relationship is true in the converse — if we've solved the primal then we've also solved its dual.</p>
+<p>This is what makes Duality Theory useful in practice. Having a related, possibly easier, optimization problem gives applied scientists a huge computational advantage. However, even if the dual does not turn out to be easier to solve and/or its optimal value disagrees with that of the primal, we still stand to elucidate the structure of the primal problem and/or obtain a useful lower bound to its optimal.</p>
+<p>In this post, we will examine the nature of the relationship between the primal and its dual, and we will list the possible primal-dual outcomes. In doing so, we will look at duality in constrained optimization problems in general, and then duality in linear programs specifically (<em>LP Duality)</em>.</p>
 
 </div>
 </div>
@@ -263,7 +263,7 @@ window.onload = wrap_img;
 </h1>
 <p>At first, we focus our attention on deriving the dual problem of a constrained optimization problem. For problems of this sort, duality comes from the <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian relaxation</a> which augments the constrained problem by turning it into an unconstrained problem that, nevertheless, respects the constraints of the original. So, in a sense, it is the constraints of a problem that give rise to its dual...</p>
 <p>However, as we shall see later, certain types of unconstrained problems also have duals which arise from the <a href="https://en.wikipedia.org/wiki/Convex_conjugate">Fenchel-Legendre Transform</a>.</p>
-<p>Take the most general form of constrained optimization problem with $m$ inequality and $n$ equality constraints and assume nothing, as of yet, about its convexity. To make the discussion interesting, assume the problem is non-trivial (i.e. its constraint set is non-empty and contains more than one feasible point), and also that it's bounded with a finite optimal value $p^*$.</p>
+<p>Take the most general form of constrained optimization problem with $m$ inequality and $n$ equality constraints and assume nothing, as of yet, about its convexity. To make the discussion interesting, assume the problem is non-trivial (i.e. its constraint set is non-empty and contains more than one feasible point), and also that it's bounded with a finite optimum $p^*$.</p>
 
 </div>
 </div>
@@ -289,8 +289,7 @@ $</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The idea is to penalize infeasible choices of $x$ using functions of $x$ that express our <em>displeasure</em> for certain choices.</p>
-<p>At first we use an <em>infinitely hard</em> penalty by introducing indicator functions $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
-<p>These are defined as follows:</p>
+<p>At first we use an <em>infinitely-hard</em> penalty by introducing indicator functions $\mathbb{1}_-$ and $\mathbb{1}_0$ which are defined as follows.</p>
 
 </div>
 </div>
@@ -351,11 +350,12 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can easily see that the two minimization problems are equivalent. If $x$ is chosen s.t $f_i(x) &gt; 0$ and/or $h_i(x) \ne 0$ for any $i$, the minimization incurs an infinitely positive penalty. Therefore, such an $x$ will never be selected over a solution that gives the finite optimal value $p^*$.</p>
-<p>Since the two are equivalent, it suffices to optimize this unconstrained problem instead of the original.</p>
-<p>As we may know, unconstrained problems can be locally optimized simply by finding their stationary points using a first-order necessary optimality condition. Once the stationary points are found, we can evaluate the objective function at each point, and discern to optimizer.</p>
-<p>The first-order necessary optimality condition concerns the directional derivative of the objective. Namely, it attests that the directional derivative at a local optimizer should be zero in all feasible directions. But all points of an unconstrained problem are, effectively, interior points. Thus, all directions are feasible. So the first-order necessary optimality condition amounts to simply taking the gradient and setting it to zero.</p>
-<p>However, both infinitely hard penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$ are discontinuous and, therefore also, non-differentiable. To sidestep this difficulty we use linear relaxations instead of $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
+<p>We can easily see that the two minimization problems are equivalent. If $x$ is chosen s.t $f_i(x) &gt; 0$ and/or $h_i(x) \ne 0$ for any $i$, the minimization incurs an infinitely positive penalty. Therefore, such an $x$ will never be selected over a solution that gives the finite optimum $p^*$.</p>
+<p>Since the two are equivalent, it suffices to optimize this problem instead of the original.</p>
+<p>As we may know, unconstrained problems can be locally optimized simply by finding their stationary points using a first-order necessary optimality condition. Once the stationary points are found, we can evaluate the objective function at each point, and discern the optimizer.</p>
+<p>The first-order necessary optimality condition concerns the directional derivative of the objective function. Namely, it attests that the directional derivative at a local optimizer should be zero in all feasible directions. But all points of an unconstrained problem are, effectively, interior points. Thus, all directions are feasible. So the first-order necessary optimality condition amounts to the gradient being zero at a local optimizer.</p>
+<p>So, we can simply take the gradient of the objective function $\nabla_x \mathcal{J}(x)$ and set it to zero. Then we will find all the points $x^*$ satisfying the equation $\nabla_x \mathcal{J}(x^*) = 0$, and check if any of them is a global optimal.</p>
+<p>However, both infinitely hard penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$ are discontinuous and, therefore also, non-differentiable. That is $\nabla_x \mathcal{J}(x)$ does not exist. To sidestep this difficulty we use linear relaxations instead of $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
 <h2 id="The-Lagrangian,-Dual-Variables,-and-the-Dual-Function">
 <a class="anchor" href="#The-Lagrangian,-Dual-Variables,-and-the-Dual-Function" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrangian, Dual Variables, and the Dual Function<a class="anchor-link" href="#The-Lagrangian,-Dual-Variables,-and-the-Dual-Function"> </a>
 </h2>
@@ -364,7 +364,6 @@ $</p>
 $$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=1}^p \mu_i h_i(x) \ \ \textrm{where} \ \lambda \geq 0$$
 </p>
 <p>We call the $\lambda_i$'s the <em>Lagrange multipliers</em> corresponding to the inequality constraints, and the $\mu_i$'s the <em>Lagrange multipliers</em> corresponding to the equality constraints. The vectors $\lambda$ and $\mu$ are called the <em>Lagrange multiplier vectors</em> or, for reasons that will soon become apparent, the <em>dual variables</em>.</p>
-<p>Furthermore, for the same reasons we call $\lambda$ and $\mu$ the dual variables, $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ is called the <em>dual function</em></p>
 
 </div>
 </div>
@@ -382,11 +381,12 @@ $$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=
 <p>All of this is to say that $\forall$ feasible $x$, $\mathcal{L}(x,\lambda,\mu) \leq f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$. This is also evident from the fact that, for any fixed $i$, $\lambda_i f_i(x)$ is a lower bound of $\mathbb{1}_-(f_i(x))$ and $\mu_i h_i(x)$ is a lower bound of $\mathbb{1}_0(h_i(x))$.</p>
 <p>In particular this means that</p>
 <p>$g(\lambda, \mu) = \min_x \mathcal{L}(x,\lambda,\mu) \leq \min_x f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$ $\forall$ feasible $x$</p>
-<p>But recall that the expression on the right-hand side is the optimal value of the original problem. So $g(\lambda, \mu)$ for any $\lambda \geq 0$ and $\mu$ is a lower bound on the primal optimal value. That is, we get Weak Duality as</p>
+<p>But recall that the expression on the right-hand side is the optimal value of the original problem. So $g(\lambda, \mu)$ for any $\lambda \geq 0$ and $\mu$ is a lower bound on the primal optimal value.</p>
+<p>Since it's a lower bound to the primal optimum, we call $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ the <em>dual function</em>.</p>
+<p>Now we're ready to give a first statement of Weak Duality.</p>
 <blockquote>
 <p><strong>Weak Duality:</strong> $$g(\lambda, \mu) \leq p^*$$<br></p>
 </blockquote>
-<p>This explains why we called $g(\lambda, \mu)$ the <em>dual function</em>: it has the desired lower bound property of a dual.</p>
 
 </div>
 </div>
@@ -428,24 +428,13 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Furthermore, we know $g(\lambda, \mu)$ to be $\min_{x} \mathcal{L}(x, \lambda, \mu)$. So, the dual optimal $d^*$ can be expressed as
-$$
-d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}
-$$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Weak-Duality---The-Max-Min-Characterization">
 <a class="anchor" href="#Weak-Duality---The-Max-Min-Characterization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality - The Max-Min Characterization<a class="anchor-link" href="#Weak-Duality---The-Max-Min-Characterization"> </a>
 </h1>
-<p>As we saw above, the dual optimal can be expressed as</p>
-<p>
-$$d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$$
-</p>
+<p>We know $g(\lambda, \mu)$ to be $\min_{x} \mathcal{L}(x, \lambda, \mu)$. So, the dual optimal $d^*$ of the dual problem above can be immediately expressed as
+$$
+d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}
+$$</p>
 <p>We will now see that the primal optimal can be similarly expressed as</p>
 <p>
 $$p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
@@ -488,10 +477,7 @@ $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right
 $$
 \inf_{y\in Y} \left\{ \sup_{x\in X} f(x,y) \right\} \geq \sup_{x\in X} \left\{ \inf_{y\in Y} f(x,y) \right\}
 $$
-Since no assumption is made on $f$, the inequality certainly also holds for $\mathcal{L}$. And, since we're in the special case where the optima are assumed to exist, the functions  attain the optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$. This results in the symmetric formulation of Weak Duality as above</p>
-<p>
-$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
-</p>
+Since no assumption is made on $f$, the inequality certainly also holds for $\mathcal{L}$. And, since we're in the special case where the optima are assumed to exist, the functions  attain the optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$. This results in the symmetric formulation of Weak Duality as stated above.</p>
 <p>All that remains in establishing Weak Duality is to prove the max-min inequality.</p>
 <h3 id="Proof-of-Max-Min-Inequality">
 <a class="anchor" href="#Proof-of-Max-Min-Inequality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Max-Min Inequality<a class="anchor-link" href="#Proof-of-Max-Min-Inequality"> </a>
@@ -537,27 +523,26 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <p><strong>Strong Duality:</strong>   $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$<br></p>
 </blockquote>
 <p>Optimization problems that exhibit this property are called Strongly Dual.</p>
-<h2 id="Slater's-Condition">
-<a class="anchor" href="#Slater's-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slater's Condition<a class="anchor-link" href="#Slater's-Condition"> </a>
+<p>As we will see all linear programs are Strongly Dual. However, when it comes to non-linear optimization, Strong Duality is not guaranteed.</p>
+<h2 id="Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality">
+<a class="anchor" href="#Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slater's Condition - A Sufficient Condition for Strong Duality<a class="anchor-link" href="#Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality"> </a>
 </h2>
-<p>Let's give a sufficient condition for Strong Duality.</p>
 <p>Even though not all Strongly Dual problems are convex and not all convex programs are Strongly Dual, convexity together with <em>Slater's Condition</em> is sufficient for Strong Duality.</p>
 <blockquote>
-<p><strong>Slater's Condition:</strong>   $\exists \hat x$ s.t. $f_i(\hat x) &lt; 0$, and $h_i(\hat x) = 0$ $\forall i$. <br></p>
-</blockquote>
-<p><br>
+<p><strong>Slater's Condition:</strong>   $\exists \hat x$ s.t. $f_i(\hat x) &lt; 0$, and $h_i(\hat x) = 0$ $\forall i$. <br> 
 </p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
     <strong>Note: </strong>The equality constraints $h_i(\hat x) = 0$ are often stated as linear equality constraints $A \hat x = b$ in certain sources. This is simply due to the observation that equality constraints are convex constraints if and only if all of the $h_i$’s are linear.
 </div>
 <br>
-<p>Informally, Slater's Condition says that the existence of a feasible solution having margin w.r.t. all the inequality constraints is needed in addition to convexity. In even simpler terms, the feasible region must have an interior point.</p>
-<p>The sufficiency condition for Strong Duality is then.</p>
+</blockquote>
+<p>Informally, Slater's Condition says that the existence of a feasible point which has margin w.r.t. all the inequality constraints is needed in addition to convexity. In even simpler terms, the feasible region must have an interior point.</p>
+<p>The sufficient condition for Strong Duality is then</p>
 <blockquote>
 <p><strong>Sufficient Condition for Strong Duality:</strong>   Any convex optimization problem satisfying Slater's Condition has Strong Duality.<br></p>
 </blockquote>
-<p>The proof of Slater's Condition is beyond what we're trying to achieve in this post. However we motivate it geometrically in the following paragraph.</p>
+<p>The proof of this is beyond what we're trying to achieve in this post. However we motivate it geometrically in the following paragraph.</p>
 <h2 id="Geometric-Intuition-Behind-Slater's-Condition">
 <a class="anchor" href="#Geometric-Intuition-Behind-Slater's-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Geometric Intuition Behind Slater's Condition<a class="anchor-link" href="#Geometric-Intuition-Behind-Slater's-Condition"> </a>
 </h2>
@@ -565,7 +550,7 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <h2 id="Complementary-Slackness---A-Consequence-of-Strong-Duality">
 <a class="anchor" href="#Complementary-Slackness---A-Consequence-of-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Complementary Slackness - A Consequence of Strong Duality<a class="anchor-link" href="#Complementary-Slackness---A-Consequence-of-Strong-Duality"> </a>
 </h2>
-<p>Suppose $x^*$ is a primal optimal solution and $(\lambda^*, \mu^*)$ is a dual optimal solution. An immediate consequence of Strong Duality is the fact that $\lambda^*_i f_i(x^*) = 0 \ \ \forall i$: a fact which is often called <em>Complementary Slackness</em> for reasons that will become apparent later.</p>
+<p>Suppose $x^*$ is a primal optimal solution and $(\lambda^*, \mu^*)$ is a dual optimal solution. An immediate consequence of Strong Duality is the fact that $\lambda^*_i f_i(x^*) = 0 \ \ \forall i$: a fact often called <em>Complementary Slackness</em> for reasons that will become apparent later.</p>
 <h3 id="Proof">
 <a class="anchor" href="#Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof<a class="anchor-link" href="#Proof"> </a>
 </h3>
@@ -599,15 +584,14 @@ Note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$
 </h1>
 <p>In this section, we will give the saddle point interpretation of Strong Duality through the <em>Saddle Point Theorem</em> which states the following.</p>
 <blockquote>
-<p><strong>Saddle Point Theorem:</strong>   If $x^*$ and $(\lambda^*, \mu^*)$ are primal and dual optimal solutions for a convex problem which satisfies Slater's Condition, they form a saddle point of the associated Lagrangian. Conversely, if $(x^*,\lambda^*, \mu^*)$ is a saddle point of a Lagrangian, then $x^*$ is a primal optimal, and $(\lambda^*, \mu^*)$ a is dual optimal of the associated Strongly Dual problem.<br></p>
-</blockquote>
-<p><br>
+<p><strong>Saddle Point Theorem:</strong>   If $x^*$ and $(\lambda^*, \mu^*)$ are primal and dual optimal solutions for a convex problem which satisfies Slater's Condition, they form a saddle point of the associated Lagrangian. Conversely, if $(x^*,\lambda^*, \mu^*)$ is a saddle point of a Lagrangian, then $x^*$ is a primal optimal, and $(\lambda^*, \mu^*)$ a is dual optimal of the associated Strongly Dual problem.<br>
 </p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
     <strong>Note: </strong>This isn’t a necessary condition of Strong Duality since not all Strongly Dual problems satisfy the Sufficient Condition for Strong Duality. That is, it would be incorrect to replace "a convex problem which satisfies Slater’s Condition" in the above theorem with "a Strongly Dual problem." In fact, not all Strongly Dual problems are convex to begin with, in which case the Lagrangian has no saddle points to speak of. 
 </div>
 <br>
+</blockquote>
 <p>First, let's show that the max-min inequality holds with strict equality at saddle points. This will yield one direction of the Saddle Point Theorem proof.</p>
 <h3 id="Max-Min-Equality-at-Saddle-Points">
 <a class="anchor" href="#Max-Min-Equality-at-Saddle-Points" aria-hidden="true"><span class="octicon octicon-link"></span></a>Max-Min Equality at Saddle Points<a class="anchor-link" href="#Max-Min-Equality-at-Saddle-Points"> </a>
