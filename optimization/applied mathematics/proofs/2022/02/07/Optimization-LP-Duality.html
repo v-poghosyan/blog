@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      33 min read
+      35 min read
     
 </span></p>
 
@@ -188,6 +188,7 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#Optimality-Conditions">Optimality Conditions </a></li>
+<li class="toc-entry toc-h2"><a href="##"># </a></li>
 <li class="toc-entry toc-h2"><a href="#Saddle-Point-Interpretation">Saddle Point Interpretation </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Max-Min-Equality-at-Saddle-Points">Max-Min Equality at Saddle Points </a></li>
@@ -532,14 +533,15 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <p>The original problem was that of finding the primal optimum $p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$</p>
 <p>The dual problem is that of finding the dual optimum $d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$</p>
 <p>Note that the dual function $g(\lambda, \mu) = \min_x \mathcal{x, \lambda, \mu}$ is easy to maximize over $\lambda \geq 0$ and $\mu$ since, for a fixed $x$, it's linear in $\lambda$ and $\mu$.</p>
-<p>Hence, if minimizing the Lagrangian over $x$ happens to be easy for our problem, and since we know that maximizing the resulting dual function over $\lambda$ and $\mu$ is also easy, we have found an easier approach to the original problem provided Strong Duality holds.
-However, if Strong Duality does not hold then we still have a useful lower bound for the primal optimum by Weak Duality.</p>
+<p>Hence, if minimizing the Lagrangian over $x$ happens to be easy for our problem, and since we know that maximizing the resulting dual function over $\lambda$ and $\mu$ is also easy, we have found an easier approach to the original problem provided Strong Duality holds.</p>
+<p>However, if Strong Duality does not hold then we still have a useful lower bound for the primal optimum by Weak Duality.</p>
 <h2 id="Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality">
 <a class="anchor" href="#Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slater's Condition - A Sufficient Condition for Strong Duality<a class="anchor-link" href="#Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality"> </a>
 </h2>
 <p>Even though not all Strongly Dual problems are convex and not all convex programs are Strongly Dual, convexity together with <em>Slater's Condition</em> is sufficient for Strong Duality.</p>
 <blockquote>
 <p><strong>Slater's Condition:</strong>   $\exists \hat x$ s.t. $f_i(\hat x) &lt; 0$, and $h_i(\hat x) = 0$ $\forall i$.
+<br>
 <br>
 </p>
 <div class="flash">
@@ -581,8 +583,37 @@ Note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$
 <h2 id="Optimality-Conditions">
 <a class="anchor" href="#Optimality-Conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimality Conditions<a class="anchor-link" href="#Optimality-Conditions"> </a>
 </h2>
-<p>Strong Duality obtains powerful optimality conditions that only apply to Strongly Dual problems.</p>
-<p>KKT CONDITIONS</p>
+<p>Strong Duality obtains powerful necessary and sufficient optimality conditions known as <br>
+<em>Karush–Kuhn–Tucker (KKT) Conditions</em>. We will see that in the absence of Strong Duality, the KKT Conditions are necessary, but insufficient, for optimality. It's only in the presence of Strong Duality that KKT Conditions become a <em>certificate of optimality</em>.</p>
+<p>We will also see that KKT Conditions are a generalization of unconstrained optimization (i.e. setting the gradient to zero) for constrained problems.</p>
+<p>First, let's offer a summary of where we currently are.</p>
+<h2 id="#">
+<a class="anchor" href="##" aria-hidden="true"><span class="octicon octicon-link"></span></a>#<a class="anchor-link" href="##"> </a>
+</h2>
+<p>Recall that the initial motivation in formulating the unconstrained problem $\mathcal{J}$, which we then relaxed to the Lagrangian $\mathcal{L}$, was to enjoy the ease of using unconstrained optimization methods in finding the optimal value $p^*$ of the original, constrained problem.</p>
+<p>As we relaxed $\mathcal{J}$ into $\mathcal{L}$, we noticed that the solution of the resulting minimization problem:</p>
+<p>$\min_x: \mathcal{L}(x, \lambda, \mu)$</p>
+<p>gave us a mere lower bound $g(\lambda, \mu)$ on $p^*$. So, the equivalence to the original problem was lost with this relaxation. That is, the first-order necessary condition $\nabla_x \mathcal{L}(x^*, \lambda, \mu) = 0$ would no longer necessarily give us $f_0(x^*) = p^*$.</p>
+<p>However, despite this letdown, we did not give up. We sought the next best thing, namely the tightest lower bound $d^*$ for $p^*$.</p>
+<p>We found it to be $d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$.</p>
+<p>We did this in hopes that, should Strong Duality hold, $d^* = p^*$ and we would have solved the original problem.</p>
+<p>Let's continue this line of reasoning now by assuming Strong Duality does hold, and that $(x^*, (\lambda^*, \mu^*)$ are primal-dual optimal.</p>
+<p>Since $(\lambda^*, \mu^*)$ is dual-optimal and Strong Duality holds</p>
+<p>$d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \mathcal{L}(x, \lambda^*, \mu^*) = p^*$</p>
+<p>That is, the primal optimal $p^*$ is attained by $x^* = \arg \min_x \mathcal{L}(x, \lambda^*, \mu^*)$</p>
+<p>$ $x^*$ is a s</p>
+<p>Then</p>
+<p>We obtain the following conditions.</p>
+<ol>
+<li>$- \nabla f_0(x) = \sum_{i=1}^m \lambda_i \nabla f_i(x) + \sum_{i=1}^p \mu_i \nabla h_i(x)$</li>
+<li>$f_i(x) = 0 \ \ \forall i$  </li>
+<li>$h_i(x) = 0 \ \ \forall i$</li>
+</ol>
+<p>From the assumption of Strong Duality, we also have Complementary Slackness.</p>
+<ol>
+<li>$\lambda_i \f_i(x) = 0 \forall i$</li>
+</ol>
+<p>NOTE KKT REDUCES TO FIRST ORDER CONBDITIONS FOR ALREADY UNCONSTRAINED PROBLEM. SO KKT IS FOC FOR THE GENERAL CONSTRAINED CASE.</p>
 <p>Stationarity condition comes from the original idea of delta L = 0. It's geometric meaning becomes clear from looking at the Linear Program case. In the LP Strong Duality proof where we prove SD by constructing a dual optimal and showing Dual Opt = Primal Opt. The geometric meaning in the general case is the non-linear case of this!</p>
 
 </div>
@@ -597,6 +628,7 @@ Note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$
 <p>In this section, we will give the saddle point interpretation of Strong Duality through the <em>Saddle Point Theorem</em> which states the following.</p>
 <blockquote>
 <p><strong>Saddle Point Theorem:</strong>   If $x^*$ and $(\lambda^*, \mu^*)$ are primal and dual optimal solutions for a convex problem which satisfies Slater's Condition, they form a saddle point of the associated Lagrangian. Conversely, if $(x^*,\lambda^*, \mu^*)$ is a saddle point of a Lagrangian, then $x^*$ is a primal optimal, and $(\lambda^*, \mu^*)$ a is dual optimal of the associated Strongly Dual problem.
+<br>
 <br>
 </p>
 <div class="flash">
