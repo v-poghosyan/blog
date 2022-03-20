@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Optimization-Optimality-Conditions-in-Convex-Problems | Vahram Poghosyan</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Optimization-Optimality-Conditions-in-Convex-Problems" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The Lagrangian and the KKT Conditions" />
+<meta property="og:description" content="The Lagrangian and the KKT Conditions" />
+<link rel="canonical" href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/03/03/Optimization-Optimality-Conditions-in-Convex-Problems.html" />
+<meta property="og:url" content="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/03/03/Optimization-Optimality-Conditions-in-Convex-Problems.html" />
+<meta property="og:site_name" content="Vahram Poghosyan" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-03-03T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Optimization-Optimality-Conditions-in-Convex-Problems" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-03-03T00:00:00-06:00","datePublished":"2022-03-03T00:00:00-06:00","description":"The Lagrangian and the KKT Conditions","headline":"Optimization-Optimality-Conditions-in-Convex-Problems","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/03/03/Optimization-Optimality-Conditions-in-Convex-Problems.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/03/03/Optimization-Optimality-Conditions-in-Convex-Problems.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://v-poghosyan.github.io/blog/feed.xml" title="Vahram Poghosyan" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QB9Q6T3YNL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QB9Q6T3YNL');
+</script>
+
+
+<link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Vahram Poghosyan</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Optimization-Optimality-Conditions-in-Convex-Problems</h1><p class="page-description">The Lagrangian and the KKT Conditions</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-03-03T00:00:00-06:00" itemprop="datePublished">
+        Mar 3, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#Optimization">Optimization</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#Applied Mathematics">Applied Mathematics</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#Proofs">Proofs</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/v-poghosyan/blog/tree/master/_notebooks/2022-03-03-Optimization-Optimality-Conditions-in-Convex-Problems.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/v-poghosyan/blog/master?filepath=_notebooks%2F2022-03-03-Optimization-Optimality-Conditions-in-Convex-Problems.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/v-poghosyan/blog/blob/master/_notebooks/2022-03-03-Optimization-Optimality-Conditions-in-Convex-Problems.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a></li>
+<li class="toc-entry toc-h1"><a href="#The-Lagrangian">The Lagrangian </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Convex-Problem-with-Multiple-Equality-Constraints">Convex Problem with Multiple Equality Constraints </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Karush-Kuhn-Tucker-Conditions.">Karush-Kuhn-Tucker Conditions. </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-03-03-Optimization-Optimality-Conditions-in-Convex-Problems.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">
+<a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
+</h1>
+<p>Taking advantage of the geometry of <em>linear programs</em>, we <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/01/25/Optimization-Geometry-of-Linear-Programs.html">were able to deduce</a> that their optima occur at extreme points of the polytopal constraint set. This key geometric insight reduced the search space of optimal solutions to the set of extreme points thereby simplifying the problem of solving LP's.</p>
+<p>In this post we will develop a more general geometric condition for identifying the optima of <em>convex programs (CP's)</em>. The theory developed here will also apply to linear programs, since LP's are a strict subset of convex programs.</p>
+<p>CP's can be stated most generally as</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$
+\begin{cases}
+\min_x: f(x)
+\\
+s.t.: \begin{aligned} &amp;g_i(x) \leq 0 \ \ \forall i = 1,...,m
+\\ 
+&amp;h_j(x) = 0 \ \ \forall j = 1,...,p
+\end{aligned}
+\end{cases}
+$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Where $f(x)$ is a convex objective, the $g_i$'s define $m$ convex inequality constraints, and the $h_j$'s are $p$ linear equality constraints. Note that the equality constraints <em>must</em> be linear because, for a more general convex function $h_j$, $\{ x : h_j(x) = 0 \}$ does <em>not</em> represent a convex set.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="The-Lagrangian">
+<a class="anchor" href="#The-Lagrangian" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrangian<a class="anchor-link" href="#The-Lagrangian"> </a>
+</h1>
+<p>Consider the simple convex problem with an objective $f(x)$ and only one equality constraint $h(x)=0$.</p>
+<p>The picture below illustrates this situation using a maximization problem with the objective function $f(x_1,x_2) = x_1^2 e^x_2 x^2$ and a circular equality constraint.</p>
+<p>Note that the circular equality constraint does not define a convex set, so the given problem is not a CP. However it's intended as a general example that demonstrates a key geometric property of optimal solutions.</p>
+<p><img src="/blog/images/copied_from_nb/my_icons/lagrange-condition.png" alt="" title="Optima occur on the tangent point(s) or, more generally, tangent space(s) of the level sets of the objective function and the constraint boundary">
+<br></p>
+<p>The key observation is that, if the convex problem is feasible at all, its optima, if any exist, occur at a level set of the objective function that is tangent to the constraint boundary.</p>
+<p>That is, $x^*$ is a local maximum if and only if $\nabla_x f(x^*) = \pm \lambda \nabla_x h(x^*)$ for some $\lambda &gt; 0$. Note that $\lambda$ may either be added or subtracted, depending on whether the problem is that of minimization or maximization.</p>
+<p>Interestingly, this condition is general enough that for an unconstrained convex problem it reduces to $\nabla_x f(x^*) = 0$, which is the familiar first-order necessary condition for an interior point (such as the optimal solution of an unconstrained problem) to be a <em>stationary point</em>. And, since the objectives in this post are all assumed to be convex, the second-order optimality conditions hold at any stationary point. Hence, $\nabla_x f(x^*) = 0$ is the only condition we need to determine that $x^*$ is a local optimizer.</p>
+<p>Since the stationary points of an unconstrained problem can be found with such relative ease, the goal is to construct an unconstrained problem related to a given constrained problem so that the former's stationary points are optimal and feasible for the constrained problem.</p>
+<p>With this in mind, we define the <em>Lagrangian</em> as the function $\mathcal{L}(x, \lambda) :=f(x) - \lambda h(x)$. Now, any $(x^*, \lambda^*)$ that satisfies $\nabla \mathcal{L}(x^*, \lambda^*) = 0$ is a stationary point of the Lagrangian function, as well as an optimal, feasible solution to the constrained problem.</p>
+<p>To see this, note that $\nabla \mathcal{L} = [\nabla_x  \mathcal{L}, \nabla_{\lambda} \mathcal{L}]^T = [0,0]^T$ implies $\nabla_x f(x^*) = \pm \lambda \nabla_x h(x^*)$ which is the optimality condition, and $h(x^*) = 0$ which is the feasibility condition.</p>
+<p>So, $\nabla \mathcal{L} = 0$ is taken as a <em>certificate of optimality</em>.</p>
+<p>From the above discussion, we also see that $\lambda = 0$ would result in disrespecting the equality constraint $h(x^*) = 0$. Hence the need for $\lambda &gt; 0$...</p>
+<h2 id="Convex-Problem-with-Multiple-Equality-Constraints">
+<a class="anchor" href="#Convex-Problem-with-Multiple-Equality-Constraints" aria-hidden="true"><span class="octicon octicon-link"></span></a>Convex Problem with Multiple Equality Constraints<a class="anchor-link" href="#Convex-Problem-with-Multiple-Equality-Constraints"> </a>
+</h2>
+<p>For a convex program with multiple equality constraints, the condition generalizes to:</p>
+<p>$\nabla_x f(x^*) = \lambda_1 \nabla_x h_1(x^*) \pm \lambda_2 \nabla_x h_2(x^*) \pm ... \pm \lambda_n \nabla_x h_n(x^*)$ with $\lambda_1, \lambda_2, ... \lambda_n &gt; 0$.</p>
+<p>That is, the gradient of the objective function at the optimizer should be a conic combination of the $\pm$ gradients of the equality constraints.</p>
+<p>This is pointless to illustrate in two dimensions, since the feasible set would either be $\emptyset$ or contain a single point which is optimal by default. Instead, we can imagine the spherical level sets of $f(x) = x_1^2 + x_2^2 + x_3^2$ and the line of intersection of two planes in $\mathbb{R}^3$, h_1(x) = 0$ and $h_2(x) = 0$. The maximizer would then be the point at which the line of intersection is tangent to a spherical level set of the objective.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Karush-Kuhn-Tucker-Conditions.">
+<a class="anchor" href="#Karush-Kuhn-Tucker-Conditions." aria-hidden="true"><span class="octicon octicon-link"></span></a>Karush-Kuhn-Tucker Conditions.<a class="anchor-link" href="#Karush-Kuhn-Tucker-Conditions."> </a>
+</h1>
+<p>KKT Conditions are a generalization of the necessary and sufficient optimality conditions. They're considered to be a certificate of optimality and are often used to verify if a particular guess is optimal or not. In many cases this beats solving the problem from scratch.</p>
+<p>Consider the following convex program with both inequality as well as equality constraints.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$
+\begin{cases}
+\min_x: f(x)
+\\
+s.t.: \begin{aligned} &amp;g_i(x) \leq 0 \ \ \forall i = 1,...,m
+\\ 
+&amp;h_j(x) = 0 \ \ \forall j = 1,...,p
+\end{aligned}
+\end{cases}
+$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let the dual variables corresponding to the inequality constraints be $\lambda$ and those corresponding to the equality constraints be $\mu$.</p>
+<p>KKT IS A CERTIFICATE ONLY IN THE CASE OF STRONGLY DUAL CONVEX PROBLEMS.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p><strong>KKT Conditions:</strong>   $x^*, (\lambda^*, \mu^*)$ satisfy the KKT conditions if the following hold: </p>
+<ol>
+<li>$g_i(x^*) \leq 0$</li>
+<li>$h_j(x^*) = 0$ </li>
+<li>$\lambda^* \geq 0$</li>
+<li>$\lambda^*_ig_i(x^*) = 0 \ \ \forall i$</li>
+<li>$\nabla_x f(x^*) + \sum \lambda^*_i\nabla_xg_i(x^*) + \sum \mu^*_j\nabla_xh_j(x^*) = 0$ where the $h_j$'s are the active inequality constraints at $x^*$
+<br>
+</li>
+</ol>
+<p>Note:If there are no inequality constraints, the KKT conditions turn into the Lagrange conditions. Then condition $5$ is simply a statement about the gradient of the Lagrangian being zero, i.e. $\nabla \mathcal{L} = 0$. However, as we shall soon see, it has a strong geometric interpretation as well. 
+These are simply the conditions the primal-dual pair must meet to satisfy the KKT conditions. The following theorem is what establishes the certificate of optimality mentioned earlier.</p>
+<p><strong>Theorem</strong>   If Strong Duality holds, then $x^*, (\lambda^*, \mu^*)$ are respectively primal-dual optimal if and only if they satisfy the KKT conditions. 
+<br></p>
+</blockquote>
+<p>To see how the KKT conditions are a generalization of the optimality conditions in a simple, yet elucidative case, we consider the unconstrained problem $\min_x f(x)$ and the same problem with a single inequality constraint</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$
+\begin{cases}
+\min_x: f(x)
+\\
+s.t.: g(x) \leq 0
+\end{cases}
+$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Case 1:</strong> The unconstrained optimum is in the feasible region.
+<br></p>
+<p><strong>Picture</strong></p>
+<p><img src="/blog/images/copied_from_nb/my_icons/interior-optimum.png" alt="" title="Case 1: Optimum is an interior point">
+<br></p>
+<p>Recall that $x^*$ is a local minimum of the unconstrained problem if and only if $\nabla_x f(x^*) = 0$ and $\nabla_{xx} f(x^*) \succeq 0$. This is true whenever $x^*$ is an interior point. It's particularly true in the unconstrained case since all points, in particular $x^*$, are interior points.</p>
+<p>Since the inequality constraint is not active at the constrained optimum, the latter is  identified by the same conditions as the unconstrained optimum. That is,</p>
+<p>The Lagrangian of the unconstrained problem is, of course, the objective function itself.</p>
+<p><img src="/blog/images/copied_from_nb/my_icons/interior-optimum.png" alt="" title="Case 1: Optimum is an interior point">
+<br></p>
+<p>In this case, the optimum can be found simply by solving for $x^*$ that satisfies the above necessary and sufficient conditions.</p>
+<p><img src="/blog/images/copied_from_nb/my_icons/exterior-optimum.png" alt="" title="Case 2: Optimum is an interior point"></p>
+<p>Take a simple convex program with one inequality constraint.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="v-poghosyan/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/optimization/applied%20mathematics/proofs/2022/03/03/Optimization-Optimality-Conditions-in-Convex-Problems.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Personal blog about Machine Learning, Data Science, Mathematics, Software Engineering, and various other topics. Created by Vahram Poghosyan, © 2021 - Present.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/v-poghosyan" target="_blank" title="v-poghosyan"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/Vahram31680593" target="_blank" title="Vahram31680593"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Python for Machine Learning - NumPy | Vahram Poghosyan</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Python for Machine Learning - NumPy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction to NumPy - Python’s Feature-Rich Mathematical Library." />
+<meta property="og:description" content="Introduction to NumPy - Python’s Feature-Rich Mathematical Library." />
+<link rel="canonical" href="https://v-poghosyan.github.io/blog/python%20for%20ml/numpy/machine%20learning/2021/12/20/Python-for-ML-NumPy.html" />
+<meta property="og:url" content="https://v-poghosyan.github.io/blog/python%20for%20ml/numpy/machine%20learning/2021/12/20/Python-for-ML-NumPy.html" />
+<meta property="og:site_name" content="Vahram Poghosyan" />
+<meta property="og:image" content="https://v-poghosyan.github.io/blog/images/numpy-logo.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-20T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://v-poghosyan.github.io/blog/images/numpy-logo.png" />
+<meta property="twitter:title" content="Python for Machine Learning - NumPy" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-12-20T00:00:00-06:00","datePublished":"2021-12-20T00:00:00-06:00","description":"Introduction to NumPy - Python’s Feature-Rich Mathematical Library.","headline":"Python for Machine Learning - NumPy","image":"https://v-poghosyan.github.io/blog/images/numpy-logo.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/python%20for%20ml/numpy/machine%20learning/2021/12/20/Python-for-ML-NumPy.html"},"url":"https://v-poghosyan.github.io/blog/python%20for%20ml/numpy/machine%20learning/2021/12/20/Python-for-ML-NumPy.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://v-poghosyan.github.io/blog/feed.xml" title="Vahram Poghosyan" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QB9Q6T3YNL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QB9Q6T3YNL');
+</script>
+
+
+<link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Vahram Poghosyan</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Python for Machine Learning - NumPy</h1><p class="page-description">Introduction to NumPy - Python's Feature-Rich Mathematical Library.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-20T00:00:00-06:00" itemprop="datePublished">
+        Dec 20, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      10 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#Python for ML">Python for ML</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#NumPy">NumPy</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#Machine Learning">Machine Learning</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/v-poghosyan/blog/tree/master/_notebooks/2021-12-20-Python-for-ML-NumPy.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/v-poghosyan/blog/master?filepath=_notebooks%2F2021-12-20-Python-for-ML-NumPy.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/v-poghosyan/blog/blob/master/_notebooks/2021-12-20-Python-for-ML-NumPy.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Importing-NumPy">Importing NumPy </a></li>
+<li class="toc-entry toc-h1"><a href="#Optimizations">Optimizations </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Scalable-Memory-Representation">Scalable Memory Representation </a></li>
+<li class="toc-entry toc-h2"><a href="#Vectorization">Vectorization </a></li>
+<li class="toc-entry toc-h2"><a href="#Broadcasting">Broadcasting </a></li>
+<li class="toc-entry toc-h2"><a href="#Comparing-Runtime">Comparing Runtime </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Using-a-Python-List">Using a Python List </a></li>
+<li class="toc-entry toc-h3"><a href="#Using-a-NumPy-Array">Using a NumPy Array </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#NumPy-Basics">NumPy Basics </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Creating-Arrays">Creating Arrays </a></li>
+<li class="toc-entry toc-h2"><a href="#Representing-Matrices">Representing Matrices </a></li>
+<li class="toc-entry toc-h2"><a href="#Indexing">Indexing </a></li>
+<li class="toc-entry toc-h2"><a href="#Properties-and-Methods-of-NumPy-Arrays">Properties and Methods of NumPy Arrays </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Statistical-and-Mathematical-Methods">Statistical and Mathematical Methods </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Multi-Indexing,-Filtering,-and-Broadcasted-Operations">Multi-Indexing, Filtering, and Broadcasted Operations </a></li>
+<li class="toc-entry toc-h2"><a href="#Matrix-Operations">Matrix Operations </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Addition">Addition </a></li>
+<li class="toc-entry toc-h3"><a href="#Multiplication">Multiplication </a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-12-20-Python-for-ML-NumPy.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Importing-NumPy">
+<a class="anchor" href="#Importing-NumPy" aria-hidden="true"><span class="octicon octicon-link"></span></a>Importing NumPy<a class="anchor-link" href="#Importing-NumPy"> </a>
+</h1>
+<p><a href="https://numpy.org/">NumPy</a> is a scientific computing library for Python. It's an extensive collection of pre-written code that optimizes and extends, among other things, the Python array (i.e. <code>list</code>) object into an n-dimensional NumPy array called <code>ndarray</code>. It comes with a variety of tools, such as matrix operations and common mathematical functions, that enable Python to perform complex mathematical tasks such as solve linear algebraic problems, generate pseudo-random numbers, perform Fourier analysis, etc.</p>
+<p>We import NumPy, as we import any other library, using the <code>import</code> keyword (with or without a shorthand).</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+</pre></div>
+<p>Or, alternatively:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Optimizations">
+<a class="anchor" href="#Optimizations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimizations<a class="anchor-link" href="#Optimizations"> </a>
+</h1>
+<p>As we've briefly discussed in the <a href="https://v-poghosyan.github.io/blog/python%20for%20ml/pandas/machine%20learning/2021/12/28/Python-for-ML-Pandas.html#Broadcasted-and-Vectorized-Operations">"Python for Machine Learning - Pandas"</a> post, NumPy works by delegating tasks to well-optimized C code under the hood. In this way it exploits the flexibility of Python while bypassing its speed limitations as an <em>interpreted language</em> and, instead, exploiting the speed advantages of a <em>compiled language</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Scalable-Memory-Representation">
+<a class="anchor" href="#Scalable-Memory-Representation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scalable Memory Representation<a class="anchor-link" href="#Scalable-Memory-Representation"> </a>
+</h2>
+<p>One of the things NumPy optimizes is data storage. 
+In contrast to Python 3.x's scalable memory representation of numeric values, such as integers, which can grow to accommodate a given number, NumPy stores numeric types in fixed-sized blocks of memory (e.g. <code>int32</code> or <code>int64</code>). This means NumPy is able to take advantage of the low-level CPU instructions of modern processors that are designed for fixed-sized numeric types. Another advantage of fixed-sized storage is that consecutive blocks of memory can be allocated, which enables the libraries upon which NumPy relies to do extremely performant computations. This enforcement of fixed-sized data types is part of the  optimization strategy NumPy uses called <em>vectorization</em>.</p>
+<h2 id="Vectorization">
+<a class="anchor" href="#Vectorization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vectorization<a class="anchor-link" href="#Vectorization"> </a>
+</h2>
+<p>As already discussed in the <a href="https://v-poghosyan.github.io/blog/python%20for%20ml/pandas/machine%20learning/2021/12/28/Python-for-ML-Pandas.html#Broadcasted-and-Vectorized-Operations">aforementioned post</a>, vectorization is the process by which NumPy stores an array internally in a contiguous block of memory, and restricts its contents to only one data type. Letting Python know this data type in advance, NumPy can then skip the per-iteration type checking that Python normally does as its iterating through a loop in order to speed up our code. Optimizing the array data structure in such a way enables NumPy to delegate most of the operations on such arrays to pre-written C code under the hood. In effect, this simply means that looping occurs in C instead of Python.</p>
+<h2 id="Broadcasting">
+<a class="anchor" href="#Broadcasting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Broadcasting<a class="anchor-link" href="#Broadcasting"> </a>
+</h2>
+<p>The term <em>broadcasting</em> describes the process by which NumPy performs arithmetic operations on arrays of different dimensions. The process is usually as follows: the smaller array is “broadcast” across the larger array so that the two arrays have compatible dimensions. Broadcasting provides a means of vectorizing array operations.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Comparing-Runtime">
+<a class="anchor" href="#Comparing-Runtime" aria-hidden="true"><span class="octicon octicon-link"></span></a>Comparing Runtime<a class="anchor-link" href="#Comparing-Runtime"> </a>
+</h2>
+<p>To demonstrate the performance optimizations of NumPy, let's compare squaring every element of a <code>1,000,000</code>-element array and summing the results.</p>
+<h3 id="Using-a-Python-List">
+<a class="anchor" href="#Using-a-Python-List" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using a Python List<a class="anchor-link" href="#Using-a-Python-List"> </a>
+</h3>
+<p>First, we will use a Python list:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unoptimized_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Squaring each element and summing:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="o">%</span><span class="k">timeit</span> np.sum([i**2 for i in unoptimized_list])
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>320 ms ± 2.81 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>Even though we’re using NumPy’s <code>sum()</code> method, since the input we’re passing to it is a regular Python list, NumPy optimizations are not applied. 
+</div>
+<br>
+<p>As we can see the whole thing took about <code>314 ms</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Using-a-NumPy-Array">
+<a class="anchor" href="#Using-a-NumPy-Array" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using a NumPy Array<a class="anchor-link" href="#Using-a-NumPy-Array"> </a>
+</h3>
+<p>Now let's do the same with a NumPy array, which also gives us the opportunity to introduce the syntax for defining one using a range.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">optimized_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's check the type of <code>optimized_array</code> to convince ourselves that it is, indeed, a NumPy <code>ndarray</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">optimized_array</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>numpy.ndarray</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, finally, let's square each element and sum the results:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> np.sum(optimized_array**2)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1.61 ms ± 19.7 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remarkably, the run-time was cut from <code>314 ms</code> to only around <code>1.61ms</code>!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="NumPy-Basics">
+<a class="anchor" href="#NumPy-Basics" aria-hidden="true"><span class="octicon octicon-link"></span></a>NumPy Basics<a class="anchor-link" href="#NumPy-Basics"> </a>
+</h1>
+<p>Let's explore some of the ways in which we can represent arrays and matrices in NumPy.</p>
+<h2 id="Creating-Arrays">
+<a class="anchor" href="#Creating-Arrays" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating Arrays<a class="anchor-link" href="#Creating-Arrays"> </a>
+</h2>
+<p>We've already seen how we can create a 1-dimensional NumPy array of consecutive integers $0,1,...,n-1$ using the <code>arrange()</code> method.</p>
+<p>The standard way of creating a NumPy array is passing a Python list to the constructor <code>array()</code> like so:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([1, 2, 3])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also create some common arrays, such as an array of consecutive integers, with some special methods such as <code>arange()</code>, which takes an integer $n$ as input and creates a sequential array from $0,...,n-1$.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># array([0, 1, 2, 3, 4])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0, 1, 2, 3, 4])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Representing-Matrices">
+<a class="anchor" href="#Representing-Matrices" aria-hidden="true"><span class="octicon octicon-link"></span></a>Representing Matrices<a class="anchor-link" href="#Representing-Matrices"> </a>
+</h2>
+<p>Let's represent a $2 \times 3$ matrix 
+$
+A = \begin{bmatrix}
+1 &amp; 2 &amp; 3\\
+4 &amp; 5 &amp; 6
+\end{bmatrix}
+$
+using NumPy:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="n">A</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[1, 2, 3],
+       [4, 5, 6]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are also ways to quickly create some common matrices using special methods.</p>
+<p>For example, <code>ones()</code> accepts a shape pair, and creates a matrix of $1$s with of the given shape.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[1., 1., 1.],
+       [1., 1., 1.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The method, <code>zeros()</code> works the same way as <code>ones()</code>:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[0., 0., 0.],
+       [0., 0., 0.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Meanwhile, <code>identity()</code> accepts an integer $n$ as input and creates a square $n \times n$ identity matrix.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[1., 0., 0.],
+       [0., 1., 0.],
+       [0., 0., 1.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Creating a matrix with identical elements in general uses the <code>full()</code> method which takes a <code>shape</code> attribute, a <code>value</code> attribute and on optional <code>dtype</code> attribute as follows:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">7</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[7, 7, 7],
+       [7, 7, 7]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Indexing">
+<a class="anchor" href="#Indexing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Indexing<a class="anchor-link" href="#Indexing"> </a>
+</h2>
+<p>Indexing a 1-dimensional NumPy array is done as expected, through the use of the trusty brackets <code>[]</code>. Indexing an n-dimensional matrix in NumPy still uses <code>[]</code> but it introduces a new, improved, syntax.</p>
+<p>Suppose we'd like to access the element in the first row, and last column of <code>A</code>. The standard way would be:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As we can see, that still works. But the recommended and, subjectively speaking, prettier way is:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Of course, slicing still works as expected.</p>
+<p>For example, let's print the entire first row of <code>A</code>:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([1, 2, 3])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The entire first column:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([1, 4])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, let's print the submatrix $
+\begin{bmatrix}
+2 &amp; 3
+\end{bmatrix}
+$:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([2, 3])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Properties-and-Methods-of-NumPy-Arrays">
+<a class="anchor" href="#Properties-and-Methods-of-NumPy-Arrays" aria-hidden="true"><span class="octicon octicon-link"></span></a>Properties and Methods of NumPy Arrays<a class="anchor-link" href="#Properties-and-Methods-of-NumPy-Arrays"> </a>
+</h2>
+<p>A few of the useful properties and methods of <code>ndarray</code> are highlighted in this section.</p>
+<ul>
+<li>
+<p><code>shape</code> - returns the shape of the matrix as an $(m,n)$ pair</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># (2,3)</span>
+</pre></div>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>
+<p><code>ndim</code> - returns the dimension of a matrix as a single digit</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">ndim</span> <span class="c1"># 2</span>
+</pre></div>
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>The output of the <code>ndim</code> property should <em>not</em> be understood in a linear algebraic sense as the dimension of either the domain or range of the corresponding transformation, nor the dimension of either of its four fundamental subspaces. It is to <em>only</em> be understood in the data structure sense as the level of nestedness of the array.
+</div>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>
+<p><code>size</code> - returns the total number of elements in the matrix</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">size</span> <span class="c1"># 6</span>
+</pre></div>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>
+<p><code>dtype</code> - returns the data type of the elements in the matrix.</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">dtype</span> <span class="c1"># dtype('int32')</span>
+</pre></div>
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>If the <code>ndarray</code> does not represent a matrix, such as <code>B = np.array([[1,2,3],[4,5]])</code> then <code>dtype</code> outputs <code>O</code> signifying that the entries are general Python objects. In such a case, the array loses its optimizations. 
+</div>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Statistical-and-Mathematical-Methods">
+<a class="anchor" href="#Statistical-and-Mathematical-Methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Statistical and Mathematical Methods<a class="anchor-link" href="#Statistical-and-Mathematical-Methods"> </a>
+</h3>
+<p>There is also a vast selection of statistical, and more generally, mathematical methods that <code>ndarrays</code> come with. Here are a few of the common ones:</p>
+<ul>
+<li>
+<p><code>sum()</code> - returns the sum of all the entries</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># 21</span>
+</pre></div>
+<p>It also accepts an <code>axis</code> attribute where <code>axis = 0</code> refers to the sum along the columns, and <code>axis = 1</code> refers to the sum along the rows.</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># [5,7,9]</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># [6,15]</span>
+</pre></div>
+</li>
+<li>
+<p><code>mean()</code> - returns the empirical mean of all the entries</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># 3.5</span>
+</pre></div>
+</li>
+<li>
+<p><code>var()</code> - returns the variance of the entries</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">var</span><span class="p">()</span> <span class="c1"># 2.9166666666666665</span>
+</pre></div>
+</li>
+<li>
+<p><code>std()</code> - returns the standard deviation of the entries</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="c1"># 1.707825127659933</span>
+</pre></div>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Multi-Indexing,-Filtering,-and-Broadcasted-Operations">
+<a class="anchor" href="#Multi-Indexing,-Filtering,-and-Broadcasted-Operations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multi-Indexing, Filtering, and Broadcasted Operations<a class="anchor-link" href="#Multi-Indexing,-Filtering,-and-Broadcasted-Operations"> </a>
+</h2>
+<p>Recall from the <a href="https://v-poghosyan.github.io/blog/python%20for%20ml/pandas/machine%20learning/2021/12/28/Python-for-ML-Pandas.html">Pandas article</a> the ways in which we were able to multi-index and filter, and how we eliminated the need for using Python loops and list comprehensions using broadcasted operators instead. Since both a Pandas <code>Series</code> and a <code>DataFrame</code> are extensions of NumPy's <code>ndarray</code>, all of these apply here as well.</p>
+<p>As a refresher on broadcasted operations, here are a few filtering examples.</p>
+<p>Let's obtain those elements of A that are greater than <code>3</code>:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="n">A</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([4, 5, 6])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's obtain those elements of A that are greater than the empirical mean:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="n">A</span> <span class="o">&gt;</span> <span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([4, 5, 6])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What about those elements of A that are less than or equal to the empirical mean?</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="o">~</span><span class="p">(</span><span class="n">A</span> <span class="o">&gt;</span> <span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">())]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([1, 2, 3])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Which is equivalent to:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="n">A</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([1, 2, 3])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Matrix-Operations">
+<a class="anchor" href="#Matrix-Operations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Matrix Operations<a class="anchor-link" href="#Matrix-Operations"> </a>
+</h2>
+<p>One of NumPy's key selling points is that it makes matrix operations in Python easy. It offers simple syntax to add, multiply, <em>transpose</em>, <em>invert</em>, flatten, etc. matrices.</p>
+<h3 id="Addition">
+<a class="anchor" href="#Addition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Addition<a class="anchor-link" href="#Addition"> </a>
+</h3>
+<p>Addition of matrices is, by default, per-element (as are all NumPy operations). There's no special syntax, it's done through the <code>+</code> operator.</p>
+<p>For example:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">A</span> <span class="o">+</span> <span class="n">B</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[2., 2., 2.],
+       [2., 2., 2.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Multiplication">
+<a class="anchor" href="#Multiplication" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multiplication<a class="anchor-link" href="#Multiplication"> </a>
+</h3>
+<p>The operator <code>*</code> performs per-element multiplication.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">*</span> <span class="n">B</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[6, 6, 6],
+       [6, 6, 6]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But this, as we know, isn't matrix multiplication as it's commonly defined in mathematics — the dot product of corresponding rows and columns. For instance, if we try to multiply an $m \times n$ matrix with an $n \times p$ matrix, NumPy will throw the following error:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">*</span> <span class="n">B</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>ValueError: operands could not be broadcast together with shapes (2,3) (3,4)</code></pre>
+<p>This is because per-element operations require the shapes of the operands to be the same or compatible up to broadcasting. Here, since the shapes are different, NumPy attempts to broadcast one operand to match the shape of the other. But broadcasting is impossible between matrices of shapes $2 \times 3$ and $3 \times 4$ per the <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html#general-broadcasting-rules">broadcasting rules</a>.</p>
+<p>There's a workaround that lets us use <code>*</code>. Since NumPy overloads the <code>*</code> operator, it works as it should for <code>numpy.matrix</code> types.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]])</span>
+<span class="n">A</span> <span class="o">*</span> <span class="n">B</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>matrix([[18, 18, 18, 18],
+        [18, 18, 18, 18]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, this is not the recommended way to do matrix multiplication in NumPy. Overloaded operators can produce convoluted code. For instance, we may have many different <code>matrix</code> and <code>ndarray</code> data structures and be unable to anticipate the result of a given <code>*</code> operation.</p>
+<p>Instead, the recommended way to do matrix multiplication is through the <code>@</code> operator.</p>
+<p>When we use <code>@</code> NumPy internally uses its <code>matmul()</code> method. So, the following are equivalent and both produce the matrix product of <code>A</code> and <code>B</code>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">@</span> <span class="n">B</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[18, 18, 18, 18],
+       [18, 18, 18, 18]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[18, 18, 18, 18],
+       [18, 18, 18, 18]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>NumPy also offers, <code>dot()</code> which is equivalent to <code>matmul()</code> for 1D and 2D matrices. So, the following is yet another way we can multiply matrices:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">)</span>
+<span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[18, 18, 18, 18],
+       [18, 18, 18, 18]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, <code>matmul()</code> is preferred over <code>dot()</code> because of the clarity of its name, and because the <em>dot product</em> has a distinct mathematical meaning separate from matrix multiplication.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="v-poghosyan/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/python%20for%20ml/numpy/machine%20learning/2021/12/20/Python-for-ML-NumPy.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Personal blog about Machine Learning, Data Science, Mathematics, Software Engineering, and various other topics. Created by Vahram Poghosyan, © 2021 - Present.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/v-poghosyan" target="_blank" title="v-poghosyan"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/Vahram31680593" target="_blank" title="Vahram31680593"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
