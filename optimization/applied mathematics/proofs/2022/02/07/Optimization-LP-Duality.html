@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      35 min read
+      37 min read
     
 </span></p>
 
@@ -180,17 +180,22 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#Strong-Duality">Strong Duality </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#An-Easier-Dual-Problem">An Easier Dual Problem </a></li>
-<li class="toc-entry toc-h2"><a href="#Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality">Slater&#39;s Condition - A Sufficient Condition for Strong Duality </a></li>
-<li class="toc-entry toc-h2"><a href="#Geometric-Intuition-Behind-Slater's-Condition">Geometric Intuition Behind Slater&#39;s Condition </a></li>
+<li class="toc-entry toc-h2"><a href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality">Slater&#39;s Condition - Sufficient Condition for Strong Duality </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Geometric-Intuition-Behind-Slater's-Condition">Geometric Intuition Behind Slater&#39;s Condition </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#Complementary-Slackness---A-Consequence-of-Strong-Duality">Complementary Slackness - A Consequence of Strong Duality </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Proof-of-Complementary-Slackness">Proof of Complementary Slackness </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#Optimality-Conditions">Optimality Conditions </a></li>
-<li class="toc-entry toc-h2"><a href="#Karush-Kuhn-Tucker-(KKT)-Conditions">Karush-Kuhn-Tucker (KKT) Conditions </a>
+<li class="toc-entry toc-h2"><a href="#Optimality-Conditions">Optimality Conditions </a>
 <ul>
+<li class="toc-entry toc-h3"><a href="#Karush-Kuhn-Tucker-(KKT)-Conditions">Karush-Kuhn-Tucker (KKT) Conditions </a></li>
 <li class="toc-entry toc-h3"><a href="#Motivating-the-KKT-Conditions">Motivating the KKT Conditions </a></li>
+<li class="toc-entry toc-h3"><a href="#KKT-as-a-Generalization-of-Unconstrained-Optimization">KKT as a Generalization of Unconstrained Optimization </a></li>
+<li class="toc-entry toc-h3"><a href="#Stationarity-Condition---Geometric-Perspective">Stationarity Condition - Geometric Perspective </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#Saddle-Point-Interpretation">Saddle Point Interpretation </a>
@@ -534,18 +539,21 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <h2 id="An-Easier-Dual-Problem">
 <a class="anchor" href="#An-Easier-Dual-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>An Easier Dual Problem<a class="anchor-link" href="#An-Easier-Dual-Problem"> </a>
 </h2>
-<p>Duality gives us the option of solving our original constrained optimization problem in a different way.</p>
-<p>The original problem was that of finding the primal optimum $p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$</p>
-<p>The dual problem is that of finding the dual optimum $d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$</p>
-<p>Note that the dual function $g(\lambda, \mu) = \min_x \mathcal{x, \lambda, \mu}$ is easy to maximize over $\lambda \geq 0$ and $\mu$ since, for a fixed $x$, it's linear in $\lambda$ and $\mu$.</p>
-<p>Hence, if minimizing the Lagrangian over $x$ happens to be easy for our problem, and since we know that maximizing the resulting dual function over $\lambda$ and $\mu$ is also easy, we have found an easier approach to the original problem provided Strong Duality holds.</p>
-<p>However, if Strong Duality does not hold then we still have a useful lower bound for the primal optimum by Weak Duality.</p>
-<h2 id="Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality">
-<a class="anchor" href="#Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slater's Condition - A Sufficient Condition for Strong Duality<a class="anchor-link" href="#Slater's-Condition---A-Sufficient-Condition-for-Strong-Duality"> </a>
+<p>As mentioned briefly in the introduction, duality gives us the option of solving our original, constrained optimization problem in a different, possibly easier, way. Let's qualify this statement further.</p>
+<p>The original problem was that of finding the primal optimal value $p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$</p>
+<p>The dual problem is that of finding the dual optimal value $d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$</p>
+<p>Note that the dual function $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ is easy to maximize over $\lambda \geq 0$ and $\mu$ since, for a fixed $x$, it's linear in those variables.</p>
+<p>If Strong Duality holds, then $d^* = p^*$.</p>
+<p>Suppose $(\lambda^*, \mu^*)$ maximizes the dual function, then what's left is to solve the following unconstrained problem</p>
+<p>$\min_x: \mathcal{L}(x, \lambda^*, \mu^*)$</p>
+<p>Hence, if minimizing the Lagrangian over $x$ happens to be easy for our problem, we have found an easier approach to the original problem. Instead of solving the original problem, we solved its dual problem for $d^*$ which gave us $p^*$ through Strong Duality.</p>
+<p>However, if Strong Duality does not hold not all is lost. We still obtain a useful lower bound for the primal optimal value by Weak Duality.</p>
+<h2 id="Slater's-Condition---Sufficient-Condition-for-Strong-Duality">
+<a class="anchor" href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slater's Condition - Sufficient Condition for Strong Duality<a class="anchor-link" href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality"> </a>
 </h2>
 <p>Even though not all Strongly Dual problems are convex and not all convex programs are Strongly Dual, convexity together with <em>Slater's Condition</em> is sufficient for Strong Duality.</p>
 <blockquote>
-<p><strong>Slater's Condition:</strong>   $\exists \hat x$ s.t. $f_i(\hat x) &lt; 0$, and $h_i(\hat x) = 0$ $\forall i$.<br></p>
+<p><strong>Slater's Condition:</strong>   $\exists \ \hat x$ s.t. $f_i(\hat x) &lt; 0$, and $h_i(\hat x) = 0$ $\forall i$.<br></p>
 </blockquote>
 <p><br>
 </p>
@@ -560,9 +568,9 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <p><strong>Sufficient Condition for Strong Duality:</strong>   Any convex optimization problem satisfying Slater's Condition has Strong Duality.<br></p>
 </blockquote>
 <p>The proof of this is beyond what we're trying to achieve in this post. However we motivate it geometrically in the following paragraph.</p>
-<h2 id="Geometric-Intuition-Behind-Slater's-Condition">
+<h3 id="Geometric-Intuition-Behind-Slater's-Condition">
 <a class="anchor" href="#Geometric-Intuition-Behind-Slater's-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Geometric Intuition Behind Slater's Condition<a class="anchor-link" href="#Geometric-Intuition-Behind-Slater's-Condition"> </a>
-</h2>
+</h3>
 <p>\\  TO BE ADDED ///</p>
 <h2 id="Complementary-Slackness---A-Consequence-of-Strong-Duality">
 <a class="anchor" href="#Complementary-Slackness---A-Consequence-of-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Complementary Slackness - A Consequence of Strong Duality<a class="anchor-link" href="#Complementary-Slackness---A-Consequence-of-Strong-Duality"> </a>
@@ -588,16 +596,16 @@ Note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$
 <a class="anchor" href="#Optimality-Conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimality Conditions<a class="anchor-link" href="#Optimality-Conditions"> </a>
 </h2>
 <p>Strong Duality obtains powerful necessary and sufficient optimality conditions known as <br>
-<em>Karush–Kuhn–Tucker (KKT) Conditions</em>. We will see that in the absence of Strong Duality, the KKT Conditions are necessary, but insufficient, for optimality. It's only in the presence of Strong Duality that KKT Conditions become a <em>certificate of optimality</em>.</p>
+<em>Karush–Kuhn–Tucker (KKT) Conditions</em>. We will see that in the absence of Strong Duality, the KKT Conditions are necessary, but insufficient, for optimality. In the presence of Strong Duality KKT Conditions become a <em>certificate of optimality</em>.</p>
 <p>We will also see that the KKT Conditions are a generalization of unconstrained optimization for the constrained case.</p>
-<h2 id="Karush-Kuhn-Tucker-(KKT)-Conditions">
+<h3 id="Karush-Kuhn-Tucker-(KKT)-Conditions">
 <a class="anchor" href="#Karush-Kuhn-Tucker-(KKT)-Conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Karush-Kuhn-Tucker (KKT) Conditions<a class="anchor-link" href="#Karush-Kuhn-Tucker-(KKT)-Conditions"> </a>
-</h2>
+</h3>
 <p>At first, we list the KKT conditions.</p>
 <blockquote>
 <p><strong>KKT Conditions:</strong>   $x^*, (\lambda^*, \mu^*)$ satisfy the KKT conditions if the following hold: </p>
 <ol>
-<li>$\nabla_x f_0(x^*) + \sum_{i=1}^m \lambda^*_i\nabla_xf_i(x^*) + \sum_{i=1}^p \mu^*_i\nabla_xh_i(x^*) = 0$ </li>
+<li>$\nabla_x f_0(x^*) + \sum_{i \in I} \lambda^*_i\nabla_xf_i(x^*) + \sum_{i=1}^p \mu^*_i\nabla_xh_i(x^*) = 0$ where $I$ is the set of indices of the active inequality constraints.</li>
 <li>$\lambda^*_if_i(x^*) = 0 \ \ \forall i$</li>
 <li>$g_i(x^*) \leq 0 \ \ \forall i$ </li>
 <li>$h_i(x^*) = 0 \ \ \forall i$ </li>
@@ -606,6 +614,7 @@ Note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$
 </li>
 </ol>
 </blockquote>
+<p>Clearly these conditions apply to problems with differentiable objective and constraints. If one or more of the objective or constraints is not differentiable, there is a subdifferential version of the KKT Conditions. However, this is beyond the scope of this post.</p>
 <p>Now we give the necessary and sufficient optimality condition.</p>
 <blockquote>
 <p><strong>Certificate of Optimality</strong>   If Strong Duality holds, then $x^*, (\lambda^*, \mu^*)$ are primal-dual optimal if and only if they satisfy the KKT conditions. 
@@ -623,17 +632,27 @@ Note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$
 <p>But since $x^*$ is primal optimal corresponding to the primal optimal value $p^*$, the above says that $x^*$ is a minimizer of $\mathcal{L}(x, \lambda^*, \mu^*)$.</p>
 <p>Finally, as originally intended, we can apply the first-order necessary condition to $\mathcal{L}$.</p>
 <p>$\nabla_x \mathcal{L}(x^*, \lambda^*, \mu^*) = 0$</p>
-<p>This gives the first KKT condition.</p>
+<p>This gives the first KKT condition called the <em>Stationarity Condition</em>.</p>
 <p>
 $$ - \nabla f_0(x) = \sum_{i=1}^m \lambda_i \nabla f_i(x) + \sum_{i=1}^p \mu_i \nabla h_i(x) \tag{1}$$
 </p>
+<p>The summation over the active inequality constraints is simply a simplification of the above, as we shall shortly see.</p>
 <p>The second KKT Condition comes from Complementary Slackness which is an immediate consequence of Strong Duality.</p>
 <p>
 $$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{2}$$
 </p>
-<p>Finally, KKT Conditions 3-4 simply follow from feasibility of $x^*$ and $(\lambda^*, \mu^*)$.</p>
-<p>NOTE KKT REDUCES TO FIRST ORDER CONBDITIONS FOR ALREADY UNCONSTRAINED PROBLEM. SO KKT IS FOC FOR THE GENERAL CONSTRAINED CASE.</p>
-<p>Stationarity condition comes from the original idea of delta L = 0. It's geometric meaning becomes clear from looking at the Linear Program case. In the LP Strong Duality proof where we prove SD by constructing a dual optimal and showing Dual Opt = Primal Opt. The geometric meaning in the general case is the non-linear case of this!</p>
+<p>Recall that Complementary Slackness says that if a given constraint $f_i$ is loose at the primal optimal $x^*$, then its corresponding dual optimal variable $\lambda^*_i = 0$. So, the second KKT condition can be seen to modify the first. We can interpret $\lambda^*_i = 0$ as meaning that we can disregard the inactive constraint $f_i$ in the first KKT Condition altogether.</p>
+<p>Finally, KKT Conditions 3-4, called <em>Feasibility Conditions</em>, simply follow from the assumption that $x^*$, and $(\lambda^*, \mu^*)$ are primal-dual optimal, and hence primal-dual feasible.</p>
+<p>This shows that if $x^*$, $(\lambda^*, \mu^*)$ is primal-dual optimal with zero duality gap, then $x^*$, $(\lambda^*, \mu^*)$ must be a KKT pair. The converse is harder to prove, but we offer a proof in the restricted case of linear programs further on in this post.</p>
+<h3 id="KKT-as-a-Generalization-of-Unconstrained-Optimization">
+<a class="anchor" href="#KKT-as-a-Generalization-of-Unconstrained-Optimization" aria-hidden="true"><span class="octicon octicon-link"></span></a>KKT as a Generalization of Unconstrained Optimization<a class="anchor-link" href="#KKT-as-a-Generalization-of-Unconstrained-Optimization"> </a>
+</h3>
+<p>SAME AS GRAD F = 0 BUT RESTRICTS DIRECTIONS TO FEASIBLE ONES</p>
+<p>ALSO REDUCES TO FIRST ORDER CONDITIONS FOR ALREADY UNCONSTRAINED PROBLEM.</p>
+<h3 id="Stationarity-Condition---Geometric-Perspective">
+<a class="anchor" href="#Stationarity-Condition---Geometric-Perspective" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stationarity Condition - Geometric Perspective<a class="anchor-link" href="#Stationarity-Condition---Geometric-Perspective"> </a>
+</h3>
+<p>The Stationarity Condition has a strong geometric flavor in the case where the level sets of</p>
 
 </div>
 </div>
