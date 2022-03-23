@@ -385,7 +385,7 @@ $$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=
 <h2 id="A-Lagrangian-Lower-Bound-on-the-Optimal">
 <a class="anchor" href="#A-Lagrangian-Lower-Bound-on-the-Optimal" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Lagrangian Lower Bound on the Optimal<a class="anchor-link" href="#A-Lagrangian-Lower-Bound-on-the-Optimal"> </a>
 </h2>
-<p>Far from simply augmenting a constrained problem into an unconstrained problem which is solvable by using a familiar optimality condition, the Lagrangian also happens to give us the <em>dual problem</em>.</p>
+<p>Far from simply augmenting a constrained problem into an unconstrained problem which is solvable by using the method of unconstrained optimization, the Lagrangian also happens to give us the <em>dual problem</em>.</p>
 <p>The first thing to note about the Lagrangian is that $\lambda \geq 0$ is necessary. This is because, in the event that an inequality constraint is violated, say $f_i(x) &gt; 0$ for some $i$, the corresponding $\lambda_i$ must be non-negative in order to apply a positive penalty for the violation. This extends to all the entries of $\lambda$, resulting in the $\lambda \geq 0$ condition. Note that, since $\lambda$ is a vector, the inequality is meant coordinate-wise.</p>
 <p>On the other hand, $\mu$ is free to assume any value since the equality constraints can be violated in either direction, and both scenarios must be penalized.</p>
 <p>The second thing to note about the $\mathcal{L}$ is that, even though we apply a positive penalty that scales linearly in the severity of the violation, this penalty is not as severe as the infinite penalty we were applying in $\mathcal{J}$. Also, in the Lagrangian, we actually <em>reward</em> feasible choices of $x$ that have margin. That is, in the event that $f_i(x) &lt; 0$ strictly for some $i$, $\lambda_if_i(x)$ is a non-positive reward for the minimization problem.</p>
@@ -540,14 +540,14 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <a class="anchor" href="#An-Easier-Dual-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>An Easier Dual Problem<a class="anchor-link" href="#An-Easier-Dual-Problem"> </a>
 </h2>
 <p>As mentioned briefly in the introduction, duality gives us the option of solving our original, constrained optimization problem in a different, possibly easier, way. Let's qualify this statement further.</p>
-<p>The original problem was that of finding the primal optimal value $p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$</p>
-<p>The dual problem is that of finding the dual optimal value $d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$</p>
-<p>Note that the dual function $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ is easy to maximize over $\lambda \geq 0$ and $\mu$ since, for a fixed $x$, it's linear in those variables.</p>
-<p>If Strong Duality holds, then $d^* = p^*$.</p>
-<p>Suppose $(\lambda^*, \mu^*)$ maximizes the dual function, then what's left is to solve the following unconstrained problem</p>
-<p>$\min_x: \mathcal{L}(x, \lambda^*, \mu^*)$</p>
-<p>Hence, if minimizing the Lagrangian over $x$ happens to be easy for our problem, we have found an easier approach to the original problem. Instead of solving the original problem, we solved its dual problem for $d^*$ which gave us $p^*$ through Strong Duality.</p>
-<p>However, if Strong Duality does not hold not all is lost. We still obtain a useful lower bound for the primal optimal value by Weak Duality.</p>
+<p>The original problem was that of finding the primal optimal value $p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$ by solving the problem</p>
+<p>$\min_x: \max_{\lambda \geq 0, \mu}: \mathcal{L}(x, \lambda, \mu) = \min_x: \mathcal{J}(x)$</p>
+<p>Which is a hard problem since $J(x)$ is non-differentiable, so the method of unconstrained optimization does not work.</p>
+<p>The dual problem is that of finding the dual optimal value $d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$ by solving the problem</p>
+<p>$\max_{\lambda \geq 0, \mu}: \min_x: \mathcal{L}(x, \lambda, \mu) = \max_{\lambda \geq 0, \mu}: g(\lambda, \mu)$</p>
+<p>Note that the dual function $g(\lambda, \mu)$ is easy to maximize over $\lambda \geq 0$ and $\mu$ since it's concave with a linear (i.e. convex) constraint $\lambda \geq 0$. The reason it's concave is that it's the pointwise minimum of linear functions in $\lambda$, and $\mu$.</p>
+<p>Since minimizing the Lagrangian over $x$ is also easy, usithen we have found an easier approach to the original problem provided Strong Duality holds, and $d^* = p^*$.</p>
+<p>However, if Strong Duality does not hold not all is lost. We still obtain a useful lower bound for the primal optimal value through Weak Duality.</p>
 <h2 id="Slater's-Condition---Sufficient-Condition-for-Strong-Duality">
 <a class="anchor" href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slater's Condition - Sufficient Condition for Strong Duality<a class="anchor-link" href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality"> </a>
 </h2>
@@ -625,12 +625,12 @@ Note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$
 </h3>
 <p>Recall that we formed the Lagrangian relaxation $\mathcal{L}$ so that we may enjoy the ease of using unconstrained optimization in finding the optimal value $p^*$ of the original, constrained problem.</p>
 <p>In the absence of Strong Duality, this gave us $d^* = \max_{\lambda \geq 0, \mu} g(\lambda, \mu)$, a tight lower bound on $p^*$.</p>
-<p>If Strong Duality holds, then</p>
+<p>However, if Strong Duality holds then</p>
 <p>$p^* = d^* = \max_{\lambda \geq 0, \mu} g(\lambda, \mu) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\}$.</p>
-<p>Now, suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal, then we get</p>
+<p>Now, suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal. Then from the above, by carrying out the outer maximization, we get</p>
 <p>$p^* = \min_x \mathcal{L}(x, \lambda^*, \mu^*)$</p>
 <p>But since $x^*$ is primal optimal corresponding to the primal optimal value $p^*$, the above says that $x^*$ is a minimizer of $\mathcal{L}(x, \lambda^*, \mu^*)$.</p>
-<p>Finally, as originally intended, we can apply the first-order necessary condition to $\mathcal{L}$.</p>
+<p>Finally, as was our original intent in formulating the Lagrangian, we can apply the first-order necessary condition to $\mathcal{L}$.</p>
 <p>$\nabla_x \mathcal{L}(x^*, \lambda^*, \mu^*) = 0$</p>
 <p>This gives the first KKT condition called the <em>Stationarity Condition</em>.</p>
 <p>
@@ -643,7 +643,7 @@ $$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{2}$$
 </p>
 <p>Recall that Complementary Slackness says that if a given constraint $f_i$ is loose at the primal optimal $x^*$, then its corresponding dual optimal variable $\lambda^*_i = 0$. So, the second KKT condition can be seen to modify the first. We can interpret $\lambda^*_i = 0$ as meaning that we can disregard the inactive constraint $f_i$ in the first KKT Condition altogether.</p>
 <p>Finally, KKT Conditions 3-4, called <em>Feasibility Conditions</em>, simply follow from the assumption that $x^*$, and $(\lambda^*, \mu^*)$ are primal-dual optimal, and hence primal-dual feasible.</p>
-<p>This shows that if $x^*$, $(\lambda^*, \mu^*)$ is primal-dual optimal with zero duality gap, then $x^*$, $(\lambda^*, \mu^*)$ must be a KKT pair. The converse is harder to prove, but we offer a proof in the restricted case of linear programs further on in this post.</p>
+<p>This shows that if $x^*$, $(\lambda^*, \mu^*)$ is primal-dual optimal with zero duality gap, then $x^*$, $(\lambda^*, \mu^*)$ is a KKT pair. The converse is harder to prove in the non-linear case, but we offer a proof, and an intuition for the non-linear case, for linear programs with only inequality constraints later in this post.</p>
 <h3 id="KKT-as-a-Generalization-of-Unconstrained-Optimization">
 <a class="anchor" href="#KKT-as-a-Generalization-of-Unconstrained-Optimization" aria-hidden="true"><span class="octicon octicon-link"></span></a>KKT as a Generalization of Unconstrained Optimization<a class="anchor-link" href="#KKT-as-a-Generalization-of-Unconstrained-Optimization"> </a>
 </h3>
