@@ -540,13 +540,13 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <a class="anchor" href="#An-Easier-Dual-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>An Easier Dual Problem<a class="anchor-link" href="#An-Easier-Dual-Problem"> </a>
 </h2>
 <p>As mentioned briefly in the introduction, duality gives us the option of solving our original, constrained optimization problem in a different, possibly easier, way. Let's qualify this statement further.</p>
-<p>The original problem was that of finding the primal optimal value $p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$ by solving the problem</p>
+<p>The original, possibly non-convex, problem was that of finding the primal optimal value $p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$ by solving the problem</p>
 <p>$\min_x: \max_{\lambda \geq 0, \mu}: \mathcal{L}(x, \lambda, \mu) = \min_x: \mathcal{J}(x)$</p>
-<p>Which is a hard problem since $J(x)$ is non-differentiable, so the method of unconstrained optimization does not work.</p>
+<p>Which is a hard problem because it could be non-convex, and also since $J(x)$ is non-differentiable, making it impossible to use the method of unconstrained optimization.</p>
 <p>The dual problem is that of finding the dual optimal value $d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$ by solving the problem</p>
 <p>$\max_{\lambda \geq 0, \mu}: \min_x: \mathcal{L}(x, \lambda, \mu) = \max_{\lambda \geq 0, \mu}: g(\lambda, \mu)$</p>
 <p>Note that the dual function $g(\lambda, \mu)$ is easy to maximize over $\lambda \geq 0$ and $\mu$ since it's concave with a linear (i.e. convex) constraint $\lambda \geq 0$. The reason it's concave is that it's the pointwise minimum of linear functions in $\lambda$, and $\mu$.</p>
-<p>Since minimizing the Lagrangian over $x$ is also easy, usithen we have found an easier approach to the original problem provided Strong Duality holds, and $d^* = p^*$.</p>
+<p>Since minimizing the Lagrangian over $x$ is also easy, using the method of unconstrained optimization, we have found an easier approach to the original problem provided Strong Duality holds, and $d^* = p^*$.</p>
 <p>However, if Strong Duality does not hold not all is lost. We still obtain a useful lower bound for the primal optimal value through Weak Duality.</p>
 <h2 id="Slater's-Condition---Sufficient-Condition-for-Strong-Duality">
 <a class="anchor" href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slater's Condition - Sufficient Condition for Strong Duality<a class="anchor-link" href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality"> </a>
@@ -627,9 +627,9 @@ Note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$
 <p>In the absence of Strong Duality, this gave us $d^* = \max_{\lambda \geq 0, \mu} g(\lambda, \mu)$, a tight lower bound on $p^*$.</p>
 <p>However, if Strong Duality holds then</p>
 <p>$p^* = d^* = \max_{\lambda \geq 0, \mu} g(\lambda, \mu) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\}$.</p>
-<p>Now, suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal. Then from the above, by carrying out the outer maximization, we get</p>
-<p>$p^* = \min_x \mathcal{L}(x, \lambda^*, \mu^*)$</p>
-<p>But since $x^*$ is primal optimal corresponding to the primal optimal value $p^*$, the above says that $x^*$ is a minimizer of $\mathcal{L}(x, \lambda^*, \mu^*)$.</p>
+<p>Now, Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal. Then from the above, by carrying out the outer maximization, we get</p>
+<p>$p^* = d^* = \min_x \mathcal{L}(x, \lambda^*, \mu^*)$</p>
+<p>But since $x^*$ is primal optimal solution corresponding to the primal optimal value $p^*$, the above says that $x^*$ is a minimizer of $\mathcal{L}(x, \lambda^*, \mu^*)$.</p>
 <p>Finally, as was our original intent in formulating the Lagrangian, we can apply the first-order necessary condition to $\mathcal{L}$.</p>
 <p>$\nabla_x \mathcal{L}(x^*, \lambda^*, \mu^*) = 0$</p>
 <p>This gives the first KKT condition called the <em>Stationarity Condition</em>.</p>
