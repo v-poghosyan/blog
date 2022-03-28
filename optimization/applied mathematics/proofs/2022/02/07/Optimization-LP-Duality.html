@@ -404,12 +404,16 @@ $$\min_x \mathcal{L}(x,\lambda,\mu) \leq J(x) \ \ \forall x, \lambda \geq 0, \mu
 </p>
 <p>In particular, if $x^*$ is an optimal solution to the original problem, we have:</p>
 <p>
-$$\min_x \mathcal{L}(x,\lambda,\mu) \leq J(x^*) = f_0(x^*) = p^* \ \ \forall \lambda \geq 0, \mu \tag{3}$$
+$$\min_x \mathcal{L}(x,\lambda,\mu) \leq J(x^*) \ \ \forall \lambda \geq 0, \mu$$
+</p>
+<p>But $J(x^*) = f_0(x^*) = p^*$, so we have:</p>
+<p>
+$$\min_x \mathcal{L}(x,\lambda,\mu) \leq p^* \ \ \forall \lambda \geq 0, \mu \tag{2}$$
 </p>
 <p>Designating the original problem as the <em>primal</em>, we call $g(\lambda, \mu) := \min_x \mathcal{L}(x, \lambda, \mu)$ the <em>dual function</em> since it represents a lower bound on the primal optimal value.</p>
 <p>Then inequality $(3)$ becomes our first formulation of Weak Duality.</p>
 <p>
-$$g(\lambda, \mu) \leq p^* \ \ \forall \lambda \geq 0, \mu \tag{Weak Duality #1}$$
+$$g(\lambda, \mu) \leq p^* \ \ \forall \lambda \geq 0, \mu \tag{Weak Duality 1}$$
 </p>
 <p>From here, we move to define the <em>dual problem</em>.</p>
 
@@ -460,7 +464,7 @@ $</p>
 <p>We've already stated Weak Duality as $(4)$. In this section, we give a few alternate formulations.</p>
 <p>If $\lambda^* \geq 0$, and $\mu^*$ are dual optimal, that is $g(\lambda^*, \mu^*) = d^*$, then we have Weak Duality in terms of the tightest lower bound as:</p>
 <p>
-$$d^* \leq p^* \tag{Weak Duality #2}$$
+$$d^* \leq p^* \tag{Weak Duality 2}$$
 </p>
 <h2 id="The-Max-Min-Characterization">
 <a class="anchor" href="#The-Max-Min-Characterization" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Max-Min Characterization<a class="anchor-link" href="#The-Max-Min-Characterization"> </a>
@@ -485,7 +489,7 @@ $$ \min_x \mathcal{J}(x) = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L}
 <p>But $\min_x \mathcal{J}(x) = p^*$, concluding the proof of claim $(4)$.</p>
 <p>This gives us a way to express Weak Duality in a more symmetric way.</p>
 <p>
-$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{Weak Duality #3}$$
+$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{Weak Duality 3}$$
 </p>
 
 </div>
@@ -497,11 +501,11 @@ $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right
 <h2 id="Max-Min-Inequality-and-its-Interpretations">
 <a class="anchor" href="#Max-Min-Inequality-and-its-Interpretations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Max-Min Inequality and its Interpretations<a class="anchor-link" href="#Max-Min-Inequality-and-its-Interpretations"> </a>
 </h2>
-<p>Weak Duality can also be derived from the quantities</p>
+<p>Weak Duality can also be derived through a non-optimization lens using the quantities</p>
 <p>
 $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \ \ \textrm{and} \ \ \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
 </p>
-<p>directly, through a non-optimization lens, using the <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality">max-min inequality</a>.</p>
+<p>by using the <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality">max-min inequality</a>.</p>
 <h3 id="The-Max-Min-Inequality">
 <a class="anchor" href="#The-Max-Min-Inequality" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Max-Min Inequality<a class="anchor-link" href="#The-Max-Min-Inequality"> </a>
 </h3>
@@ -553,11 +557,11 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \max_x f(x,y) \right
 </h1>
 <p>Strong Duality is the case in which the primal and the dual optima agree. That is:</p>
 <p>
-$$p^* = d^* \tag{Strong Duality #1}$$
+$$p^* = d^* \tag{Strong Duality 1}$$
 </p>
 <p>Alternatively, in its max-min characterization:</p>
 <p>
-$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{Strong Duality #2}$$
+$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{Strong Duality 2}$$
 </p>
 <p>Optimization problems that exhibit this property are called Strongly Dual.</p>
 <p>We will see that all linear programs are Strongly Dual. When it comes to non-linear optimization, however, Strong Duality is not guaranteed. Sufficient conditions for Strong Duality exist, however, and we will give them shortly.</p>
