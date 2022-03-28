@@ -258,7 +258,7 @@ window.onload = wrap_img;
 </h1>
 <p>Every linear program, and every optimization problem in general, has a closely related problem called its dual which can be colloquially thought of as its evil twin. The primal and the dual represent two different perspectives on the same problem.</p>
 <p>In the most general case, if the primal is a minimization problem, its  dual is a maximization problem. In the case of constrained optimization, if the primal is minimization in $n$ variables and $m$ constraints, its dual is a maximization in $m$ variables and $n$ constraints.</p>
-<p>Furthermore, any solution of the dual problem is a lower bound of all the solutions of the primal and, in particular, the primal optimal. This property, called <em>Weak Duality</em>, is at the core of duality. Deriving a dual that obtains, at the very least, a useful lower bound to the primal optimal is one of the nascent ideas behind <em>Duality Theory</em>.</p>
+<p>Furthermore, any value attained by the dual problem is a lower bound of all the values attained by the primal and, in particular, the primal optimal value. This property, called <em>Weak Duality</em>, is at the core of duality. Deriving a dual that obtains, at the very least, a useful lower bound to the primal optimal value is one of the nascent ideas behind <em>Duality Theory</em>.</p>
 <p>In the case of problems which exhibit <em>Strong Duality</em>, such as linear programs and most convex optimization problems, the primal and the dual optima are strictly equal. That is, solving the dual guarantees that we've also solved the primal. Furthermore, since taking the dual of the dual gives back the primal, this relationship is true in the converse — if we've solved the primal then we've also solved its dual.</p>
 <p>This is what makes Duality Theory useful in practice. Having a related, possibly easier, optimization problem gives applied scientists a huge computational advantage. However, even if the dual does not turn out to be easier to solve and/or its optimal value disagrees with that of the primal, we still stand to elucidate the structure of the primal problem and/or obtain a useful lower bound to its optimal.</p>
 <p>In this post, we will examine the nature of the relationship between the primal and its dual, and we will list the possible primal-dual outcomes. In doing so, we will look at duality in constrained optimization problems in general, and then duality in linear programs specifically (<em>LP Duality)</em>.</p>
@@ -300,7 +300,7 @@ $</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The idea is to penalize infeasible choices of $x$ using functions of $x$ that express our <em>displeasure</em> for certain choices.</p>
-<p>At first we use an <em>infinitely-hard</em> penalty by introducing indicator functions $\mathbb{1}_-$ and $\mathbb{1}_0$ which are defined as follows.</p>
+<p>At first we use an <em>infinitely-hard</em> penalty by introducing the indicator functions $\mathbb{1}_-$ and $\mathbb{1}_0$ which are defined as follows.</p>
 
 </div>
 </div>
@@ -340,8 +340,8 @@ $</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Then the equivalent unconstrained problem is:</p>
 <p>$\min_x: \mathcal{J}(x)$</p>
-<p>Where $\mathcal{J}(x) = f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$</p>
-<p>Which can also be expressed as</p>
+<p>where $\mathcal{J}(x) = f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$</p>
+<p>This can also be expressed as:</p>
 
 </div>
 </div>
@@ -361,11 +361,11 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can easily see that the two minimization problems are equivalent. If $x$ is chosen s.t $f_i(x) &gt; 0$ and/or $h_i(x) \ne 0$ for any $i$, the minimization incurs an infinitely positive penalty. Therefore, such an $x$ will never be selected over a solution that gives the finite optimum.</p>
-<p>Since the two are equivalent, it suffices to optimize this problem instead of the original.</p>
-<p>As we may know, unconstrained problems can be locally optimized simply by identifying their stationary points using a first-order necessary condition. Once the stationary points are identified, we can evaluate the objective function at each and discern the optimizer.</p>
+<p>We can easily see that the two minimization problems are equivalent. If $x$ is chosen s.t any of the constraints is broken the minimization incurs an infinitely positive penalty. Therefore, such an $x$ will never be selected over a solution $x^*$ that gives the finite optimum $f_0(x^*)$. And, crucially, $x^*$ that minimizes $J(x)$ will be the same that minimizes $f_0(x)$.</p>
+<p>Since the two problems are equivalent, it suffices to optimize the second one instead of the original.</p>
+<p>As we know, unconstrained problems can be locally optimized simply by identifying their stationary points using a first-order necessary condition. Once the stationary points are identified, we can evaluate the objective function at each and discern the optimizer.</p>
 <p>The first-order necessary optimality condition concerns the directional derivative of the objective function. Namely, it attests that the directional derivative at a local optimizer should be zero in all feasible directions. But <em>all points</em> of an unconstrained problem are, effectively, interior points. Thus, all directions are feasible. So the first-order necessary condition amounts to the gradient being zero at a local optimizer.</p>
-<p>However, both infinitely-hard penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$ are discontinuous and, therefore also, non-differentiable. That is $\nabla_x \mathcal{J}(x)$ does not exist. To sidestep this difficulty we use linear relaxations instead of $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
+<p>However, the infinitely-hard penalty functions are discontinuous and, therefore also, non-differentiable. That is $\nabla_x \mathcal{J}(x)$ does not exist. To sidestep this difficulty we use linear relaxations instead of $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
 <h2 id="The-Lagrangian,-Dual-Variables,-and-the-Dual-Function">
 <a class="anchor" href="#The-Lagrangian,-Dual-Variables,-and-the-Dual-Function" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrangian, Dual Variables, and the Dual Function<a class="anchor-link" href="#The-Lagrangian,-Dual-Variables,-and-the-Dual-Function"> </a>
 </h2>
@@ -373,8 +373,13 @@ $</p>
 <p>
 $$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=1}^p \mu_i h_i(x) \ \ \textrm{where} \ \lambda \geq 0$$
 </p>
-<p>We call the $\lambda_i$'s the <em>Lagrange multipliers</em> corresponding to the inequality constraints, and the $\mu_i$'s the <em>Lagrange multipliers</em> corresponding to the equality constraints. The vectors $\lambda$ and $\mu$ are called the <em>Lagrange multiplier vectors</em> or, for reasons that will soon become apparent, the <em>dual variables</em>.</p>
-<p>In many sources, the Lagrangian is simply stated as $\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x)$. Indeed, by breaking down equality constraints $h_i(x) = 0$ into $h_i(x) \leq 0$ and $h_i(x) \geq 0 \implies -h_i(x) \leq 0$, we can transform any problem with equality constraints into one with only inequality constraints. So, this form of the Lagrangian is general enough...</p>
+<p>We call the $\lambda_i$'s the <em>Lagrange multipliers</em> corresponding to the inequality constraints, and the $\mu_i$'s the <em>Lagrange multipliers</em> corresponding to the equality constraints. The vectors $\lambda$ and $\mu$ are called the <em>Lagrange multiplier vectors</em> or, for reasons that will soon become apparent, the <em>dual variables</em>. 
+</p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>In many sources, the Lagrangian is simply stated as $\mathcal{L}(x,\lambda) = f_0(x) + \sum_{i=1}^n \lambda_i f_i(x)$. Indeed, by breaking down the equality constraints $h_i(x) = 0$ into $h_i(x) \leq 0$ and $-h_i(x) \leq 0$, we can transform a problem with equality constraints into one with only inequality constraints. So, the latter representation of the Lagrangian is still general enough to account for equality constraints.
+</div>
+<br>
 
 </div>
 </div>
@@ -385,15 +390,27 @@ $$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=
 <h2 id="A-Lagrangian-Lower-Bound-on-the-Optimal">
 <a class="anchor" href="#A-Lagrangian-Lower-Bound-on-the-Optimal" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Lagrangian Lower Bound on the Optimal<a class="anchor-link" href="#A-Lagrangian-Lower-Bound-on-the-Optimal"> </a>
 </h2>
-<p>Not only does the Lagrangian augment a constrained problem into an unconstrained problem that's solvable by using the method of unconstrained optimization, it also give us the <em>dual problem</em>.</p>
+<p>Not only does the Lagrangian augment a constrained problem into an unconstrained problem that's solvable by using the method of unconstrained optimization, it also gives us the <em>dual problem</em>.</p>
 <p>The first thing to note about the Lagrangian is that $\lambda \geq 0$ is necessary. This is because, in the event that an inequality constraint is violated, say $f_i(x) &gt; 0$ for some $i$, the corresponding $\lambda_i$ must be non-negative in order to apply a positive penalty for the violation. This extends to all the entries of $\lambda$, resulting in the $\lambda \geq 0$ coordinate-wise condition.</p>
 <p>On the other hand, $\mu$ is free to assume any value since the equality constraints can be violated in either direction, and both scenarios must be penalized.</p>
 <p>The second thing to note about the $\mathcal{L}$ is that, even though we apply a positive penalty that scales linearly in the severity of the violation, this penalty is <em>still</em> not as severe as the infinite penalty we were applying in $\mathcal{J}$. Also, in the Lagrangian, we actually <em>reward</em> feasible choices of $x$ that have margin. That is, in the event that $f_i(x) &lt; 0$ strictly for some $i$, $\lambda_if_i(x)$ is a non-positive reward for the minimization problem.</p>
-<p>All of this is to say that $\forall x, \lambda \geq 0, \mu \ \$, $\mathcal{L}(x,\lambda,\mu) \leq f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$ This is also evident from the fact that, for any fixed $i$, $\lambda_i f_i(x)$ is a lower bound of $\mathbb{1}_-(f_i(x))$ and $\mu_i h_i(x)$ is a lower bound of $\mathbb{1}_0(h_i(x))$.</p>
-<p>In particular this means that</p>
-<p>$\min_x \mathcal{L}(x,\lambda,\mu) \leq \min_x f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$ $ \ \ \forall \lambda \geq 0, \mu$</p>
-<p>But recall that the expression on the right-hand side is the optimal value $p^* = \min_x \mathcal{J(x)}$ of the original problem. So the left-hand side for any $\lambda \geq 0$ and $\mu$ is a lower bound on the optimal value of the original problem.</p>
-<p>Designating the original problem as the <em>primal</em>, we call $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ the <em>dual function</em> since it represents a lower bound on the primal optimal. We do this with the foresight to use it in the formulation of the <em>dual problem</em>.</p>
+<p>All of this is to say that</p>
+$$\forall x, \lambda \geq 0 \textrm{, and} \ \mu,  \ \mathcal{L}(x,\lambda,\mu) \leq J(x) \tag{1}$$<p></p>
+<p>This fact is also true by noticing that $\lambda_i f_i(x) \leq \mathbb{1}_-(f_i(x))$ and $\mu_i h_i(x) \leq \mathbb{1}_0(h_i(x))$ for all $i$.</p>
+<p>But then</p>
+<p>
+$$\min_x \mathcal{L}(x,\lambda,\mu) \leq J(x) \ \ \forall x, \lambda \geq 0, \mu$$
+</p>
+<p>In particular, if $x^*$ is an optimal solution to the original problem, we have</p>
+<p>
+$$\min_x \mathcal{L}(x,\lambda,\mu) \leq J(x^*) = f_0(x^*) = p^* \ \ \forall \lambda \geq 0, \mu \tag{3}$$
+</p>
+<p>Designating the original problem as the <em>primal</em>, we call $g(\lambda, \mu) := \min_x \mathcal{L}(x, \lambda, \mu)$ the <em>dual function</em>, since it represents a lower bound on the primal optimal.</p>
+<p>Then inequality $(3)$ turns into our first formulation of Weak Duality.</p>
+<p>
+$$g(\lambda, \mu) \leq p^* \ \ \forall \lambda \geq 0, \mu \tag{Weak Duality}$$
+</p>
+<p>From here, we move on to define the <em>dual problem</em>.</p>
 
 </div>
 </div>
@@ -404,8 +421,8 @@ $$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=
 <h2 id="The-Lagrange-Dual-Problem">
 <a class="anchor" href="#The-Lagrange-Dual-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrange Dual Problem<a class="anchor-link" href="#The-Lagrange-Dual-Problem"> </a>
 </h2>
-<p>In our quest to find the primal optimal $p^*$ it's natural, at this point, to ask what the <em>tightest</em> lower bound $d^*$ on $p^*$ is. That is, what's the largest $d^*$ s.t. $d^* \leq p^*$?</p>
-<p>This amounts to finding the values $\lambda^*$, and $\mu^*$ which maximize $g(\lambda, \mu)$, giving rise to the <em>Lagrange dual problem</em> or simply the <em>dual problem</em></p>
+<p>It's natural, at this point, to ask what the <em>tightest</em> lower bound $d^*$ on $p^*$ is. That is, what's the largest $d^*$ s.t. $d^* \leq p^*$?</p>
+<p>This amounts to finding the values $\lambda^* \geq 0$, and $\mu^*$ for which $g(\lambda^*, \mu^*)$ is maximized. We call this the <em>Lagrange dual problem</em> (or simply the <em>dual problem</em>).</p>
 
 </div>
 </div>
@@ -427,7 +444,7 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Looking at the above, we can see why the Lagrange multipliers are also referred to as the <em>dual variables</em>: they are the variables of the dual problem.</p>
+<p>Looking at the above, we can see why the Lagrange multipliers are also referred to as the <em>dual variables</em>: they simply end up being the variables of the dual problem.</p>
 
 </div>
 </div>
@@ -438,7 +455,11 @@ $</p>
 <h1 id="Weak-Duality">
 <a class="anchor" href="#Weak-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality<a class="anchor-link" href="#Weak-Duality"> </a>
 </h1>
-<p>We are ready to give a first statement of Weak Duality based on the Lagrange dual function.</p>
+<p>We've already stated Weak Duality as</p>
+$$\forall x, \lambda \geq 0 \textrm{, and} \ \mu,  \ \mathcal{L}(x,\lambda,\mu) \leq J(x)$$<p></p>
+<p>In this section, we give a few alternate formulations of Weak Duality.</p>
+<p>Firstly, in the above, taking</p>
+<p>Taking $x^*$, and $(\lambda^*, \mu^*)$ to be primal-dual optimal we get the</p>
 <blockquote>
 <p><strong>Weak Duality:</strong> $$g(\lambda, \mu) \leq p^* \ \ \forall \lambda \geq 0, \mu$$<br></p>
 </blockquote>
@@ -581,16 +602,25 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \max_x f(x,y) \right
 <h3 id="Proof-of-Complementary-Slackness">
 <a class="anchor" href="#Proof-of-Complementary-Slackness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Complementary Slackness<a class="anchor-link" href="#Proof-of-Complementary-Slackness"> </a>
 </h3>
-<p>By Strong Duality, we have $p^* = d^*$ or $f_0(x^*) = g(\lambda^*, \mu^*)$. But then,
+<p>In general, for any $x$, and $(\lambda, \mu)$ we have</p>
+<p>
+$$g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu) \leq \mathcal{L}(x, \lambda, \mu) \leq \max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) = J(x)$$
+</p>
+<p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal.</p>
+<p>Since $J$ is, by construction, equivalent to the original problem, $J(x^*) = f_0(x^*)$.</p>
+<p>Furthermore, by Strong Duality, we have $$d^* = g(\lambda^*, \mu^*) = f_0(x^*) = p^*$$</p>
+<p>Which forces the following result in the first inequality</p>
+<p>
+$$g(\lambda^*, \mu^*) = \mathcal{L}(x^*, \lambda^*, \mu^*) = f_0(x^*)$$
+</p>
+<p>Then
 $$\begin{aligned} 
-f_0(x^*) = g(\lambda^*, \mu^*) &amp;= \min_x \mathcal{L}(x, \lambda, \mu) \\
-&amp;\leq \mathcal{L}(x, \lambda, \mu) \\
+f_0(x^*) &amp;= \mathcal{L}(x^*, \lambda^* \mu^*)  \\ 
 &amp;= f_0(x^*) + \sum_{i=1}^m \lambda^*_i f_i(x^*) + \sum_{i=1}^p \mu^*_i h_i(x^*) \\
 &amp;\leq f_0(x^*)
 \end{aligned}
 $$</p>
-<p>Let's see why the last inequality holds.
-Note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$ by feasibility of $x^*$. Furthermore, again by feasibility of $x^*$, $\forall i$ $f_i(x^*) \leq 0$. And since, by construction of $\mathcal{L}$, $\lambda \geq 0$ we have $\sum_{i=1}^m \lambda^*_i f_i(x^*) \leq 0$.</p>
+<p>To see why the last inequality holds, note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$ by feasibility of $x^*$. Then again, by feasibility of $x^*$, $\forall i$ $f_i(x^*) \leq 0$. And since, by construction of $\mathcal{L}$, $\lambda \geq 0$ we have $\sum_{i=1}^m \lambda^*_i f_i(x^*) \leq 0$.</p>
 <p>But taken altogether this says $f_0(x^*) \leq f_0(x^*)$ which can <em>only</em> be true through strict equality. Then it must be the case that $\sum_{i=1}^m \lambda^*_i f_i(x^*) = 0$.</p>
 <p>Being a sum of non-positive terms, this can <em>only</em> happen if $\lambda^*_i f_i(x^*) = 0 \ \ \forall i$ which is what we wanted to show.</p>
 
@@ -630,22 +660,13 @@ Note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$
 <h3 id="Motivating-the-KKT-Conditions">
 <a class="anchor" href="#Motivating-the-KKT-Conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivating the KKT Conditions<a class="anchor-link" href="#Motivating-the-KKT-Conditions"> </a>
 </h3>
-<p>In general, for any $x$, and $(\lambda, \mu)$ we have</p>
-<p>
-$$g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu) \leq \mathcal{L}(x, \lambda, \mu) \leq \max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) = J(x)$$
-</p>
-<p>Suppose $x^*$, and $(\lambda^*, \mu^*)$ are primal-dual optimal.</p>
-<p>Then</p>
-<p>
-$$d^* = g(\lambda^*, \mu^*) = J(x^*) = p^*$$
-</p>
-<p>Forcing the following result in the first inequality</p>
+<p>As we saw in the section on Complementary Slackness</p>
 <p>
 $$g(\lambda^*, \mu^*) = \min_x \mathcal{L} (x, \lambda^*, \mu^*) = \mathcal{L}(x^*, \lambda^*, \mu^*)$$
 </p>
 <p>That is $x^*$, which is the minimizer of the original problem $J(x)$, also minimizes $\mathcal{L}(x, \lambda^*, \mu^*)$.</p>
 <p>This is the result we need in order to finally apply the first-order necessary condition of unconstrained optimization. Doing so yields the first KKT condition called the <em>Stationarity Condition</em>.</p>
-<p>$\nabla_x \mathcal{L}(x^*, \lambda, \mu) = \nabla f_0(x^*) + \sum_{i=1}^m \lambda^*_i \nabla f_i(x^*) + \sum_{i=1}^p \mu^*_i \nabla h_i(x^*) = 0$</p>
+<p>$\nabla_x \mathcal{L}(x^*, \lambda, \mu) = \nabla f_0(x^*) + \sum_{i=1}^m \lambda^*_i \nabla f_i(x^*) + \sum_{i=1}^p \mu^*_i \nabla h_i(x^*) = 0 \tag{1}$</p>
 <p>The second KKT Condition comes from Complementary Slackness which is an immediate consequence of Strong Duality.</p>
 <p>
 $$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{2}$$
