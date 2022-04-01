@@ -274,10 +274,9 @@ window.onload = wrap_img;
 <h1 id="Deriving-the-Dual-of-a-Constrained-Problem">
 <a class="anchor" href="#Deriving-the-Dual-of-a-Constrained-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deriving the Dual of a Constrained Problem<a class="anchor-link" href="#Deriving-the-Dual-of-a-Constrained-Problem"> </a>
 </h1>
-<p>Let us first focus our attention on deriving the dual of a constrained optimization problem.</p>
-<p>For problems of this sort it is the constraints themselves which, through the <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian relaxation</a>, give rise to duality.</p>
-<p>However, as we shall see later, certain types of unconstrained problems also have duals which arise from the <a href="https://en.wikipedia.org/wiki/Convex_conjugate">Fenchel-Legendre Transform</a>.</p>
-<p>Take the most general form of such problem with $m$ inequality and $n$ equality constraints and assume nothing, as of yet, about its convexity. To make the discussion interesting, assume the problem is non-trivial (i.e. its constraint set is non-empty and contains more than one feasible point), and also that it's bounded with a finite optimum $f_0(x^*)$.</p>
+<p>Let's first on deriving the dual of constrained optimization problems.</p>
+<p>As we shall see later, certain types of unconstrained problems have duals which arise from the <a href="https://en.wikipedia.org/wiki/Convex_conjugate">Fenchel-Legendre Transform</a>. However, in constrained problems, it is the constraints themselves which give rise to duality through the <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian</a>.</p>
+<p>Take the most general form of constrained problem with $m$ inequality and $n$ equality constraints and assume nothing, as of yet, about its convexity. To make the discussion interesting, assume the problem is non-trivial (i.e. its constraint set is non-empty and contains more than one feasible point). Furthermore, so that we may have a solution to speak of, assume the problem is bounded with the finite optimal value of $f_0(x^*)$ for some optimizer $x^*$.</p>
 
 </div>
 </div>
@@ -302,7 +301,7 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The idea is to penalize infeasible choices of $x$ using functions of it that express our <em>displeasure</em> for certain choices.</p>
+<p>The idea is to penalize infeasible choices of $x$ using functions that express our <em>displeasure</em> for certain choices.</p>
 <p>At first we use an <em>infinitely-hard</em> penalty by introducing the indicator functions $\mathbb{1}_-$ and $\mathbb{1}_0$ which are defined as follows:</p>
 
 </div>
