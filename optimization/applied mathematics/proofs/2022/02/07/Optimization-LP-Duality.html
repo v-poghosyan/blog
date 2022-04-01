@@ -277,7 +277,7 @@ window.onload = wrap_img;
 <p>Let us first focus our attention on deriving the dual of a constrained optimization problem.</p>
 <p>For problems of this sort it is the constraints themselves which, through the <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian relaxation</a>, give rise to duality.</p>
 <p>However, as we shall see later, certain types of unconstrained problems also have duals which arise from the <a href="https://en.wikipedia.org/wiki/Convex_conjugate">Fenchel-Legendre Transform</a>.</p>
-<p>Take the most general form of such problem with $m$ inequality and $n$ equality constraints and assume nothing, as of yet, about its convexity. To make the discussion interesting, assume the problem is non-trivial (i.e. its constraint set is non-empty and contains more than one feasible point), and also that it's bounded with a finite optimum $f_0(x^*) = p^*$.</p>
+<p>Take the most general form of such problem with $m$ inequality and $n$ equality constraints and assume nothing, as of yet, about its convexity. To make the discussion interesting, assume the problem is non-trivial (i.e. its constraint set is non-empty and contains more than one feasible point), and also that it's bounded with a finite optimum $f_0(x^*)$.</p>
 
 </div>
 </div>
@@ -364,10 +364,15 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If $x$ is chosen s.t any of the constraints is broken the minimization incurs an infinitely positive penalty. Therefore, such an $x$ will never be selected over a solution that gives a finite value of $f_0(x)$. Moreover, the optimal solution will be $x^*$ s.t. $f_0(x^*)$ is minimal. So $\min_x \mathcal{J}(x)$ is the solution of the original problem. That is:</p>
-$$\min_x \mathcal{J}(x) = f_0(x^*) = p^*$$<p>.</p>
-<p>Furthermore, a minimizer $x^*$ for the original problem is also a minimizer of $\mathcal{J}(x)$. This is because $x^*$ is feasible, so, by definition of $\mathcal{J}$, $\mathcal{J}(x^*) = f_0(x^*)$.</p>
-<p>Thus, the two problems are equivalent and it suffices to optimize $\mathcal{J}(x)$ instead of the original.</p>
+<p>If $x$ is chosen s.t any of the constraints is broken the minimization incurs an infinitely positive penalty. Therefore, such an $x$ will never be selected over a solution that gives a finite value of $f_0(x)$. Moreover, the optimal solution will be $x^*$ s.t. $f_0(x^*)$ is minimal. So $\min_x \mathcal{J}(x)$ is the solution of the original problem. That is: 
+
+$$\min_x \mathcal{J}(x) = f_0(x^*)$$
+</p>
+<p>Furthermore, a minimizer $x^*$ for the original problem is feasible, so $\mathcal{J}(x^*) = f_0(x^*)$ by definition. That is:
+
+$$\mathcal{J}(x^*) = \min_x \mathcal{J}(x)$$
+</p>
+<p>Which shows that not only is $\min_x \mathcal{J}(x)$ the solution to the original problem, but also $x^*$, a minimizer for the original problem, is also a minimizer of $\mathcal{J}(x)$. Thus, the two problems are equivalent and it suffices to optimize $\mathcal{J}(x)$ instead of the original.</p>
 <p>As we know, unconstrained problems can be locally optimized simply by identifying their stationary points using the <em>first-order necessary optimality condition</em>. Once the stationary points are identified, we can evaluate the objective at each and discern the optimizer.</p>
 <p>The first-order necessary optimality condition concerns the directional derivative of the objective function. Namely, it attests that the directional derivative at a local optimizer should be zero in all feasible directions. But <em>all points</em> of an unconstrained problem are, effectively, interior points. Thus, all directions are feasible. So the first-order necessary condition amounts to the gradient being zero at a local optimizer.</p>
 <p>But we cannot find the gradient of $\mathcal{J}(x)$ and set it to zero because the infinitely-hard penalty functions are discontinuous and, therefore also, non-differentiable. $\nabla_x \mathcal{J}(x)$ simply does not exist...</p>
