@@ -321,14 +321,8 @@ $$\mathbb{1}_-(u) =
 \\
 &amp;\infty  &amp;\textrm{if} \ u &gt; 0
 \end{aligned}
-\end{cases}$$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+\end{cases}$$
+<br>
 $$\mathbb{1}_0(u) = 
 \begin{cases}
 \begin{aligned} 
@@ -336,7 +330,8 @@ $$\mathbb{1}_0(u) =
 \\
 &amp;\infty  &amp;\textrm{if} \ u \ne 0
 \end{aligned}
-\end{cases}$$<p><br></p>
+\end{cases}$$
+<br></p>
 
 </div>
 </div>
@@ -375,8 +370,9 @@ $$\mathcal{J}(x) = \begin{cases}\begin{aligned}
 
 $$\min_x \mathcal{J}(x) = f_0(x^*) \tag{1}$$
 </p>
-<p>Moreover, since the minimizer $x^*$ for the original problem is feasible, $\mathcal{J}(x^*) = f_0(x^*)$ by definition. It follows from $(1)$ that:</p>
-$$\mathcal{J}(x^*) = \min_x \mathcal{J}(x) \tag{2.1}$$<p></p>
+<p>Moreover, since the minimizer $x^*$ for the original problem is feasible, $\mathcal{J}(x^*) = f_0(x^*)$ by definition. It follows from $(1)$ that:
+<br>
+$$\mathcal{J}(x^*) = \min_x \mathcal{J}(x) \tag{2.1}$$</p>
 <p>Or, equivalently:</p>
 <p>
 $$x^* = \arg \min_x \mathcal{J}(x)$$
@@ -452,6 +448,7 @@ $$g(\lambda, \mu) \leq f_0(x^*) \ \ \forall \lambda \geq 0, \mu \tag{WD \ 1}$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><br>
 $$
 \begin{aligned}
 \max_{\lambda, \mu} &amp;: g(\lambda, \mu)
@@ -459,6 +456,8 @@ $$
 s.t. &amp;: \lambda \geq  0
 \end{aligned}
 $$
+<br></p>
+
 </div>
 </div>
 </div>
@@ -547,6 +546,8 @@ $$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right
 <h3 id="Game-Theoretic-Interpretation">
 <a class="anchor" href="#Game-Theoretic-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Game-Theoretic Interpretation<a class="anchor-link" href="#Game-Theoretic-Interpretation"> </a>
 </h3>
+<p>THE OUTTER FIXES X, THE INNER RETURNS A FUNCTION IN X. THAT IS WHAT ITS RESPONSE WOULD BE FOR A GIVEN CHOICE OF THE OUTER. SO IT RESTRICTS THE OUTER'S CHOICES.</p>
+<p>IN STRONG DUALITY, THE GAME BEING PLAYED IS INDEPENDENT OF WHO GOES FIRST/SECOND. THE INNER CHOOSES ITS OPTIMAL WHICH IS NOW THE SAME REGARDLESS OF WHAT THE OUTTER FIXES. THAT IS, THE OUTTER IS FREE TO CHOOSE ITS OPTIMAL. THE CHOICES RE THUS INDEPENDENT AND THERE'S NOW WINNING. IT'S A BORING GAME.</p>
 <p>An intuitive way to see the validity of the max-min inequality comes from Game Theory.</p>
 <p>Suppose two players $X$, and $Y$, are playing a game in which player $X$'s goal is to minimize the score $f(X,Y)$ whereas player $Y$'s goal is to maximize it. Suppose, per the rules of the game, player $X$ has the first turn. Player $X$ plays $x$ with no knowledge of how player $Y$ will respond. Player $Y$, then, plays $y(x)$ which is a choice informed by that of player $X$. So player $Y$ has a clear tactical advantage in this game.</p>
 <p>The quintessential example is the game of <em>Rock, Paper, Scissors</em>. The simultaneous game is fair. However, if one player gets to see the other players' choice first, they will win every time.</p>
