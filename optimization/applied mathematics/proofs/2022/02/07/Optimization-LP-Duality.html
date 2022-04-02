@@ -284,7 +284,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$
+$$
 \begin{cases}
 \min_x: f_0(x)
 \\
@@ -293,8 +293,7 @@ s.t.: \begin{aligned} &amp;f_i(x) \leq 0 \ \ i = 1, ...,m
 &amp;h_i(x) = 0 \ \ i = 1, ... ,p
 \end{aligned}
 \end{cases}
-$</p>
-
+$$
 </div>
 </div>
 </div>
@@ -302,7 +301,7 @@ $</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The idea is to penalize infeasible choices of $x$ using functions that express our <em>displeasure</em> for certain choices.</p>
-<p>At first we use an <em>infinitely-hard</em> penalty by introducing the indicator functions $\mathbb{1}_-$ and $\mathbb{1}_0$ which are defined as follows:</p>
+<p>At first we use the <em>infinitely-hard</em> penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$ which are defined as follows:</p>
 
 </div>
 </div>
@@ -310,29 +309,39 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$\mathbb{1}_-(u) = 
+$$\mathbb{1}_-(u) = 
 \begin{cases}
 \begin{aligned} 
 &amp;0  &amp;\textrm{if} \ u \leq 0
 \\
 &amp;\infty  &amp;\textrm{if} \ u &gt; 0
 \end{aligned}
-\end{cases}$</p>
-
+\end{cases}$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$\mathbb{1}_0(u) = 
+$$\mathbb{1}_0(u) = 
 \begin{cases}
 \begin{aligned} 
 &amp;0  &amp;\textrm{if} \ u = 0
 \\
 &amp;\infty  &amp;\textrm{if} \ u \ne 0
 \end{aligned}
-\end{cases}$</p>
+\end{cases}$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Then the equivalent unconstrained problem is: 
+
+$$\min_x: \mathcal{J}(x)$$
+</p>
+<p>where $\mathcal{J}(x) = f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$, which can also be expressed as:</p>
 
 </div>
 </div>
@@ -340,40 +349,30 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Then the equivalent unconstrained problem is:</p>
-<p>$\min_x: \mathcal{J}(x)$</p>
-<p>where $\mathcal{J}(x) = f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$</p>
-<p>This objective can also be expressed as:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$\mathcal{J}(x) = \begin{cases}\begin{aligned} 
+$$\mathcal{J}(x) = \begin{cases}\begin{aligned} 
 &amp;f_0(x) \ \ \textrm{if $x$ is feasible}
 \\
 &amp;\infty \ \ \textrm{otherwise}
-\end{aligned}\end{cases}$</p>
-
+\end{aligned}\end{cases}$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If $x$ is chosen s.t any of the constraints is broken the minimization incurs an infinitely positive penalty. Therefore, such an $x$ will never be selected over a solution that gives a finite value of $f_0(x)$. Moreover, the optimal solution will be $x^*$ s.t. $f_0(x^*)$ is minimal. So $\min_x \mathcal{J}(x)$ is the solution of the original problem. That is: 
+<p>Informally, if $\hat x$ is chosen s.t <em>any</em> of the constraints is broken then the minimization incurs an infinitely positive penalty. Therefore, such a $\hat x$ will never be selected over a solution $x$ that gives a finite value $f_0(x)$. Moreover, since $f_0(x) \leq f_0(x^*) \ \ \forall x$ by optimality of $x^*$ in the original problem, the optimal value will be $f_0(x^*)$.</p>
+<p>Hence: 
 
-$$\min_x \mathcal{J}(x) = f_0(x^*)$$
+$$\min_x \mathcal{J}(x) = f_0(x^*) \tag{1}$$
 </p>
-<p>Furthermore, a minimizer $x^*$ for the original problem is feasible, so $\mathcal{J}(x^*) = f_0(x^*)$ by definition. That is:
-
-$$\mathcal{J}(x^*) = \min_x \mathcal{J}(x)$$
-</p>
-<p>Which shows that not only is $\min_x \mathcal{J}(x)$ the solution to the original problem, but also $x^*$, a minimizer for the original problem, is also a minimizer of $\mathcal{J}(x)$. Thus, the two problems are equivalent and it suffices to optimize $\mathcal{J}(x)$ instead of the original.</p>
-<p>As we know, unconstrained problems can be locally optimized simply by identifying their stationary points using the <em>first-order necessary optimality condition</em>. Once the stationary points are identified, we can evaluate the objective at each and discern the optimizer.</p>
-<p>The first-order necessary optimality condition concerns the directional derivative of the objective function. Namely, it attests that the directional derivative at a local optimizer should be zero in all feasible directions. But <em>all points</em> of an unconstrained problem are, effectively, interior points. Thus, all directions are feasible. So the first-order necessary condition amounts to the gradient being zero at a local optimizer.</p>
+<p>Furthermore, since the minimizer $x^*$ for the original problem is feasible, $\mathcal{J}(x^*) = f_0(x^*)$ by definition. That is:
+$$\mathcal{J}(x^*) = \min_x \mathcal{J}(x) \tag{2} \\ 
+\textrm{or, equivalently} \\ 
+x^* = \arg \min_x \mathcal{J}(x)
+$$</p>
+<p>The first identity (equation $(1)$) shows that it suffices to minimize the unconstrained objective $\mathcal{J}(x)$ instead of the original problem since doing so results in $f_0(x^*)$, the optimal value of the original. The second identity (equation $(2$), on the other hand, says that a minimizer of the unconstrained problem $\mathcal{J}(x)$ is also a minimizer of the original problem. This turns out to be important, since minimizing an unconstrained problem is easier.</p>
+<p>As we know, the local minima of unconstrained problems occur at their stationary points which can be identified using the <em>gradient optimality condition</em>. Once they have been identified, a global minimizer can be observed by evaluating the objective at each.</p>
+<p>The gradient optimality condition concerns the directional derivative of the objective function. Namely, it attests that the directional derivative at a local optimizer should be zero in all feasible directions. But, since <em>all points</em> of an unconstrained problem are interior points, all directions are feasible. So, the gradient condition amounts to the gradient at a local optimizer being zero.</p>
 <p>But we cannot find the gradient of $\mathcal{J}(x)$ and set it to zero because the infinitely-hard penalty functions are discontinuous and, therefore also, non-differentiable. $\nabla_x \mathcal{J}(x)$ simply does not exist...</p>
 <p>To sidestep this difficulty we use linear relaxations instead of $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
 <h2 id="The-Lagrangian,-Dual-Variables,-and-the-Dual-Function">
