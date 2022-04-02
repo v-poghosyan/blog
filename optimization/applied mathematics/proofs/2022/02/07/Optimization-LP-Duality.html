@@ -300,6 +300,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Since minimizing an unconstrained problem is considerably easier, we seek to formulate an unconstrained problem that's equivalent to the original.</p>
 <p>The idea is to penalize infeasible choices of $x$ using functions that express our <em>displeasure</em> for certain choices.</p>
 <p>At first we use the <em>infinitely-hard</em> penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$ which are defined as follows:</p>
 
@@ -337,7 +338,7 @@ $$\mathbb{1}_0(u) =
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Then the equivalent unconstrained problem is: 
+<p>Then the equivalent unconstrained problem is formulated as: 
 
 $$\min_x: \mathcal{J}(x)$$
 </p>
@@ -360,19 +361,23 @@ $$\mathcal{J}(x) = \begin{cases}\begin{aligned}
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Informally, if $\hat x$ is chosen s.t <em>any</em> of the constraints is broken then the minimization incurs an infinitely positive penalty. Therefore, such a $\hat x$ will never be selected over a solution $x$ that gives a finite value $f_0(x)$. Moreover, since $f_0(x) \leq f_0(x^*) \ \ \forall x$ by optimality of $x^*$ in the original problem, the optimal value will be $f_0(x^*)$.</p>
+<p>Informally, if $\hat x$ is chosen s.t <em>one or more</em> of the constraints are broken then the minimization incurs an infinitely positive penalty. Therefore, such a $\hat x$ will never be selected over a feasible choice $x$ that gives a finite value of $f_0(x)$. Moreover, since $f_0(x) \leq f_0(x^*) \ \ \forall x$ by optimality of $x^*$ in the original problem, the optimal value will be $f_0(x^*)$.</p>
 <p>Hence: 
 
 $$\min_x \mathcal{J}(x) = f_0(x^*) \tag{1}$$
 </p>
 <p>Furthermore, since the minimizer $x^*$ for the original problem is feasible, $\mathcal{J}(x^*) = f_0(x^*)$ by definition. That is:
-$$\mathcal{J}(x^*) = \min_x \mathcal{J}(x) \tag{2} \\ 
-\textrm{or, equivalently} \\ 
+$$\mathcal{J}(x^*) = \min_x \mathcal{J}(x) \tag{2} 
+\\ 
+\\
+\textrm{or, equivalently} 
+\\ 
+\\
 x^* = \arg \min_x \mathcal{J}(x)
 $$</p>
-<p>The first identity (equation $(1)$) shows that it suffices to minimize the unconstrained objective $\mathcal{J}(x)$ instead of the original problem since doing so results in $f_0(x^*)$, the optimal value of the original. The second identity (equation $(2$), on the other hand, says that a minimizer of the unconstrained problem $\mathcal{J}(x)$ is also a minimizer of the original problem. This turns out to be important, since minimizing an unconstrained problem is easier.</p>
-<p>As we know, the local minima of unconstrained problems occur at their stationary points which can be identified using the <em>gradient optimality condition</em>. Once identified, a global minimizer can be observed by evaluating the objective at each stationary point.</p>
-<p>But we cannot find the gradient of $\mathcal{J}(x)$ and set it to zero because the infinitely-hard penalty functions are discontinuous and, therefore also, non-differentiable. That is, $\nabla \mathcal{J}(x)$ simply does not exist.</p>
+<p>Identity $(1)$ shows that it suffices to minimize the unconstrained objective $\mathcal{J}(x)$ instead of the original problem since doing so results in $f_0(x^*)$, the optimal value of the original. Identity $(2)$, on the other hand, says that it suffices to find a minimizer $x^*$ of the unconstrained problem $\mathcal{J}(x)$, since such a point will also be a minimizer of the original.</p>
+<p>As we know, the local minima of unconstrained problems occur at their stationary points which can be identified easily using the <em>gradient optimality condition</em>. Once identified, a global minimizer can be identified among the stationary points by evaluating the objective at each.</p>
+<p>But we're immediately beset by a problem. We cannot find the gradient of $\mathcal{J}(x)$ and set it to zero because the infinitely-hard penalty functions are discontinuous and non-differentiable. That is, $\nabla \mathcal{J}(x)$ simply does not exist.</p>
 <p>To sidestep this difficulty we use linear relaxations instead of $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
 <h2 id="The-Lagrangian,-Dual-Variables,-and-the-Dual-Function">
 <a class="anchor" href="#The-Lagrangian,-Dual-Variables,-and-the-Dual-Function" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrangian, Dual Variables, and the Dual Function<a class="anchor-link" href="#The-Lagrangian,-Dual-Variables,-and-the-Dual-Function"> </a>
