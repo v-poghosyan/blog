@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      39 min read
+      38 min read
     
 </span></p>
 
@@ -165,12 +165,10 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#The-Lagrange-Dual-Problem">The Lagrange Dual Problem </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#Weak-Duality">Weak Duality </a>
+<li class="toc-entry toc-h1"><a href="#Weak-Duality-and-Interpretations">Weak Duality and Interpretations </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#The-Max-Min-Characterization">The Max-Min Characterization </a></li>
-<li class="toc-entry toc-h2"><a href="#Max-Min-Inequality-and-its-Interpretations">Max-Min Inequality and its Interpretations </a>
+<li class="toc-entry toc-h2"><a href="#The-Max-Min-Inequality">The Max-Min Inequality </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#The-Max-Min-Inequality">The Max-Min Inequality </a></li>
 <li class="toc-entry toc-h3"><a href="#Game-Theoretic-Interpretation">Game-Theoretic Interpretation </a></li>
 </ul>
 </li>
@@ -293,7 +291,7 @@ s.t. &amp;: \begin{aligned} &amp;f_i(x) \leq 0 \ \ i = 1, ...,m
 \\ 
 &amp;h_i(x) = 0 \ \ i = 1, ... ,p
 \end{aligned}
-\end{aligned}
+\end{aligned} \tag{P}
 $$
 <br></p>
 
@@ -375,7 +373,7 @@ $$\min_x \mathcal{J}(x) = f_0(x^*) \tag{1}$$
 $$\mathcal{J}(x^*) = \min_x \mathcal{J}(x) \tag{2.1}$$</p>
 <p>Or, equivalently:</p>
 <p>
-$$x^* = \arg \min_x \mathcal{J}(x)$$
+$$x^* = \arg \min_x \mathcal{J}(x) \tag{2.2}$$
 </p>
 <p>Identity $(1)$ shows that it suffices to minimize the unconstrained objective $\mathcal{J}(x)$ instead of the original problem since doing so results in $f_0(x^*)$, the optimal value of the original. $(2.1)$ and $(2.2)$, on the other hand, show that it suffices to find a minimizer $x^*$ of the unconstrained problem, since such a point will also be a minimizer of the original problem.</p>
 <p>As we know, the local minima of unconstrained problems occur at their stationary points which can be identified easily using the <em>gradient optimality condition</em>. Once identified, a global minimizer can be identified among the stationary points by evaluating the objective at each such point.</p>
@@ -384,10 +382,13 @@ $$x^* = \arg \min_x \mathcal{J}(x)$$
 <h2 id="The-Lagrangian,-Dual-Variables,-and-the-Dual-Function">
 <a class="anchor" href="#The-Lagrangian,-Dual-Variables,-and-the-Dual-Function" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrangian, Dual Variables, and the Dual Function<a class="anchor-link" href="#The-Lagrangian,-Dual-Variables,-and-the-Dual-Function"> </a>
 </h2>
-<p>The <em>Lagrangian linear relaxation</em>, sometimes simply referred to as the <em>Lagrangian</em>, is:</p>
-<p>
-$$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=1}^p \mu_i h_i(x) \ \ \textrm{where} \ \lambda \geq 0$$
-</p>
+<p>The <em>Lagrangian linear relaxation</em>, sometimes simply referred to as the <em>Lagrangian</em>, is: 
+<br>
+
+$$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=1}^p \mu_i h_i(x)$$
+
+<br>
+$$\textrm{where} \ \lambda \geq 0$$</p>
 <p>We call the $\lambda_i$'s the <em>Lagrange multipliers</em> corresponding to the inequality constraints, and the $\mu_i$'s those corresponding to the equality constraints. The vectors $\lambda$ and $\mu$, composed of the lagrange multipliers, are called the <em>Lagrange multiplier vectors</em> or, for reasons that will soon become apparent, the <em>dual variables</em>. 
 </p>
 <div class="flash">
@@ -423,12 +424,12 @@ $$\min_x \mathcal{L}(x,\lambda,\mu) \leq J(x^*) \ \ \forall \lambda \geq 0, \mu$
 
 $$\min_x \mathcal{L}(x,\lambda,\mu) \leq f_0(x^*) \ \ \forall \lambda \geq 0, \mu \tag{3.2}$$
 </p>
-<p>Designating the original problem as the <em>primal</em>, we call $g(\lambda, \mu) := \min_x \mathcal{L}(x, \lambda, \mu)$ the <em>dual function</em> because it represents a lower-bound on the primal optimal value $f_0(x^*)$, which is what we require of a dual.</p>
+<p>Designating the original problem as the <em>primal</em> $(P)$, we call $g(\lambda, \mu) := \min_x \mathcal{L}(x, \lambda, \mu)$ the <em>dual function</em> because it represents a lower-bound on the primal optimal value $f_0(x^*)$, which is what we require of a dual.</p>
 <p>The inequality $(3.2)$ obtains the first formulation of Weak Duality as:</p>
 <p>
-$$g(\lambda, \mu) \leq f_0(x^*) \ \ \forall \lambda \geq 0, \mu \tag{WD \ 1}$$
+$$g(\lambda, \mu) \leq f_0(x^*) \ \ \forall \lambda \geq 0, \mu \tag{WD - 1}$$
 </p>
-<p>From here we move, quite naturally, to defining the <em>dual problem</em>.</p>
+<p>From here we move, quite naturally, to defining the <em>dual problem</em> $(D)$.</p>
 
 </div>
 </div>
@@ -454,7 +455,7 @@ $$
 \max_{\lambda, \mu} &amp;: g(\lambda, \mu)
 \\
 s.t. &amp;: \lambda \geq  0
-\end{aligned}
+\end{aligned} \tag{D}
 $$
 <br></p>
 
@@ -464,7 +465,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Looking at the above, it becomes obvious why we called $\lambda$, and $\mu$ the dual variables. They are the variables of the dual problem.</p>
+<p>Looking at the above, it becomes obvious why we were motivated to call $\lambda$, and $\mu$ the <em>dual variables</em>. They are the variables of the dual problem.</p>
 
 </div>
 </div>
@@ -472,40 +473,40 @@ $$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Weak-Duality">
-<a class="anchor" href="#Weak-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality<a class="anchor-link" href="#Weak-Duality"> </a>
+<h1 id="Weak-Duality-and-Interpretations">
+<a class="anchor" href="#Weak-Duality-and-Interpretations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality and Interpretations<a class="anchor-link" href="#Weak-Duality-and-Interpretations"> </a>
 </h1>
-<p>We've seen Weak Duality formulated as $(WD \ 1)$ before, but there's a more symmetric formulation that harkens back to the <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality">max-min inequality</a>.</p>
-<p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal. Then, from $(WD \ 1)$, we have Weak Duality in terms of the dual optimal value $g(\lambda^*, \mu^*)$ as:
+<p>We've already seen Weak Duality formulated as $(WD - 1)$, but there's a more symmetric formulation of Weak Duality as a <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality">Max-Min Inequality</a> which can be proven through a non-optimization lens.</p>
+<p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal. Then, from $(WD - 1)$, we have Weak Duality in terms of the dual optimal value $g(\lambda^*, \mu^*)$ as:
 <br>
 $$
-g(\lambda^*, \mu^*) &amp;\leq f_0(x^*)
+g(\lambda^*, \mu^*) \leq f_0(x^*) \tag{WD - 2}
 $$</p>
-<p>But, since $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$,   $g(\lambda^*, \mu^*) = $</p>
-<h2 id="The-Max-Min-Characterization">
-<a class="anchor" href="#The-Max-Min-Characterization" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Max-Min Characterization<a class="anchor-link" href="#The-Max-Min-Characterization"> </a>
-</h2>
-<p>Since $g(\lambda, \mu) := \min_{x} \mathcal{L}(x, \lambda, \mu)$. The dual optimal, as can be seen from the dual problem, is:
-$$d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \tag{3}$$</p>
-<p>We will now see that the primal optimal can be similarly expressed as:</p>
-<p>
-$$p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{4}$$
+<p>But since $g(\lambda^*, \mu^*)$ is the solution to the dual $(D)$, and $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$:
+<br>
+
+$$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\} \tag{4.1}$$
 </p>
-<p>To see this note that, for a fixed $x$, maximizing the Lagrangian over $\lambda \geq 0$ and $\mu$ recovers $\mathcal{J}(x)$ — the unconstrained problem with the infinitely-hard penalty. 
-That is:</p>
-<p>
-$$\max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) = \mathcal{J}(x) \ \ \forall x \tag{5}$$
+<p>Similarly, it can be shown that: 
+<br>
+
+$$f_0(x^*) = \min_x \left\{ \max_{\lambda \geq 0, mu} \mathcal{L}(x, \lambda, \mu) \right\} \tag{4.2}$$
 </p>
-<p>To prove this claim, fix $x$ and consider two possibilities. If all inequality constraints are respected, that is $f_i(x) \leq 0$ $\forall i$, then, in order to maximize $\mathcal{L}$, the best we can do is set $\lambda_i = 0$ $\forall i$ which results in the optimal value $f_0(x)$. In case when <em>any</em> inequality constraint is violated, that is $f_i(x) &gt; 0$ for some $i$, the result of maximizing $\mathcal{L}$ is $\infty$ by choosing $\lambda_i \rightarrow \infty$ and $\lambda_j = 0$ $\forall j \ne i$.</p>
-<p>Using similar logic, if all equality constraints are respected then $h_i(x) = 0$ $\forall i$. In this case any choice of $\mu$ results in $J(x) = f_0(x)$. If, on the other hand, some equality constraint is violated then $h_i(x) \ne 0$ for some $i$. By choosing $\mu \rightarrow \pm \infty$, where the sign depends on the direction of the violation, the result can be made $\infty$.</p>
-<p>Minimizing equation $(5)$ over $x$ yields:</p>
-<p>
-$$ \min_x \mathcal{J}(x) = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) \right\}$$
-</p>
-<p>But $\min_x \mathcal{J}(x) = p^*$, concluding the proof of claim $(4)$.</p>
-<p>This gives us a way to express Weak Duality in a more symmetric way.</p>
-<p>
-$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{WD 3}$$
+<p>To see this, note that for some $x$ fixed by the outer minimizer, maximizing the Lagrangian over $\lambda \geq 0$ and $\mu$ recovers $\mathcal{J}(x)$.</p>
+<p>If all inequality constraints are respected, that is $f_i(x) \leq 0$ $\forall i$, then, in order to maximize the Lagrangian, the best we can do is set $\lambda_i = 0$ $\forall i$. In case when <em>any</em> inequality constraint is violated, that is $f_i(x) &gt; 0$ for some $i$, the result of maximizing the Lagrangian can be made $\infty$ by choosing $\lambda_i \rightarrow \infty$ and $\lambda_j = 0$ $\forall j \ne i$.</p>
+<p>Using similar logic, if all equality constraints are respected then $h_i(x) = 0$ $\forall i$. In this case $\mu_i$ can be chosen to be any value. If, on the other hand, some equality constraint is violated then $h_i(x) \ne 0$ for some $i$. By choosing $\mu_i \rightarrow \pm \infty$, where the sign depends on the direction of the violation, the result can be made $\infty$.</p>
+<p>Thus we have shown that: 
+<br>
+$$\begin{aligned}\max_{\lambda \geq 0, \mu} \mathcal{L}(x,\lambda,\mu) &amp;= \begin{cases}\begin{aligned} 
+&amp;f_0(x) \ \ \textrm{if $x$ is feasible}
+\\
+&amp;\infty \ \ \textrm{otherwise}
+\end{aligned}\end{cases} \\ &amp;= \mathcal{J}(x)\end{aligned}$$</p>
+<p>But, since $x^*$ is the solution to the primal $(P)$, and minimizing the latter was shown to be an equivalent problem to minimizing the unconstrained objective $\mathcal{J}(x)$, we have $(4.2)$ as promised.</p>
+<p>Then, Weak Duality can be stated in yet another form as:
+<br>
+
+$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, mu} \mathcal{L}(x, \lambda, \mu) \right\} \tag{WD - 3}$$
 </p>
 
 </div>
@@ -514,75 +515,59 @@ $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Max-Min-Inequality-and-its-Interpretations">
-<a class="anchor" href="#Max-Min-Inequality-and-its-Interpretations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Max-Min Inequality and its Interpretations<a class="anchor-link" href="#Max-Min-Inequality-and-its-Interpretations"> </a>
-</h2>
-<p>Weak Duality can also be derived through a non-optimization lens using the quantities</p>
-<p>
-$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} \ \ \textrm{and} \ \ \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
-</p>
-<p>by using the <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality">max-min inequality</a>.</p>
-<h3 id="The-Max-Min-Inequality">
+<h2 id="The-Max-Min-Inequality">
 <a class="anchor" href="#The-Max-Min-Inequality" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Max-Min Inequality<a class="anchor-link" href="#The-Max-Min-Inequality"> </a>
-</h3>
-<p>The max-min inequality makes no assumptions about the function. It's simply true for all functions of the form $f: X \times Y \rightarrow \mathbb{R}$, and it states that:
+</h2>
+<p>The Max-Min Inequality makes no assumptions about the function. It's simply true for all functions of the form $f: X \times Y \rightarrow \mathbb{R}$, and it states that:
+<br>
 $$
-\inf_{y\in Y} \left\{ \sup_{x\in X} f(x,y) \right\} \geq \sup_{x\in X} \left\{ \inf_{y\in Y} f(x,y) \right\}
+\sup_{x\in X} \left\{ \inf_{y\in Y} f(x,y) \right\} \leq \inf_{y\in Y} \left\{ \sup_{x\in X} f(x,y) \right\}
 $$</p>
-<p>Since no assumption is made on $f$, the inequality certainly also holds for $\mathcal{L}$. And, since we're in the special case where the optima are assumed to exist, the functions  attain the optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$. This results in the symmetric formulation of Weak Duality as stated above.</p>
-<p>All that remains in establishing Weak Duality is to prove the max-min inequality.</p>
+<p>Since no assumption is made on $f$, the inequality certainly also holds for the Lagrangian, $\mathcal{L}$. And, since we're in the special case where the optimal values of the primal $(P)$ and the dual $(D)$ are assumed to exist, the functions attain the respective optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$ which obtains the symmetric formulation of Weak Duality $(WD - 3)$ as stated above.</p>
+<p>So, we can establish Weak Duality through a non-optimization lens by proving the Max-Min Inequality, which is what we do now.</p>
 <p>For any $f$, and $x \in X$, $y \in Y$ we have:
 
-$$f(x,y) \geq \min_x f(x,y) \ \ \forall y$$
+$$f(x,y) \leq \sup_y f(x,y) \ \ \forall x$$
 
-The right hand side is now only a function of $y$, so maximizing both sides w.r.t. $y$ yields: 
+The right hand side is now only a function of $x$, so minimizing both sides w.r.t. $x$ yields: 
 
-$$ \max_y f(x,y) \geq \max_y \left\{ \min_x f(x,y) \right\} \ \ \forall x$$
+$$ \inf_x f(x,y) \leq \inf_x \left\{ \sup_y f(x,y) \right\} \ \ \forall y$$
 
-The right hand side is now a constant, so minimizing both sides w.r.t. $x$ results in the desired conclusion.
+The right hand side is now a constant, so maximizing both sides w.r.t. $y$ results in the desired conclusion.
+<br>
 
-$$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \min_x f(x,y) \right\}$$
+$$\sup_y \left\{ \inf_x f(x,y) \right\} \leq \inf_x \left\{ \sup_y f(x,y) \right\}$$
 </p>
 <h3 id="Game-Theoretic-Interpretation">
 <a class="anchor" href="#Game-Theoretic-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Game-Theoretic Interpretation<a class="anchor-link" href="#Game-Theoretic-Interpretation"> </a>
 </h3>
-<p>THE OUTTER FIXES X, THE INNER RETURNS A FUNCTION IN X. THAT IS WHAT ITS RESPONSE WOULD BE FOR A GIVEN CHOICE OF THE OUTER. SO IT RESTRICTS THE OUTER'S CHOICES.</p>
-<p>IN STRONG DUALITY, THE GAME BEING PLAYED IS INDEPENDENT OF WHO GOES FIRST/SECOND. THE INNER CHOOSES ITS OPTIMAL WHICH IS NOW THE SAME REGARDLESS OF WHAT THE OUTTER FIXES. THAT IS, THE OUTTER IS FREE TO CHOOSE ITS OPTIMAL. THE CHOICES RE THUS INDEPENDENT AND THERE'S NOW WINNING. IT'S A BORING GAME.</p>
-<p>An intuitive way to see the validity of the max-min inequality comes from Game Theory.</p>
-<p>Suppose two players $X$, and $Y$, are playing a game in which player $X$'s goal is to minimize the score $f(X,Y)$ whereas player $Y$'s goal is to maximize it. Suppose, per the rules of the game, player $X$ has the first turn. Player $X$ plays $x$ with no knowledge of how player $Y$ will respond. Player $Y$, then, plays $y(x)$ which is a choice informed by that of player $X$. So player $Y$ has a clear tactical advantage in this game.</p>
-<p>The quintessential example is the game of <em>Rock, Paper, Scissors</em>. The simultaneous game is fair. However, if one player gets to see the other players' choice first, they will win every time.</p>
-<p>Conversely, If a second game is played such that player $Y$ goes first, the advantage lies with player $X$.</p>
-<p>Formally, suppose the game is described by $f(x,y)$ where $x$ and $y$ represent the choices available to players $X$ and $Y$ respectively.</p>
-<p>The score of the first game will be $\min_x \left\{ \max_y f(x,y) \right\}$.</p>
-<p>Similarly, in the second game the score will be $\max_y \left\{ \max_x f(x,y) \right\}$.</p>
-<p>Since player $Y$, whose goal is to maximize the score, has an advantage in the first game, we have the max-min inequality</p>
-<p>
-$$\min_x \left\{ \max_y f(x,y) \right\} \geq \max_y \left\{ \max_x f(x,y) \right\}$$
-</p>
+<p>The Max-Min Inequality is perhaps best understood intuitively as the following game between two adversarial optimizers. The LHS of the Max-Min Inequality can be interpreted as the following game.</p>
+<p>First, the outer maximizer fixes a $y$. Then, the inner minimizer chooses $x_y = \arg \inf_x f(x,y)$ which depends on the outer's choice of $y$. Suppose $y^* \arg \inf_y f(x,y)$ is what the outer maximizer's choice would have been were it to act independently of the actions of the inner minimizer. We can imagine a scenario in which the score $f(x_{y^*}, y^*)$ is less than the score $f(x_y, y)$ for some other choice of $y$. So, the outer maximizer cannot do as well as it would've done independently, whereas the inner minimizer is free to do its best. Hence, the inner minimizer (i.e. the second player) restricts the choices of the outer maximizer (the first player).</p>
+<p>So, if the goal is to score low, then the second player has the advantage. This is exactly what the Max-Min Inequality says.</p>
+<p>The quintessential example is the game of <em>Rock, Paper, Scissors</em>. It's a simultaneous game, which is what makes it fair, however, if it's played in turns, the second player always has the advantage.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Strong-Duality">
 <a class="anchor" href="#Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Strong Duality<a class="anchor-link" href="#Strong-Duality"> </a>
 </h1>
-<p>Strong Duality is the case in which the primal and the dual optima agree. That is:</p>
+<p>Strong Duality is the case in which the primal and the dual optimal values agree with strict equality. 
+<br>
 $$
-\begin{aligned}
-g(\lambda^*, \mu^*) &amp;= \mathcal{J}(x^*) \\
-&amp;\textrm{or} \\
-p^* &amp;= d^*
-\end{aligned} \tag{SD 1}
-$$<p>Alternatively, in its max-min characterization:</p>
-<p>
-$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{SD 2}$$
-</p>
+g(\lambda^*, \mu^*) = f_0(x^*) \tag{SD - 1}
+$$</p>
+<p>Alternatively, in its Max-Min characterization:
+<b>
+
+$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{SD-2}$$
+&lt;/p&gt;
+</b></p>
 <p>Optimization problems that exhibit this property are called Strongly Dual.</p>
-<p>As mentioned in the introduction, Strong Duality gives us the ability to solve a related, possibly easier, optimization problem. As we shall see it also gives us powerful optimality conditions. So, knowing in advance whether or not a problem is Strongly Dual will be beneficial to us.</p>
-<p>All linear programs are Strongly Dual as we will prove. When it comes to non-linear optimization, however, Strong Duality is not guaranteed. The good news is that sufficient conditions for Strong Duality exist and we will give them shortly.</p>
+<p>As mentioned briefly in the introduction, Strong Duality gives applied scientists the ability to solve a related, possibly easier, optimization problem instead of the original, possibly difficult, one. As we shall see it also obtains powerful optimality conditions. For these reasons and more, knowing in advance whether or not a problem is Strongly Dual will be useful to us.</p>
+<p>We will see that all linear programs are Strongly Dual, but, when it comes to non-linear optimization, Strong Duality is not a general guarantee. The good news is that sufficient conditions for Strong Duality do exist, and we will provide them shortly.</p>
 <h2 id="An-Easier-Dual-Problem">
 <a class="anchor" href="#An-Easier-Dual-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>An Easier Dual Problem<a class="anchor-link" href="#An-Easier-Dual-Problem"> </a>
 </h2>
@@ -685,9 +670,9 @@ $$<p>To see why the last inequality holds, note that $\sum_{i=1}^p \mu_i^* h_i(x
 <br></p>
 </blockquote>
 
-</div>
-</div>
-</div>
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -1140,8 +1125,12 @@ $$\sum_i \left(b_i - \sum_j a_{ij}x_j \right)p_i + \sum_j \left( \sum_i a_{ij}p_
 </div>
 </div>
 </div>
-</div>
+&lt;/div&gt;
+ 
 
+</div>
+</div></div>
+</div>
 
 
   </div><!-- from https://github.com/utterance/utterances -->
