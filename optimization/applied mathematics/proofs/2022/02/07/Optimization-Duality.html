@@ -179,13 +179,14 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#An-Easier-Dual-Problem">An Easier Dual Problem </a></li>
 <li class="toc-entry toc-h2"><a href="#Optimality-Conditions">Optimality Conditions </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Stationarity-Condition">Stationarity Condition </a></li>
+<li class="toc-entry toc-h3"><a href="#Stationarity-Condition">Stationarity Condition </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Proof-of-Stationarity-Condition">Proof of Stationarity Condition </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#Optimality-Conditions">Optimality Conditions </a>
-<ul>
 <li class="toc-entry toc-h3"><a href="#Complementary-Slackness">Complementary Slackness </a>
 <ul>
+<li class="toc-entry toc-h4"><a href="#Proof-of-Complementary-Slackness">Proof of Complementary Slackness </a></li>
 <li class="toc-entry toc-h4"><a href="#Economic-Intuition-of-Complementary-Slackness">Economic Intuition of Complementary Slackness </a></li>
 </ul>
 </li>
@@ -595,7 +596,7 @@ $$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x
 <a class="anchor" href="#Optimality-Conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimality Conditions<a class="anchor-link" href="#Optimality-Conditions"> </a>
 </h2>
 <p>Strong Duality obtains powerful optimality conditions known as <em>Stationarity Condition</em> and <em>Complementary Slackness</em>. These are often collected into the <a href="https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions"><em>Karush–Kuhn–Tucker (KKT) Conditions</em></a>.</p>
-<p>We will see that in the absence of Strong Duality the KKT Conditions are necessary but insufficient for optimality. However, for problems which are Strongly Dual the KKT Conditions become a <em>certificate of optimality</em>. That is, they are both necessary and sufficient.</p>
+<p>In the absence of Strong Duality the KKT Conditions are necessary but insufficient for optimality. However, for problems which are Strongly Dual the KKT Conditions become a <em>certificate of optimality</em>. That is, they are both necessary and sufficient.</p>
 <h3 id="Stationarity-Condition">
 <a class="anchor" href="#Stationarity-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stationarity Condition<a class="anchor-link" href="#Stationarity-Condition"> </a>
 </h3>
@@ -604,56 +605,79 @@ $$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x
 
 $$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$$
 </p>
-<p>We said that deriving the dual function and then solving the dual problem obtains the primal optimal value by Strong Duality. But we said nothing about the minimizer $x = \arg \min_x \mathcal{L} (x, \lambda, \mu)$ itself.</p>
-<p>Turns out, if Strong Duality holds with $x^*$ and $(\lambda^*, \mu^*)$ being primal-dual optimal, then: 
+<p>We mentioned that deriving the dual function, and then solving the dual problem obtains the primal optimal value $f_0(x^*)$ by Strong Duality. But we said nothing about the minimizer $x_{\lambda, \mu} = \arg \min_x \mathcal{L} (x, \lambda, \mu)$ itself.</p>
+<p>Turns out, if Strong Duality holds with $x^*$ and $(\lambda^*, \mu^*)$ being primal-dual optimal, then $x^* = x_{\lambda^*, \mu^*}$. That is, if the outer maximizer fixes $(\lambda^*, \mu^*)$ then the inner minimizer's choice of $x$ is the none other than the primal optimal $x^*$.</p>
+<p>In other words, the primal optimal $x^*$ is also a stationary point of the Lagrangian at $(\lambda^*,\mu^*)$. That is:
 <br>
 $$\arg \min_x \mathcal{L} (x, \lambda^*, \mu^*) = x^* \tag{5.1}$$</p>
-<p>That is, a stationary point of the Lagrangian at $(\lambda^*,\mu^*)$ is also primal optimal.</p>
-<p>This is the proverbial gold we've been digging for. Recall that our initial goal in defining $\mathcal{J}$ and then relaxing it to $\mathcal{L}$ was to transform the original constrained problem into an unconstrained one solvable using the gradient optimality condition. ${5.1)$ says we can, theoretically, do that. We can find the optimizer $x^*$ of the original constrained problem by minimizing the unconstrained objective $\mathcal{L}(x, \lambda^*, \mu^*)$.</p>
-<p>In practice, however, $(5.1)$ only gives us a way to solve for a primal optimal $x^*$ directly if a dual optimal $(\lambda^*, \mu^*)$ is already known. That is, any time the dual problem is easier to solve that the primal.</p>
-<p>More generally, $(5.1)$ gives us a way to check if a pair $x^*$, $(\lambda^*,\mu^*)$ is primal-dual optimal – an optimality condition known as <em>Stationarity Condition</em>.</p>
-<p>First, let's prove $(5.1)$.</p>
-<p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal. If the outer maximizer fixes</p>
-<p>The following point-wise inequality holds in general since the LHS is a minimization over $x$ and the RHS is a maximization over $(\lambda, \mu)$.
+<p>Or, equivalently:
 <br>
 
-$$g(\lambda, \mu) \leq \mathcal{L}(x, \lambda, \mu) \leq \mathcal{J}(x) \ \ \forall x, \lambda \geq 0, \mu \tag{6}$$
+$$\min_x \mathcal{L}(x, \lambda^*, \mu^*) = \mathcal{L}(x^*, \lambda^*, \mu^*) \tag{5.2}$$
 </p>
-<p>The point-wise inequality $(6)$ is true in general since, for any $f: X \rightarrow Y$, $\min_x f(x,y) \leq f(x,y) \leq \max_y f(x,y)$. It is also, in particular, true for the primal-dual optimal pair $x^*$, and $(\lambda^*, \mu^*)$. That is:</p>
-<p>
-$$g(\lambda^*, \mu^*) \leq \mathcal{L}(x^*, \lambda^*, \mu^*) \leq \mathcal{J}(x^*)$$
+<p>This is what we've been looking for. Recall that the original motivation in defining the unconstrained objective $\mathcal{J}$ and then relaxing it to $\mathcal{L}$ was to transform the constrained problem into an unconstrained one that was solvable using the gradient optimality condition. ${5.1)$ and $(5.2)$ say we can do just that. We can find the optimizer $x^*$ of the original constrained problem by minimizing the unconstrained objective $\mathcal{L}(x, \lambda^*, \mu^*)$.</p>
+<p>In practice, however, $(5.1)$ and $(5.2)$ only give us a way to solve for a primal optimal $x^*$ directly if a dual optimal $(\lambda^*, \mu^*)$ is already known. That is, any time the dual problem is easier to solve than the primal.</p>
+<p>More generally, this fact gives us a way to check if a pair $(x^*,(\lambda^*,\mu^*))$ is primal-dual optimal – an optimality condition known as <em>Stationarity Condition</em> $(SC)$.</p>
+<blockquote>
+<p><strong>Stationarity Condition (SC):</strong>   Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal for a Strongly Dual problem. Then:$$\nabla_x f_0(x^*) + \sum_i^m \lambda^*_i\nabla_xf_i(x^*) + \sum_{i=1}^p \mu^*_i\nabla_xh_i(x^*) = 0$$.
+<br></p>
+</blockquote>
+<p>We can get $(SC)$ by applying the gradient optimality condition to $\mathcal{L}(x, \lambda^*, \mu^*)$. In doing so, we obtain:
+<br>
+$$\nabla_x \mathcal{L} (x^*, \lambda^*, \mu^*) = 0$$</p>
+<p>Then, expanding the LHS gives:
+<br>
+$$\nabla_x f_0(x^*) + \sum_i^m \lambda^*_i\nabla_xf_i(x^*) + \sum_{i=1}^p \mu^*_i\nabla_xh_i(x^*) = 0 \tag{SC}$$</p>
+<p>For the sake of completeness, since we stated it without offering a proof, let's prove the equivalent claims $(5.1)$ and $(5.2)$ from which $(SC)$ ultimately follows.</p>
+<h4 id="Proof-of-Stationarity-Condition">
+<a class="anchor" href="#Proof-of-Stationarity-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Stationarity Condition<a class="anchor-link" href="#Proof-of-Stationarity-Condition"> </a>
+</h4>
+<p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal for a Strongly Dual problem as in the hypothesis.</p>
+<p>The following point-wise inequality holds in general since the LHS is a minimization over $x$ and the RHS is a maximization over $(\lambda, \mu)$ of the Lagrangian.
+<br>
+
+$$g(\lambda, \mu) \leq \mathcal{L}(x, \lambda, \mu) \leq \mathcal{J}(x) \ \ \forall x, \lambda \geq 0, \mu \tag{6.1}$$
 </p>
-<p>However, by $(SD \ 1)$, $g(\lambda^*, \mu^*) = \mathcal{J}(x^*)$.</p>
-<p>This forces $\mathcal{L}(x^*, \lambda^*, \mu^*) = g(\lambda^*, \mu^*) = \min_x \mathcal{L}(x, \lambda^*, \mu^*)$, which says exactly that $x^*$ is a minimizer of $\min_x \mathcal{L}(x, \lambda^*, \mu^*)$.</p>
-<p>So, once we have $\lambda^*$ and $\mu^*$ which, as mentioned above, are easy to find, we can use the method of unconstrained optimization on $\mathcal{L}(x,\lambda^*, \mu^*)$ to find $x^*$. This is the way to solve the dual and, as we can see, it's an easier problem than solving the primal directly which involves minimizing $\mathcal{J}(x)$.</p>
-<p>In conclusion, Strong Duality gives us an easier way to solve the original problem. However, if it fails to hold not all hope is lost... By solving the dual problem we can still obtain a useful lower bound for the primal optimal value through Weak Duality.</p>
-<h2 id="Optimality-Conditions">
-<a class="anchor" href="#Optimality-Conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimality Conditions<a class="anchor-link" href="#Optimality-Conditions"> </a>
-</h2>
-<p>Strong Duality obtains powerful optimality conditions known as <em>Complementary Slackness</em> and <em>Stationarity Condition</em>. These are often collected into the mantle of <a href="https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions"><em>Karush–Kuhn–Tucker (KKT) Conditions</em></a>, which is simply Complementary Slackness, Stationarity Condition, and feasibility conditions of optimal solutions put together.</p>
-<p>In the absence of Strong Duality, the KKT Conditions are necessary, but insufficient, for optimality. However, for Strongly Dual problems the KKT Conditions become a <em>certificate of optimality</em>. That is, they are both necessary and sufficient for optimality.</p>
+<p>It is also, in particular, true for the primal-dual optimal pair. That is: 
+<br>
+
+$$g(\lambda^*, \mu^*) \leq \mathcal{L}(x^*, \lambda^*, \mu^*) \leq \mathcal{J}(x^*) \tag{6.2}$$
+</p>
+<p>However, $\mathcal{J}(x^*) = f_0(x^*)$ and, by $(SD \ 1)$, $g(\lambda^*, \mu^*) = f_0(x^*)$.</p>
+<p>Then $(6.2)$ is forced to be: 
+<br>
+$$\mathcal{L}(x^*, \lambda^*, \mu^*) = g(\lambda^*, \mu^*) \tag{6.3}$$</p>
+<p>Substituting, the definition of the dual function for the RHS of $(6.3)$, we get:
+<br>
+$$\mathcal{L}(x^*, \lambda^*, \mu^*) = \min_x \mathcal{L}(x, \lambda^*, \mu^*)$$</p>
+<p>Which is exactly $(5.2)$.</p>
 <h3 id="Complementary-Slackness">
 <a class="anchor" href="#Complementary-Slackness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Complementary Slackness<a class="anchor-link" href="#Complementary-Slackness"> </a>
 </h3>
-<p>Strong Duality gives gives the following optimality condition.</p>
+<p>Strong Duality also gives another optimality condition known as <em>Complementary Slackness</em> $(CS)$.</p>
 <blockquote>
-<p><strong>Complementary Slackness:</strong>   Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal for a Strongly Dual problem. Then $\lambda^*_i f_i(x^*) = 0 \ \ \forall i$.<br></p>
+<p><strong>Complementary Slackness (CS):</strong>   Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal for a Strongly Dual problem. Then $\lambda^*_i f_i(x^*) = 0 \ \ \forall i$.<br></p>
 </blockquote>
-<p>Informally, if a primal constraint at an optimal $x^*$ is <em>loose</em>, that is $f_i(x^*) \ne 0$, then its corresponding dual variable $\lambda^*_i$ in the optimal dual solution $\lambda^*$ must be zero. Conversely, if the dual variable $\lambda_i^*$ is positive then the corresponding constraint must be <em>tight</em>. On the other hand, if a primal constraint is <em>tight</em> at $x^*$, Complementary Slackness tells us nothing about its corresponding dual variable.</p>
-<p>Let's prove this result.</p>
+<p>Informally, if a primal constraint at an optimal $x^*$ is <em>loose</em>, that is $f_i(x^*) \ne 0$, then its corresponding dual variable $\lambda^*_i$ in the dual optimal $\lambda^*$ must be zero. Conversely, if the dual variable $\lambda_i^*$ is positive then the corresponding constraint must be <em>tight</em>.</p>
+<p>Note that if a primal constraint is <em>tight</em> at $x^*$, Complementary Slackness tells us nothing about its corresponding dual variable.</p>
+<h4 id="Proof-of-Complementary-Slackness">
+<a class="anchor" href="#Proof-of-Complementary-Slackness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Complementary Slackness<a class="anchor-link" href="#Proof-of-Complementary-Slackness"> </a>
+</h4>
 <p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal for a Strongly Dual problem as in the hypothesis.</p>
-<p>Then, by $(SD \ 1)$, $g(\lambda^*, \mu^*) = \mathcal{J}(x^*)$.</p>
-<p>But since $\mathcal{J}(x^*) = f_0(x^*)$, we have:</p>
+<p>Expanding the RHS we obtain:
+<br>
 $$
 \begin{aligned}
 f_0(x^*) &amp;= g(\lambda^*, \mu^*) \\ 
 &amp;= \min_x \mathcal{L}(x, \lambda^*, \mu^*) \\ 
-&amp;\leq \mathcal{L}(x^*, \lambda^*, \mu^*) \\
+&amp;= \mathcal{L}(x^*, \lambda^*, \mu^*) \\
 &amp;=  f_0(x^*) + \sum_{i=1}^m \lambda_i^* f_i(x) + \sum_{i=1}^p \mu_i^* h_i(x^*) \\
 &amp;\leq f_0(x^*)
-\end{aligned}
-$$<p>To see why the last inequality holds, note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$ by feasibility of $x^*$. Then again, by feasibility of $x^*$, $\forall i$ $f_i(x^*) \leq 0$. And since, by construction of $\mathcal{L}$, $\lambda \geq 0$ we have $\sum_{i=1}^m \lambda^*_i f_i(x^*) \leq 0$.</p>
-<p>But taken altogether this says $f_0(x^*) \leq f_0(x^*)$ which can <em>only</em> be true through strict equality. Then it must be the case that $\sum_{i=1}^m \lambda^*_i f_i(x^*) = 0$. But, being a sum of non-positive terms, $\sum_{i=1}^m \lambda^*_i f_i(x^*) = 0$ <em>if and only if</em> $\lambda^*_i f_i(x^*) = 0 \ \ \forall i$ which is what we wanted to show.</p>
+\end{aligned} \tag{7}
+$$</p>
+<p>The first equality holds by String Duality, particularly $(SD \ 1)$, the second is by the definition of the dual function, the third equality holds by $(5.2)$, and the fourth is true by the expansion of $\mathcal{L}(x^*, \lambda^*, \mu^*)$.</p>
+<p>To see why the last inequality holds, note that $\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$ since $h_i(x^*) = 0 \ \ \forall i$ by feasibility of $x^*$. Then again, by feasibility of $x^*$, $\forall i$ $f_i(x^*) \leq 0$. And since, by construction of $\mathcal{L}$, $\lambda \geq 0$ we have $\sum_{i=1}^m \lambda^*_i f_i(x^*) \leq 0$.</p>
+<p>But taken altogether $(7)$ says $f_0(x^*) \leq f_0(x^*)$ which can <em>only</em> hold through strict equality. Then it must be the case that $\sum_{i=1}^m \lambda^*_i f_i(x^*) = 0$. Being a sum of non-positive terms, $\sum_{i=1}^m \lambda^*_i f_i(x^*) = 0$ <em>if and only if</em> $\lambda^*_i f_i(x^*) = 0 \ \ \forall i$ which is what we wanted to show.</p>
 <h4 id="Economic-Intuition-of-Complementary-Slackness">
 <a class="anchor" href="#Economic-Intuition-of-Complementary-Slackness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Economic Intuition of Complementary Slackness<a class="anchor-link" href="#Economic-Intuition-of-Complementary-Slackness"> </a>
 </h4>
