@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      38 min read
+      39 min read
     
 </span></p>
 
@@ -177,6 +177,11 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#Strong-Duality">Strong Duality </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#An-Easier-Dual-Problem">An Easier Dual Problem </a></li>
+<li class="toc-entry toc-h2"><a href="#Optimality-Conditions">Optimality Conditions </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Stationarity-Condition">Stationarity Condition </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h2"><a href="#Optimality-Conditions">Optimality Conditions </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Complementary-Slackness">Complementary Slackness </a>
@@ -562,22 +567,36 @@ $$</p>
 <p>Alternatively, in its Max-Min characterization:
 <b>
 
-$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{SD-2}$$
+$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{SD - 2}$$
 &lt;/p&gt;
 </b></p>
 <p>Optimization problems that exhibit this property are called Strongly Dual.</p>
 <p>As mentioned briefly in the introduction, Strong Duality gives applied scientists the ability to solve a related, possibly easier, optimization problem instead of the original, possibly difficult, one. As we shall see it also obtains powerful optimality conditions. For these reasons and more, knowing in advance whether or not a problem is Strongly Dual will be useful to us.</p>
-<p>We will see that all linear programs are Strongly Dual, but, when it comes to non-linear optimization, Strong Duality is not a general guarantee. The good news is that sufficient conditions for Strong Duality do exist, and we will provide them shortly.</p>
+<p>We will see that all linear programs are Strongly Dual by a direct proof, but, when it comes to non-linear optimization, Strong Duality is not a general guarantee. The good news is that sufficient conditions for Strong Duality do exist, and will be provided shortly.</p>
 <h2 id="An-Easier-Dual-Problem">
 <a class="anchor" href="#An-Easier-Dual-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>An Easier Dual Problem<a class="anchor-link" href="#An-Easier-Dual-Problem"> </a>
 </h2>
-<p>As mentioned briefly in the introduction, Strong Duality gives us the option of solving the original optimization problem in a different, possibly easier way. Let's qualify this statement further.</p>
-<p>The original, possibly non-convex, problem was that of finding the primal optimal value $p^* = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$.</p>
-<p>This amounts to fixing some $x$, and then maximizing $\mathcal{L}$ over $\lambda \geq 0$, $\mu$. As we've mentioned before this recovers $J(x)$ which is a non-differentiable function.</p>
-<p>Meanwhile, the dual problem is that of finding the dual optimal value $d^* = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$.</p>
-<p>This amounts to fixing some $\lambda \geq 0$, $\mu$, and then minimizing $\mathcal{L}$ over $x$.</p>
-<p>Minimizing the Lagrangian over $x$ may still be difficult, but at least it lends itself to using the method of unconstrained optimization. Furthermore, the resulting dual function $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ is <em>always</em> easy to maximize over $\lambda \geq 0$ and $\mu$, since it's a concave objective with a linear constraint $\lambda \geq 0$. The reason the objective is concave, of course, is that it's the pointwise minimum of linear functions in $\lambda$, and $\mu$.</p>
-<p>If Strong Duality holds then we've just found an easier approach to the original problem. To see why, recall that:</p>
+<p>Let's further qualify what we mean when we say Strong Duality gives us an easier problem to solve.</p>
+<p>The primal, possibly non-convex, problem was that of finding the primal optimal value 
+<br>
+
+$$f_0(x^*) = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
+</p>
+<p>But maximizing the Lagrangian over $\lambda \geq 0$, and $\mu$, recovers $J(x)$ which is a non-differentiable objective. So, we cannot use the gradient optimality condition in finding its stationary points.</p>
+<p>Meanwhile, the dual problem is that of finding the dual optimal value 
+<br>
+
+$$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$$
+</p>
+<p>Minimizing the Lagrangian over $x$ may still be difficult, but, at least, it lends itself to using the method of unconstrained optimization (i.e. the gradient optimality condition). Moreover, the resulting dual function $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ is a point-wise minimum of linear functions in $\lambda$, and $\mu$, so its always concave in those variables. And, the constraint $\lambda \geq 0$ is a simple linear constraint.</p>
+<p>So, instead of solving the primal, possibly non-convex problem, we can derive its dual function using the method of unconstrained optimization, and then solve the dual problem which is always concave maximization. If Strong Duality holds then the dual optimal value we find through this procedure is guaranteed to be equal to the primal optimal. Therefore, we've found an easier approach to the problem. If Strong Duality fails to hold then, at least, we've found a useful lower-bound to the primal optimal value.</p>
+<h2 id="Optimality-Conditions">
+<a class="anchor" href="#Optimality-Conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimality Conditions<a class="anchor-link" href="#Optimality-Conditions"> </a>
+</h2>
+<h3 id="Stationarity-Condition">
+<a class="anchor" href="#Stationarity-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stationarity Condition<a class="anchor-link" href="#Stationarity-Condition"> </a>
+</h3>
+<p>All of this is to say that, if Strong Duality holds then we've just found an overall easier approach to the original problem. To see why, recall that:</p>
 <p>
 $$g(\lambda, \mu) := \min_x \mathcal{L}(x, \lambda,\mu) \\ \textrm{and} \\ \mathcal{J}(x) = \max_{\lambda \geq 0, \mu} \mathcal{L}(x, \lambda, \mu) \ \ \textrm{see $(5)$}$$
 </p>
