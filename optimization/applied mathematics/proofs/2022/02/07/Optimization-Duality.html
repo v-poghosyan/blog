@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      41 min read
+      43 min read
     
 </span></p>
 
@@ -165,7 +165,13 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#The-Lagrange-Dual-Problem">The Lagrange Dual Problem </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#The-Dual-of-an-Unconstrained-Problem">The Dual of an Unconstrained Problem </a></li>
+<li class="toc-entry toc-h1"><a href="#The-Dual-of-an-Unconstrained-Problem">The Dual of an Unconstrained Problem </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#FL-Transform---a-Convex-Operation">FL Transform - a Convex Operation </a></li>
+<li class="toc-entry toc-h2"><a href="#The-Case-of-Self-Inversion">The Case of Self-Inversion </a></li>
+<li class="toc-entry toc-h2"><a href="#Inverse-Gradients">Inverse Gradients </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h1"><a href="#Weak-Duality-and-Interpretations">Weak Duality and Interpretations </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#The-Max-Min-Inequality">The Max-Min Inequality </a>
@@ -396,7 +402,6 @@ $$x^* = \arg \min_x \mathcal{J}(x) \tag{2.2}$$
 
 $$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=1}^p \mu_i h_i(x)$$
 
-<br>
 $$\textrm{where} \ \lambda \geq 0$$</p>
 <p>We call the $\lambda_i$'s the <em>Lagrange multipliers</em> corresponding to the inequality constraints, and the $\mu_i$'s those corresponding to the equality constraints. The vectors $\lambda$ and $\mu$, composed of the lagrange multipliers, are called the <em>Lagrange multiplier vectors</em> or, for reasons that will soon become apparent, the <em>dual variables</em>. 
 </p>
@@ -488,8 +493,50 @@ $$
 <p>As mentioned briefly, in the case of certain types of unconstrained problems, the Fenchel-Legendre (FL) Transform is what gives rise to the dual.</p>
 <p>First, we define the FL Transform which is also known as a <em>Convex Conjugate</em> for reasons that will soon become apparent.</p>
 <blockquote>
-<p><strong>FL Transform / Convex Conjugate:</strong>   The F</p>
+<p><strong>FL Transform / Convex Conjugate:</strong>   The <em>FL Transform</em> or <em>Convex Conjugate</em> of a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is: $$f^*(y) = \sup_x \left\{y^Tx - f(x)\right\}$$
+<br></p>
 </blockquote>
+<p>We note some key properties of the FL Transform.</p>
+<h2 id="FL-Transform---a-Convex-Operation">
+<a class="anchor" href="#FL-Transform---a-Convex-Operation" aria-hidden="true"><span class="octicon octicon-link"></span></a>FL Transform - a Convex Operation<a class="anchor-link" href="#FL-Transform---a-Convex-Operation"> </a>
+</h2>
+<p>The FL Transform $f^*$ is always convex regardless of the convexity of $f$.</p>
+<p>That's because, for a fixed $x$, $y^Tx - f(x)$ is a linear function in $y$. So, $f^*$ is a point-wise supremum of linear functions, making it convex.</p>
+<h2 id="The-Case-of-Self-Inversion">
+<a class="anchor" href="#The-Case-of-Self-Inversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Case of Self-Inversion<a class="anchor-link" href="#The-Case-of-Self-Inversion"> </a>
+</h2>
+<p>The double FL Transform $f^{**}$ does not always recover $f$. To see this note that as an FL Transform of the function $f^*$, $f^{**}$ is always convex. Therefore, $f^{**} \ne f$ if $f$ is non-convex.</p>
+<p>But convexity is not enough to guarantee self-inversion. We need an additional condition on $f$, namely that its sub-level sets must be closed, to ensure $f^{**} = f$.</p>
+<h2 id="Inverse-Gradients">
+<a class="anchor" href="#Inverse-Gradients" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inverse Gradients<a class="anchor-link" href="#Inverse-Gradients"> </a>
+</h2>
+<p>If $f$ has closed sub-level sets and is convex then the gradients of $f$ and $f^*$ are inverses. That is, assuming both $f$ and $f^*$ are differentiable:
+<br>
+
+$$y = \nabla f(x) \iff x = \nabla f^*(y)$$
+</p>
+<p>Let's prove the $\implies$ direction.</p>
+<p>Suppose $y = \nabla f(x)$. By $f$'s convexity: 
+<br>
+
+$$f(\hat x) \geq f(x) + y^T(\hat x - x) \ \ \forall \hat x$$
+</p>
+<p>And so:
+<br>
+
+$$y^T \hat x - f(\hat x) \leq y^T x - f(x) \ \ \forall \hat x$$
+</p>
+<p>By taking supremum over $x$ and by noting that, since the sub-level sets are closed, the supremum is attained, we obtain:
+<br>
+
+$$f^*(y) = y^T x - f(x)$$
+</p>
+<p>The desired result follows by taking the gradient of both sides w.r.t. $y$. That is:
+<br>
+
+$$\nabla f^*(y) = x$$
+</p>
+<p>The $\impliedby$ direction is similar. We start from the assumption that $x = \nabla f^*(y)$ and get the desired result by using the self-inversion property $f^{**} = f$.</p>
 
 </div>
 </div>
