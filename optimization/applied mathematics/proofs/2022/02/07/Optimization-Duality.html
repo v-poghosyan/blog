@@ -112,7 +112,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      43 min read
+      44 min read
     
 </span></p>
 
@@ -165,13 +165,6 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#The-Lagrange-Dual-Problem">The Lagrange Dual Problem </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#The-Dual-of-an-Unconstrained-Problem">The Dual of an Unconstrained Problem </a>
-<ul>
-<li class="toc-entry toc-h2"><a href="#FL-Transform---a-Convex-Operation">FL Transform - a Convex Operation </a></li>
-<li class="toc-entry toc-h2"><a href="#The-Case-of-Self-Inversion">The Case of Self-Inversion </a></li>
-<li class="toc-entry toc-h2"><a href="#Inverse-Gradients">Inverse Gradients </a></li>
-</ul>
-</li>
 <li class="toc-entry toc-h1"><a href="#Weak-Duality-and-Interpretations">Weak Duality and Interpretations </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#The-Max-Min-Inequality">The Max-Min Inequality </a>
@@ -219,6 +212,14 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Proof-of-Saddle-Point-Theorem">Proof of Saddle Point Theorem </a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#The-Dual-of-an-Unconstrained-Problem">The Dual of an Unconstrained Problem </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#FL-Transform---a-Convex-Operation">FL Transform - a Convex Operation </a></li>
+<li class="toc-entry toc-h2"><a href="#The-Case-of-Involution">The Case of Involution </a></li>
+<li class="toc-entry toc-h2"><a href="#Inverse-Gradients">Inverse Gradients </a></li>
+<li class="toc-entry toc-h2"><a href="#FL-Duality">FL Duality </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#LINEAR-PROGRAMS">LINEAR PROGRAMS </a></li>
@@ -287,8 +288,7 @@ window.onload = wrap_img;
 <h1 id="The-Dual-of-a-Constrained-Problem">
 <a class="anchor" href="#The-Dual-of-a-Constrained-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Dual of a Constrained Problem<a class="anchor-link" href="#The-Dual-of-a-Constrained-Problem"> </a>
 </h1>
-<p>Let's first on deriving the dual of constrained optimization problems.</p>
-<p>As we shall see later, certain types of unconstrained problems have duals which arise from the <a href="https://en.wikipedia.org/wiki/Convex_conjugate">Fenchel-Legendre Transform</a>. However, in constrained problems, it is the constraints themselves which give rise to duality through the <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian</a>.</p>
+<p>First, let's focus on deriving the dual of constrained optimization problems. In a sense, constraints are what give rise to duality through the <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian</a>. As we shall see later, certain types of unconstrained problems also have duals which arise from hidden constraints, or directly through the <a href="https://en.wikipedia.org/wiki/Convex_conjugate">Fenchel-Legendre Transform</a>.</p>
 <p>Take the most general form of constrained problem with $m$ inequality and $n$ equality constraints and assume nothing, as of yet, about its convexity. To make the discussion interesting, assume the problem is non-trivial (i.e. its constraint set is non-empty and contains more than one feasible point). Furthermore, so that we may have a solution to speak of, assume the problem is bounded with the finite optimal value of $f_0(x^*)$ for some optimizer $x^*$.</p>
 
 </div>
@@ -487,66 +487,10 @@ $$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="The-Dual-of-an-Unconstrained-Problem">
-<a class="anchor" href="#The-Dual-of-an-Unconstrained-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Dual of an Unconstrained Problem<a class="anchor-link" href="#The-Dual-of-an-Unconstrained-Problem"> </a>
-</h1>
-<p>As mentioned briefly, in the case of certain types of unconstrained problems, the Fenchel-Legendre (FL) Transform is what gives rise to the dual.</p>
-<p>First, we define the FL Transform which is also known as a <em>Convex Conjugate</em> for reasons that will soon become apparent.</p>
-<blockquote>
-<p><strong>FL Transform / Convex Conjugate:</strong>   The <em>FL Transform</em> or <em>Convex Conjugate</em> of a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is: $$f^*(y) = \sup_x \left\{y^Tx - f(x)\right\}$$
-<br></p>
-</blockquote>
-<p>We note some key properties of the FL Transform.</p>
-<h2 id="FL-Transform---a-Convex-Operation">
-<a class="anchor" href="#FL-Transform---a-Convex-Operation" aria-hidden="true"><span class="octicon octicon-link"></span></a>FL Transform - a Convex Operation<a class="anchor-link" href="#FL-Transform---a-Convex-Operation"> </a>
-</h2>
-<p>The FL Transform $f^*$ is always convex regardless of the convexity of $f$.</p>
-<p>That's because, for a fixed $x$, $y^Tx - f(x)$ is a linear function in $y$. So, $f^*$ is a point-wise supremum of linear functions, making it convex.</p>
-<h2 id="The-Case-of-Self-Inversion">
-<a class="anchor" href="#The-Case-of-Self-Inversion" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Case of Self-Inversion<a class="anchor-link" href="#The-Case-of-Self-Inversion"> </a>
-</h2>
-<p>The double FL Transform $f^{**}$ does not always recover $f$. To see this note that as an FL Transform of the function $f^*$, $f^{**}$ is always convex. Therefore, $f^{**} \ne f$ if $f$ is non-convex.</p>
-<p>But convexity is not enough to guarantee self-inversion. We need an additional condition on $f$, namely that its sub-level sets must be closed, to ensure $f^{**} = f$.</p>
-<h2 id="Inverse-Gradients">
-<a class="anchor" href="#Inverse-Gradients" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inverse Gradients<a class="anchor-link" href="#Inverse-Gradients"> </a>
-</h2>
-<p>If $f$ has closed sub-level sets and is convex then the gradients of $f$ and $f^*$ are inverses. That is, assuming both $f$ and $f^*$ are differentiable:
-<br>
-
-$$y = \nabla f(x) \iff x = \nabla f^*(y)$$
-</p>
-<p>Let's prove the $\implies$ direction.</p>
-<p>Suppose $y = \nabla f(x)$. By $f$'s convexity: 
-<br>
-
-$$f(\hat x) \geq f(x) + y^T(\hat x - x) \ \ \forall \hat x$$
-</p>
-<p>And so:
-<br>
-
-$$y^T \hat x - f(\hat x) \leq y^T x - f(x) \ \ \forall \hat x$$
-</p>
-<p>By taking supremum over $x$ and by noting that, since the sub-level sets are closed, the supremum is attained, we obtain:
-<br>
-
-$$f^*(y) = y^T x - f(x)$$
-</p>
-<p>The desired result follows by taking the gradient of both sides w.r.t. $y$. That is:
-<br>
-
-$$\nabla f^*(y) = x$$
-</p>
-<p>The $\impliedby$ direction is similar. We start from the assumption that $x = \nabla f^*(y)$ and get the desired result by using the self-inversion property $f^{**} = f$.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Weak-Duality-and-Interpretations">
 <a class="anchor" href="#Weak-Duality-and-Interpretations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality and Interpretations<a class="anchor-link" href="#Weak-Duality-and-Interpretations"> </a>
 </h1>
+<p>We return to the general setting of constrained optimization where we will stay for the  remaining portion of this post.</p>
 <p>We've already seen Weak Duality formulated as $(WD - 1)$, but there's a more symmetric formulation of Weak Duality as a <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality"><em>Max-Min Inequality</em></a> which can be proven through a non-optimization lens.</p>
 <p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal. Then, from $(WD - 1)$, we have Weak Duality in terms of the dual optimal value $g(\lambda^*, \mu^*)$ as:
 <br>
@@ -875,6 +819,104 @@ $$\sup_{y \in Y} \left\{ \inf_{x \in X} f(x,y) \right\} = \inf_{x \in X} \left\{
 <p><strong>$\implies$:</strong></p>
 <p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal and dual optimal solutions for a convex problem which satisfies Slater's Condition. Then the problem is Strongly Convex by the Sufficient Condition for Strong Duality.</p>
 <p>\\  NEED KKT CONDITIONS  ///</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="The-Dual-of-an-Unconstrained-Problem">
+<a class="anchor" href="#The-Dual-of-an-Unconstrained-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Dual of an Unconstrained Problem<a class="anchor-link" href="#The-Dual-of-an-Unconstrained-Problem"> </a>
+</h1>
+<p>As mentioned briefly, in the case of certain types of unconstrained problems, the Fenchel-Legendre (FL) Transform is what gives rise to the dual.</p>
+<p>First, we define the FL Transform which is also known as a <em>Convex Conjugate</em> for reasons that will soon become apparent.</p>
+<blockquote>
+<p><strong>FL Transform / Convex Conjugate:</strong>   The <em>FL Transform</em> or <em>Convex Conjugate</em> of a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is: $$f^*(y) = \sup_x \left\{y^Tx - f(x)\right\}$$
+<br></p>
+</blockquote>
+<p>We note some key properties of the FL Transform.</p>
+<h2 id="FL-Transform---a-Convex-Operation">
+<a class="anchor" href="#FL-Transform---a-Convex-Operation" aria-hidden="true"><span class="octicon octicon-link"></span></a>FL Transform - a Convex Operation<a class="anchor-link" href="#FL-Transform---a-Convex-Operation"> </a>
+</h2>
+<p>The FL Transform $f^*$ is always convex regardless of the convexity of $f$.</p>
+<p>That's because, for a fixed $x$, $y^Tx - f(x)$ is a linear function in $y$. So, $f^*$ is a point-wise supremum of linear functions, making it convex.</p>
+<h2 id="The-Case-of-Involution">
+<a class="anchor" href="#The-Case-of-Involution" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Case of Involution<a class="anchor-link" href="#The-Case-of-Involution"> </a>
+</h2>
+<p>The double FL Transform $f^{**}$ does not always recover $f$. To see this, note that, as an FL Transform of the function $f^*$, $f^{**}$ is always convex. Therefore, $f^{**} \ne f$ if $f$ is non-convex.</p>
+<p>But convexity alone is not enough to guarantee involution. We need an additional condition on $f$, namely that its sub-level sets must be closed, to ensure $f^{**} = f$.</p>
+<h2 id="Inverse-Gradients">
+<a class="anchor" href="#Inverse-Gradients" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inverse Gradients<a class="anchor-link" href="#Inverse-Gradients"> </a>
+</h2>
+<p>If $f$ has closed sub-level sets and is convex then the gradients of $f$ and $f^*$ are inverses. That is, assuming both $f$ and $f^*$ are differentiable:
+<br>
+
+$$y = \nabla f(x) \iff x = \nabla f^*(y)$$
+</p>
+<p>Let's prove the $\implies$ direction.</p>
+<p>Suppose $y = \nabla f(x)$. By $f$'s convexity: 
+<br>
+
+$$f(\hat x) \geq f(x) + y^T(\hat x - x) \ \ \forall \hat x$$
+</p>
+<p>And so:
+<br>
+
+$$y^T \hat x - f(\hat x) \leq y^T x - f(x) \ \ \forall \hat x$$
+</p>
+<p>By taking supremum over $x$ and by noting that, since the sub-level sets are closed, the supremum is attained, we obtain:
+<br>
+
+$$f^*(y) = y^T x - f(x)$$
+</p>
+<p>The desired result follows by taking the gradient of both sides w.r.t. $y$. That is:
+<br>
+
+$$\nabla f^*(y) = x$$
+</p>
+<p>The $\impliedby$ direction is similar. We start from the assumption that $x = \nabla f^*(y)$ and get the desired result by using the involution property $f^{**} = f$.</p>
+<h2 id="FL-Duality">
+<a class="anchor" href="#FL-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>FL Duality<a class="anchor-link" href="#FL-Duality"> </a>
+</h2>
+<p>As mentioned, the FL Transform has a natural role in duality.</p>
+<p>Suppose the unconstrained optimization problem is:
+<br>
+
+$$\min_x : f(x) + h(Ax)$$
+</p>
+<p>Where $f$ and $h$ are convex functions, and $A$ is a matrix representing a bounded linear transformation.</p>
+<p>We introduce a dummy variable $y$ and form the artificial constraint $y = Ax$. The problem becomes:
+<br>
+$$
+\begin{aligned} 
+\min_{x,y} &amp;: f(x) + h(y) \\ 
+s.t. &amp;: Ax = y
+\end{aligned}$$</p>
+<p>Forming the Lagrangian gives us:
+<br>
+
+$$\mathcal{L}(x,y,z) = f(x) + h(y) + z^T(Ax - y)$$
+</p>
+<p>Then, the dual function is the following FL Transform:
+<br>
+$$
+\begin{aligned}
+g(z) &amp;= \min_{x,y} \mathcal{L}(x,y,z) \\
+&amp;= \min_{x,y} f(x) + h(y) + z^T(Ax - y) \\
+&amp;= \min_{x,y} (A^Tz)^Tx + f(x) - z^Ty + h(y) \\ 
+&amp;= \min_x \left\{ (A^Tz)^Tx + f(x) \right\} + \min_y \left\{ -z^Ty + h(y) \right\} \\
+&amp;= \min_x \left\{ -\left((-A^Tz)^Tx - f(x)\right) \right\} + \min_y \left\{ -\left(z^Ty - h(y)\right) \right\} \\
+&amp;= - \max_x \left\{ (-A^Tz)^Tx - f(x) \right\} - \max_y \left\{ z^Ty - h(y) \right\} \\
+&amp;= - f^*(-A^Tz) - h^*(z)
+\end{aligned}
+$$</p>
+<p>And, consequently, the dual problem is: 
+<br> 
+
+$$\max_z: - f^*(-A^Tz) - h^*(z)$$
+</p>
+<p>Note that the dual is, indeed, an easy problem since the negative of an FL Transform is always concave regardless of the convexity of $f$ and $h$. So, the dual problem is alwayds an unconstrained maximization of a concave function.</p>
 
 </div>
 </div>
