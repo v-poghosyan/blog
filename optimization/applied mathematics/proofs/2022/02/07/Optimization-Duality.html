@@ -272,11 +272,11 @@ window.onload = wrap_img;
 <a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
 </h1>
 <p>Every convex optimization problem has a closely related problem called its <em>dual</em> which can be colloquially thought of as its evil twin. The primal and the dual represent two different perspectives on the same problem.</p>
-<p>In the most general case, if the primal is a minimization problem, its dual is a maximization problem. In the case of constrained optimization, if the primal is minimization in $n$ variables and $m$ constraints, its dual is a maximization in $m$ variables and $n$ constraints.</p>
-<p>Furthermore, any feasible value of the dual's objective is a lower-bound of all the feasible values of the primal's objective. In particular, should they both exist, the dual optimal is a lower bound on the primal optimal. This property, called <em>Weak Duality</em>, is at the core of duality. Deriving a dual problem that obtains, at the very least, a useful lower bound to the primal's optimal is one of the nascent ideas behind <em>Duality Theory</em>.</p>
-<p>In the case of problems which exhibit <em>Strong Duality</em>, such as linear programs and a certain category of convex non-linear optimization problems, the primal and the dual optima are strictly equal to each other. That is, solving the dual guarantees that we've also solved the primal. Furthermore, since taking the dual of the dual gives back the primal, this relationship is true in the converse — if we've solved the primal then we've also solved its dual.</p>
-<p>This is what makes Duality Theory so useful in practice. Having a related, possibly easier, optimization problem gives applied scientists a huge computational advantage. However, even if the dual does not turn out to be easier to solve and/or Strong Duality does not hold, we still stand to gain structural insight about the problem.</p>
-<p>In this post we will show how to form the dual of a problem, examine, in detail, its relationship with the primal, and list all possible primal-dual outcomes. In doing so, we will look at duality in the general case of constrained optimization problems, in a type of unconstrained problem, as well as in linear programs.</p>
+<p>In the most general case, if the primal is a minimization problem, its dual is a maximization problem. In the case of constrained optimization, if the primal is minimization in $n$ variables and $m$ constraints then its dual is a maximization in $m$ variables and $n$ constraints.</p>
+<p>Furthermore, any feasible value of the dual is a lower-bound of all the feasible values of the primal. In particular, should they both exist, the dual optimal is a lower bound on the primal optimal. This property, called <em>Weak Duality</em>, is at the core of duality. Deriving a dual problem that obtains, at the very least, a useful lower bound to the primal's optimal is one of the nascent ideas behind <em>Duality Theory</em>.</p>
+<p>In the case of problems which exhibit <em>Strong Duality</em>, such as linear programs and a certain category of convex but non-linear optimization problems, the primal and the dual optima agree with each other. That is, solving the dual guarantees that we've also solved the primal. Furthermore, since taking the dual of the dual gives back the primal, this relationship is true in the converse — if we've solved the primal then we've also solved its dual.</p>
+<p>This is what makes Duality Theory so useful in practice. Having a related, usually easier, optimization problem gives applied scientists a huge computational advantage. However, even if the dual does not turn out to be easier to solve and/or Strong Duality fails to hold, we still stand to gain structural insight about the problem.</p>
+<p>In this post we will show how to form the dual of a problem, examine, in detail, its relationship with the primal, and list all possible primal-dual outcomes. In doing so, we will look at duality in the general case of constrained optimization problems, in a certain type of unconstrained problem, as well as in linear programs.</p>
 
 </div>
 </div>
@@ -287,7 +287,7 @@ window.onload = wrap_img;
 <h1 id="The-Dual-of-a-Constrained-Problem">
 <a class="anchor" href="#The-Dual-of-a-Constrained-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Dual of a Constrained Problem<a class="anchor-link" href="#The-Dual-of-a-Constrained-Problem"> </a>
 </h1>
-<p>First, let's focus on deriving the dual of constrained optimization problems. In a sense, constraints are what give rise to duality through the <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian</a>. As we shall see later, certain types of unconstrained problems also have duals which arise from dummy constraints, or directly through the <a href="https://en.wikipedia.org/wiki/Convex_conjugate">Fenchel-Legendre Transform</a>.</p>
+<p>First, let's focus on deriving the dual of a constrained optimization problem. We shall see that, in a sense, constraints are what give rise to duality through the <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian</a>. Certain types of unconstrained problems, however, also have duals which arise from the introduction of dummy constraints or directly through the <a href="https://en.wikipedia.org/wiki/Convex_conjugate">Fenchel-Legendre Transform</a>.</p>
 <p>Take the most general form of constrained problem with $m$ inequality and $n$ equality constraints and assume nothing, as of yet, about its convexity. To make the discussion interesting, assume the problem is non-trivial (i.e. its constraint set is non-empty and contains more than one feasible point). Furthermore, so that we may have a solution to speak of, assume the problem is bounded with the finite optimal value of $f_0(x^*)$ for some optimizer $x^*$.</p>
 
 </div>
@@ -316,7 +316,7 @@ $$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Since minimizing an unconstrained problem is considerably easier, we seek to formulate an unconstrained problem that's equivalent to the original.</p>
-<p>The idea is to penalize infeasible choices of $x$ using functions that express our <em>displeasure</em> for certain choices.</p>
+<p>The idea is to penalize infeasible $x$ using functions that express our <em>displeasure</em> for certain choices.</p>
 <p>At first we use the <em>infinitely-hard</em> penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$ which are defined as follows:</p>
 
 </div>
@@ -377,7 +377,7 @@ $$\mathcal{J}(x) = \begin{cases}\begin{aligned}
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Informally, if $\hat x$ is chosen s.t <em>one or more</em> of the constraints are broken then the minimization incurs an infinitely positive penalty. Therefore, such a $\hat x$ will never be selected over a feasible choice $x$ which gives a finite value of $f_0(x)$. Moreover, since by optimality of $x^*$ in the original problem $f_0(x) \leq f_0(x^*) \ \ \forall x$, the optimal value of the unconstrained problem will also be $f_0(x^*)$.</p>
+<p>Informally, if $\hat x$ is chosen s.t <em>one or more</em> of the constraints are broken then the minimization incurs an infinitely positive penalty. Therefore, such a $\hat x$ will never be selected over a feasible choice $x$ which gives a finite value of $f_0(x)$. Moreover, by optimality of $x^*$ in the original problem, we have $f_0(x) \leq f_0(x^*) \ \ \forall x$. So, the optimal value of the unconstrained problem will also be $f_0(x^*)$.</p>
 <p>Hence: 
 
 $$\min_x \mathcal{J}(x) = f_0(x^*) \tag{1}$$
@@ -394,9 +394,10 @@ $$x^* = \arg \min_x \mathcal{J}(x) \tag{2.2}$$
 <p><br></p>
 <blockquote>
 <p><strong>Unconstrained Optimality Condition</strong>   If $x^*$ is an optimizer of the unconstrained objective $f_0$ then $\nabla f_0(x^*) = 0$. That is $x^*$ is a <em>Stationary Point</em> of $f_0$.
+<br>
 <br></p>
 </blockquote>
-<p>Once the stationary points identified, a global minimizer can be identified among them by simply evaluating the objective at each.</p>
+<p>Once the stationary points have been found, a global minimizer can be identified among them simply by evaluating the objective at each stationary point.</p>
 <p>However, we're immediately beset by a problem. We cannot find the gradient of $\mathcal{J}(x)$ and set it to zero because the infinitely-hard penalty functions are discontinuous and non-differentiable. That is, $\nabla \mathcal{J}(x)$ simply does not exist.</p>
 <p>To sidestep this difficulty we use linear relaxations instead of $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
 <h2 id="The-Lagrangian,-Dual-Variables,-and-the-Dual-Function">
@@ -631,6 +632,7 @@ $$\min_x \mathcal{L}(x, \lambda^*, \mu^*) = \mathcal{L}(x^*, \lambda^*, \mu^*) \
 <p><br></p>
 <blockquote>
 <p><strong>Stationarity Condition (SC):</strong>   Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal for a Strongly Dual problem. Then:$$\nabla_x f_0(x^*) + \sum_i^m \lambda^*_i\nabla_xf_i(x^*) + \sum_{i=1}^p \mu^*_i\nabla_xh_i(x^*) = 0$$
+<br>
 <br></p>
 </blockquote>
 <p>We can get $(SC)$ by applying the unconstrained optimality condition to $\mathcal{L}(x, \lambda^*, \mu^*)$. In doing so, we obtain:
@@ -668,7 +670,8 @@ $$\mathcal{L}(x^*, \lambda^*, \mu^*) = \min_x \mathcal{L}(x, \lambda^*, \mu^*)$$
 <p>Strong Duality also gives another optimality condition known as <em>Complementary Slackness</em> $(CS)$.</p>
 <p><br></p>
 <blockquote>
-<p><strong>Complementary Slackness (CS):</strong>   Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal for a Strongly Dual problem. Then $\lambda^*_i f_i(x^*) = 0 \ \ \forall i$.<br></p>
+<p><strong>Complementary Slackness (CS):</strong>   Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal for a Strongly Dual problem. Then $\lambda^*_i f_i(x^*) = 0 \ \ \forall i$.<br>
+<br></p>
 </blockquote>
 <p>Informally, if a primal constraint at an optimal $x^*$ is <em>loose</em>, that is $f_i(x^*) \ne 0$, then its corresponding dual variable $\lambda^*_i$ in the dual optimal $\lambda^*$ must be zero. Conversely, if the dual variable $\lambda_i^*$ is positive then the corresponding constraint must be <em>tight</em>.</p>
 <p>Note that if a primal constraint is <em>tight</em> at $x^*$, Complementary Slackness tells us nothing about its corresponding dual variable.</p>
@@ -706,6 +709,7 @@ $$</p>
 <li>$h_i(x^*) = 0 \ \ \forall i$ </li>
 <li>$\lambda^* \geq 0$
 <br>
+<br>
 </li>
 </ol>
 </blockquote>
@@ -718,6 +722,7 @@ As promised, the KKT Conditions together with Strong Duality give a certificate 
 <p><br></p>
 <blockquote>
 <p><strong>Certificate of Optimality</strong>   If Strong Duality holds, then $x^*, (\lambda^*, \mu^*)$ are primal-dual optimal if and only if they are a KKT Pair. 
+<br> 
 <br></p>
 </blockquote>
 <p>We have already shown one direction of this in the sections on the <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Stationarity-Condition">Stationarity Condition</a> and <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Complementary-Slackness">Complementary Slackness</a>, where we proved that being a primal-dual optimal pair in a Strongly Convex problem guarantees $(x^*, (\lambda^*, \mu^*))$ is also a KKT Pair. 
@@ -735,7 +740,8 @@ $$\nabla_x f_0(x^*) = 0$$
 <p>In order to discuss optimality in constrained problems, we must first define the concept of a <em>feasible direction</em>.</p>
 <p><br></p>
 <blockquote>
-<p><strong>Feasible Direction:</strong>   A unit vector $d$ is called a <em>feasible direction</em> at any $x$ if $x + \epsilon d$ remains feasible for $\epsilon &gt; 0$ small enough.<br></p>
+<p><strong>Feasible Direction:</strong>   A unit vector $d$ is called a <em>feasible direction</em> at any $x$ if $x + \epsilon d$ remains feasible for $\epsilon &gt; 0$ small enough.<br>
+<br></p>
 </blockquote>
 <p>Then, we can generalize the unconstrained optimality condition by using Taylor Expansion as follows.</p>
 <p>For small enough $\epsilon &gt; 0$, we can estimate $f_0(x^* + \epsilon d)$, where $x^*$ is optimal, for any feasible $d$ by its linear approximation:
@@ -754,7 +760,8 @@ $$</p>
 <p>Which means $\nabla f_0(x^*)^Td \geq 0$. And since $d$ was an arbitrary feasible direction, the result holds for all feasible directions $d$.</p>
 <p><br></p>
 <blockquote>
-<p><strong>Constrained Optimality Condition:</strong>   If $x^*$ is an optimizer of $f_0$ over some constraint set then, for any feasible direction $d$ at $x^*$, $\nabla f_0(x^*)^Td \geq 0$.<br></p>
+<p><strong>Constrained Optimality Condition:</strong>   If $x^*$ is an optimizer of $f_0$ over some constraint set then, for any feasible direction $d$ at $x^*$, $\nabla f_0(x^*)^Td \geq 0$.<br>
+<br></p>
 </blockquote>
 <p>In words, the directional derivative of the objective function in <em>any</em> feasible direction at the optimizer must be non-negative. This ensures that moving in any allowable direction does not improve the objective.</p>
 <p>We've already seen that being a primal-dual optimal pair guarantees that $(x^*, (\lambda^*, \mu^*))$ is also a KKT Pair. But, in showing that, we did not use the constrained optimality condition at $x^*$. Doing so is worth it, however, because it provides a key geometric insight. So, let's show that if $x^*$ satisfies the constrained optimality condition then its KKT Pair exists.</p>
@@ -810,7 +817,8 @@ $$\nabla f_0(x^*) + \sum_{i \in I} \lambda^*_i f_i(x^*) = 0 \tag{8.4}$$
 <p>Even though not all Strongly Dual problems are convex and not all convex programs are Strongly Dual, convexity together with <em>Slater's Condition</em> is sufficient for Strong Duality.</p>
 <p><br></p>
 <blockquote>
-<p><strong>Slater's Condition:</strong>   $\exists \ \hat x$ s.t. $f_i(\hat x) &lt; 0$, and $h_i(\hat x) = 0$ $\forall i$.<br></p>
+<p><strong>Slater's Condition:</strong>   $\exists \ \hat x$ s.t. $f_i(\hat x) &lt; 0$, and $h_i(\hat x) = 0$ $\forall i$.<br>
+<br></p>
 </blockquote>
 <p><br>
 </p>
@@ -823,7 +831,8 @@ $$\nabla f_0(x^*) + \sum_{i \in I} \lambda^*_i f_i(x^*) = 0 \tag{8.4}$$
 <p>The sufficient condition for Strong Duality is then</p>
 <p><br></p>
 <blockquote>
-<p><strong>Sufficient Condition for Strong Duality:</strong>   Any convex optimization problem satisfying Slater's Condition has Strong Duality.<br></p>
+<p><strong>Sufficient Condition for Strong Duality:</strong>   Any convex optimization problem satisfying Slater's Condition has Strong Duality.<br>
+<br></p>
 </blockquote>
 <p>The proof of this is beyond what we're trying to achieve in this post. However we motivate it geometrically in the following paragraph.</p>
 <h3 id="Geometric-Intuition-Behind-Slater's-Condition">
@@ -859,6 +868,7 @@ $$\nabla f_0(x^*) + \sum_{i \in I} \lambda^*_i f_i(x^*) = 0 \tag{8.4}$$
 <p><br></p>
 <blockquote>
 <p><strong>Saddle Point Theorem:</strong>   If $x^*$ and $(\lambda^*, \mu^*)$ are primal and dual optimal solutions for a convex problem which satisfies Slater's Condition, they form a saddle point of the associated Lagrangian. Conversely, if $(x^*,\lambda^*, \mu^*)$ is a saddle point of a Lagrangian, then $x^*$ is a primal optimal, and $(\lambda^*, \mu^*)$ a is dual optimal of the associated Strongly Dual problem.<br>
+<br>
 </p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
