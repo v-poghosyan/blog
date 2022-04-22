@@ -439,11 +439,11 @@ a.footnote.footnotes { border: none !important; }
 
 a:hover { color: #de9240 !important; }
 
-.flash { color: rgba(255, 255, 255, 0.69) !important; }
+.flash { color: rgba(255, 255, 255, 0.69) !important; background-color: #202020 !important; border-color: #2c2c2c !important; }
 
 .flash a { color: rgba(255, 255, 255, 0.87) !important; }
 
-.flash code { background-color: #202020 !important; border-color: #2c2c2c !important; }
+.flash code { background-color: #2c2c2c !important; }
 
 .output_text.output_execute_result pre { margin-left: 0em !important; }
 
