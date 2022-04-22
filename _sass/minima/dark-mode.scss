@@ -47,9 +47,11 @@ a:hover {
 }
 
 blockquote {
-  margin: 0px;
-  padding-bottom: 0.5em;;
+  margin: 0px !important;
+  padding-top: 0.5em !important;
+  padding-bottom: 0.5em !important;
   background-color: $overlay !important;
+  border-radius: 6px !important;
 }
 
 // Removing code output margin
