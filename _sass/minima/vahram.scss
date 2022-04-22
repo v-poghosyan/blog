@@ -1,6 +1,13 @@
 $dark-grey : #121212; 
+$link-purple : #422b94;
 
 // Removing header and footer borders
+.site-header {
+  border: none !important;
+}
+.site-footer {
+  border: none !important;
+}
 
 
 // Removing code output margin
@@ -25,7 +32,8 @@ $dark-grey : #121212;
   color: $dark-grey !important;
 }
 .search-result .search-result-highlight {
-  color: rgb(74, 50, 206) !important;
+  font-weight: bold !important;
+  color: $dark-grey !important;
 }
 
 // Site title
@@ -37,11 +45,31 @@ $dark-grey : #121212;
     color: $dark-grey !important;
 }
 
+// Links
+a {
+  text-decoration: none !important;
+  font-weight: bold !important;
+  color: $link-purple !important;
+}
+
+// Post list
+.post-list > li > div {
+  box-shadow: none !important;
+}
+
 // Styling footnotes
 a.footnote.footnotes {
   border: none !important;
 }
 .footnotes {
   border-top: 1px solid $dark-grey !important;
+}
+
+// Git, Binder, and Colab links aligned left
+.pb-5.d-flex.flex-justify-center .px-2 {
+  padding-left: 0 !important;
+}
+.pb-5.d-flex.flex-justify-center {
+  justify-content: left !important;
 }
 
