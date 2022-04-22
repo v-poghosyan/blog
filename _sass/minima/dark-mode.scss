@@ -46,7 +46,9 @@ a:hover {
   color: $med-emph !important;
 }
 
-.blockquote {
+blockquote {
+  margin: 0px;
+  padding-bottom: 0.5em;;
   background-color: $overlay !important;
 }
 
