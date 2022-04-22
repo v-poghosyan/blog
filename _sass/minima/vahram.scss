@@ -1,0 +1,8 @@
+// Removing code output margin
+.output_text.output_execute_result pre {
+  margin-left: 0em !important;
+}
+
+.output_subarea.output_stream.output_stdout.output_text pre {
+  margin-left: 0em !important;
+}
