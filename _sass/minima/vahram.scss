@@ -1,8 +1,47 @@
+$dark-grey : #121212; 
+
+// Removing header and footer borders
+
+
 // Removing code output margin
 .output_text.output_execute_result pre {
   margin-left: 0em !important;
 }
-
 .output_subarea.output_stream.output_stdout.output_text pre {
   margin-left: 0em !important;
 }
+
+// Removing code output margin
+.output_text.output_execute_result pre {
+  margin-left: 0em !important;
+}
+.output_subarea.output_stream.output_stdout.output_text pre {
+  margin-left: 0em !important;
+}
+
+// Search results links
+.search-result .search-result-title {
+  text-decoration: none !important;
+  color: $dark-grey !important;
+}
+.search-result .search-result-highlight {
+  color: rgb(74, 50, 206) !important;
+}
+
+// Site title
+.site-title {
+  font-weight: normal !important;
+}
+
+.site-title, .site-title:visited, .site-nav, .page-link {
+    color: $dark-grey !important;
+}
+
+// Styling footnotes
+a.footnote.footnotes {
+  border: none !important;
+}
+.footnotes {
+  border-top: 1px solid $dark-grey !important;
+}
+
