@@ -445,6 +445,8 @@ a:hover { color: #de9240 !important; }
 
 .flash code { background-color: #2c2c2c !important; }
 
+.octicon { color: rgba(255, 255, 255, 0.69) !important; }
+
 .output_text.output_execute_result pre { margin-left: 0em !important; }
 
 .output_subarea.output_stream.output_stdout.output_text pre { margin-left: 0em !important; }
