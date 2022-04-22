@@ -1,7 +1,7 @@
 $high-emph: rgba(white, 0.87);
 $med-emph: rgba(white, 0.69);
 $low-emph: rgba(white, 0.38);
-$dark-grey : #2c2a2a; 
+$dark-grey : #1b1b1b; 
 $overlay: mix($dark-grey, white, 95%);
 $overlay-light: mix($dark-grey, white, 90%);
 
@@ -127,7 +127,7 @@ canvas {
 .post-list > li > div {
     box-shadow: none !important;
     background-color: $overlay;
-    border: none !important;
+    border-color: $overlay-light;
 }
 
 li .post-meta-description {
