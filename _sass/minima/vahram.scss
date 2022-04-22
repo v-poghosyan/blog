@@ -1,5 +1,5 @@
 $dark-grey : #121212; 
-$link-purple : #422b94;
+$link : #4174e0; 
 
 // Removing header and footer borders
 .site-header {
@@ -39,6 +39,7 @@ $link-purple : #422b94;
 // Site title
 .site-title {
   font-weight: normal !important;
+  font-size: 2em !important;
 }
 
 .site-title, .site-title:visited, .site-nav, .page-link {
@@ -49,7 +50,12 @@ $link-purple : #422b94;
 a {
   text-decoration: none !important;
   font-weight: bold !important;
-  color: $link-purple !important;
+  color: $link !important;
+}
+.post-link {
+  text-decoration: none !important;
+  font-weight: bold !important;
+  color: $dark-grey !important;
 }
 
 // Post list
