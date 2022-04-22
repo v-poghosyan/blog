@@ -46,6 +46,10 @@ a:hover {
   color: $med-emph !important;
 }
 
+.blockquote {
+  background-color: $overlay !important;
+}
+
 // Removing code output margin
 .output_text.output_execute_result pre {
   margin-left: 0em !important;
