@@ -430,6 +430,10 @@ pre code { font-size: 15px !important; }
 /*-----------------------------------*/
 /*----- ADD YOUR STYLES BELOW -------*/
 /* @import "minima/dark-mode"; */
+.site-header { border: none !important; }
+
+.site-footer { border: none !important; }
+
 .output_text.output_execute_result pre { margin-left: 0em !important; }
 
 .output_subarea.output_stream.output_stdout.output_text pre { margin-left: 0em !important; }
@@ -440,15 +444,23 @@ pre code { font-size: 15px !important; }
 
 .search-result .search-result-title { text-decoration: none !important; color: #121212 !important; }
 
-.search-result .search-result-highlight { color: #4a32ce !important; }
+.search-result .search-result-highlight { font-weight: bold !important; color: #121212 !important; }
 
 .site-title { font-weight: normal !important; }
 
 .site-title, .site-title:visited, .site-nav, .page-link { color: #121212 !important; }
 
+a { text-decoration: none !important; font-weight: bold !important; color: #422b94 !important; }
+
+.post-list > li > div { box-shadow: none !important; }
+
 a.footnote.footnotes { border: none !important; }
 
 .footnotes { border-top: 1px solid #121212 !important; }
+
+.pb-5.d-flex.flex-justify-center .px-2 { padding-left: 0 !important; }
+
+.pb-5.d-flex.flex-justify-center { justify-content: left !important; }
 
 .language-python + .language-plaintext { border-left: 1px solid grey; margin-left: 1rem !important; }
 
