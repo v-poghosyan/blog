@@ -28,8 +28,12 @@ a:hover {
     color: rgb(222, 146, 64) !important;
 }
 
+.flash {
+  color: $med-emph !important;
+}
+
 .flash a {
-   color: $dark-grey !important;
+   color: $high-emph !important;
 }
 
 .flash code {
@@ -114,11 +118,6 @@ table td{
     background-color: $dark-grey;
     border-color: $overlay-light;
     color: $med-emph;
-}
-
-.flash {
-    color: $dark-grey !important;
-    filter: brightness(80%);
 }
 
 canvas {
