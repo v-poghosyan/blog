@@ -42,6 +42,10 @@ a:hover {
   background-color: $overlay-light !important;
 }
 
+.octicon {
+  color: $med-emph !important;
+}
+
 // Removing code output margin
 .output_text.output_execute_result pre {
   margin-left: 0em !important;
