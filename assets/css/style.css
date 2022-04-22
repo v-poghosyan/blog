@@ -447,6 +447,8 @@ a:hover { color: #de9240 !important; }
 
 .octicon { color: rgba(255, 255, 255, 0.69) !important; }
 
+.blockquote { background-color: #161616 !important; }
+
 .output_text.output_execute_result pre { margin-left: 0em !important; }
 
 .output_subarea.output_stream.output_stdout.output_text pre { margin-left: 0em !important; }
