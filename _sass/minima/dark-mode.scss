@@ -30,6 +30,8 @@ a:hover {
 
 .flash {
   color: $med-emph !important;
+  background-color: $overlay !important;
+  border-color: $overlay-light !important;
 }
 
 .flash a {
@@ -37,8 +39,7 @@ a:hover {
 }
 
 .flash code {
-  background-color: $overlay !important;
-  border-color: $overlay-light !important;
+  background-color: $overlay-light !important;
 }
 
 // Removing code output margin
