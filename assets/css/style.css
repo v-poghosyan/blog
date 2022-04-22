@@ -429,7 +429,7 @@ pre code { font-size: 15px !important; }
 
 /*-----------------------------------*/
 /*----- ADD YOUR STYLES BELOW -------*/
-html, body, input, textarea, select, button { color: rgba(255, 255, 255, 0.87) !important; background-color: #2c2a2a !important; }
+html, body, input, textarea, select, button { color: rgba(255, 255, 255, 0.87) !important; background-color: #1b1b1b !important; }
 
 a { text-decoration: none !important; font-weight: bold !important; color: rgba(255, 255, 255, 0.87) !important; }
 
@@ -439,7 +439,7 @@ a.footnote.footnotes { border: none !important; }
 
 a:hover { color: #de9240 !important; }
 
-.flash a { color: #2c2a2a !important; }
+.flash a { color: #1b1b1b !important; }
 
 .flash code { background-color: #819db8 !important; border-color: #6886a1 !important; }
 
@@ -455,13 +455,13 @@ a:hover { color: #de9240 !important; }
 
 .site-title, .site-title:visited, .site-nav, .page-link { color: rgba(255, 255, 255, 0.87) !important; }
 
-.site-nav { background-color: #2c2a2a; }
+.site-nav { background-color: #1b1b1b; }
 
-* { scrollbar-color: #2c2a2a #413f3f; }
+* { scrollbar-color: #1b1b1b #323232; }
 
-pre, code { border-color: #413f3f; background-color: #373535; }
+pre, code { border-color: #323232; background-color: #262626; }
 
-.highlighter-rouge .highlight { background: #373535 !important; }
+.highlighter-rouge .highlight { background: #262626 !important; }
 
 .page-description { color: rgba(255, 255, 255, 0.69); }
 
@@ -469,19 +469,19 @@ pre, code { border-color: #413f3f; background-color: #373535; }
 
 .post-content p, .post-content li { color: rgba(255, 255, 255, 0.69); }
 
-.btn { background-color: #373535 !important; color: rgba(255, 255, 255, 0.87) !important; border-color: #413f3f !important; }
+.btn { background-color: #262626 !important; color: rgba(255, 255, 255, 0.87) !important; border-color: #323232 !important; }
 
-.btn:hover { background-color: #2c2a2a !important; }
+.btn:hover { background-color: #1b1b1b !important; }
 
-table th { background-color: #373535; border-color: #413f3f; color: rgba(255, 255, 255, 0.87); }
+table th { background-color: #262626; border-color: #323232; color: rgba(255, 255, 255, 0.87); }
 
-table td { background-color: #2c2a2a; border-color: #413f3f; color: rgba(255, 255, 255, 0.69); }
+table td { background-color: #1b1b1b; border-color: #323232; color: rgba(255, 255, 255, 0.69); }
 
-.flash { color: #2c2a2a !important; filter: brightness(80%); }
+.flash { color: #1b1b1b !important; filter: brightness(80%); }
 
 canvas { filter: invert(100%); }
 
-.post-list > li > div { box-shadow: none !important; background-color: #373535; border: none !important; }
+.post-list > li > div { box-shadow: none !important; background-color: #262626; border-color: #323232; }
 
 li .post-meta-description { color: rgba(255, 255, 255, 0.69) !important; }
 
@@ -497,7 +497,7 @@ li .post-meta-description { color: rgba(255, 255, 255, 0.69) !important; }
 
 .pb-5.d-flex.flex-justify-center { justify-content: left !important; }
 
-.vega-embed .vega-actions { background-color: #2c2a2a !important; }
+.vega-embed .vega-actions { background-color: #1b1b1b !important; }
 
 /* @import "minima/vahram"; */
 .language-python + .language-plaintext { border-left: 1px solid grey; margin-left: 1rem !important; }
