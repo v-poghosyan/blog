@@ -446,11 +446,13 @@ pre code { font-size: 15px !important; }
 
 .search-result .search-result-highlight { font-weight: bold !important; color: #121212 !important; }
 
-.site-title { font-weight: normal !important; }
+.site-title { font-weight: normal !important; font-size: 2em !important; }
 
 .site-title, .site-title:visited, .site-nav, .page-link { color: #121212 !important; }
 
-a { text-decoration: none !important; font-weight: bold !important; color: #422b94 !important; }
+a { text-decoration: none !important; font-weight: bold !important; color: #4174e0 !important; }
+
+.post-link { text-decoration: none !important; font-weight: bold !important; color: #121212 !important; }
 
 .post-list > li > div { box-shadow: none !important; }
 
