@@ -11,9 +11,10 @@ html, body, input, textarea, select, button {
 }
 
 a {
-    text-decoration: none !important;
-    font-weight: bold !important;
-    color: $high-emph !important;
+  text-decoration: none !important;
+  font-weight: bold !important;
+  color: $high-emph !important;
+  padding: 5px !important;
 }
 
 .footnotes {
@@ -25,7 +26,8 @@ a.footnote.footnotes {
 }
 
 a:hover {
-  color:  linear-gradient(160deg, #0093E9 0%, #80D0C7 100%) !important;
+  color: #0093E9 !important;
+  background:  linear-gradient(160deg, #0093E9 0%, #80D0C7 100%) !important;
 }
 
 .flash {
@@ -152,6 +154,12 @@ li .post-meta-description {
 
 .anchor-link {
   \-webkit-text-stroke: none !important;
+  padding: 0px !important;
+}
+
+.anchor-link:hover i {
+  color: #0093E9 !important;
+  background:  linear-gradient(160deg, #0093E9 0%, #80D0C7 100%) !important;
 }
 
 .site-header {
