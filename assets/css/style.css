@@ -489,7 +489,7 @@ canvas { filter: invert(100%); }
 
 li .post-meta-description { color: rgba(255, 255, 255, 0.69) !important; }
 
-.anchor-link { \-webkit-text-stroke: none !important; }
+.anchor-link { \-webkit-text-stroke: none !important; margin-left: 5px !important; }
 
 .anchor-link:hover { color: #3dc8e0 !important; }
 
