@@ -52,7 +52,7 @@ blockquote {
   padding-bottom: 0.5em !important;
   background-color: $overlay !important;
   border-radius: 6px !important;
-  border: 1px solid $overlay-light !important;
+  border: 1px 1px 1px 5px solid $overlay-light !important;
 }
 
 // Removing code output margin
