@@ -14,7 +14,8 @@ a {
   text-decoration: none !important;
   font-weight: bold !important;
   color: $high-emph !important;
-  padding: 5px !important;
+  padding: 2px !important;
+  border-radius: 6px !important;
 }
 
 .footnotes {
@@ -157,9 +158,8 @@ li .post-meta-description {
   padding: 0px !important;
 }
 
-.anchor-link:hover i {
-  color: #0093E9 !important;
-  background:  linear-gradient(160deg, #0093E9 0%, #80D0C7 100%) !important;
+.anchor-link:hover {
+  color: #12adc2 !important;
 }
 
 .site-header {
