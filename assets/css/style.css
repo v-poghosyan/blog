@@ -437,7 +437,7 @@ a { text-decoration: none !important; font-weight: bold !important; color: rgba(
 
 a.footnote.footnotes { border: none !important; }
 
-a:hover { color: #0093E9 !important; background: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%) !important; }
+a:hover { background: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%) !important; }
 
 .flash { color: rgba(255, 255, 255, 0.69) !important; background-color: #161616 !important; border-color: #232323 !important; }
 
