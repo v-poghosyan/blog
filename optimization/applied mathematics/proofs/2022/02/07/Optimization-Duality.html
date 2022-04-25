@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      49 min read
+      51 min read
     
 </span></p>
 
@@ -269,12 +269,12 @@ window.onload = wrap_img;
 <h1 id="Introduction">
 <a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
 </h1>
-<p>Every convex optimization problem has a closely related problem called its <em>dual</em> which can be colloquially thought of as its evil twin. The primal and the dual represent two different perspectives on the same problem.</p>
+<p>Every convex optimization problem, designated as the <strong><em>primal</em></strong>, has a related problem called its <strong><em>dual</em></strong> which can be colloquially thought of as its evil twin. The primal and the dual represent two different perspectives on the same problem.</p>
 <p>In the most general case, if the primal is a minimization problem, its dual is a maximization problem. In the case of constrained optimization, if the primal is minimization in $n$ variables and $m$ constraints then its dual is a maximization in $m$ variables and $n$ constraints.</p>
-<p>Furthermore, any feasible value of the dual is a lower-bound of all the feasible values of the primal. In particular, should they both exist, the dual optimal is a lower bound on the primal optimal. This property, called <em>Weak Duality</em>, is at the core of duality. Deriving a dual problem that obtains, at the very least, a useful lower bound to the primal's optimal is one of the nascent ideas behind <em>Duality Theory</em>.</p>
-<p>In the case of problems which exhibit <em>Strong Duality</em>, such as linear programs and a certain category of convex but non-linear optimization problems, the primal and the dual optima agree with each other. That is, solving the dual guarantees that we've also solved the primal. Furthermore, since taking the dual of the dual gives back the primal, this relationship is true in the converse — if we've solved the primal then we've also solved its dual.</p>
-<p>This is what makes Duality Theory so useful in practice. Having a related, usually easier, optimization problem gives applied scientists a huge computational advantage. However, even if the dual does not turn out to be easier to solve and/or Strong Duality fails to hold, we still stand to gain structural insight about the problem.</p>
-<p>In this post we will show how to form the dual of a problem, examine, in detail, its relationship with the primal, and list all possible primal-dual outcomes. In doing so, we will look at duality in the general case of constrained optimization problems, in a certain type of unconstrained problem, as well as in linear programs.</p>
+<p>Furthermore, <em>any</em> feasible value of the dual is a lower-bound for <em>all</em> feasible values of the primal. In particular, should they both exist, the dual optimum is a lower bound for the primal optimum. This property, called <strong><em>weak duality</em></strong>, is at the core of <strong><em>duality theory</em></strong>. Having a problem that obtains, at the very least, a useful lower-bound for the primal optimum and, possibly, the primal optimum itself is the nascent idea of formulating the dual.</p>
+<p>In the best case scenario, problems exhibit a property called <strong><em>strong duality</em></strong>, which guarantees the primal and the dual optima agree with each other. Strongly dual problems include, but are not limited to, all linear programs and a category of convex non-linear optimization problems. For such problems, solving the dual guarantees that we've also solved the primal. Furthermore, taking the dual of the dual gives back the primal. So this relationship is true in the converse — if we've solved the primal then we've also solved its dual.</p>
+<p>This is what makes duality theory so useful in practice. Having a related, usually easier, optimization problem gives applied scientists a huge computational advantage. However, even if the dual does not turn out to be any easier to solve or strong duality fails to hold, we still stand to gain structural insights about the primal problem.</p>
+<p>In this post we will show how the dual of a problem arises, we will examine in detail its relationship with the primal, and list all possible primal-dual outcomes. In doing so, we will look at duality in the general case of constrained optimization problems, in the specific case of linear programs, and in a certain category of unconstrained problem.</p>
 
 </div>
 </div>
@@ -285,8 +285,8 @@ window.onload = wrap_img;
 <h1 id="The-Dual-of-a-Constrained-Problem">
 <a class="anchor" href="#The-Dual-of-a-Constrained-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Dual of a Constrained Problem<a class="anchor-link" href="#The-Dual-of-a-Constrained-Problem"> </a>
 </h1>
-<p>First, let's focus on deriving the dual of a constrained optimization problem. We shall see that, in a sense, constraints are what give rise to duality through the <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian</a>. Certain types of unconstrained problems, however, also have duals which arise from the introduction of dummy constraints or directly through the <a href="https://en.wikipedia.org/wiki/Convex_conjugate">Fenchel-Legendre Transform</a>.</p>
-<p>Take the most general form of constrained problem with $m$ inequality and $n$ equality constraints and assume nothing, as of yet, about its convexity. To make the discussion interesting, assume the problem is non-trivial (i.e. its constraint set is non-empty and contains more than one feasible point). Furthermore, so that we may have a solution to speak of, assume the problem is bounded with the finite optimal value of $f_0(x^*)$ for some optimizer $x^*$.</p>
+<p>First, let's focus on deriving the dual of a constrained optimization problem. We shall see that, in a sense, constraints are what give rise to duality through the <a href="https://en.wikipedia.org/wiki/Lagrangian_relaxation">Lagrangian</a>. Certain types of unconstrained problems also have duals which arise from introducing dummy constraints or directly through the <a href="https://en.wikipedia.org/wiki/Convex_conjugate">Fenchel-Legendre Transform</a>.</p>
+<p>Take the most general form of a convex, constrained problem with $m$ inequality and $n$ equality constraints. To make the discussion interesting, assume the problem is non-trivial (i.e. its constraint set is non-empty and contains more than one feasible point). Furthermore, so that we may have a solution to speak of, assume the problem is bounded with the finite optimum $f_0(x^*)$ for some optimizer $x^*$.</p>
 
 </div>
 </div>
@@ -313,9 +313,21 @@ $$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Since minimizing an unconstrained problem is considerably easier, we seek to formulate an unconstrained problem that's equivalent to the original.</p>
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>The $f_i$’s and the $h_i$’s in the constraints must necessarily be convex in order for their sublevel-sets, and hence the problem itself, to be convex. However, the equality constraints may be given as $Ax = b$ in some other sources. These representations are almost equivalent. The $0$-th level-set of $Ax - b$ is indeed a convex set. However, $h_i$’s in the equality constraints $h_i(x) = 0$ need not be linear for the their $0$-th level-set $\{ x : h_i(x) = 0 \}$ to be convex. For example, in $\mathbb{R}$, $x^2 = 0$ does represent a convex level-set. Note, however, that $x^2 = 0$ can be reduced to $x = 0$ which is, indeed, linear. The notion of <a href="https://en.wikipedia.org/wiki/Quasiconvex_function">quasi-linearity</a> is what’s needed here but, in practice, we simply <em>define</em> a general convex problem as having only linear equality constraints. Doing so assists in the analysis of problems and in the development of computational methods.
+</div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since optimizing an unconstrained problem is considerably easier than optimizing a constrained problem, we seek to augment the constrained problem into an equivalent unconstrained problem.</p>
 <p>The idea is to penalize infeasible $x$ using functions that express our <em>displeasure</em> for certain choices.</p>
-<p>At first we use the <em>infinitely-hard</em> penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$ which are defined as follows:</p>
+<p>At first we use the <em>infinitely-hard penalty functions</em> $\mathbb{1}_-$ and $\mathbb{1}_0$ which are defined as follows:</p>
 
 </div>
 </div>
@@ -349,11 +361,28 @@ $$\mathbb{1}_0(u) =
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Then the equivalent unconstrained problem is formulated as:</p>
-<p>
+<p>Then the equivalent unconstrained problem can be stated as:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br>
+
 $$\min_x: \mathcal{J}(x)$$
-</p>
-<p>where $\mathcal{J}(x) = f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$, which can also be expressed as:</p>
+
+<br></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>where $\mathcal{J}(x) = f_0(x) + \sum_{i=1}^m \mathbb{1}_-(f_i(x)) + \sum_{i=1}^p \mathbb{1}_0(h_i(x))$.</p>
+<p>Equivalently, we can express the objective $\mathcal{J}(x)$ as:</p>
 
 </div>
 </div>
@@ -375,41 +404,71 @@ $$\mathcal{J}(x) = \begin{cases}\begin{aligned}
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Informally, if $\hat x$ is chosen s.t <em>one or more</em> of the constraints are broken then the minimization incurs an infinitely positive penalty. Therefore, such a $\hat x$ will never be selected over a feasible choice $x$ which gives a finite value of $f_0(x)$. Moreover, by optimality of $x^*$ in the original problem, we have $f_0(x) \leq f_0(x^*) \ \ \forall x$. So, the optimal value of the unconstrained problem will also be $f_0(x^*)$.</p>
-<p>Hence: 
+<p>Informally, if $\hat x$ is chosen s.t <em>one or more</em> of the constraints are broken then the minimization incurs an infinitely positive penalty. Therefore, such a $\hat x$ will never be selected over any feasible choice $x$ which gives a finite value $f_0(x)$. Moreover, by optimality of $x^*$ in the original problem, we have $f_0(x) \leq f_0(x^*) \ \ \forall x$. So, the optimum of $\mathcal{J}(x)$ will also be $f_0(x^*)$.</p>
+<p>That is:</p>
+<p><br>
 
 $$\min_x \mathcal{J}(x) = f_0(x^*) \tag{1}$$
 </p>
-<p>Moreover, since the minimizer $x^*$ for the original problem is feasible, $\mathcal{J}(x^*) = f_0(x^*)$ by definition. It follows from $(1)$ that:
-<br>
+<p>Moreover, since the optimizer $x^*$ for the original problem is feasible, $\mathcal{J}(x^*) = f_0(x^*)$ by definition. It follows from $(1)$ that:</p>
+<p><br>
 $$\mathcal{J}(x^*) = \min_x \mathcal{J}(x) \tag{2.1}$$</p>
 <p>Or, equivalently:</p>
-<p>
+<p><br>
+
 $$x^* = \arg \min_x \mathcal{J}(x) \tag{2.2}$$
 </p>
-<p>Identity $(1)$ shows that it suffices to minimize the unconstrained objective $\mathcal{J}(x)$ instead of the original problem since doing so results in $f_0(x^*)$, the optimal value of the original. $(2.1)$ and $(2.2)$, on the other hand, show that it suffices to find a minimizer $x^*$ of the unconstrained problem, since such a point will also be a minimizer of the original problem.</p>
-<p>As we know, the local minima of unconstrained problems occur at their <em>stationary points</em> which can be identified easily using the <em>unconstrained optimality condition</em>.</p>
-<p><br></p>
+<p>$(1)$ says that it suffices to minimize the unconstrained objective $\mathcal{J}(x)$ instead of the original problem since doing so results in $f_0(x^*)$, the optimum of the unconstrained problem. $(2.1)$ and $(2.2)$, on the other hand, say that it suffices to find an optimizer $x^*$ of the unconstrained problem, since such a point will also be an optimizer of the constrained problem.</p>
+<p>As we know, the local optima of unconstrained problems occur at their <em>stationary points</em> which can be easily identified using the <em>unconstrained optimality condition</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <blockquote>
-<p><strong>Unconstrained Optimality Condition</strong>   If $x^*$ is an optimizer of the unconstrained objective $f_0$ then $\nabla f_0(x^*) = 0$. That is $x^*$ is a <em>Stationary Point</em> of $f_0$.
-<br>
-<br></p>
+<p><strong>Unconstrained Optimality Condition</strong>   If $x^*$ is an optimizer of the unconstrained objective $f_0(x)$ then $\nabla f_0(x^*) = 0$. That is $x^*$ is a <strong>*stationary point</strong> of $f_0(x)$.</p>
 </blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Once the stationary points have been found, a global minimizer can be identified among them simply by evaluating the objective at each stationary point.</p>
 <p>However, we're immediately beset by a problem. We cannot find the gradient of $\mathcal{J}(x)$ and set it to zero because the infinitely-hard penalty functions are discontinuous and non-differentiable. That is, $\nabla \mathcal{J}(x)$ simply does not exist.</p>
 <p>To sidestep this difficulty we use linear relaxations instead of $\mathbb{1}_-$ and $\mathbb{1}_0$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-Lagrangian,-Dual-Variables,-and-the-Dual-Function">
 <a class="anchor" href="#The-Lagrangian,-Dual-Variables,-and-the-Dual-Function" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrangian, Dual Variables, and the Dual Function<a class="anchor-link" href="#The-Lagrangian,-Dual-Variables,-and-the-Dual-Function"> </a>
 </h2>
-<p>The <em>Lagrangian linear relaxation</em>, sometimes simply referred to as the <em>Lagrangian</em>, is:<br>$$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=1}^p \mu_i h_i(x)$$
+<p>The <strong><em>Lagrangian linear relaxation</em></strong>, sometimes simply referred to as the <strong><em>Lagrangian</em></strong>, is:</p>
+<p><br>
+
+$$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=1}^p \mu_i h_i(x)$$
+
 $$\textrm{where} \ \lambda \geq 0$$</p>
-<p>We call the $\lambda_i$'s the <em>Lagrange multipliers</em> corresponding to the inequality constraints, and the $\mu_i$'s those corresponding to the equality constraints. The vectors $\lambda$ and $\mu$, composed of the lagrange multipliers, are called the <em>Lagrange multiplier vectors</em> or, for reasons that will soon become apparent, the <em>dual variables</em>. 
-</p>
+<p>We call the $\lambda_i$'s the <strong><em>Lagrange multipliers</em></strong> corresponding to the inequality constraints, and the $\mu_i$'s those corresponding to the equality constraints. The vectors $\lambda$ and $\mu$, composed of these Lagrange multipliers, are called the <strong><em>Lagrange multiplier vectors</em></strong> or, for reasons that will soon become apparent, the <strong><em>dual variables</em></strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>In some sources, the Lagrangian is simply stated as $\mathcal{L}(x,\lambda) = f_0(x) + \sum_{i=1}^n \lambda_i f_i(x)$. Indeed, by separating the equality constraints $h_i(x) = 0$ into $h_i(x) \leq 0$ and $-h_i(x) \leq 0$, we can transform a problem with equality constraints into one with purely inequality constraints. So, this formulation of the Lagrangian is still general enough to account for problems with equality constraints.
+    <strong>Note: </strong>In some sources, the Lagrangian is simply stated as $\mathcal{L}(x,\lambda) = f_0(x) + \sum_{i=1}^n \lambda_i f_i(x)$. Indeed, by separating the equality constraints $h_i(x) = 0$ into $h_i(x) \leq 0$ and $-h_i(x) \leq 0$, we can transform a problem with equality constraints into one with only inequality constraints. So, this formulation of the Lagrangian is still general enough to account for problems with equality constraints.
 </div>
-<br>
 
 </div>
 </div>
@@ -420,29 +479,56 @@ $$\textrm{where} \ \lambda \geq 0$$</p>
 <h2 id="A-Lagrangian-Lower-Bound">
 <a class="anchor" href="#A-Lagrangian-Lower-Bound" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Lagrangian Lower-Bound<a class="anchor-link" href="#A-Lagrangian-Lower-Bound"> </a>
 </h2>
-<p>Not only does the Lagrangian relax the unconstrained augmentation of the constrained problem, it also has a natural role in formulating the <em>dual problem</em> as promised.</p>
-<p>The first thing to note about the Lagrangian is that the coordinate-wise $\lambda \geq 0$ condition is crucial. This is because, in the event that an inequality constraint is violated, say $f_i(x) &gt; 0$ for some $i$, the corresponding $\lambda_i$ must be non-negative in order to apply a positive penalty for the violation.</p>
+<p>Not only does the Lagrangian relax the unconstrained augmentation of the constrained problem, it also plays a natural role in the formulation of the <strong><em>dual problem</em></strong> as promised.</p>
+<p>The first thing to note about the Lagrangian is that the coordinate-wise $\lambda \geq 0$ condition is crucial. This is because, in the event that an inequality constraint is violated, say $f_i(x) &gt; 0$, the corresponding $\lambda_i$ must be non-negative in order to apply a positive penalty to the minimization.</p>
 <p>On the other hand, $\mu$ is free to assume any value since the equality constraints can be violated in either direction and both scenarios must be penalized.</p>
-<p>The second thing to note about the Lagrangian is that, even though it applies a positive penalty that scales linearly in the severity of the violation, this penalty is, nevertheless, not as severe as the infinite penalty applied by $\mathcal{J}$. Also, in the Lagrangian, we actually <em>reward</em> feasible choices of $x$ that have margin. That is, in the event that $f_i(x) &lt; 0$ strictly for some $i$, $\lambda_if_i(x)$ is a non-positive reward for the minimization problem.</p>
-<p>All of this is to say that the Lagrangian is a point-wise lower-bound of the unconstrained problem. That is, the following inequality holds:
-<br>
+<p>The second thing to note about the Lagrangian is that, even though it applies a positive penalty that scales linearly in the severity of the violation, this penalty is, nevertheless, not as severe as the infinite penalty applied in $\mathcal{J}(x)$. Also, in the Lagrangian, we may actually be <em>rewarding</em> feasible choices of $x$ that have margin. That is, in the event that $f_i(x) &lt; 0$, $\lambda_if_i(x)$ is a non-positive reward for the minimization problem.</p>
+<p>All of this is to say that the Lagrangian is a point-wise lower-bound of the unconstrained problem. That is, the following inequality holds:</p>
+<p><br>
 $$\mathcal{L}(x,\lambda,\mu) \leq J(x) \ \ \forall x, \lambda \geq 0, \mu \tag{3.1}$$</p>
-<p>This fact is also true by graphing each the linear and infinite penalties and noticing that $\lambda_i f_i(x) \leq \mathbb{1}_-(f_i(x))$ and $\mu_i h_i(x) \leq \mathbb{1}_0(h_i(x))$ for all $i$.</p>
-<p>Taking min of both sides in $(3)$, we have:
-<br>
+<p>This fact is also true by graphing each of the linear and infinite penalties and noticing that $\lambda_i f_i(x) \leq \mathbb{1}_-(f_i(x))$ and $\mu_i h_i(x) \leq \mathbb{1}_0(h_i(x))$ for all $i$ constraints.</p>
+<p>Taking $\inf$ w.r.t. $x$ of the LHS in $(3.1)$, we obtain something of interest.</p>
+<p><br>
 
-$$\min_x \mathcal{L}(x,\lambda,\mu) \leq J(x^*) \ \ \forall \lambda \geq 0, \mu$$
+$$\inf_x \mathcal{L}(x,\lambda,\mu) \leq J(x) \ \ \forall x, \lambda \geq 0, \mu \tag{3.2}$$
 </p>
-<p>And, since $J(x^*) = f_0(x^*)$, we have:
-<br>
 
-$$\min_x \mathcal{L}(x,\lambda,\mu) \leq f_0(x^*) \ \ \forall \lambda \geq 0, \mu \tag{3.2}$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>The Lagrangian may not attain its $\min$ w.r.t. $x$, in which case the LHS is simply $-\infty$. We shall see later that the assumption of primal boundedness ensures this does not happen. So, from this point on, we will assume the minimum is attained. That is $\inf_x \mathcal{L}(x,\lambda,\mu) = \min_x \mathcal{L}(x,\lambda,\mu)$.
+</div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Designating the original problem as the <em>primal</em> $(P)$, we call $g(\lambda, \mu) := \min_x \mathcal{L}(x, \lambda, \mu)$ the <strong><em>dual function</em></strong> because it exhibits the property of weak duality. That is, per $(3.2)$, any feasible value of $g(\lambda, \mu)$ is a lower-bound for any feasible value of the primal.</p>
+<p>Taking min of both sides in $(3.1)$, we have a more specific flavor of weak duality.</p>
+<p><br>
+
+$$g(\lambda,\mu) \leq \min_x \mathcal{J}(x) \ \ \forall \lambda \geq 0, \mu$$
 </p>
-<p>Designating the original problem as the <em>primal</em> $(P)$, we call $g(\lambda, \mu) := \min_x \mathcal{L}(x, \lambda, \mu)$ the <em>dual function</em> because it represents a lower-bound on the primal optimal value $f_0(x^*)$, which is what we require of a dual.</p>
-<p>The inequality $(3.2)$ obtains the first formulation of Weak Duality as:</p>
-<p>
-$$g(\lambda, \mu) \leq f_0(x^*) \ \ \forall \lambda \geq 0, \mu \tag{WD - 1}$$
+<p>And, since $\mathcal{J}(x^*) = f_0(x^*) = \min_x \mathcal{J}(x)$, we have:</p>
+<p><br>
+
+$$g(\lambda,\mu) \leq f_0(x^*) \ \ \forall \lambda \geq 0, \mu \tag{3.3}$$
 </p>
+<p>That is, any feasible value of the dual is a lower-bound for the primal optimum.</p>
+<p>Maximizing both sides of $(3.3)$ by noticing that the RHS is a constant, and by assuming the LHS attains its $\max$ we get an even more specific flavor of weak duality.</p>
+<p><br>
+
+$$\max_{\lambda \geq 0, \mu} g(\lambda,\mu) \leq f_0(x^*) \tag{3.4}$$
+</p>
+<p>That is, the dual optimum is a lower-bound for the primal optimum.</p>
 <p>From here we move, quite naturally, to defining the <em>dual problem</em> $(D)$.</p>
 
 </div>
@@ -454,7 +540,7 @@ $$g(\lambda, \mu) \leq f_0(x^*) \ \ \forall \lambda \geq 0, \mu \tag{WD - 1}$$
 <h2 id="The-Lagrange-Dual-Problem">
 <a class="anchor" href="#The-Lagrange-Dual-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Lagrange Dual Problem<a class="anchor-link" href="#The-Lagrange-Dual-Problem"> </a>
 </h2>
-<p>It's natural, to ask what the <em>tightest</em> lower bound on the primal optimal value $f_0(x^*)$ is. This amounts to finding the values $\lambda^* \geq 0$, and $\mu^*$ for which $g(\lambda^*, \mu^*)$ is maximized. We call this the <em>Lagrange dual problem</em> or, simply, the <em>dual problem</em>.</p>
+<p>It's natural, to ask what the <em>tightest</em> lower bound on the primal optimal value $f_0(x^*)$ is. This amounts to finding the values $\lambda^* \geq 0$, and $\mu^*$ for which $g(\lambda^*, \mu^*)$ is maximized. We call this the <strong><em>Lagrange dual problem</em></strong> or, simply, the <strong><em>dual problem</em></strong>.</p>
 <p>It can be stated as:</p>
 
 </div>
@@ -479,7 +565,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Looking at the above, it becomes obvious why we were motivated to call $\lambda$, and $\mu$ the <em>dual variables</em>. They are the variables of the dual problem.</p>
+<p>Looking at the above, it becomes immediately clear why we were motivated to call $\lambda$, and $\mu$ the <em>dual variables</em>. They are the variables of the dual problem.</p>
 
 </div>
 </div>
@@ -490,38 +576,38 @@ $$
 <h1 id="Weak-Duality-and-Interpretations">
 <a class="anchor" href="#Weak-Duality-and-Interpretations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality and Interpretations<a class="anchor-link" href="#Weak-Duality-and-Interpretations"> </a>
 </h1>
-<p>We return to the general setting of constrained optimization where we will stay for the  remaining portion of this post.</p>
-<p>We've already seen Weak Duality formulated as $(WD - 1)$, but there's a more symmetric formulation of Weak Duality as a <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality"><em>Max-Min Inequality</em></a> which can be proven through a non-optimization lens.</p>
-<p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal. Then, from $(WD - 1)$, we have Weak Duality in terms of the dual optimal value $g(\lambda^*, \mu^*)$ as:
-<br>
+<p>We now return to the general setting of constrained optimization.</p>
+<p>We've already seen weak duality formulated as $(3.2)$, $(3.3)$, and $(3.4)$. But, there's yet another, more symmetric, formulation of weak duality as a <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality"><em>Max-Min Inequality</em></a> which allows us to prove weak duality through a non-optimization lens.</p>
+<p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal. Then from $(3.4)$ we have weak duality in terms of the primal and dual optima $g(\lambda^*, \mu^*)$ as:</p>
+<p><br>
 $$
-g(\lambda^*, \mu^*) \leq f_0(x^*) \tag{WD - 2}
+g(\lambda^*, \mu^*) \leq f_0(x^*) \tag{3.5}
 $$</p>
-<p>But since $g(\lambda^*, \mu^*)$ is the solution to the dual $(D)$, and $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$:
-<br>
+<p>But since $g(\lambda^*, \mu^*)$ is the solution to the dual $(D)$, and $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$:</p>
+<p><br>
 
 $$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\} \tag{4.1}$$
 </p>
-<p>Similarly, it can be shown that: 
-<br>
+<p>Similarly, it can be shown that:</p>
+<p><br>
 
 $$f_0(x^*) = \min_x \left\{ \max_{\lambda \geq 0, mu} \mathcal{L}(x, \lambda, \mu) \right\} \tag{4.2}$$
 </p>
 <p>To see this, note that for some $x$ fixed by the outer minimizer, maximizing the Lagrangian over $\lambda \geq 0$ and $\mu$ recovers $\mathcal{J}(x)$.</p>
-<p>If all inequality constraints are respected, that is $f_i(x) \leq 0$ $\forall i$, then, in order to maximize the Lagrangian, the best we can do is set $\lambda_i = 0$ $\forall i$. In case when <em>any</em> inequality constraint is violated, that is $f_i(x) &gt; 0$ for some $i$, the result of maximizing the Lagrangian can be made $\infty$ by choosing $\lambda_i \rightarrow \infty$ and $\lambda_j = 0$ $\forall j \ne i$.</p>
+<p>If all of the inequality constraints are respected, that is $f_i(x) \leq 0$ $\forall i$, then, in order to maximize the Lagrangian, the best we can do is set $\lambda_i = 0$ $\forall i$. In case <em>any</em> inequality constraint is violated, that is $f_i(x) &gt; 0$ for some $i$, the result of maximizing the Lagrangian can be made $\infty$ by choosing $\lambda_i \rightarrow \infty$ and $\lambda_j = 0$ $\forall j \ne i$.</p>
 <p>Using similar logic, if all equality constraints are respected then $h_i(x) = 0$ $\forall i$. In this case $\mu_i$ can be chosen to be any value. If, on the other hand, some equality constraint is violated then $h_i(x) \ne 0$ for some $i$. By choosing $\mu_i \rightarrow \pm \infty$, where the sign depends on the direction of the violation, the result can be made $\infty$.</p>
-<p>Thus we have shown that: 
-<br>
+<p>Thus we have shown that:</p>
+<p><br>
 $$\begin{aligned}\max_{\lambda \geq 0, \mu} \mathcal{L}(x,\lambda,\mu) &amp;= \begin{cases}\begin{aligned} 
 &amp;f_0(x) \ \ \textrm{if $x$ is feasible}
 \\
 &amp;\infty \ \ \textrm{otherwise}
 \end{aligned}\end{cases} \\ &amp;= \mathcal{J}(x)\end{aligned}$$</p>
-<p>But, since $x^*$ is the solution to the primal $(P)$, and minimizing the latter was shown to be an equivalent problem to minimizing the unconstrained objective $\mathcal{J}(x)$, we have $(4.2)$ as promised.</p>
-<p>Then, Weak Duality can be stated in a more symmetric form as:
-<br>
+<p>Now, since $x^*$ is the solution to the primal $(P)$ and $\min_x J(x) = f_0(x^*)$ we have $(4.2)$ as promised.</p>
+<p>Then, weak duality can be stated as:</p>
+<p><br>
 
-$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, mu} \mathcal{L}(x, \lambda, \mu) \right\} \tag{WD - 3}$$
+$$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, mu} \mathcal{L}(x, \lambda, \mu) \right\} \tag{3.6}$$
 </p>
 
 </div>
@@ -533,26 +619,47 @@ $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\
 <h2 id="The-Max-Min-Inequality">
 <a class="anchor" href="#The-Max-Min-Inequality" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Max-Min Inequality<a class="anchor-link" href="#The-Max-Min-Inequality"> </a>
 </h2>
-<p>The Max-Min Inequality makes no assumptions about the function. It's simply true for all functions of the form $f: X \times Y \rightarrow \mathbb{R}$, and it states that:
-<br>
+<p>The Max-Min Inequality makes no assumptions about the function. It's simply true for all functions of the form $f: X \times Y \rightarrow \mathbb{R}$, and it states that:</p>
+<p><br>
 $$
 \sup_{x\in X} \left\{ \inf_{y\in Y} f(x,y) \right\} \leq \inf_{y\in Y} \left\{ \sup_{x\in X} f(x,y) \right\}
 $$</p>
-<p>Since no assumption is made on $f$, the inequality certainly also holds for the Lagrangian, $\mathcal{L}$. And, since we're in the special case where the optimal values of the primal $(P)$ and the dual $(D)$ are assumed to exist, the functions attain the respective optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$ which obtains the symmetric formulation of Weak Duality $(WD - 3)$ as stated above.</p>
-<p>So, we can establish Weak Duality through a non-optimization lens by proving the Max-Min Inequality, which is what we do now.</p>
-<p>For any $f$, and $x \in X$, $y \in Y$ we have:
+<p>Since no assumption is made on $f$, the inequality also holds for the Lagrangian, $\mathcal{L}$. And, since we're in the special case where the optimal values of the primal $(P)$ and the dual $(D)$ are assumed to exist, the functions attain the respective optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$ which obtains the promised symmetric formulation of weak duality as $(3.6)$.</p>
+<p>We can now prove weak duality through a non-optimization lens by proving the Max-Min Inequality.</p>
+<p>For any $f$, and $x \in X$, $y \in Y$ we have:</p>
+<p><br>
 
 $$f(x,y) \leq \sup_y f(x,y) \ \ \forall x$$
-
-The right hand side is now only a function of $x$, so minimizing both sides w.r.t. $x$ yields: 
+</p>
+<p>The right hand side is now only a function of $x$, so minimizing both sides w.r.t. $x$ yields:</p>
+<p><br>
 
 $$ \inf_x f(x,y) \leq \inf_x \left\{ \sup_y f(x,y) \right\} \ \ \forall y$$
-
-The right hand side is now a constant, so maximizing both sides w.r.t. $y$ results in the desired conclusion.
-<br>
+</p>
+<p>The right hand side is now a constant, so maximizing both sides w.r.t. $y$ results in the desired conclusion.</p>
+<p><br>
 
 $$\sup_y \left\{ \inf_x f(x,y) \right\} \leq \inf_x \left\{ \sup_y f(x,y) \right\}$$
 </p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>Observe how the Max-Min Inequality proof mirrors the steps taken to obtain $(3.2)$-$(3.4)$ from $(3.1)$. In fact, $(3.1)$ is of form $f(x,y) \leq \sup_y f(x,y) \ \ \forall x$, which is the first step of the Max-Min Inequality proof, since $J(x)$ is, as shown earlier, $\max_{\lambda \geq 0, \mu} L(x, \lambda, \mu)$. 
+</div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Game-Theoretic-Interpretation">
 <a class="anchor" href="#Game-Theoretic-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Game-Theoretic Interpretation<a class="anchor-link" href="#Game-Theoretic-Interpretation"> </a>
 </h3>
