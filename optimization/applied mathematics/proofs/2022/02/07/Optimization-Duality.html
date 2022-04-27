@@ -413,15 +413,20 @@ $$\mathcal{J}(x) = \begin{cases}\begin{aligned}
 <p><br>
 
 $$\min_x \mathcal{J}(x) = f_0(x^*) \tag{1}$$
-</p>
+
+<br></p>
 <p>Moreover, since the optimizer $x^*$ for the original problem is feasible, $\mathcal{J}(x^*) = f_0(x^*)$ by definition. It follows from $(1)$ that:</p>
 <p><br>
-$$\mathcal{J}(x^*) = \min_x \mathcal{J}(x) \tag{2.1}$$</p>
+
+$$\mathcal{J}(x^*) = \min_x \mathcal{J}(x) \tag{2.1}$$
+
+<br></p>
 <p>Or, equivalently:</p>
 <p><br>
 
 $$x^* = \arg \min_x \mathcal{J}(x) \tag{2.2}$$
-</p>
+
+<br></p>
 <p>$(1)$ says that it suffices to minimize the unconstrained objective $\mathcal{J}(x)$ instead of the original problem since doing so results in $f_0(x^*)$, the optimum of the unconstrained problem. $(2.1)$ and $(2.2)$, on the other hand, say that it suffices to find an optimizer $x^*$ of the unconstrained problem, since such a point will also be an optimizer of the constrained problem.</p>
 <p>As we know, the local optima of unconstrained problems occur at their <em>stationary points</em> which can be easily identified using the <em>unconstrained optimality condition</em>.</p>
 
@@ -459,7 +464,10 @@ $$x^* = \arg \min_x \mathcal{J}(x) \tag{2.2}$$
 
 $$\mathcal{L}(x,\lambda,\mu) = f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=1}^p \mu_i h_i(x)$$
 
-$$\textrm{where} \ \lambda \geq 0$$</p>
+
+$$\textrm{where} \ \lambda \geq 0$$
+
+<br></p>
 <p>We call the $\lambda_i$'s the <strong><em>Lagrange multipliers</em></strong> corresponding to the inequality constraints, and the $\mu_i$'s those corresponding to the equality constraints. The vectors $\lambda$ and $\mu$, composed of these Lagrange multipliers, are called the <strong><em>Lagrange multiplier vectors</em></strong> or, for reasons that will soon become apparent, the <strong><em>dual variables</em></strong>.</p>
 
 </div>
@@ -489,13 +497,17 @@ $$\textrm{where} \ \lambda \geq 0$$</p>
 <p>The second thing to note about the Lagrangian is that, even though it applies a positive penalty that scales linearly in the severity of the violation, this penalty is, nevertheless, not as severe as the infinite penalty applied in $\mathcal{J}(x)$. Also, in the Lagrangian, we may actually be <em>rewarding</em> feasible choices of $x$ that have margin. That is, in the event that $f_i(x) &lt; 0$, $\lambda_if_i(x)$ is a non-positive reward for the minimization problem.</p>
 <p>All of this is to say that the Lagrangian is a point-wise lower-bound of the unconstrained problem. That is, the following inequality holds:</p>
 <p><br>
-$$\mathcal{L}(x,\lambda,\mu) \leq J(x) \ \ \forall x, \lambda \geq 0, \mu \tag{3.1}$$</p>
+
+$$\mathcal{L}(x,\lambda,\mu) \leq J(x) \ \ \forall x, \lambda \geq 0, \mu \tag{3.1}$$
+
+<br></p>
 <p>This fact is also true by graphing each of the linear and infinite penalties and noticing that $\lambda_i f_i(x) \leq \mathbb{1}_-(f_i(x))$ and $\mu_i h_i(x) \leq \mathbb{1}_0(h_i(x))$ for all $i$ constraints.</p>
 <p>Taking $\inf$ w.r.t. $x$ of the LHS in $(3.1)$, we obtain something of interest.</p>
 <p><br>
 
 $$\inf_x \mathcal{L}(x,\lambda,\mu) \leq J(x) \ \ \forall x, \lambda \geq 0, \mu \tag{3.2}$$
-</p>
+
+<br></p>
 
 </div>
 </div>
@@ -520,18 +532,21 @@ $$\inf_x \mathcal{L}(x,\lambda,\mu) \leq J(x) \ \ \forall x, \lambda \geq 0, \mu
 <p><br>
 
 $$g(\lambda,\mu) \leq \min_x \mathcal{J}(x) \ \ \forall \lambda \geq 0, \mu$$
-</p>
+
+<br></p>
 <p>And, since $\mathcal{J}(x^*) = f_0(x^*) = \min_x \mathcal{J}(x)$, we have:</p>
 <p><br>
 
 $$g(\lambda,\mu) \leq f_0(x^*) \ \ \forall \lambda \geq 0, \mu \tag{3.3}$$
-</p>
+
+<br></p>
 <p>That is, any feasible value of the dual is a lower-bound for the primal optimum.</p>
 <p>Maximizing both sides of $(3.3)$ by noticing that the RHS is a constant, and by assuming the LHS attains its $\max$ we get an even more specific flavor of weak duality.</p>
 <p><br>
 
 $$\max_{\lambda \geq 0, \mu} g(\lambda,\mu) \leq f_0(x^*) \tag{3.4}$$
-</p>
+
+<br></p>
 <p>That is, the dual optimum is a lower-bound for the primal optimum.</p>
 <p>From here we move, quite naturally, to defining the <em>dual problem</em> $(D)$.</p>
 
@@ -584,19 +599,22 @@ $$
 <p>We've already seen weak duality formulated as $(3.2)$, $(3.3)$, and $(3.4)$. But, there's yet another, more symmetric, formulation of weak duality.</p>
 <p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal. Then from $(3.4)$ we have weak duality in terms of the primal and dual optima $g(\lambda^*, \mu^*)$ as:</p>
 <p><br>
-$$
-g(\lambda^*, \mu^*) \leq f_0(x^*) \tag{3.5}
-$$</p>
+
+$$g(\lambda^*, \mu^*) \leq f_0(x^*) \tag{3.5}$$
+
+<br></p>
 <p>But since $g(\lambda^*, \mu^*)$ is the solution to the dual $(D)$, and $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$:</p>
 <p><br>
 
 $$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\} \tag{4.1}$$
-</p>
+
+<br></p>
 <p>Similarly, it can be shown that:</p>
 <p><br>
 
 $$f_0(x^*) = \min_x \left\{ \max_{\lambda \geq 0, mu} \mathcal{L}(x, \lambda, \mu) \right\} \tag{4.2}$$
-</p>
+
+<br></p>
 <p>To see this, note that for some $x$ fixed by the outer minimizer, maximizing the Lagrangian over $\lambda \geq 0$ and $\mu$ recovers $\mathcal{J}(x)$.</p>
 <p>If all of the inequality constraints are respected, that is $f_i(x) \leq 0$ $\forall i$, then, in order to maximize the Lagrangian, the best we can do is set $\lambda_i = 0$ $\forall i$. In case <em>any</em> inequality constraint is violated, that is $f_i(x) &gt; 0$ for some $i$, the result of maximizing the Lagrangian can be made $\infty$ by choosing $\lambda_i \rightarrow \infty$ and $\lambda_j = 0$ $\forall j \ne i$.</p>
 <p>Using similar logic, if all equality constraints are respected then $h_i(x) = 0$ $\forall i$. In this case $\mu_i$ can be chosen to be any value. If, on the other hand, some equality constraint is violated then $h_i(x) \ne 0$ for some $i$. By choosing $\mu_i \rightarrow \pm \infty$, where the sign depends on the direction of the violation, the result can be made $\infty$.</p>
@@ -606,13 +624,15 @@ $$\begin{aligned}\max_{\lambda \geq 0, \mu} \mathcal{L}(x,\lambda,\mu) &amp;= \b
 &amp;f_0(x) \ \ \textrm{if $x$ is feasible}
 \\
 &amp;\infty \ \ \textrm{otherwise}
-\end{aligned}\end{cases} \\ &amp;= \mathcal{J}(x)\end{aligned}$$</p>
+\end{aligned}\end{cases} \\ &amp;= \mathcal{J}(x)\end{aligned}$$
+<br></p>
 <p>Now, since $x^*$ is the solution to the primal $(P)$ and $\min_x J(x) = f_0(x^*)$ we have $(4.2)$ as promised.</p>
 <p>Then, weak duality can be stated as:</p>
 <p><br>
 
 $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\} \leq \min_x \left\{ \max_{\lambda \geq 0, mu} \mathcal{L}(x, \lambda, \mu) \right\} \tag{3.6}$$
-</p>
+
+<br></p>
 
 </div>
 </div>
@@ -625,26 +645,30 @@ $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\
 </h2>
 <p>The inequality expressed as $(3.6)$ is, in fact, a general result in mathematics called the <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality"><em>Max-Min Inequality</em></a>. To summarize, the Max-Min Inequality makes no assumptions about the function. It's simply true for all functions of the form $f: X \times Y \rightarrow \mathbb{R}$, and it states that:</p>
 <p><br>
-$$
-\sup_{x\in X} \left\{ \inf_{y\in Y} f(x,y) \right\} \leq \inf_{y\in Y} \left\{ \sup_{x\in X} f(x,y) \right\}
-$$</p>
+
+$$\sup_{x\in X} \left\{ \inf_{y\in Y} f(x,y) \right\} \leq \inf_{y\in Y} \left\{ \sup_{x\in X} f(x,y) \right\}$$
+
+<br></p>
 <p>Since no assumption is made on $f$, the inequality also holds for the Lagrangian, $\mathcal{L}$. And, since we're in the special case where the optimal values of the primal $(P)$ and the dual $(D)$ are assumed to exist, the functions attain the respective optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$ which obtains the promised symmetric formulation of weak duality as $(3.6)$.</p>
 <p>We can now prove weak duality through a non-optimization lens simply by proving the Max-Min Inequality.</p>
 <p>For any $f$, and $x \in X$, $y \in Y$ we have:</p>
 <p><br>
 
 $$f(x,y) \leq \sup_y f(x,y) \ \ \forall x$$
-</p>
+
+<br></p>
 <p>The right hand side is now only a function of $x$, so minimizing both sides w.r.t. $x$ yields:</p>
 <p><br>
 
 $$ \inf_x f(x,y) \leq \inf_x \left\{ \sup_y f(x,y) \right\} \ \ \forall y$$
-</p>
+
+<br></p>
 <p>The right hand side is now a constant, so maximizing both sides w.r.t. $y$ results in the desired conclusion.</p>
 <p><br>
 
 $$\sup_y \left\{ \inf_x f(x,y) \right\} \leq \inf_x \left\{ \sup_y f(x,y) \right\}$$
-</p>
+
+<br></p>
 
 </div>
 </div>
@@ -682,14 +706,16 @@ $$\sup_y \left\{ \inf_x f(x,y) \right\} \leq \inf_x \left\{ \sup_y f(x,y) \right
 </h1>
 <p>Strong duality is the case in which the primal and the dual optima agree strictly.</p>
 <p><br>
-$$
-g(\lambda^*, \mu^*) = f_0(x^*) \tag{5.1}
-$$</p>
+
+$$g(\lambda^*, \mu^*) = f_0(x^*) \tag{5.1}$$
+
+<br></p>
 <p>Alternatively, in its Max-Min characterization:</p>
 <p><br>
 
 $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{5.2}$$
-</p>
+
+<br></p>
 <p>A common way to say a problem is strongly dual is to say its <strong><em>duality gap</em></strong> is zero. The duality gap is defined as the difference between the primal and dual optima, that is $f_0(x^*) - g(\lambda^*, \mu^*)$. This characterization, then, follows immediately from the definition of strong duality as stated in $(5.1)$.</p>
 <p>Optimization problems that exhibit the property of strong duality are called <strong><em>strongly dual</em></strong>.</p>
 <p>As mentioned briefly in the introduction, strong duality gives applied scientists the ability to solve an equivalent, usually easier, dual optimization problem instead of the primal one which may be difficult to solve.
@@ -800,13 +826,15 @@ Strong duality also obtains powerful optimality conditions which allow us to che
 <p><br>
 
 $$f_0(x^*) = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
-</p>
+
+<br></p>
 <p>But maximizing the Lagrangian over $\lambda \geq 0$ and $\mu$ for a fixed $x$, recovers $\mathcal{J}(x)$: a non-differentiable objective. So, we cannot use the unconstrained optimality condition in finding the stationary points of $\mathcal{J}(x)$ which is what's required in the next step.</p>
 <p>Meanwhile, the dual problem is that of finding the dual optimum:</p>
 <p><br>
 
 $$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$$
-</p>
+
+<br></p>
 <p>Minimizing the Lagrangian over $x$ for fixed $\lambda \geq 0$ and $\mu$ may still be a difficult problem but, at least, it lends itself to using the method of unconstrained optimization. Moreover, the resulting dual function $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ is a point-wise minimum of linear functions in $\lambda$ and $\mu$, so its always concave in those variables. Meanwhile, the constraint $\lambda \geq 0$ is a simple convex, in fact linear, constraint. So, overall, the dual problem is a convex problem regardless of the convexity of the primal.</p>
 <p>Solving the convex dual problem is usually easier that solving the non-convex primal. However, even if the primal is a convex problem to begin with, the dual may still be easier to solve. The primal could have more variables than constraints,  in which case its dual is a problem with more constraints than variables making it easier to solve.</p>
 <p>So, in the settings described above, if strong duality holds we've found an easier approach to the primal problem. If strong duality fails to hold then, at the very least, we've found a useful lower-bound to the primal optimum.</p>
@@ -828,21 +856,25 @@ $$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x
 <p><br>
 
 $$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$$
-</p>
+
+<br></p>
 <p>If strong duality holds, this dual optimum agrees with the primal optimum. That is:</p>
 <p><br>
 
 $$g(\lambda^*, \mu^*) = f_0(x^*)$$
-</p>
+
+<br></p>
 <p>Turns out there's more that can be said. As we saw earlier optimizing the unconstrained objective $\mathcal{J}(x)$ not only resulted in the primal optimum $f_0(x^*)$ for some optimal $x^*$ of the constrained problem, the very same point $x^*$ itself turned out to be an optimizer of $\mathcal{J}(x)$. Similarly, we can show that the primal optimum $x^*$ for some primal-dual optimal pair $(x^*, (\lambda^*, \mu^*))$ optimizes $\mathcal{L}(x, \lambda^*, \mu^*)$. In other words, the primal optimum $x^*$ is a stationary point of the Lagrangian at the dual optimum $(\lambda^*,\mu^*)$.</p>
 <p>That is:</p>
 <p><br>
-$$x^* = \arg \min_x \mathcal{L} (x, \lambda^*, \mu^*) \tag{6.1}$$</p>
+$$x^* = \arg \min_x \mathcal{L} (x, \lambda^*, \mu^*) \tag{6.1}$$ 
+<br></p>
 <p>Or, equivalently:</p>
 <p><br>
 
 $$\min_x \mathcal{L}(x, \lambda^*, \mu^*) = \mathcal{L}(x^*, \lambda^*, \mu^*) \tag{6.2}$$
-</p>
+
+<br></p>
 <p>We can think of $(6.1)$ and $(6.2)$ as the analogs of $(2.1)$ and $(2.2)$ for the Lagrangian. This is exactly what we've been digging for. Recall that the original motivation in augmenting the constrained problem into $\mathcal{J}(x)$ was to find the former's optimizer using the unconstrained optimality condition on $\mathcal{J}(x)$. $(2.1)$ or $(2.2)$ would then guarantee that the optimizer of $\mathcal{J}(x)$ we found was, itself, the optimizer of the original problem. Failing that, we relaxed $\mathcal{J}(x)$ into $\mathcal{L}(x, \lambda, \mu)$ hoping we can still do the same. $(6.1)$ and $(6.2)$ guarantee we can. They say that the optimizer $x^*$ of the original problem can be found by optimizing the unconstrained objective $\mathcal{L}(x, \lambda^*, \mu^*)$ and, since the latter is everywhere differentiable w.r.t. $x$, we can now proceed.</p>
 <p>In practice, however, $(6.1)$ and $(6.2)$ only give us a way to solve for a primal optimal $x^*$ directly if a dual optimal $(\lambda^*, \mu^*)$ is already known. That is, any time the dual problem is easier to solve than the primal.</p>
 <p>More generally, this fact gives us a way to check if a pair $(x^*,(\lambda^*,\mu^*))$ is primal-dual optimal – an optimality condition known as <em>stationarity condition</em>.</p>
@@ -868,10 +900,12 @@ $$\nabla_x f_0(x^*) + \sum_i^m \lambda^*_i\nabla_xf_i(x^*) + \sum_{i=1}^p \mu^*_
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The stationary condition is obtained simply by an application of the unconstrained optimality condition to $\mathcal{L}(x, \lambda^*, \mu^*)$.</p>
 <p><br>
-$$\nabla_x \mathcal{L} (x^*, \lambda^*, \mu^*) = 0$$</p>
+$$\nabla_x \mathcal{L} (x^*, \lambda^*, \mu^*) = 0$$ 
+<br></p>
 <p>Then, expanding the LHS gives:</p>
 <p><br>
-$$\nabla_x f_0(x^*) + \sum_i^m \lambda^*_i\nabla_xf_i(x^*) + \sum_{i=1}^p \mu^*_i\nabla_xh_i(x^*) = 0$$</p>
+$$\nabla_x f_0(x^*) + \sum_i^m \lambda^*_i\nabla_xf_i(x^*) + \sum_{i=1}^p \mu^*_i\nabla_xh_i(x^*) = 0$$ 
+<br></p>
 <p>For the sake of completeness, since we stated them without offering a proof, let's prove the equivalent claims $(6.1)$ and $(6.2)$ from which stationarity condition ultimately follows.</p>
 <h4 id="Proof-of-Claims-(6.1)-and-(6.2)">
 <a class="anchor" href="#Proof-of-Claims-(6.1)-and-(6.2)" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Claims (6.1) and (6.2)<a class="anchor-link" href="#Proof-of-Claims-(6.1)-and-(6.2)"> </a>
@@ -881,18 +915,22 @@ $$\nabla_x f_0(x^*) + \sum_i^m \lambda^*_i\nabla_xf_i(x^*) + \sum_{i=1}^p \mu^*_
 <p><br>
 
 $$g(\lambda, \mu) \leq \mathcal{L}(x, \lambda, \mu) \leq \mathcal{J}(x) \ \ \forall x, \lambda \geq 0, \mu$$
-</p>
+
+<br></p>
 <p>It is also, in particular, true for the primal-dual optimal pair. That is:</p>
 <p><br>
 
 $$g(\lambda^*, \mu^*) \leq \mathcal{L}(x^*, \lambda^*, \mu^*) \leq \mathcal{J}(x^*) \tag{7.1}$$
-</p>
+
+<br></p>
 <p>However, $\mathcal{J}(x^*) = f_0(x^*)$ and, by strong duality, $g(\lambda^*, \mu^*) = f_0(x^*)$. Hence, $g(\lambda^*, \mu^*) = \mathcal{J}(x^*)$ and $(7.1)$ is actually the equality.</p>
 <p><br>
-$$\mathcal{L}(x^*, \lambda^*, \mu^*) = g(\lambda^*, \mu^*) \tag{7.2}$$</p>
+$$\mathcal{L}(x^*, \lambda^*, \mu^*) = g(\lambda^*, \mu^*) \tag{7.2}$$ 
+<br></p>
 <p>Substituting, the definition of the dual function for the RHS of $(7.2)$, we get:</p>
 <p><br>
-$$\mathcal{L}(x^*, \lambda^*, \mu^*) = \min_x \mathcal{L}(x, \lambda^*, \mu^*)$$</p>
+$$\mathcal{L}(x^*, \lambda^*, \mu^*) = \min_x \mathcal{L}(x, \lambda^*, \mu^*)$$ 
+<br></p>
 <p>Which is exactly $(6.2)$ and, by equivalence, also $(6.1)$.</p>
 
 </div>
@@ -960,20 +998,30 @@ $$
 <p>The first equality holds by strong duality, the second holds by the definition of the dual function, the third equality holds by $(6.2)$, and the fourth is true by expansion of $\mathcal{L}(x^*, \lambda^*, \mu^*)$.</p>
 <p>To see why the last inequality holds, note that:</p>
 <p><br>
-$$\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$$</p>
+
+$$\sum_{i=1}^p \mu_i^* h_i(x^*) = 0$$
+
+<br></p>
 <p>since, by feasibility of $x^*$, $h_i(x^*) = 0 \ \ \forall i$. Then again, by feasibility of $x^*$, we have:</p>
 <p><br>
 
 $$f_i(x^*) \leq 0  \ \ \forall i \tag{8.2}$$
-</p>
+
+<br></p>
 <p>Furthermore, by construction of the Lagrangian, $\lambda \geq 0$. So, together with $(8.2)$, we have:</p>
 <p><br>
-$$\sum_{i=1}^m \lambda^*_i f_i(x^*) \leq 0$$</p>
+
+$$\sum_{i=1}^m \lambda^*_i f_i(x^*) \leq 0$$
+
+<br></p>
 <p>But taken altogether $(8.1)$ says $f_0(x^*) \leq f_0(x^*)$ which can <em>only</em> hold through strict equality.</p>
 <p>Then it must be the case that $\sum_{i=1}^m \lambda^*_i f_i(x^*) = 0$</p>
-<p>Being a sum of non-positive terms, $\sum_{i=1}^m \lambda^*_i f_i(x^*) = 0$ <em>if and only if</em> 
-<br>
-$$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{8.3}$$</p>
+<p>Being a sum of non-positive terms, $\sum_{i=1}^m \lambda^*_i f_i(x^*) = 0$ <em>if and only if</em></p>
+<p><br>
+
+$$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{8.3}$$
+
+<br></p>
 <p>which is complementary slackness.</p>
 
 </div>
@@ -1064,6 +1112,7 @@ $$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{8.3}$$</p>
 <h3 id="Generalization-of-Unconstrained-Optimization">
 <a class="anchor" href="#Generalization-of-Unconstrained-Optimization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generalization of Unconstrained Optimization<a class="anchor-link" href="#Generalization-of-Unconstrained-Optimization"> </a>
 </h3>
+<p>--- UNREVISED SECTION BEGINS ---</p>
 <p>The KKT conditions represent a strict generalization of the unconstrained optimality condition for use in constrained problems.</p>
 <p>Note that if there are no constraints, the KKT conditions simply reduce to the familiar unconstrained optimality condition:</p>
 <p><br>
@@ -1073,8 +1122,7 @@ $$\nabla_x f_0(x^*) = 0$$
 <p>In order to discuss optimality in constrained problems, we must first define the concept of a <em>feasible direction</em>.</p>
 <p><br></p>
 <blockquote>
-<p><strong>Feasible Direction:</strong>   A unit vector $d$ is called a <em>feasible direction</em> at any $x$ if $x + \epsilon d$ remains feasible for $\epsilon &gt; 0$ small enough.<br>
-<br></p>
+<p><strong>Feasible Direction:</strong>   A unit vector $d$ is called a <em>feasible direction</em> at any $x$ if $x + \epsilon d$ remains feasible for $\epsilon &gt; 0$ small enough.<br></p>
 </blockquote>
 <p>Then, we can generalize the unconstrained optimality condition by using Taylor Expansion as follows.</p>
 <p>For small enough $\epsilon &gt; 0$, we can estimate $f_0(x^* + \epsilon d)$, where $x^*$ is optimal, for any feasible $d$ by its linear approximation:
