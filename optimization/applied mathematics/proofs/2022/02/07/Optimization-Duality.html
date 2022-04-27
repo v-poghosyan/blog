@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      51 min read
+      49 min read
     
 </span></p>
 
@@ -174,6 +174,8 @@ window.onload = wrap_img;
 </li>
 <li class="toc-entry toc-h1"><a href="#Strong-Duality">Strong Duality </a>
 <ul>
+<li class="toc-entry toc-h2"><a href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality">Slater&#39;s Condition - Sufficient Condition for Strong Duality </a></li>
+<li class="toc-entry toc-h2"><a href="#The-Max-Min-Equality">The Max-Min Equality </a></li>
 <li class="toc-entry toc-h2"><a href="#An-Easier-Dual-Problem">An Easier Dual Problem </a></li>
 <li class="toc-entry toc-h2"><a href="#Optimality-Conditions">Optimality Conditions </a>
 <ul>
@@ -187,26 +189,11 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h4"><a href="#Proof-of-Complementary-Slackness">Proof of Complementary Slackness </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#Karush-Kuhn-Tucker-(KKT)-Conditions">Karush-Kuhn-Tucker (KKT) Conditions </a>
-<ul>
-<li class="toc-entry toc-h4"><a href="#Generalization-of-Unconstrained-Optimization">Generalization of Unconstrained Optimization </a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-entry toc-h2"><a href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality">Slater&#39;s Condition - Sufficient Condition for Strong Duality </a>
+<li class="toc-entry toc-h2"><a href="#Karush-Kuhn-Tucker-(KKT)-Conditions">Karush-Kuhn-Tucker (KKT) Conditions </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Geometric-Intuition-Behind-Slater's-Condition">Geometric Intuition Behind Slater&#39;s Condition </a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-entry toc-h1"><a href="#Duality-and-Sensitivity---Economic-Intuition-of-Complementary-Slackness">Duality and Sensitivity - Economic Intuition of Complementary Slackness </a>
-<ul>
-<li class="toc-entry toc-h2"><a href="#Saddle-Point-Interpretation">Saddle Point Interpretation </a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#Max-Min-Equality-at-Saddle-Points">Max-Min Equality at Saddle Points </a></li>
-<li class="toc-entry toc-h3"><a href="#Proof-of-Saddle-Point-Theorem">Proof of Saddle Point Theorem </a></li>
+<li class="toc-entry toc-h3"><a href="#Generalization-of-Unconstrained-Optimization">Generalization of Unconstrained Optimization </a></li>
 </ul>
 </li>
 </ul>
@@ -594,7 +581,7 @@ $$
 <a class="anchor" href="#Weak-Duality-and-Interpretations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality and Interpretations<a class="anchor-link" href="#Weak-Duality-and-Interpretations"> </a>
 </h1>
 <p>We now return to the general setting of constrained optimization.</p>
-<p>We've already seen weak duality formulated as $(3.2)$, $(3.3)$, and $(3.4)$. But, there's yet another, more symmetric, formulation of weak duality as a <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality"><em>Max-Min Inequality</em></a> which allows us to prove it through a non-optimization lens.</p>
+<p>We've already seen weak duality formulated as $(3.2)$, $(3.3)$, and $(3.4)$. But, there's yet another, more symmetric, formulation of weak duality.</p>
 <p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal-dual optimal. Then from $(3.4)$ we have weak duality in terms of the primal and dual optima $g(\lambda^*, \mu^*)$ as:</p>
 <p><br>
 $$
@@ -636,13 +623,13 @@ $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\
 <h2 id="The-Max-Min-Inequality">
 <a class="anchor" href="#The-Max-Min-Inequality" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Max-Min Inequality<a class="anchor-link" href="#The-Max-Min-Inequality"> </a>
 </h2>
-<p>The Max-Min Inequality makes no assumptions about the function. It's simply true for all functions of the form $f: X \times Y \rightarrow \mathbb{R}$, and it states that:</p>
+<p>The inequality expressed as $(3.6)$ is, in fact, a general result in mathematics called the <a href="https://en.wikipedia.org/wiki/Max%E2%80%93min_inequality"><em>Max-Min Inequality</em></a>. To summarize, the Max-Min Inequality makes no assumptions about the function. It's simply true for all functions of the form $f: X \times Y \rightarrow \mathbb{R}$, and it states that:</p>
 <p><br>
 $$
 \sup_{x\in X} \left\{ \inf_{y\in Y} f(x,y) \right\} \leq \inf_{y\in Y} \left\{ \sup_{x\in X} f(x,y) \right\}
 $$</p>
 <p>Since no assumption is made on $f$, the inequality also holds for the Lagrangian, $\mathcal{L}$. And, since we're in the special case where the optimal values of the primal $(P)$ and the dual $(D)$ are assumed to exist, the functions attain the respective optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$ which obtains the promised symmetric formulation of weak duality as $(3.6)$.</p>
-<p>We can now prove weak duality through a non-optimization lens by proving the Max-Min Inequality.</p>
+<p>We can now prove weak duality through a non-optimization lens simply by proving the Max-Min Inequality.</p>
 <p>For any $f$, and $x \in X$, $y \in Y$ we have:</p>
 <p><br>
 
@@ -703,11 +690,101 @@ $$</p>
 
 $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{5.2}$$
 </p>
-<p>Optimization problems that exhibit this property are called strongly dual.</p>
-<p>In keeping with the game theoretic intuition, one can imagine a game in which the first player's optimal choice is independent of the second player's actions. In such a game, both players are free to play their best strategies and, consequently, the order of play is not important.</p>
+<p>A common way to say a problem is strongly dual is to say its <strong><em>duality gap</em></strong> is zero. The duality gap is defined as the difference between the primal and dual optima, that is $f_0(x^*) - g(\lambda^*, \mu^*)$. This characterization, then, follows immediately from the definition of strong duality as stated in $(5.1)$.</p>
+<p>Optimization problems that exhibit the property of strong duality are called <strong><em>strongly dual</em></strong>.</p>
 <p>As mentioned briefly in the introduction, strong duality gives applied scientists the ability to solve an equivalent, usually easier, dual optimization problem instead of the primal one which may be difficult to solve.
-Strong duality also obtains powerful optimality conditions which allow us to check if suspected optima are, indeed, optimal. For these reasons and more knowing, in advance, whether or not a problem is strongly dual will benefit us greatly.</p>
-<p>We shall see that all linear programs are strongly dual by a direct proof. When it comes to non-linear optimization, strong duality is not a guarantee, however the good news is that sufficient conditions for strong duality exist and will be provided shortly.</p>
+Strong duality also obtains powerful optimality conditions which allow us to check if suspected optima are, indeed, optimal. We will soon make both of these claims rigorous but, for now, it's enough to think of them as benefits of strong duality so that we understand the value in knowing, in advance, whether or not a given problem is strongly dual.</p>
+<p>We shall see that all linear programs are strongly dual by a direct proof. When it comes to non-linear optimization, however, strong duality is not a guarantee. The good news is that sufficient conditions for strong duality do exist and will be provided next.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Slater's-Condition---Sufficient-Condition-for-Strong-Duality">
+<a class="anchor" href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slater's Condition - Sufficient Condition for Strong Duality<a class="anchor-link" href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality"> </a>
+</h2>
+<p>Not all convex programs are strongly dual, however convexity together with <strong><em>Slater's condition</em></strong> is sufficient to establish strong duality.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p><strong>Slater's Condition:</strong>   $\exists \ \hat x$ s.t. $f_i(\hat x) &lt; 0$, and $h_i(\hat x) = 0$ $\forall i$.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Informally, Slater's condition says that the existence of a feasible point which has margin w.r.t. all the inequality constraints is needed in addition to convexity. In even simpler terms, the feasible region must have an interior point.</p>
+<p>The sufficient condition for Strong duality is then:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p><strong>Sufficient Condition for Strong Duality:</strong>   Any convex optimization problem satisfying Slater's condition has zero duality gap.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The proof of this is beyond what we're trying to accomplish in this post.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-Max-Min-Equality">
+<a class="anchor" href="#The-Max-Min-Equality" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Max-Min Equality<a class="anchor-link" href="#The-Max-Min-Equality"> </a>
+</h2>
+<p>Just as weak duality is the Max-Min Inequality in disguise, strong duality is the Max-Min Equality which, in general, holds for functions $f: X \times Y \rightarrow \mathbb{R}$ that have additional structure. Roughly speaking, when $f$ is saddle-shaped, that is convex in one variable and concave in the other, the Max-Min Inequality holds with strict equality.</p>
+<p>The following theorem, which we offer without proof, translates this result into the setting of optimization.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p><strong>Saddle Point Theorem:</strong>   If $x^*$ and $(\lambda^*, \mu^*)$ are primal and dual optimal solutions for a convex problem which satisfies Slater's condition, they form a saddle point of the associated Lagrangian. Furthermore, if $(x^*, (\lambda^*, \mu^*))$ is a saddle point of a Lagrangian, then $x^*$ is primal optimal and $(\lambda^*, \mu^*)$ is dual optimal for the associated problem, and the <strong><em>duality gap</em></strong> is zero.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>This theorem should <em>not</em> be taken as a <strong><em>certificate of strong duality</em></strong>. If the Lagrangian is saddle-shaped then the associated problem is strongly dual, however the converse is not true. Since not all strongly dual problems are convex problems which satisfy Slater’s condition, if a problem is strongly dual it is <em>not</em> guaranteed that its Lagrangian is saddle-shaped.
+</div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In keeping with the game theoretic intuition developed in the section on weak duality, one can imagine a game in which the first player's optimal choice is independent of the second player's actions. In such a game, both players are free to play their best strategies and, consequently, the order of play is not important.</p>
 
 </div>
 </div>
@@ -719,7 +796,7 @@ Strong duality also obtains powerful optimality conditions which allow us to che
 <a class="anchor" href="#An-Easier-Dual-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>An Easier Dual Problem<a class="anchor-link" href="#An-Easier-Dual-Problem"> </a>
 </h2>
 <p>Let's further qualify what we mean when we say strong duality gives an equivalent, usually easier, problem to solve.</p>
-<p>The primal problem, which may be non-convex, is that of finding the primal optimum:</p>
+<p>At the start of this post we considered a general convex program. However, everything we've discussed about Lagrangian duality applies to non-convex problems too. Suppose the primal problem is non-convex. The task is that of finding the primal optimum:</p>
 <p><br>
 
 $$f_0(x^*) = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\}$$
@@ -730,9 +807,9 @@ $$f_0(x^*) = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, 
 
 $$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\}$$
 </p>
-<p>Minimizing the Lagrangian over $x$ for fixed $\lambda \geq 0$ and $\mu$ may still be a difficult problem but, at least, it lends itself to using the method of unconstrained optimization. Moreover, the resulting dual function $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ is a point-wise minimum of linear functions in $\lambda$ and $\mu$, so its always concave in those variables. Additionally, the constraint $\lambda \geq 0$ is a simple linear (convex) constraint. So, overall, the dual problem is a convex problem regardless of the convexity of the primal.</p>
-<p>Solving the convex dual problem is usually easier that solving the non-convex primal problem. Even if the primal is a convex problem to begin with, it could have more variables than constraints. In this case its dual is also a convex problem, but it has more constraints than variables which makes it easier to solve.</p>
-<p>So, if strong duality holds we've found an easier approach to the primal problem in solving its dual. If strong duality fails to hold then, at least, we've found a useful lower-bound to the primal optimum.</p>
+<p>Minimizing the Lagrangian over $x$ for fixed $\lambda \geq 0$ and $\mu$ may still be a difficult problem but, at least, it lends itself to using the method of unconstrained optimization. Moreover, the resulting dual function $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$ is a point-wise minimum of linear functions in $\lambda$ and $\mu$, so its always concave in those variables. Meanwhile, the constraint $\lambda \geq 0$ is a simple convex, in fact linear, constraint. So, overall, the dual problem is a convex problem regardless of the convexity of the primal.</p>
+<p>Solving the convex dual problem is usually easier that solving the non-convex primal. However, even if the primal is a convex problem to begin with, the dual may still be easier to solve. The primal could have more variables than constraints,  in which case its dual is a problem with more constraints than variables making it easier to solve.</p>
+<p>So, in the settings described above, if strong duality holds we've found an easier approach to the primal problem. If strong duality fails to hold then, at the very least, we've found a useful lower-bound to the primal optimum.</p>
 
 </div>
 </div>
@@ -743,8 +820,7 @@ $$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x
 <h2 id="Optimality-Conditions">
 <a class="anchor" href="#Optimality-Conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimality Conditions<a class="anchor-link" href="#Optimality-Conditions"> </a>
 </h2>
-<p>Strong duality also obtains two powerful optimality conditions known as <strong><em>stationarity condition</em></strong> and <strong><em>complementary slackness</em></strong>. These are often bundled into the <a href="https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions"><em>Karush–Kuhn–Tucker (KKT) Conditions</em></a>.</p>
-<p>In the absence of strong duality the KKT Conditions are necessary but insufficient for optimality. However, for problems which are strongly dual the KKT Conditions become a <strong><em>certificate of optimality</em></strong>. That is, they are both necessary and sufficient.</p>
+<p>Strong duality also obtains two powerful optimality conditions known as <strong><em>stationarity condition</em></strong> and <strong><em>complementary slackness</em></strong>. These are often bundled into the <a href="https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions"><em>Karush–Kuhn–Tucker (KKT) Conditions</em></a> which will be provided shortly.</p>
 <h3 id="Stationarity-Condition">
 <a class="anchor" href="#Stationarity-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stationarity Condition<a class="anchor-link" href="#Stationarity-Condition"> </a>
 </h3>
@@ -906,10 +982,11 @@ $$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{8.3}$$</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Karush-Kuhn-Tucker-(KKT)-Conditions">
+<h2 id="Karush-Kuhn-Tucker-(KKT)-Conditions">
 <a class="anchor" href="#Karush-Kuhn-Tucker-(KKT)-Conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Karush-Kuhn-Tucker (KKT) Conditions<a class="anchor-link" href="#Karush-Kuhn-Tucker-(KKT)-Conditions"> </a>
-</h3>
+</h2>
 <p>As mentioned above, complementary slackness and stationarity condition are often bundled into the KKT Conditions.</p>
+<p>In the absence of strong duality the KKT Conditions are necessary but insufficient for optimality. However, for problems which are strongly dual the KKT Conditions become a <strong><em>certificate of optimality</em></strong>. That is, they are both necessary and sufficient.</p>
 
 </div>
 </div>
@@ -935,7 +1012,7 @@ $$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{8.3}$$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We recognize <em>KKT-1</em> as the stationarity condition, and <em>KKT-2</em> as complementary slackness. <em>KKT-3</em> through <em>5</em> simply ensure primal-dual feasibility.</p>
-<p>Primal-dual pairs which satisfy the KKT Conditions are called <strong><em>KKT Pairs</em></strong>.</p>
+<p>Primal-dual pairs which satisfy the KKT Conditions are called <strong><em>KKT pairs</em></strong>.</p>
 
 </div>
 </div>
@@ -946,7 +1023,7 @@ $$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{8.3}$$</p>
 <p></p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>These conditions only apply to problems with differentiable objective and constraints. For the case in which one (or more) of the objective or constraints is non-differentiable, there is a sub-differential version of the KKT Conditions. However, sub-differentials are beyond the scope of this post.
+    <strong>Note: </strong>These conditions only apply to problems with differentiable objective and constraints. For the case in which one or more of the objective or constraints is non-differentiable, there is an easy generalization of the KKT conditions using sub-differentials. However, sub-differentials are beyond the scope of this post.
 </div>
 
 </div>
@@ -955,7 +1032,7 @@ $$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{8.3}$$</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As promised, KKT Conditions together with strong duality obtain a certificate of optimality.</p>
+<p>As promised, KKT Conditions together with strong duality obtain the following certificate of optimality.</p>
 
 </div>
 </div>
@@ -973,15 +1050,23 @@ $$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{8.3}$$</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We have already shown one direction of this in the sections on <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Stationarity-Condition">stationarity condition</a> and <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Complementary-Slackness">complementary slackness</a>, where we proved that being a primal-dual optimal pair in a strongly convex problem guarantees $(x^*, (\lambda^*, \mu^*))$ is also a KKT Pair.</p>
-<p>In fact, as we shall see through an application of <a href="https://en.wikipedia.org/wiki/Farkas%27_lemma"><em>Farka's Lemma</em></a>, $x^*$ being primal optimal is enough to guarantee the existence of a $(\lambda, \mu)$ s.t. $(x^*, (\lambda, \mu))$ is a KKT Pair without the need for strong duality. If strong duality does hold, however, we also have that the $(\lambda, \mu)$ are dual optimal. That is, we get the second implication in the certificate of optimality — Being a KKT Pair in a strongly dual problem guarantees primal-dual optimality.</p>
-<p>Later on in this post we offer a proof of the above for the simple case of linear programs (which are strongly dual). We construct a dual variable from a primal optimal $x^*$ by manually enforcing the KKT Conditions, and then show that the dual variable obtained is, in fact, dual optimal.</p>
-<h4 id="Generalization-of-Unconstrained-Optimization">
+<p>We have already shown one direction of this in the sections on <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Stationarity-Condition">stationarity condition</a> and <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Complementary-Slackness">complementary slackness</a>, where we proved that being a primal-dual optimal pair in a strongly convex problem guarantees $(x^*, (\lambda^*, \mu^*))$ is also a KKT pair.</p>
+<p>Showing the other direction affords us with a geometric viewpoint of the KKT conditions. <a href="https://en.wikipedia.org/wiki/Farkas%27_lemma"><em>Farka's Lemma</em></a>, which we will shortly provide, is what underpins this result.</p>
+<p>In fact, $x^*$ being primal optimal is enough to guarantee the existence of a $(\lambda, \mu)$ s.t. $(x^*, (\lambda, \mu))$ is a KKT pair without the need for strong duality. If strong duality does hold, however, we also have that the $(\lambda, \mu)$ are dual optimal. In other words, if strong duality holds then being a KKT pair guarantees primal-dual optimality.</p>
+<p>We will offer a proof of the above for the simple case of linear programs (which, as we may recall, are strongly dual). In this proof, we will construct a dual variable from a primal optimal $x^*$ by enforcing the KKT conditions, and then show that the dual variable obtained through this construction is, in fact, dual optimal.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Generalization-of-Unconstrained-Optimization">
 <a class="anchor" href="#Generalization-of-Unconstrained-Optimization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generalization of Unconstrained Optimization<a class="anchor-link" href="#Generalization-of-Unconstrained-Optimization"> </a>
-</h4>
-<p>The KKT Conditions represent a strict generalization of the unconstrained optimality condition for use in constrained problems.</p>
-<p>Note that if there are no constraints, the KKT Conditions simply reduce to the familiar unconstrained optimality condition:
-<br>
+</h3>
+<p>The KKT conditions represent a strict generalization of the unconstrained optimality condition for use in constrained problems.</p>
+<p>Note that if there are no constraints, the KKT conditions simply reduce to the familiar unconstrained optimality condition:</p>
+<p><br>
 
 $$\nabla_x f_0(x^*) = 0$$
 </p>
@@ -1059,109 +1144,11 @@ $$\nabla f_0(x^*) + \sum_{i \in I} \lambda^*_i f_i(x^*) = 0 \tag{8.4}$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Slater's-Condition---Sufficient-Condition-for-Strong-Duality">
-<a class="anchor" href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slater's Condition - Sufficient Condition for Strong Duality<a class="anchor-link" href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality"> </a>
-</h2>
-<p>Even though not all Strongly Dual problems are convex and not all convex programs are Strongly Dual, convexity together with <em>Slater's Condition</em> is sufficient for Strong Duality.</p>
-<p><br></p>
-<blockquote>
-<p><strong>Slater's Condition:</strong>   $\exists \ \hat x$ s.t. $f_i(\hat x) &lt; 0$, and $h_i(\hat x) = 0$ $\forall i$.<br>
-<br></p>
-</blockquote>
-<p><br>
-</p>
-<div class="flash">
-    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>The equality constraints $h_i(\hat x) = 0$ are often stated as linear equality constraints $A \hat x = b$ in certain sources. This is simply due to the observation that equality constraints are convex constraints if and only if all of the $h_i$’s are linear.
-</div>
-<br>
-<p>Informally, Slater's Condition says that the existence of a feasible point which has margin w.r.t. all the inequality constraints is needed in addition to convexity. In even simpler terms, the feasible region must have an interior point.</p>
-<p>The sufficient condition for Strong Duality is then</p>
-<p><br></p>
-<blockquote>
-<p><strong>Sufficient Condition for Strong Duality:</strong>   Any convex optimization problem satisfying Slater's Condition has Strong Duality.<br>
-<br></p>
-</blockquote>
-<p>The proof of this is beyond what we're trying to achieve in this post. However we motivate it geometrically in the following paragraph.</p>
-<h3 id="Geometric-Intuition-Behind-Slater's-Condition">
-<a class="anchor" href="#Geometric-Intuition-Behind-Slater's-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Geometric Intuition Behind Slater's Condition<a class="anchor-link" href="#Geometric-Intuition-Behind-Slater's-Condition"> </a>
-</h3>
-<p>PICTURE</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Duality-and-Sensitivity---Economic-Intuition-of-Complementary-Slackness">
-<a class="anchor" href="#Duality-and-Sensitivity---Economic-Intuition-of-Complementary-Slackness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Duality and Sensitivity - Economic Intuition of Complementary Slackness<a class="anchor-link" href="#Duality-and-Sensitivity---Economic-Intuition-of-Complementary-Slackness"> </a>
-</h1>
-<p>In order to understand what Complementary Slackness means intuitively, the concept of dual variables as <em>marginal prices</em> is useful. The dual variable associated with a primal constraint is called the marginal price of that constraint. It represents how much the objective function <em>would</em> improve were the constraint relaxed.</p>
-<p>That is, suppose our goal is to maximize profit and a particular constraint represents how much of a resource we are allowed to utilize. The question we're asking ourselves is: if we  utilized more of this resource, how much would we gain in profit?</p>
-<p>Complementary Slackness says: if the marginal price (i.e. the dual variable $\lambda^*_i$) is positive then the profit could be increased by utilizing more of this resource. Hence, the constraint corresponding to $\lambda^*_i$ must be tight. Otherwise $x^*$ is not optimal, and a better solution can be found by making the non-binding constraint binding.</p>
-<p>Note that in non-linear optimization this is only local behavior. That is, $\lambda^*_i$ predicts the improvement in the objective function <em>only</em> for small-enough change in the amount $f_i(x^*)$ of resource utilized.</p>
-<p>We will see why this is the case when we consider the geometric intuition of Complementary Slackness in the case of linear programs.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Saddle-Point-Interpretation">
-<a class="anchor" href="#Saddle-Point-Interpretation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Saddle Point Interpretation<a class="anchor-link" href="#Saddle-Point-Interpretation"> </a>
-</h2>
-<p>In this section, we will give the saddle point interpretation of Strong Duality through the <em>Saddle Point Theorem</em> which states the following.</p>
-<p><br></p>
-<blockquote>
-<p><strong>Saddle Point Theorem:</strong>   If $x^*$ and $(\lambda^*, \mu^*)$ are primal and dual optimal solutions for a convex problem which satisfies Slater's Condition, they form a saddle point of the associated Lagrangian. Conversely, if $(x^*,\lambda^*, \mu^*)$ is a saddle point of a Lagrangian, then $x^*$ is a primal optimal, and $(\lambda^*, \mu^*)$ a is dual optimal of the associated Strongly Dual problem.<br>
-<br>
-</p>
-<div class="flash">
-    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>This isn’t a necessary condition of Strong Duality since not all Strongly Dual problems satisfy the Sufficient Condition for Strong Duality. That is, it would be incorrect to replace "a convex problem which satisfies Slater’s Condition" in the above theorem with "a Strongly Dual problem." In fact, not all Strongly Dual problems are convex to begin with, in which case the Lagrangian has no saddle points to speak of. 
-</div>
-<br>
-</blockquote>
-<p>First, let's show that the max-min inequality holds with strict equality at saddle points. This will yield one direction of the Saddle Point Theorem proof.</p>
-<h3 id="Max-Min-Equality-at-Saddle-Points">
-<a class="anchor" href="#Max-Min-Equality-at-Saddle-Points" aria-hidden="true"><span class="octicon octicon-link"></span></a>Max-Min Equality at Saddle Points<a class="anchor-link" href="#Max-Min-Equality-at-Saddle-Points"> </a>
-</h3>
-<p>For certain types of functions, informally speaking those that are saddle-shaped, the max-min inequality holds with strict equality.</p>
-<p>The proof is as follows.</p>
-<p>Let $f: X \times Y \rightarrow \mathbb{R}$ be saddle-shaped.</p>
-<p>We call a point $(\hat x, \hat y) \in X \times Y$ a <em>saddle-point</em> of $f(x,y)$ if $f(\hat x, y) \leq f(\hat x, \hat y) \leq f(x, \hat y)$ for all $x \in X$ and $y \in Y$.</p>
-<p>In other words, $\hat x$ minimizes $f(x, \hat y)$ over $X$, and $\hat y$ maximizes $f(\hat x,y)$ over $Y$. That is</p>
-<p>
-$$f(\hat x, \hat y) = \inf_{x \in X} f(x, \hat y) \ \ \textrm{and} \ \ f(\hat x, \hat y) = \sup_{y \in Y} f(\hat x, y)$$
-</p>
-<p>But then</p>
-<p>
-$$\sup_{y \in Y} \left\{ \inf_{x \in X} f(x,y) \right\} = \inf_{x \in X} f(x, \hat y) = f(\hat x, \hat y) \ \ \textrm{and} \ \ \inf_{x \in X} \left\{ \sup_{y \in Y} f(x,y) \right\} = \sup_{y \in Y} f(\hat x, y) = f(\hat x, \hat y)$$
-</p>
-<p>So the order of optimization over $X$ and $Y$ does not matter. That is, we're in the strict case of the max-min inequality.</p>
-<p>
-$$\sup_{y \in Y} \left\{ \inf_{x \in X} f(x,y) \right\} = \inf_{x \in X} \left\{ \sup_{y \in Y} f(x,y) \right\}$$
-</p>
-<h3 id="Proof-of-Saddle-Point-Theorem">
-<a class="anchor" href="#Proof-of-Saddle-Point-Theorem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Saddle Point Theorem<a class="anchor-link" href="#Proof-of-Saddle-Point-Theorem"> </a>
-</h3>
-<p><strong>$\implies$:</strong></p>
-<p>Suppose $x^*$ and $(\lambda^*, \mu^*)$ are primal and dual optimal solutions for a convex problem which satisfies Slater's Condition. Then the problem is Strongly Convex by the Sufficient Condition for Strong Duality.</p>
-<p>\\  NEED KKT CONDITIONS  ///</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="The-Dual-of-an-Unconstrained-Problem">
 <a class="anchor" href="#The-Dual-of-an-Unconstrained-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Dual of an Unconstrained Problem<a class="anchor-link" href="#The-Dual-of-an-Unconstrained-Problem"> </a>
 </h1>
-<p>As mentioned briefly, in the case of certain types of unconstrained problems, the Fenchel-Legendre (FL) Transform is what gives rise to the dual.</p>
-<p>First, we define the FL Transform which is also known as a <em>Convex Conjugate</em> for reasons that will soon become apparent.</p>
+<p>As mentioned briefly, in the case of certain types of unconstrained problems, the <strong><em>Fenchel-Legendre (FL) Transform</em></strong> is what gives rise to the dual.</p>
+<p>First, we define the FL transform which is also known as a <strong><em>convex conjugate</em></strong> for reasons that will soon become apparent.</p>
 <p><br></p>
 <blockquote>
 <p><strong>FL Transform / Convex Conjugate:</strong>   The <em>FL Transform</em> or <em>Convex Conjugate</em> of a function $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is: $$f^*(y) = \sup_x \left\{y^Tx - f(x)\right\}$$
@@ -1248,7 +1235,7 @@ $$</p>
 
 $$\max_z: - f^*(-A^Tz) - h^*(z)$$
 </p>
-<p>Note that the dual is, indeed, an easy problem since the negative of an FL Transform is always concave regardless of the convexity of $f$ and $h$. So, the dual problem is alwayds an unconstrained maximization of a concave function.</p>
+<p>Note that the dual is, indeed, an easy problem since the negative of an FL Transform is always concave regardless of the convexity of $f$ and $h$. So, the dual problem is a maximization of a concave function which is an easy optimization problem.</p>
 
 </div>
 </div>
