@@ -314,7 +314,7 @@ $$
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Since optimizing an unconstrained problem is considerably easier than optimizing a constrained problem, we seek to augment the constrained problem into an equivalent unconstrained problem.</p>
 <p>The idea is to penalize infeasible $x$ using functions that express our <em>displeasure</em> for certain choices.</p>
-<p>At first we use the <em>infinitely-hard penalty functions</em> $\mathbb{1}_-$ and $\mathbb{1}_0$ which are defined as follows:</p>
+<p>At first we use the <em>infinitely-hard</em> penalty functions $\mathbb{1}_-$ and $\mathbb{1}_0$ which are defined as follows:</p>
 
 </div>
 </div>
@@ -518,7 +518,7 @@ $$\inf_x \mathcal{L}(x,\lambda,\mu) \leq J(x) \ \ \forall x, \lambda \geq 0, \mu
 <p></p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>The Lagrangian may not attain its $\min$ w.r.t. $x$, in which case the LHS is simply $-\infty$. We shall see later, once we define the <strong><em>dual function</em></strong> and the <strong><em>duality gap</em></strong>, that this corresponds to the dual function being $-\infty$ $\forall \lambda \geq0, \mu$ and the duality gap being $\infty$. For now, we assume the minimum <em>is</em> attained and thus $\inf_x \mathcal{L}(x, \lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$.
+    <strong>Note: </strong>The Lagrangian may not attain its $\min$ w.r.t. $x$, in which case the LHS is simply $-\infty$. We shall see later, once we define the <strong><em>dual function</em></strong> and the <strong><em>duality gap</em></strong>, that this corresponds to the dual function being $-\infty$ $\forall \lambda \geq0, \mu$ and the duality gap being $\infty$. In a sense, this is a useless lower bound. So, for now, we assume the interesting case in which the minimum <em>is</em> attained and thus $\inf_x \mathcal{L}(x, \lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$.
 </div>
 
 </div>
@@ -527,7 +527,7 @@ $$\inf_x \mathcal{L}(x,\lambda,\mu) \leq J(x) \ \ \forall x, \lambda \geq 0, \mu
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Designating the original problem as the <em>primal</em> $(P)$, we call $g(\lambda, \mu) := \min_x \mathcal{L}(x, \lambda, \mu)$ the <strong><em>dual function</em></strong> because it exhibits the property of weak duality. That is, per $(3.2)$, any feasible value of $g(\lambda, \mu)$ is a lower-bound for any feasible value of the primal.</p>
+<p>Designating the original problem as the <em>primal</em>, we call $g(\lambda, \mu) := \min_x \mathcal{L}(x, \lambda, \mu)$ the <strong><em>dual function</em></strong> because it exhibits the property of weak duality. That is, per $(3.2)$, any feasible value of $g(\lambda, \mu)$ is a lower-bound for any feasible value of the primal.</p>
 <p>Taking min of both sides in $(3.1)$, we have a more specific flavor of weak duality.</p>
 <p><br>
 
@@ -548,7 +548,7 @@ $$\max_{\lambda \geq 0, \mu} g(\lambda,\mu) \leq f_0(x^*) \tag{3.4}$$
 
 <br></p>
 <p>That is, the dual optimum is a lower-bound for the primal optimum.</p>
-<p>From here we move, quite naturally, to defining the <em>dual problem</em> $(D)$.</p>
+<p>From here we move, quite naturally, to defining the <em>dual problem</em>.</p>
 
 </div>
 </div>
@@ -574,7 +574,7 @@ $$
 \max_{\lambda, \mu} &amp;: g(\lambda, \mu)
 \\
 s.t. &amp;: \lambda \geq  0
-\end{aligned} \tag{D}
+\end{aligned}
 $$
 <br></p>
 
@@ -603,7 +603,7 @@ $$
 $$g(\lambda^*, \mu^*) \leq f_0(x^*) \tag{3.5}$$
 
 <br></p>
-<p>But since $g(\lambda^*, \mu^*)$ is the solution to the dual $(D)$, and $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$:</p>
+<p>But since $g(\lambda^*, \mu^*)$ is the solution to the dual, and $g(\lambda, \mu) = \min_x \mathcal{L}(x, \lambda, \mu)$:</p>
 <p><br>
 
 $$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\} \tag{4.1}$$
@@ -649,7 +649,7 @@ $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L}(x, \lambda, \mu) \right\
 $$\sup_{x\in X} \left\{ \inf_{y\in Y} f(x,y) \right\} \leq \inf_{y\in Y} \left\{ \sup_{x\in X} f(x,y) \right\}$$
 
 <br></p>
-<p>Since no assumption is made on $f$, the inequality also holds for the Lagrangian, $\mathcal{L}$. And, since we're in the special case where the optimal values of the primal $(P)$ and the dual $(D)$ are assumed to exist, the functions attain the respective optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$ which obtains the promised symmetric formulation of weak duality as $(3.6)$.</p>
+<p>Since no assumption is made on $f$, the inequality also holds for the Lagrangian, $\mathcal{L}$. And, since we're in the special case where the optimal values of the primal and the dual are assumed to exist, the functions attain the respective optima. That is, we can replace $\sup$ and $\inf$ in the inequality with $\max$ and $\min$ which obtains the promised symmetric formulation of weak duality as $(3.6)$.</p>
 <p>We can now prove weak duality through a non-optimization lens simply by proving the Max-Min Inequality.</p>
 <p>For any $f$, and $x \in X$, $y \in Y$ we have:</p>
 <p><br>
@@ -716,7 +716,7 @@ $$g(\lambda^*, \mu^*) = f_0(x^*) \tag{5.1}$$
 $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{5.2}$$
 
 <br></p>
-<p>A common way to say a problem is strongly dual is to say its <strong><em>duality gap</em></strong> is zero. The duality gap is defined as the difference between the primal and dual optima, that is $f_0(x^*) - g(\lambda^*, \mu^*)$. This characterization, then, follows immediately from the definition of strong duality as stated in $(5.1)$.</p>
+<p>Another common way to say a problem is strongly dual is to say its <strong><em>duality gap</em></strong> is zero. The duality gap is defined as the difference between the primal and dual optima, that is $f_0(x^*) - g(\lambda^*, \mu^*)$. This characterization of strong duality follows immediately from the definition of strong duality as it's stated in $(5.1)$.</p>
 <p>Optimization problems that exhibit the property of strong duality are called <strong><em>strongly dual</em></strong>.</p>
 <p>As mentioned briefly in the introduction, strong duality gives applied scientists the ability to solve an equivalent, usually easier, dual optimization problem instead of the primal one which may be difficult to solve.
 Strong duality also obtains powerful optimality conditions which allow us to check if suspected optima are, indeed, optimal. We will soon make both of these claims rigorous but, for now, it's enough to think of them as benefits of strong duality so that we understand the value in knowing, in advance, whether or not a given problem is strongly dual.</p>
