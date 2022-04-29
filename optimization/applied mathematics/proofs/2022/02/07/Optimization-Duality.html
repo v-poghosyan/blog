@@ -1113,8 +1113,8 @@ $$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{8.3}$$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We have already shown one direction of this in the sections on <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Stationarity-Condition">stationarity condition</a> and <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Complementary-Slackness">complementary slackness</a>, where we proved that being a primal-dual optimal pair in a strongly convex problem guarantees $(x^*, (\lambda^*, \mu^*))$ is also a KKT pair.</p>
-<p>Showing the other direction affords us with a geometric viewpoint of the KKT conditions. <a href="https://en.wikipedia.org/wiki/Farkas%27_lemma"><em>Farka's Lemma</em></a>, which we will shortly provide, is what underpins this result.</p>
-<p>We will offer a proof of the other direction for the specific case of linear programs. In it, we will construct a dual variable from a primal optimal $x^*$ by enforcing the KKT conditions, and show that the dual variable obtained through this construction is, in fact, dual optimal.</p>
+<p>Showing the other direction affords us with a geometric viewpoint of the KKT conditions. <a href="https://en.wikipedia.org/wiki/Farkas%27_lemma"><em>Farka's Lemma</em></a>, which we will shortly provide, is what underpins this result. We will offer this proof for the specific case of linear programs. In it, we will construct a dual variable from a primal optimal $x^*$ by enforcing the KKT conditions, and show that the dual variable obtained through this construction is, in fact, dual optimal.</p>
+<p>Something to note in the general case of this proof is that the existence of a primal optimal $x^*$ guarantees, by construction of a KKT pair, the existence of $(\lambda, \mu)$ that are dual feasible. However, it is strong duality which guarantees that the $(\lambda, \mu)$ obtained by this construction is also dual optimal.</p>
 
 </div>
 </div>
@@ -1392,7 +1392,7 @@ $</p>
 <p>While Weak Duality is a useful result, the real strength of duality theory lies in <em>Strong Duality</em>. Strong duality is a re-statement of Von Neumann's <a href="https://en.wikipedia.org/wiki/Minimax_theorem">Minimax Theorem</a> which lays out the conditions for which the max-min inequality holds with strict equality. Roughly speaking, it holds for functions that are saddle-shaped — convex in one variable and concave in the another.</p>
 <p>Instead of proving the Minimax Theorem in the general case, we will stay topical and prove Strong Duality for LP's. That is, the Minimax Theorem as it pertains to the special case of linear programs...</p>
 <blockquote>
-<p><strong>Strong Duality:</strong>   If the primal is feasible and bounded with optimal $x^*$ then the dual is also feasible and bounded. Furthermore, if the dual has optimum $p^*$ then $c^Tx^* = b^Tp^*$.<br></p>
+<p><strong>Strong Duality:</strong>   If the primal is feasible and bounded with optimal $x^*$ then the dual is also feasible and bounded. Furthermore, a dual optimal $p^*$ is s.t. $c^Tx^* = b^Tp^*$.<br></p>
 </blockquote>
 <p>To prove Strong Duality, we require <em>Farkas' Lemma</em>.</p>
 
