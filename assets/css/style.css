@@ -439,7 +439,7 @@ a.footnote.footnotes { border: none !important; }
 
 a:hover { color: #ffea00 !important; }
 
-.flash { color: rgba(255, 255, 255, 0.69) !important; background-color: #161616 !important; border-color: rgba(255, 255, 255, 0.69) !important; }
+.flash { color: rgba(255, 255, 255, 0.69) !important; background-color: #161616 !important; border-color: #232323 !important; }
 
 .flash a { color: rgba(255, 255, 255, 0.87) !important; }
 
@@ -447,7 +447,7 @@ a:hover { color: #ffea00 !important; }
 
 .octicon { color: rgba(255, 255, 255, 0.69) !important; }
 
-blockquote { margin: 0px !important; padding-top: 0.5em !important; padding-bottom: 0.5em !important; background-color: #161616 !important; border-radius: 6px !important; border-style: solid !important; border-color: #232323 !important; border-width: 1px 1px 1px 5px !important; }
+blockquote { margin: 0px !important; padding-top: 0.5em !important; padding-bottom: 0.5em !important; background-color: #161616 !important; border-radius: 6px !important; border-style: solid !important; border-color: #ffea00 !important; border-width: 1px 1px 1px 5px !important; }
 
 .output_text.output_execute_result pre { margin-left: 0em !important; }
 
