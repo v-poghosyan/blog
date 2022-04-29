@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      49 min read
+      51 min read
     
 </span></p>
 
@@ -731,7 +731,9 @@ Strong duality also obtains powerful optimality conditions which allow us to che
 <h2 id="Slater's-Condition---Sufficient-Condition-for-Strong-Duality">
 <a class="anchor" href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Slater's Condition - Sufficient Condition for Strong Duality<a class="anchor-link" href="#Slater's-Condition---Sufficient-Condition-for-Strong-Duality"> </a>
 </h2>
-<p>Not all convex programs are strongly dual, however convexity together with <strong><em>Slater's condition</em></strong> is sufficient to establish strong duality.</p>
+<p>Note that the existence of a primal optimal $x^*$ is needed in order to talk about strong duality at all. To show this, suppose the primal is feasible but unbounded. Then $\not \exists x^*$ that is primal optimal. Suppose further that the dual is feasible. Then $\exists (\lambda, \mu)$ such that weak duality obtains $g(\lambda, \mu) \leq f(x) \ \ \forall x$. That is $g(\lambda, \mu)$ is a lower-bound of the primal objective. This contradicts the assumption of primal unboundedness. To avoid this contradiction, it must be the case that primal unboundedness $\implies$ dual infeasibility. But if the dual is infeasible there can be no talk of strong duality since the dual optimal does not exist.</p>
+<p>While the rare non-convex problem could exhibit strong duality, the latter is mostly a property enjoyed by convex problems. However, not all convex problems are strongly dual. There are many results that establish conditions on the problem, beyond convexity and the existence of a primal optimal, under which strong duality holds. These conditions are called <strong><em>constraint qualifications</em></strong>. In this section we will explore such conditions for convex problems and discuss the specific case of linear programs.</p>
+<p>One of these constraint qualification conditions is <strong><em>Slater's condition</em></strong>.</p>
 
 </div>
 </div>
@@ -750,7 +752,7 @@ Strong duality also obtains powerful optimality conditions which allow us to che
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Informally, Slater's condition says that the existence of a feasible point which has margin w.r.t. all the inequality constraints is needed in addition to convexity. In even simpler terms, the feasible region must have an interior point.</p>
-<p>The sufficient condition for Strong duality is then:</p>
+<p>The sufficient condition for strong duality in convex problems is then:</p>
 
 </div>
 </div>
@@ -769,6 +771,18 @@ Strong duality also obtains powerful optimality conditions which allow us to che
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The proof of this is beyond what we're trying to accomplish in this post.</p>
+<p>A weaker constraint qualification condition guarantees strong duality in the case of linear constraints. If $k$ of the $m$ inequality constraints are linear then the condition becomes:</p>
+<p><br>
+$$
+\begin{aligned}f_i(\hat x) &amp;\leq 0, \ i = 1,...,k, \\ 
+f_i(\hat x) &amp;&lt; 0, \ i = k+1,...,m, \\ 
+h_i(\hat x) &amp;= 0, \ i = 1,...,p
+\end{aligned}
+$$
+<br></p>
+<p>In other words, the linear constraints need not have margin.</p>
+<p>Note that if all the constraints are linear, which is the case in linear programming, the above constraint qualification reduces to feasibility.</p>
+<p>So, while a sufficient condition of strong duality in convex programs is, both, the existence of a feasible interior point and a primal optimal, the situation is simpler in linear programs. Since a primal optimal for a linear program is also feasible, it satisfies the weaker constraint qualification. Thus, for a linear program to be strongly dual, the existence of a primal optimal suffices.</p>
 
 </div>
 </div>
@@ -1100,8 +1114,7 @@ $$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{8.3}$$
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We have already shown one direction of this in the sections on <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Stationarity-Condition">stationarity condition</a> and <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Complementary-Slackness">complementary slackness</a>, where we proved that being a primal-dual optimal pair in a strongly convex problem guarantees $(x^*, (\lambda^*, \mu^*))$ is also a KKT pair.</p>
 <p>Showing the other direction affords us with a geometric viewpoint of the KKT conditions. <a href="https://en.wikipedia.org/wiki/Farkas%27_lemma"><em>Farka's Lemma</em></a>, which we will shortly provide, is what underpins this result.</p>
-<p>In fact, $x^*$ being primal optimal is enough to guarantee the existence of a $(\lambda, \mu)$ s.t. $(x^*, (\lambda, \mu))$ is a KKT pair without the need for strong duality. If strong duality does hold, however, we also have that the $(\lambda, \mu)$ are dual optimal. In other words, if strong duality holds then being a KKT pair guarantees primal-dual optimality.</p>
-<p>We will offer a proof of the above for the simple case of linear programs (which, as we may recall, are strongly dual). In this proof, we will construct a dual variable from a primal optimal $x^*$ by enforcing the KKT conditions, and then show that the dual variable obtained through this construction is, in fact, dual optimal.</p>
+<p>We will offer a proof of the other direction for the specific case of linear programs. In it, we will construct a dual variable from a primal optimal $x^*$ by enforcing the KKT conditions, and show that the dual variable obtained through this construction is, in fact, dual optimal.</p>
 
 </div>
 </div>
