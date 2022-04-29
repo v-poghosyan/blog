@@ -716,7 +716,7 @@ $$g(\lambda^*, \mu^*) = f_0(x^*) \tag{5.1}$$
 $$\max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x, \lambda, \mu) \right\} = \min_x \left\{ \max_{\lambda \geq 0, \mu} \mathcal{L} (x, \lambda, \mu) \right\} \tag{5.2}$$
 
 <br></p>
-<p>Another common way to say a problem is strongly dual is to say its <strong><em>duality gap</em></strong> is zero. The duality gap is defined as the difference between the primal and dual optima, that is $f_0(x^*) - g(\lambda^*, \mu^*)$. This characterization of strong duality follows immediately from the definition of strong duality as it's stated in $(5.1)$.</p>
+<p>Another common way to say a problem is strongly dual is to say its <strong><em>duality gap</em></strong> is zero. The duality gap is defined as the difference between the primal and dual optima, that is $f_0(x^*) - g(\lambda^*, \mu^*)$. This characterization of strong duality follows immediately from the first definition of strong duality as it's stated in $(5.1)$.</p>
 <p>Optimization problems that exhibit the property of strong duality are called <strong><em>strongly dual</em></strong>.</p>
 <p>As mentioned briefly in the introduction, strong duality gives applied scientists the ability to solve an equivalent, usually easier, dual optimization problem instead of the primal one which may be difficult to solve.
 Strong duality also obtains powerful optimality conditions which allow us to check if suspected optima are, indeed, optimal. We will soon make both of these claims rigorous but, for now, it's enough to think of them as benefits of strong duality so that we understand the value in knowing, in advance, whether or not a given problem is strongly dual.</p>
@@ -1224,7 +1224,7 @@ $$\nabla f_0(x^*) + \sum_{i \in I} \lambda^*_i f_i(x^*) = 0 \tag{8.4}$$
 <h2 id="The-Case-of-Involution">
 <a class="anchor" href="#The-Case-of-Involution" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Case of Involution<a class="anchor-link" href="#The-Case-of-Involution"> </a>
 </h2>
-<p>The double FL Transform $f^{**}$ does not always recover $f$. To see this, note that, as an FL Transform of the function $f^*$, $f^{**}$ is always convex. Therefore, $f^{**} \ne f$ if $f$ is non-convex.</p>
+<p>The double FL Transform $f^{**}$ does not always recover $f$. To see this fact note that, as an FL Transform of the <em>some</em> function (namely, $f^*$), $f^{**}$ is always convex. Therefore, $f^{**} \ne f$ if $f$ is non-convex.</p>
 <p>But convexity alone is not enough to guarantee involution. We need an additional condition on $f$, namely that its sub-level sets must be closed, to ensure $f^{**} = f$.</p>
 <h2 id="Inverse-Gradients">
 <a class="anchor" href="#Inverse-Gradients" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inverse Gradients<a class="anchor-link" href="#Inverse-Gradients"> </a>
