@@ -2,7 +2,7 @@ $high-emph: rgba(white, 0.87);
 $med-emph: rgba(white, 0.69);
 $low-emph: rgba(white, 0.38);
 $dark-grey : #0a0a0a;
-$accent : #ffea00;
+$accent : #F66A0A;
 $overlay: mix($dark-grey, white, 95%);
 $overlay-light: mix($dark-grey, white, 90%);
 
@@ -34,7 +34,7 @@ a:hover {
 .flash {
   color: $med-emph !important;
   background-color: $overlay !important;
-  border-color: $overlay-light !important;
+  border-color: $accent !important;
 }
 
 .flash a {
@@ -46,7 +46,7 @@ a:hover {
 }
 
 .octicon {
-  color: $med-emph !important;
+  color: $accent !important;
 }
 
 blockquote {
@@ -56,7 +56,7 @@ blockquote {
   background-color: $overlay !important;
   border-radius: 6px !important;
   border-style: solid !important;
-  border-color: $med-emph !important;
+  border-color: $accent !important;
   border-width: 1px 1px 1px 5px !important;
 }
 
