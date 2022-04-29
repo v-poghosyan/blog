@@ -27,13 +27,13 @@ a.footnote.footnotes {
 }
 
 a:hover {
-  color:#3ecc62 !important;
+  color:#ffea00 !important;
 }
 
 .flash {
   color: $med-emph !important;
   background-color: $overlay !important;
-  border-color: $overlay-light !important;
+  border-color: $med-emph !important;
 }
 
 .flash a {
@@ -74,7 +74,7 @@ blockquote {
 }
 
 .search-result .search-result-highlight {
-  color: #3ecc62 !important;
+  color: #ffea00 !important;
 }
 
 .site-title {
@@ -158,7 +158,7 @@ li .post-meta-description {
 }
 
 .anchor-link:hover {
-  color: #3ecc62 !important;
+  color: #ffea00 !important;
 }
 
 .site-header {
