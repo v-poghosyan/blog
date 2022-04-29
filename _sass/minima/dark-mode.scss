@@ -34,7 +34,7 @@ a:hover {
 .flash {
   color: $med-emph !important;
   background-color: $overlay !important;
-  border-color: $accent !important;
+  border-color: $med-emph !important;
 }
 
 .flash a {
@@ -46,7 +46,7 @@ a:hover {
 }
 
 .octicon {
-  color: $accent !important;
+  color: $med-emph !important;
 }
 
 blockquote {
@@ -56,7 +56,8 @@ blockquote {
   background-color: $overlay !important;
   border-radius: 6px !important;
   border-style: solid !important;
-  border-color: $accent !important;
+  border-color: $med-emph !important;
+  border-left-color: $accent !important;
   border-width: 1px 1px 1px 5px !important;
 }
 
