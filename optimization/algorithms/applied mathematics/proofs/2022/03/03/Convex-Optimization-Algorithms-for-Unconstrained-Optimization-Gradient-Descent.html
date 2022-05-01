@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      16 min read
+      17 min read
     
 </span></p>
 
@@ -180,7 +180,7 @@ window.onload = wrap_img;
 <ul>
 <li class="toc-entry toc-h2"><a href="#Self-Tuning-Property">Self-Tuning Property </a></li>
 <li class="toc-entry toc-h2"><a href="#Quadratic-Bounds">Quadratic Bounds </a></li>
-<li class="toc-entry toc-h2"><a href="#Optimal-Fixed-Step-Size">Optimal Fixed Step-Size </a></li>
+<li class="toc-entry toc-h2"><a href="#The-Optimal-Fixed-Step-Size">The Optimal Fixed Step-Size </a></li>
 </ul>
 </li>
 </ul><!--
@@ -546,12 +546,39 @@ $$f(y) \leq f(x) + \nabla f(x)^T(y-x) + \frac{M}{2}||y-x||_2^2 \ \ \forall y$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Optimal-Fixed-Step-Size">
-<a class="anchor" href="#Optimal-Fixed-Step-Size" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimal Fixed Step-Size<a class="anchor-link" href="#Optimal-Fixed-Step-Size"> </a>
+<h2 id="The-Optimal-Fixed-Step-Size">
+<a class="anchor" href="#The-Optimal-Fixed-Step-Size" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Optimal Fixed Step-Size<a class="anchor-link" href="#The-Optimal-Fixed-Step-Size"> </a>
 </h2>
 <p>We already showed that an $M$-smooth and $m$-strongly-convex function enjoys the advantage of self-tuning. But, without knowing how to choose the step-size, we can still cause GD to make slow progress or even diverge.</p>
 <p>After all, gradient descent is based on a local linear approximation of the objective. If we take big steps, we are counting on the linear approximation to be a good-enough estimate far from the current iterate. This may be too optimistic, in which case GD will diverge. Being too pessimistic, however, is also not good. While taking small steps won't cause GD to diverge, it will make GD painfully slow.</p>
-<p>the step size The quadratic upper-bound in $(5.1)$ informs our choice</p>
+<p>Luckily, the quadratic upper-bound in $(5.1)$ informs our choice of step-size both in terms of a range that guarantees convergence and in terms of choosing the optimal step-size in that range.</p>
+<p>First, the range. By plugging the update step $x^+ = x - \eta \nabla f(x)$ as $y$ in $(5.1)$ we obtain:</p>
+<p><br>
+
+$$f(x^+) \leq f(x) + \eta(1-\frac{M}{2}\eta)||\nabla f(x)||_2^2 \tag{5.2}$$
+
+<br></p>
+<p>As before, it would be wise to insist $f(x^+) \leq f(x)$, which requires $0 &lt; \eta &lt; 2/M$. But this was not a greedy choice, it's just a condition that guarantees improvement. By making the greedy choice we can find the optimal step-size.</p>
+<p>Since the it is, itself, strongly convex, the quadratic upper-bound is guaranteed to have a unique minimizer.</p>
+<p>The idea is similar to other instances of making a greedy choice we've seen before. Since the function value is upper-bounded by this quadratic, minimizing the latter gives the tightest upper-bound for the function value that's available to us without access to more global information about the objective. That is:</p>
+<p><br>
+
+$$f(y) \leq \min_y f(x) + \nabla f(x)^T(y-x) + \frac{M}{2}||y-x||_2^2$$
+
+<br></p>
+<p>Then, the greedy choice for the next iterate is:</p>
+<p><br>
+$$
+x^+ = \arg \min_y f(x) + \nabla f(x)^T(y-x) + \frac{M}{2}||y-x||_2^2
+$$
+<br></p>
+<p>As always, minimizing a quadratic is easy. After going through the motions, we obtain:</p>
+<p><br>
+
+$$x^+ = x - \frac{1}{M}\nabla f(x)$$
+
+<br></p>
+<p>So, the optimal fixed step-size is $\eta = \frac{1}{M}$.</p>
 
 </div>
 </div>
