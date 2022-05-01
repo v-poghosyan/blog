@@ -4,21 +4,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Convex Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent | Vahram Poghosyan</title>
+<title>Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent | Vahram Poghosyan</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Convex Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent" />
+<meta property="og:title" content="Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="GD, Smoothness, Strict Convexity, Line Search" />
 <meta property="og:description" content="GD, Smoothness, Strict Convexity, Line Search" />
-<link rel="canonical" href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html" />
-<meta property="og:url" content="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html" />
+<link rel="canonical" href="https://v-poghosyan.github.io/blog/optimization/algorithms/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html" />
+<meta property="og:url" content="https://v-poghosyan.github.io/blog/optimization/algorithms/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html" />
 <meta property="og:site_name" content="Vahram Poghosyan" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-03-03T00:00:00-06:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Convex Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent" />
+<meta property="twitter:title" content="Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-03-03T00:00:00-06:00","datePublished":"2022-03-03T00:00:00-06:00","description":"GD, Smoothness, Strict Convexity, Line Search","headline":"Convex Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html"},"url":"https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-03-03T00:00:00-06:00","datePublished":"2022-03-03T00:00:00-06:00","description":"GD, Smoothness, Strict Convexity, Line Search","headline":"Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/algorithms/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html"},"url":"https://v-poghosyan.github.io/blog/optimization/algorithms/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://v-poghosyan.github.io/blog/feed.xml" title="Vahram Poghosyan" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -104,13 +104,13 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Convex Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent</h1><p class="page-description">GD, Smoothness, Strict Convexity, Line Search</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-03-03T00:00:00-06:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent</h1><p class="page-description">GD, Smoothness, Strict Convexity, Line Search</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-03-03T00:00:00-06:00" itemprop="datePublished">
         Mar 3, 2022
       </time>
        • <span class="read-time" title="Estimated read time">
     
     
-      13 min read
+      16 min read
     
 </span></p>
 
@@ -118,6 +118,9 @@ window.onload = wrap_img;
       <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
       
         <a class="category-tags-link" href="/blog/categories/#Optimization">Optimization</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#Algorithms">Algorithms</a>
         &nbsp;
       
         <a class="category-tags-link" href="/blog/categories/#Applied Mathematics">Applied Mathematics</a>
@@ -175,7 +178,9 @@ window.onload = wrap_img;
 </li>
 <li class="toc-entry toc-h1"><a href="#Smoothness-and-Strong-Convexity">Smoothness and Strong Convexity </a>
 <ul>
+<li class="toc-entry toc-h2"><a href="#Self-Tuning-Property">Self-Tuning Property </a></li>
 <li class="toc-entry toc-h2"><a href="#Quadratic-Bounds">Quadratic Bounds </a></li>
+<li class="toc-entry toc-h2"><a href="#Optimal-Fixed-Step-Size">Optimal Fixed Step-Size </a></li>
 </ul>
 </li>
 </ul><!--
@@ -359,9 +364,9 @@ $$x^+ = x - 2\eta x$$
 <p>Note that $x^* = 0$ is the unique optimizer of both $f(x)$ and $h(x)$. With this in mind, there are two key observations to make.</p>
 <p>The first is that, for $x$ far away from $x^* = 0$, the update, $2\eta x$, is large in magnitude. So, if the iterate is far from the optimizer, GD makes fast progress towards it.</p>
 <p>The second observation is that, as $x \rightarrow x^*$, the update becomes small in magnitude. So, as the iterate comes close to the optimizer, GD takes smaller and smaller steps which converge to $0$ in a summable way. This means, we can get the sub-optimality $|f(x) - f(x^*)|$ to be $\epsilon$-arbitrarily small for any fixed step-size $\eta$.</p>
-<p>Neither of these observations hold for GD on $h(x) = |x|$ since the update $\eta$ is fixed regardless of the Euclidean distance between $x$ and $x^* = 0$. In particular, this means GD is not fast for $x$ far away from $x^*$ and does not slow down as $x$ nears $x^*$. Arbitrary accuracy is, also, impossible in the setting of a fixed step-size $\eta$. The iterates eventually cycle between $x^T - \eta$ and $x^T + \eta$ where $x^T$ is in the open $\eta$-neighborhood of $x^* = 0$, so the sub-optimality also cycles between two values which depend on the choice of $\eta$. That is, the sub-optimality cannot be $\epsilon$-arbitrary small for a fixed choice of $\eta$. To be clear, there is still convergence but it's slow and not arbitrarily accurate. Arbitrary accuracy for such problems as this can only be achieved by choosing a sequence of diminishing step-sizes $\{ \eta_t \}_{t=1}^T$ which help diminish the update since the gradient itself is non-diminishing. Of course, the sequence must be chosen with care since it's possible to <em>'run out of steam'</em> before reaching the optimizer.</p>
+<p>Neither of these observations hold for GD on $h(x) = |x|$ since the update $\eta$ is fixed regardless of the Euclidean distance between $x$ and $x^* = 0$. In particular, this means GD is not fast for $x$ far away from $x^*$ and does not slow down as $x$ nears $x^*$. Arbitrary accuracy is, also, impossible in the setting of a fixed step-size $\eta$. The iterates eventually cycle between $x^T - \eta$ and $x^T + \eta$ where $x^T$ is the last iterate before entering the cycle, that is $x^T \in (-\eta, \eta)$. The sub-optimality, consequently, also cycles between two values which depend on the choice of $\eta$. This is to say that the sub-optimality cannot be $\epsilon$-arbitrary small for a fixed choice of $\eta$. To be clear, there is still convergence but it's slow and not arbitrarily accurate. Arbitrary accuracy for such problems as this can only be achieved by choosing a sequence of diminishing step-sizes $\{ \eta_t \}_{t=1}^T$ which help diminish the update since the gradient itself is non-diminishing. Of course, the sequence must be chosen with care since it's possible to <em>'run out of steam'</em> before reaching the optimizer.</p>
 <p>We say GD on $f(x) = x^2$ enjoys the <strong><em>self-tuning property</em></strong>, whereas GD on $h(x) = |x|$ does not. This speaks to the fact that the self-tuning is a property of the objective functions, rather than GD itself.</p>
-<p>As an overview of the theory we will soon develop, functions <em>like</em> $x^2$ will all have the self-tuning property while functions <em>like</em> $|x|$ will not. This is what ends up introducing a taxonomy of easier-to-harder convex optimization problems. What it means, precisely, to be <em>like</em> $x^2$ or $|x|$ will be made rigorous in the next few sections.</p>
+<p>As an overview of the theory we will soon develop, functions <em>like</em> $x^2$ (or, more generally, any quadratic) will all have the self-tuning property while functions <em>like</em> $|x|$ will not. This is what ends up introducing a taxonomy of easier-to-harder convex optimization problems. What it means, precisely, to be <em>like</em> $x^2$ or $|x|$ will be made rigorous in the next few sections.</p>
 
 </div>
 </div>
@@ -376,7 +381,7 @@ $$x^+ = x - 2\eta x$$
 <p>We can start by asking ourselves what makes the two quintessential functions $f(x) = x^2$ and $h(x) = |x|$ different from one another. Since the GD update step relies on the gradient, it helps thinking in terms of the differences of the gradients instead of the objective functions themselves.</p>
 <p>The first difference of note is that $|x|$ has a discontinuity at $x = 0$ that's not present in $x^2$. At a point of discontinuity the gradient experiences an abrupt jump. So, in general, jumps in the gradient must pose a problem for GD.</p>
 <p>The second thing to note is that $|x|$ is flat compared to $x^2$. In flat regions, the gradient is constant. So, in general, constant regions in the gradient must pose a problem for GD.</p>
-<p>Both of these scenarios can be ruled out with a <a href="https://en.wikipedia.org/wiki/Lipschitz_continuity"><strong><em>Lipschitz condition</em></strong></a> on the gradient. Lipschitz conditions are both regularity conditions and growth conditions, so they rule out abrupt jumps and contain the growth of the gradient.</p>
+<p>Both of these scenarios can be ruled out with a <a href="https://en.wikipedia.org/wiki/Lipschitz_continuity"><strong><em>Lipschitz condition</em></strong></a> on the gradient. Lipschitz conditions are both regularity conditions, as well as, growth conditions. So, they can rule out abrupt jumps and ensure there's some change in the gradient.</p>
 <p>We are ready to define the two properties mentioned in the beginning of this section.</p>
 
 </div>
@@ -462,10 +467,33 @@ $$mI \preceq \nabla^2 f(x) \preceq MI \ \ \forall x \tag{3.2}$$
 
 <br></p>
 <p>Since the hessian represents the curvature of the function, $(3.2)$ is a two-sided bound on the curvature of $f(x)$. So, we see that smoothness and strong convexity also regulate function shape itself. The lower-bound rules out flatness, while the upper-bound rules out discontinuities like corners and cusps.</p>
+<h2 id="Self-Tuning-Property">
+<a class="anchor" href="#Self-Tuning-Property" aria-hidden="true"><span class="octicon octicon-link"></span></a>Self-Tuning Property<a class="anchor-link" href="#Self-Tuning-Property"> </a>
+</h2>
+<p>For a convex function that's $M$-smooth and $m$-strongly-convex we have $(3.1)$ which, as a reminder, is:</p>
+<p><br>
+
+$$m||x-y||_2 \leq ||\nabla f(x) - \nabla f(y)||_2 \leq M||x-y||_2 \ \ \forall x,y$$
+
+<br></p>
+<p>Fixing iterate $x$, and replacing $y$ with the optimizer $x^*$ we have:</p>
+<p><br>
+
+$$m||x-x^*||_2 \leq ||\nabla f(x) - \nabla f(x^*)||_2 \leq M||x-x^*||_2$$
+
+<br></p>
+<p>But, since $x^*$ is an optimizer, $\nabla f(x^*) = 0$, so the above becomes:</p>
+<p><br>
+
+$$m||x-x^*||_2 \leq ||\nabla f(x)||_2 \leq M||x-x^*||_2$$
+
+<br></p>
+<p>The first inequality says that the magnitude of the gradient is <em>at least</em> a constant multiple of the distance from the optimizer. The second inequality says that the magnitude of the gradient is <em>at most</em> a constant multiple of the distance from the optimizer. So, the gradient is large for $x$ far from $x^*$ and gets smaller as $x \rightarrow x^*$. We recognize this as none other than the self-tuning property. So, smoothness and strong-convexity were, indeed, what was needed to encapsulate this property.</p>
 <h2 id="Quadratic-Bounds">
 <a class="anchor" href="#Quadratic-Bounds" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quadratic Bounds<a class="anchor-link" href="#Quadratic-Bounds"> </a>
 </h2>
-<p>Smoothness and strong-convexity</p>
+<p>Smoothness and strong-convexity, should they hold for a given convex function, give a quadratic point-wise upper and lower-bound, respectively, for this function. This is what it means to say that the function is <em>like</em> a quadratic. In a sense, all we're saying is that a function is tightly asymptotically bounded by a quadratic. That is, it should neither grow slower nor faster than quadratically.</p>
+<p>To construct the upper and lower-bounds, we may use the following  two lemmas:</p>
 
 </div>
 </div>
@@ -473,6 +501,66 @@ $$mI \preceq \nabla^2 f(x) \preceq MI \ \ \forall x \tag{3.2}$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p><strong>Lemma 1:</strong> If $f$ is convex and $L$-Lipschitz then $g(x) = \frac{L}{2}x^Tx - f(x)$ is convex.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p><strong>Lemma 2:</strong> If $f$ is $m$-strongly-convex then $g(x) = f(x) - \frac{m}{2}x^Tx$ is convex.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Both lemmas are statements of comparative convexity in disguise. <strong><em>Lemma 1</em></strong> says that $\frac{L}{2}x^Tx$ is more convex than $f$, whereas <strong><em>Lemma 2</em></strong> says that $f$ is more convex than $\frac{m}{2}x^Tx$.</p>
+<p>It's not difficult to see how these lemmas can assist in sandwiching $f$ between an upper-bound that's more convex and a lower-bound that's less convex.</p>
+<p>The bounds themselves come from the quadratic approximation of $f$:</p>
+<p><br>
+
+$$f(y) \approx f(x) + \nabla f(x)^T(y-x) + \frac{1}{2}(y-x)^T\nabla^2 f(x)(y-x)\ \ \forall y$$
+
+<br></p>
+<p>By replacing the hessian with $mI$ and $MI$ and using the above lemmas we obtain:</p>
+<p><br>
+$$f(y) \geq f(x) + \nabla f(x)^T(y-x) + \frac{m}{2}||y-x||_2^2 \ \ \forall y$$ 
+
+$$\textrm{and} \tag {5.1}$$
+
+
+$$f(y) \leq f(x) + \nabla f(x)^T(y-x) + \frac{M}{2}||y-x||_2^2 \ \ \forall y$$
+
+<br></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Optimal-Fixed-Step-Size">
+<a class="anchor" href="#Optimal-Fixed-Step-Size" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimal Fixed Step-Size<a class="anchor-link" href="#Optimal-Fixed-Step-Size"> </a>
+</h2>
+<p>We already showed that an $M$-smooth and $m$-strongly-convex function enjoys the advantage of self-tuning. But, without knowing how to choose the step-size, we can still cause GD to make slow progress or even diverge.</p>
+<p>After all, gradient descent is based on a local linear approximation of the objective. If we take big steps, we are counting on the linear approximation to be a good-enough estimate far from the current iterate. This may be too optimistic, in which case GD will diverge. Being too pessimistic, however, is also not good. While taking small steps won't cause GD to diverge, it will make GD painfully slow.</p>
+<p>the step size The quadratic upper-bound in $(5.1)$ informs our choice</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p>HERE LIE DRAGONS</p>
 <p>Ruling out discontinuities should involve a regularity condition, whereas ruling out flatness should</p>
 <p>If $f$ is $M$-smooth, then we have the tightest possible point-wise quadratic upper bound as:</p>
 <p><br>
@@ -524,7 +612,7 @@ $$f(x^+) \geq f(x) + \eta \nabla f(x)^T d \ \ \forall d \tag{1.2}$$
         theme="github-dark"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/blog/optimization/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html" hidden></a>
+</script><a class="u-url" href="/blog/optimization/algorithms/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html" hidden></a>
 </article>
 
       </div>
