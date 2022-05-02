@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      17 min read
+      19 min read
     
 </span></p>
 
@@ -223,7 +223,9 @@ window.onload = wrap_img;
 <h1 id="Introduction">
 <a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
 </h1>
-<p><strong><em>Gradient descent (GD)</em></strong> is a powerful, yet incredibly simple, optimization algorithm. We can think of it as a <strong><em>greedy algorithm</em></strong> in the setting of continuous optimization. That is, it is our best, local attempt at optimization given only limited information about the objective $f(x)$, and having limited computational power. For now, we focus on the simpler case of unconstrained optimization in order to develop the key algorithmic ideas. Later on, perhaps in a different post, we will explore modifications to gradient descent that make it suitable for constrained optimization.</p>
+<p><strong><em>Gradient descent (GD)</em></strong> is a powerful, yet incredibly simple, iterative optimization algorithm. We can think of it as a <strong><em>greedy algorithm</em></strong> in the setting of continuous optimization. That is, one step of GD is our best, local attempt at optimization given only limited information about the objective $f(x)$, and having limited computational power at our disposal.</p>
+<p>We can further qualify what we mean by <em>'limited information'</em> about the objective by introducing a categorization on iterative optimization algorithms – the <strong><em>Oracle Access Model</em></strong>. In this model, the objective is abstracted into a black box. For each input $x$, the black box gives access to the objective value $f(x)$ and, optionally, any number of higher-order information about the objective such as $\nabla f(x)$, $\nabla^2 f(x)$, etc. GD is what's known as a <strong><em>first-order oracle</em></strong> because it's only allowed access to the objective $f(x)$ and its first-order information $\nabla f(x)$.</p>
+<p>For now, we focus on the simpler case of unconstrained optimization in order to develop the key algorithmic ideas. Later on, perhaps in a different post, we will explore modifications to gradient descent that make it suitable for constrained optimization.</p>
 <h1 id="The-Gradient-Descent-Algorithm">
 <a class="anchor" href="#The-Gradient-Descent-Algorithm" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Gradient Descent Algorithm<a class="anchor-link" href="#The-Gradient-Descent-Algorithm"> </a>
 </h1>
@@ -492,7 +494,7 @@ $$m||x-x^*||_2 \leq ||\nabla f(x)||_2 \leq M||x-x^*||_2$$
 <h2 id="Quadratic-Bounds">
 <a class="anchor" href="#Quadratic-Bounds" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quadratic Bounds<a class="anchor-link" href="#Quadratic-Bounds"> </a>
 </h2>
-<p>Smoothness and strong-convexity, should they hold for a given convex function, give a quadratic point-wise upper and lower-bound, respectively, for this function. This is what it means to say that the function is <em>like</em> a quadratic. In a sense, all we're saying is that a function is tightly asymptotically bounded by a quadratic. That is, it should neither grow slower nor faster than quadratically.</p>
+<p>Smoothness and strong-convexity, should they hold for a given convex function, give a universal quadratic point-wise upper and lower-bound, respectively, for this function. This is what it means to say that the function is <em>like</em> a quadratic. In a sense, all we're saying is that a function is asymptotically bounded by a quadratic from above and below at every point. That is, at any point, it should neither grow slower nor faster than quadratically.</p>
 <p>To construct the upper and lower-bounds, we may use the following  two lemmas:</p>
 
 </div>
@@ -529,7 +531,7 @@ $$m||x-x^*||_2 \leq ||\nabla f(x)||_2 \leq M||x-x^*||_2$$
 $$f(y) \approx f(x) + \nabla f(x)^T(y-x) + \frac{1}{2}(y-x)^T\nabla^2 f(x)(y-x)\ \ \forall y$$
 
 <br></p>
-<p>By replacing the hessian with $mI$ and $MI$ and using the above lemmas we obtain:</p>
+<p>By replacing the hessian with its bounds $mI$ and $MI$ and using the above lemmas we obtain:</p>
 <p><br>
 $$f(y) \geq f(x) + \nabla f(x)^T(y-x) + \frac{m}{2}||y-x||_2^2 \ \ \forall y$$ 
 
@@ -551,16 +553,68 @@ $$f(y) \leq f(x) + \nabla f(x)^T(y-x) + \frac{M}{2}||y-x||_2^2 \ \ \forall y$$
 </h2>
 <p>We already showed that an $M$-smooth and $m$-strongly-convex function enjoys the advantage of self-tuning. But, without knowing how to choose the step-size, we can still cause GD to make slow progress or even diverge.</p>
 <p>After all, gradient descent is based on a local linear approximation of the objective. If we take big steps, we are counting on the linear approximation to be a good-enough estimate far from the current iterate. This may be too optimistic, in which case GD will diverge. Being too pessimistic, however, is also not good. While taking small steps won't cause GD to diverge, it will make GD painfully slow.</p>
-<p>Luckily, the quadratic upper-bound in $(5.1)$ informs our choice of step-size both in terms of a range that guarantees convergence and in terms of choosing the optimal step-size in that range.</p>
-<p>First, the range. By plugging the update step $x^+ = x - \eta \nabla f(x)$ as $y$ in $(5.1)$ we obtain:</p>
+<p>Luckily, the quadratic upper-bound in $(5.1)$ informs our choice of step-size both in terms of a convergence guarantee and in terms of optimality. First, let's guarantee convergence...</p>
+<p>By plugging the update step $x^+ = x - \eta \nabla f(x)$ as $y$ in $(5.1)$ we obtain:</p>
 <p><br>
 
 $$f(x^+) \leq f(x) + \eta(1-\frac{M}{2}\eta)||\nabla f(x)||_2^2 \tag{5.2}$$
 
 <br></p>
-<p>As before, it would be wise to insist $f(x^+) \leq f(x)$, which requires $0 &lt; \eta &lt; 2/M$. But this was not a greedy choice, it's just a condition that guarantees improvement. By making the greedy choice we can find the optimal step-size.</p>
-<p>Since the it is, itself, strongly convex, the quadratic upper-bound is guaranteed to have a unique minimizer.</p>
-<p>The idea is similar to other instances of making a greedy choice we've seen before. Since the function value is upper-bounded by this quadratic, minimizing the latter gives the tightest upper-bound for the function value that's available to us without access to more global information about the objective. That is:</p>
+<p>As before, it would be wise to insist $f(x^+) \leq f(x)$, which gives the convergence interval as $0 &lt; \eta &lt; \frac{2}{M}$.</p>
+<p>It helps considering the simple example of quadratics.</p>
+<hr>
+<p><strong>Example 1:</strong></p>
+<p>Consider the quadratic form in $\mathbb{R}$ given by $f(x) = \frac{1}{2}M x^2$ where $x, M \in \mathbb{R}$. Here we can think of $M$ as the only, and therefore the largest, eigenvalue of the $1 \times 1$ matrix $[M]$.</p>
+<p>Its GD update step looks like:</p>
+<p><br>
+
+$$x^+ = x - \eta M x = (1 - \eta M)x$$
+
+<br></p>
+<p>Which, by recursion from iteration $T$ down to the initial iteration, gives:</p>
+<p><br>
+
+$$x^T = (1- \eta M)^Tx_0$$
+
+<br></p>
+<p>Then, since $x^* = 0$, convergence is guaranteed by ensuring $|1 - \eta M| &lt; 1$ or, equivalently, $0 &lt; \eta &lt; \frac{2}{M}$ as desired.</p>
+<p>This generalizes to higher dimensions as we shall see in the following example.</p>
+<p><strong>Example 2:</strong></p>
+<p>Consider the quadratic form in $\mathbb{R}^n$ given by $f(x) = \frac{1}{2}x^TQx$ where $x \in \mathbb{R}^n$ and $Q \succeq 0$.</p>
+<p>Its GD update step looks like:</p>
+<p><br>
+$$x^+ = x - \eta Qx = (I - \eta Q)x$$ 
+<br></p>
+<p>Which, by recursion from iteration $T$ down to the initial iteration, gives:</p>
+<p><br>
+
+$$x^T = \underbrace{(I - \eta Q)\ldots(I - \eta Q)}_{\text{$T$ times}}x_0$$
+
+<br></p>
+<p>The eigenvalues $\tilde \lambda_i$ of the matrix $I - \eta Q$ are related to the eigenvalues $\lambda_i$ of $Q$ according to:</p>
+<p><br>
+
+$$\tilde \lambda_i = 1 - \eta \lambda_i$$
+
+<br></p>
+<p>Hence, if $\lambda_{min} = m$ and $\lambda_{max} = M$, then $\tilde \lambda_{min} = 1 - \eta M$ and $\tilde \lambda_{max} =1 - \eta m$.</p>
+<p>The eigenvalues of $I - \eta Q$ act on the current iterate by scaling it. So, in order to ensure convergence to $0$, we need $\tilde \lambda_i \in (-1,1) \ \ \forall i$. Or, equivalently:</p>
+<p><br>
+
+$$\tilde \lambda_{min} &gt; -1$$
+
+
+$$\textrm{and}$$
+
+
+$$\tilde \lambda_{max} &lt; 1$$
+
+<br></p>
+<p>Both of these together give us $0 \leq \eta \leq \frac{2}{M}$ as desired.</p>
+<hr>
+<p>But $0 \leq \eta \leq \frac{2}{M}$ is an interval, not a greedy choice. It's just a condition that guarantees convergence. By making the greedy choice we can find the optimal step-size within this interval.</p>
+<p>Since the RHS of $(5.2)$ is strongly convex, the quadratic upper-bound is guaranteed to have a unique minimizer.</p>
+<p>The idea is similar to other instances of making a greedy choice we've seen so far. Since the function value is upper-bounded by this quadratic, minimizing the latter gives the tightest upper-bound for the function value that's available to us without access to more global information about the objective. That is:</p>
 <p><br>
 
 $$f(y) \leq \min_y f(x) + \nabla f(x)^T(y-x) + \frac{M}{2}||y-x||_2^2$$
