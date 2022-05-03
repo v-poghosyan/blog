@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      19 min read
+      21 min read
     
 </span></p>
 
@@ -181,6 +181,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#Self-Tuning-Property">Self-Tuning Property </a></li>
 <li class="toc-entry toc-h2"><a href="#Quadratic-Bounds">Quadratic Bounds </a></li>
 <li class="toc-entry toc-h2"><a href="#The-Optimal-Fixed-Step-Size">The Optimal Fixed Step-Size </a></li>
+<li class="toc-entry toc-h2"><a href="#Convergence-Rate">Convergence Rate </a></li>
 </ul>
 </li>
 </ul><!--
@@ -224,8 +225,8 @@ window.onload = wrap_img;
 <a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
 </h1>
 <p><strong><em>Gradient descent (GD)</em></strong> is a powerful, yet incredibly simple, iterative optimization algorithm. We can think of it as a <strong><em>greedy algorithm</em></strong> in the setting of continuous optimization. That is, one step of GD is our best, local attempt at optimization given only limited information about the objective $f(x)$, and having limited computational power at our disposal.</p>
-<p>We can further qualify what we mean by <em>'limited information'</em> about the objective by introducing a categorization on iterative optimization algorithms – the <strong><em>Oracle Access Model</em></strong>. In this model, the objective is abstracted into a black box. For each input $x$, the black box gives access to the objective value $f(x)$ and, optionally, any number of higher-order information about the objective such as $\nabla f(x)$, $\nabla^2 f(x)$, etc. GD is what's known as a <strong><em>first-order oracle</em></strong> because it's only allowed access to the objective $f(x)$ and its first-order information $\nabla f(x)$.</p>
-<p>For now, we focus on the simpler case of unconstrained optimization in order to develop the key algorithmic ideas. Later on, perhaps in a different post, we will explore modifications to gradient descent that make it suitable for constrained optimization.</p>
+<p>We can further qualify what we mean by <em>'limited information'</em> about the objective by introducing a categorization on iterative optimization algorithms – the <strong><em>Oracle Access Model (OAM)</em></strong>. In this model, the objective is abstracted into a black box. For each input $x$, the black box gives access to the objective value $f(x)$ and, optionally, more global information in the form of higher order behavior such as $\nabla f(x)$, $\nabla^2 f(x)$, etc. GD is what's known as a <strong><em>first-order oracle</em></strong> because it's only allowed access to the objective $f(x)$ and its first-order information $\nabla f(x)$. It's important to note that the OAM is not all-inclusive, there are a number of optimization algorithms, falling under the blanket of <strong><em>composite optimization</em></strong>, that utilize structural information about the objective that goes beyond $n$-th order information. An example of such an algorithm is <strong><em>proximal gradient descent (PGD)</em></strong>.</p>
+<p>For now, we focus on the simpler case of unconstrained optimization with OAM algorithms in order to develop the key algorithmic ideas. Later on, perhaps in a different post, we will explore modifications to gradient descent, such as PGD, that make it suitable for constrained optimization.</p>
 <h1 id="The-Gradient-Descent-Algorithm">
 <a class="anchor" href="#The-Gradient-Descent-Algorithm" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Gradient Descent Algorithm<a class="anchor-link" href="#The-Gradient-Descent-Algorithm"> </a>
 </h1>
@@ -249,7 +250,7 @@ $$f(x^+) = f(x + \eta d) \approx f(x) + \eta \nabla f(x)^T d \ \ \forall d \tag{
 <p>That is, we insist:</p>
 <p><br>
 
-$$f(x^+) \approx f(x) + \eta \nabla f(x)^T d \leq f(x) \tag{1.2}$$
+$$f(x^+) \approx f(x) + \eta \nabla f(x)^T d \leq f(x) \tag{1.3}$$
 
 <br></p>
 <p>And, since we are greedy in our approach, we wish to make $f(x^+)$ as small as possible. Since, on the RHS, $f(x)$ is fixed and $\eta &gt; 0$, this amounts to minimizing the scaled inner-product $\nabla f(x)^Td$. To that end, we choose $d$ opposite and parallel to the gradient, i.e. $d = - \frac{\nabla f(x)}{||\nabla f(x)||_2}$.</p>
@@ -259,10 +260,10 @@ $$f(x^+) \approx f(x) + \eta \nabla f(x)^T d \leq f(x) \tag{1.2}$$
 $$x^+ = x - \eta \frac{\nabla f(x)}{||\nabla f(x)||_2}$$
 
 <br></p>
-<p>By re-labeling, $\eta$ can absorb the normalization constant. This obtains the gradient descent update step as it's often introduced in the textbooks:</p>
+<p>By re-labeling, $\eta$ can absorb the normalization constant. This obtains the gradient descent update step as it's often introduced in the textbooks – a step in the negative gradient direction:</p>
 <p><br>
 
-$$x^+ = x - \eta \nabla f(x) \tag{1.3}$$
+$$x^+ = x - \eta \nabla f(x) \tag{1.4}$$
 
 <br></p>
 <p>This makes intuitive sense because the negative gradient direction is the direction in which the objective decreases most. So, it's only natural that the update should take us in this most enticing direction.</p>
@@ -282,7 +283,7 @@ $$
 x^+ = \arg \min_y f(x) + \nabla f(x)^T(y - x) \tag{2.2}
 $$
 <br></p>
-<p>But since the linear approximation is unbounded below, this obtains $x^+ = \pm \infty$. To avoid this problem, we introduce a parametrized penalty term that prevents $x^+$ from venturing too far from the current iterate $x$. That is:</p>
+<p>But the linear approximation is only local, so it would be wise to distrust it for points far away from the current iterate. In this case, since the linear approximation is, in fact, unbounded below, $(2.2)$ would obtain $x^+ = \pm \infty$. To avoid this problem, we introduce a parametrized penalty term that prevents $x^+$ from venturing too far from the current iterate $x$. That is:</p>
 <p><br>
 $$
 x^+ = \arg \min_y f(x) + \nabla f(x)^T(y - x) + \eta ||y - x||_2^2 \tag{2.3}
@@ -294,7 +295,7 @@ $$
 $$x^+ = x - \frac{1}{2 \eta} \nabla f(x)$$
 
 <br></p>
-<p>By re-labeling, we, once again, get the canonical form of the GD update step $(1.3)$.</p>
+<p>By re-labeling, we, once again, get the canonical form of the GD update step as in $(1.3)$ – a step in the negative gradient direction.</p>
 
 </div>
 </div>
@@ -513,6 +514,14 @@ $$m||x-x^*||_2 \leq ||\nabla f(x)||_2 \leq M||x-x^*||_2$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><br></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <blockquote>
 <p><strong>Lemma 2:</strong> If $f$ is $m$-strongly-convex then $g(x) = f(x) - \frac{m}{2}x^Tx$ is convex.</p>
 </blockquote>
@@ -554,7 +563,7 @@ $$f(y) \leq f(x) + \nabla f(x)^T(y-x) + \frac{M}{2}||y-x||_2^2 \ \ \forall y$$
 <p>We already showed that an $M$-smooth and $m$-strongly-convex function enjoys the advantage of self-tuning. But, without knowing how to choose the step-size, we can still cause GD to make slow progress or even diverge.</p>
 <p>After all, gradient descent is based on a local linear approximation of the objective. If we take big steps, we are counting on the linear approximation to be a good-enough estimate far from the current iterate. This may be too optimistic, in which case GD will diverge. Being too pessimistic, however, is also not good. While taking small steps won't cause GD to diverge, it will make GD painfully slow.</p>
 <p>Luckily, the quadratic upper-bound in $(5.1)$ informs our choice of step-size both in terms of a convergence guarantee and in terms of optimality. First, let's guarantee convergence...</p>
-<p>By plugging the update step $x^+ = x - \eta \nabla f(x)$ as $y$ in $(5.1)$ we obtain:</p>
+<p>By plugging the update step $x^+ = x - \eta \nabla f(x)$ as $y$ into the upper-bound in $(5.1)$ we obtain:</p>
 <p><br>
 
 $$f(x^+) \leq f(x) + \eta(1-\frac{M}{2}\eta)||\nabla f(x)||_2^2 \tag{5.2}$$
@@ -614,7 +623,7 @@ $$\tilde \lambda_{max} &lt; 1$$
 <hr>
 <p>But $0 \leq \eta \leq \frac{2}{M}$ is an interval, not a greedy choice. It's just a condition that guarantees convergence. By making the greedy choice we can find the optimal step-size within this interval.</p>
 <p>Since the RHS of $(5.2)$ is strongly convex, the quadratic upper-bound is guaranteed to have a unique minimizer.</p>
-<p>The idea is similar to other instances of making a greedy choice we've seen so far. Since the function value is upper-bounded by this quadratic, minimizing the latter gives the tightest upper-bound for the function value that's available to us without access to more global information about the objective. That is:</p>
+<p>The idea is similar to other instances of making a greedy choice we've seen so far. Since the function value is upper-bounded by this quadratic, minimizing this upper-bound gives the best guarantee of smallness for the function value available to us without access to higher order information about the objective. That is:</p>
 <p><br>
 
 $$f(y) \leq \min_y f(x) + \nabla f(x)^T(y-x) + \frac{M}{2}||y-x||_2^2$$
@@ -633,6 +642,7 @@ $$x^+ = x - \frac{1}{M}\nabla f(x)$$
 
 <br></p>
 <p>So, the optimal fixed step-size is $\eta = \frac{1}{M}$.</p>
+<p>We will see this idea of minimizing a quadratic approximation of the objective, instead of the objective itself, repeat itself when we get to <strong><em>Newton's Method (NM)</em></strong>. However, NM is a second-oder oracle which has access to $\nabla^2 f(x)$, and hence the quadratic approximation, at all points in the domain of the objective. The remarkable thing about $M$-smoothness and $m$-strong-convexity is that they still give gradient descent, a first-order oracle, access to universal quadratic bounds without the need to know $\nabla^2 f(x)$. These upper-bounds are, as we saw, what inform GD's choice of step-size. This step-size, as we shall soon see, give the GD its convergence guarantees.</p>
 
 </div>
 </div>
@@ -640,43 +650,59 @@ $$x^+ = x - \frac{1}{M}\nabla f(x)$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p>HERE LIE DRAGONS</p>
-<p>Ruling out discontinuities should involve a regularity condition, whereas ruling out flatness should</p>
-<p>If $f$ is $M$-smooth, then we have the tightest possible point-wise quadratic upper bound as:</p>
+<h2 id="Convergence-Rate">
+<a class="anchor" href="#Convergence-Rate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Convergence Rate<a class="anchor-link" href="#Convergence-Rate"> </a>
+</h2>
+<p>As shown above, the theoretical best fixed step-size for an $M$-smooth objective $f(x)$ is $\eta = \frac{1}{M}$. With this choice of step-size, we can derive the GD convergence rate.</p>
+<p>Fixing the current iterate as $x$, and plugging in $x^+ = x - \frac{1}{M} \nabla f(x)$ into the upper-bound in $(5.1)$, we obtain the quadratic upper-bound on the next iterate in terms of the magnitude of the gradient:</p>
 <p><br>
 
-$$f(y) \leq f(x) + \nabla f(x)^T(y-x) + \frac{M}{2} ||y-x||_2^2 \ \ \forall y$$
+$$f(x^+) \leq f(x) - \frac{1}{2M}||\nabla f(x)||_2^2 \tag{5.3}$$
 
 <br></p>
-<p>How does this help us choose step size in a better way?</p>
-<p>Plug the step $x^+ = x - \eta \nabla f(x)$ into the upper bound:</p>
+<p>Furthermore, since the underlying assumption throughout this post is that the objective is convex, we have a linear lower-bound on the optimum at the current iterate $x$:</p>
 <p><br>
-$$
-\begin{aligned}
-f(x^+) &amp;\leq f(x) + \nabla f(x)^T(\eta \nabla f(x)) + \frac{M}{2} ||\eta \nabla f(x)||_2^2 \\
-\iff f(x^+) &amp;\leq f(x) +  \eta || \nabla f(x) ||_2^2 + \frac{M \eta^2}{2} ||\nabla f(x)||_2^2
-\end{aligned}
-$$
+$$f(x^*) \geq f(x) + \nabla f(x)^T(x^* - x) \tag{5.4}$$ 
 <br></p>
-<p>But the RHS is a quadratic function in $\eta$, the step-size. So, the upper bound on the next iterate $f(x^+)$, and consequently also the next iterate itself, can be minimized w.r.t. $\eta$. Essentially, we trust the upper bound is a good quadratic approximation and choose its minimizer as the next iterate. Just like in NM we trust the quadratic estimate, and set its minimizer as the next iterate. But here, we require no second-order information about the function.</p>
-<p>The non-NM view is this. We have a fixed $x$ and the quadratic upper bound at that $x$. Any next iterate will be smaller than the qudratic UB <em>at</em> that iterate. So we choose a step size that minimizes this UB. This guarantees $f(x^+) \leq$ min of UB which is the tightest guarantee we can get on $f(x^+)$ with the information at hand. So we, once again, do the locally optimal thing and choose that.</p>
-<p>The best choice turns out to be $\eta = \frac{1}{M}$</p>
-<p>FOR FUNCTIONS THAT ARE M SMOOTH M WORKS FOR EVERY POINT. WHEREAS WE ARE SHIT OUT OF LUCK IF SUCH AN M DOESN'T EXIST. THEN WE DON'T HAVE THIS UB. IT IS THEN THAT WE USE EITHER NM OR QUASI-NM.</p>
-<p>||||</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In this analysis, we're only concerned about convex, unconstrained objectives $f(x)$. So, by definition of convexity, the linear approximation is actually a lower-bound of the true value at $x^+$.</p>
+<p>By reversing $(5.4)$ and adding it to $(5.3)$ we get:</p>
 <p><br>
 
-$$f(x^+) \geq f(x) + \eta \nabla f(x)^T d \ \ \forall d \tag{1.2}$$
+$$f(x^+) \leq f(x^*) + \nabla f(x)^T(x - x^*) - \frac{1}{2M}||\nabla f(x)||_2^2$$
 
 <br></p>
+<p>With a bit of algebraic finessing, we can bring the above to the form:</p>
+<p><br>
+
+$$f(x^+) \leq f(x^*) + \frac{M}{2}\left[ ||x-x^*||_2^2 - ||x - \frac{1}{M}\nabla f(x) - x^*||_2^2\right]$$
+
+<br></p>
+<p>But $x - \frac{1}{M}\nabla f(x) = x^+$, so we have:</p>
+<p><br>
+
+$$f(x^+) - f(x^*) \leq \frac{M}{2}\left[ ||x-x^*||_2^2 - ||x^+ - x^*||_2^2\right]$$
+
+<br></p>
+<p>We recognize, $||x^+ - x^*||_2^2$ as the sub-optimality of the next iterate, and $||x - x^*||_2^2$ as the sub-optimality of the previous iterate. When both sides are summed over $T$ iterations, the RHS sum telescopes and we're left with:</p>
+<p><br>
+
+$$\sum_{t = 0}^{T-1} (f(x_{t+1}) - f(x_t)) \leq \frac{M}{2}||x_0 - x^*||_2^2$$
+
+<br></p>
+<p>We recognize the LHS as the sum of sub-optimalities across all $T$ iterations, and the RHS as being proportional to the initial condition. Taking the average error across all iterations, we get:</p>
+<p><br>
+
+$$\frac{1}{T} \sum_{t = 0}^{T-1} (f(x_{t+1}) - f(x_t)) \leq \frac{M}{2T}||x_0 - x^*||_2^2$$
+
+<br></p>
+<p>But, we know that the algorithm with fixed step-size $\eta = \frac{1}{M}$ has the descent property since $0 &lt; \frac{1}{M} &lt; \frac{2}{M}$. So, the last sub-optimality $f(x_{T}) - f(x^*)$ must be the smallest. In particular, it must be smaller than the average. So, we have:</p>
+<p><br>
+
+$$f(x_{T}) - f(x^*) \leq \frac{M}{2T}||x_0 - x^*||_2^2 \tag{5.5}$$
+
+<br></p>
+<p>So, the error gets better with more iterations and, conversely, gets worse the larger $M$, a measure of how abruptly the gradient changes anywhere on its domain, is.</p>
+<p>Note that $M$, as well as $||x_0 - x^*||_2^2$ are fixed in $(5.5)$. So, the convergence rate of GD on an $M$-smooth objective is $\mathcal{O}(\frac{1}{T})$.</p>
+<p>The situation is even better if, in addition to $M$-smoothness, we also have $m$-strong-convexity.</p>
 
 </div>
 </div>
