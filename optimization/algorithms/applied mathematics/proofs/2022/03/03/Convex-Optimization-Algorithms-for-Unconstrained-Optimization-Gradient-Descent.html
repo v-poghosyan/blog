@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      29 min read
+      30 min read
     
 </span></p>
 
@@ -209,18 +209,19 @@ window.onload = wrap_img;
 <h1 id="Introduction">
 <a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
 </h1>
-<p><strong><em>Gradient descent (GD)</em></strong> is a powerful, yet incredibly simple, iterative optimization algorithm. We can think of it as a <strong><em>greedy algorithm</em></strong> in the setting of continuous optimization. That is, one step of GD is our best, local attempt at optimization given only limited information about the objective $f(x)$, and having limited computational power at our disposal.</p>
-<p>We can further qualify what we mean by <em>'limited information'</em> about the objective by introducing a categorization on iterative optimization algorithms – the <strong><em>Oracle Access Model (OAM)</em></strong>. In this model, the objective is abstracted into a black box. For each input $x$, the black box gives access to the objective value $f(x)$ and, optionally, more global information in the form of higher order behavior such as $\nabla f(x)$, $\nabla^2 f(x)$, etc. GD is what's known as a <strong><em>first-order oracle</em></strong> because it's only allowed access to the objective $f(x)$ and its first-order information $\nabla f(x)$. It's important to note that the OAM is not all-inclusive, there are a number of optimization algorithms, falling under the blanket of <strong><em>composite optimization</em></strong>, that utilize structural information about the objective that goes beyond $n$-th order information. An example of such an algorithm is <strong><em>proximal gradient descent (PGD)</em></strong>.</p>
-<p>For now, we focus on the simpler case of unconstrained optimization with OAM algorithms in order to develop the key algorithmic ideas. Later on, perhaps in a different post, we will explore modifications to gradient descent, such as PGD, that make it suitable for constrained optimization.</p>
+<p><strong><em>Gradient descent (GD)</em></strong> is a powerful, yet incredibly simple, iterative optimization algorithm. We can think of it as a <strong><em>greedy algorithm</em></strong> in the setting of continuous optimization. That is, one step of GD is our best attempt at local optimization given limited information about the objective $f(x)$, and having limited computational power at our disposal.</p>
+<p>We can further qualify what we mean by <em>'limited information'</em> about the objective by introducing a categorization on optimization algorithms – the <strong><em>Oracle Access Model (OAM)</em></strong>. In this model, the objective is abstracted into a black box. For each input $x$, the black box gives the algorithm access to the value of the objective, $f(x)$, and, optionally, global information in the form of higher order behavior such as $\nabla f(x)$, $\nabla^2 f(x)$, etc. GD is what's known as a <strong><em>first-order oracle</em></strong> because it's only allowed access to $f(x)$ and first-order information in the form of $\nabla f(x)$.</p>
+<p>It's important to note that the OAM is not all-inclusive, there are a number of optimization algorithms, such as <strong><em>composite optimization</em></strong> algorithms, that utilize structural information about the objective that goes beyond $n$-th order behavior. An example of such an algorithm is <strong><em>proximal gradient descent (PGD)</em></strong> which, in addition to $f(x)$ and $\nabla f(x)$, also has access to the <strong><em>prox operator</em></strong>.</p>
+<p>For now, we focus on the simple case of unconstrained optimization with OAM algorithms, particularly GD, in order to develop the key algorithmic ideas. Later on, perhaps in a different post, we will explore modifications to GD, such as the PGD algorithm mentioned above, that make it suitable for constrained optimization.</p>
 <h1 id="The-Gradient-Descent-Algorithm">
 <a class="anchor" href="#The-Gradient-Descent-Algorithm" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Gradient Descent Algorithm<a class="anchor-link" href="#The-Gradient-Descent-Algorithm"> </a>
 </h1>
-<p>As all iterative algorithms, gradient descent relies on <strong><em>initialization</em></strong> and an <strong><em>update step</em></strong>. In this section, we explore two ideas that play a key role in developing the GD algorithm.</p>
+<p>In this section, we will explore two ideas that give rise to the GD algorithm. As all iterative algorithms, gradient descent relies on an <strong><em>initialization step</em></strong> and an <strong><em>update step</em></strong>.</p>
 <h2 id="Idea-1---Greedy-Choice-of-Direction">
 <a class="anchor" href="#Idea-1---Greedy-Choice-of-Direction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Idea 1 - Greedy Choice of Direction<a class="anchor-link" href="#Idea-1---Greedy-Choice-of-Direction"> </a>
 </h2>
-<p>Let $x$ be the initial iterate, and let the update be given by:
-<br>
+<p>Let $x$ be the initial iterate, and let the update be given by:</p>
+<p><br>
 $$x^+ = x + \eta d$$ 
 <br></p>
 <p>for some directional unit-vector $d$ and <strong><em>step-size</em></strong> parameter $\eta &gt; 0$.</p>
@@ -299,21 +300,20 @@ $$x^+ = x - \frac{1}{2 \eta} \nabla f(x)$$
 <li>What's the rate of convergence of GD? Does the rate depend on step-size? Does it depend on properties of the objective function?</li>
 <li>How should we choose a step-size that maximizes convergence rate?</li>
 </ol>
-<p>We will shortly explore each of these questions and more. However, before doing so, it's worth taking a bird's eye look at the problem of convex optimization itself.</p>
-<p>Perhaps the most important question to ask ourselves is this: does gradient descent's convergence rate, for an optimally chosen step-size, give a taxonomy of easier-to-harder problems within the scope of convex optimization? The answer, as it turns out, is <em>yes</em>.</p>
+<p>We will shortly explore each of these questions and more. However, before doing so, it's worth taking a bird's eye look at the problem of convex optimization itself. Perhaps the most important question to ask ourselves is this: does gradient descent's convergence rate, for an optimally chosen step-size, give a taxonomy of easier-to-harder problems within the field of convex optimization? The answer, as it turns out, is <em>yes</em>.</p>
 <h2 id="Initialization">
 <a class="anchor" href="#Initialization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Initialization<a class="anchor-link" href="#Initialization"> </a>
 </h2>
-<p>From this point on, we will limit our discussion to convex objectives in order to eliminate the possibility of strictly <strong><em>local optimizers</em></strong> and <strong><em>inflection points</em></strong>, both of which GD, by construction, can get stuck at given a badly chosen initial point. This ensures the only <strong><em>stationary points</em></strong>, points at which $\nabla f(x) = 0$ and the GD update makes no further progress, are global minimizers. On convex functions GD, as we will soon discover, has a convergence guarantee for all step-sizes independently of initialization.</p>
+<p>From this point on, we will limit our discussion to convex objectives in order to eliminate the possibility of strictly <strong><em>local optimizers</em></strong> (i.e. <strong><em>non-global optimizers</em></strong>) and <strong><em>inflection points</em></strong>, both of which GD gets stuck at if initialized poorly. This ensures the only <strong><em>stationary points</em></strong>, points at which $\nabla f(x) = 0$ and the GD update makes no further progress, are global minimizers. On such convex functions, as we will soon discover, GD has a convergence guarantee for all step-sizes independently of initialization.</p>
 <h2 id="Fixed-Step-Size-GD">
 <a class="anchor" href="#Fixed-Step-Size-GD" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fixed Step-Size GD<a class="anchor-link" href="#Fixed-Step-Size-GD"> </a>
 </h2>
-<p>To kickstart our analysis of GD, we consider the fixed step-size algorithm first. Let's take two quintessential convex problems in $\mathbb{R}$, $f(x) = x^2$ and $h(x) = |x|$, and analyze GD's performance on these objectives.</p>
+<p>To kickstart our analysis of GD, we consider the fixed step-size algorithm first. Let's take two quintessential convex problems in $\mathbb{R}$, $f(x) = x^2$ and $h(x) = |x|$, and analyze GD's performance on them.</p>
 <h3 id="Simple-Analysis-of-Fixed-Step-Size-GD">
 <a class="anchor" href="#Simple-Analysis-of-Fixed-Step-Size-GD" aria-hidden="true"><span class="octicon octicon-link"></span></a>Simple Analysis of Fixed Step-Size GD<a class="anchor-link" href="#Simple-Analysis-of-Fixed-Step-Size-GD"> </a>
 </h3>
 <p>First, let's run the algorithm on $h(x) = |x|$ for $x \in \mathbb{R}$.</p>
-<p>Since $|x|$ is non-differentiable at $x = 0$, the gradient has a discontinuity at $x = 0$. Non-differentiability, such as this, will eventually lead us to introduce the notion of <strong><em>sub-gradients</em></strong>, but for now we can get away with using the discontinuous gradient:</p>
+<p>Since $|x|$ is non-differentiable at $x = 0$, the gradient has a discontinuity at $x = 0$. Non-differentiability, such as this, will eventually force us to introduce the notion of <strong><em>sub-gradients</em></strong>, but for now we can get away with it simply by avoiding the gradient's behavior at $0$. So:</p>
 
 </div>
 </div>
@@ -342,19 +342,19 @@ $$
 $$x^+ = x \pm \eta$$
 
 <br></p>
-<p>where the sign of $\eta$ depends on where the previous iterate, $x$, falls inside the domain $(-\infty, 0) \cup (0, \infty)$.</p>
-<p>Now, switching our attention to $f(x) = x^2$, we compute its GD update as follows. We compute the gradient as $f'(x) = 2x$ which leads to the fixed step-size update:</p>
+<p>where the sign of $\eta$ depends on where the previous iterate, $x$, falls within the domain $(-\infty, 0) \cup (0, \infty)$.</p>
+<p>Now, consider $f(x) = x^2$. Its gradient is $f'(x) = 2x$, which means the fixed step-size update is:</p>
 <p><br>
 
 $$x^+ = x - 2\eta x$$
 
 <br></p>
 <p>Note that $x^* = 0$ is the unique optimizer of both $f(x)$ and $h(x)$. With this in mind, there are two key observations to make.</p>
-<p>The first is that, for $x$ far away from $x^* = 0$, the update, $2\eta x$, is large in magnitude. So, if the iterate is far from the optimizer, GD makes fast progress towards it.</p>
-<p>The second observation is that, as $x \rightarrow x^*$, the update becomes small in magnitude. So, as the iterate comes close to the optimizer, GD takes smaller and smaller steps which converge to $0$ in a summable way. This means, we can get the sub-optimality $|f(x) - f(x^*)|$ to be $\epsilon$-arbitrarily small for any fixed step-size $\eta$.</p>
-<p>Neither of these observations hold for GD on $h(x) = |x|$ since the update $\eta$ is fixed regardless of the Euclidean distance between $x$ and $x^* = 0$. In particular, this means GD is not fast for $x$ far away from $x^*$ and does not slow down as $x$ nears $x^*$. Arbitrary accuracy is, also, impossible in the setting of a fixed step-size $\eta$. The iterates eventually cycle between $x^T - \eta$ and $x^T + \eta$ where $x^T$ is the last iterate before entering the cycle, that is $x^T \in (-\eta, \eta)$. The sub-optimality, consequently, also cycles between two values which depend on the choice of $\eta$. This is to say that the sub-optimality cannot be $\epsilon$-arbitrary small for a fixed choice of $\eta$. To be clear, there is still convergence but it's slow and not arbitrarily accurate. Arbitrary accuracy for such problems as this can only be achieved by choosing a sequence of diminishing step-sizes $\{ \eta_t \}_{t=1}^T$ which help diminish the update since the gradient itself is non-diminishing. Of course, the sequence must be chosen with care since it's possible to <em>'run out of steam'</em> before reaching the optimizer.</p>
+<p>The first is that, for $x$ far away from $x^* = 0$, the update, $2\eta x$, is large (in magnitude). So, if the iterate is far from the optimizer, GD makes fast progress towards it.</p>
+<p>The second observation is that, as $x \rightarrow x^*$, the update becomes small in magnitude. So, as the iterate comes close to the optimizer, GD takes smaller and smaller steps which converge to $0$ in a summable way. This means, we can get the sub-optimality $f(x) - f(x^*)$ to be $\epsilon$-arbitrarily small for <em>any</em> fixed step-size $\eta$.</p>
+<p>Neither of these observations hold for GD on $h(x) = |x|$ since the update $\eta$ is fixed regardless of the Euclidean distance between $x$ and $x^* = 0$. In particular, this means GD is <em>not</em> fast for $x$ far away from $x^*$ and <em>does not</em> slow down as $x$ nears $x^*$. Arbitrary accuracy is impossible with a fixed step-size, since the iterates eventually cycle between $x^T - \eta$ and $x^T + \eta$ where $x^T$ is the last unique iterate – that is $x^T \in (-\eta, \eta)$. The sub-optimality, consequently, also cycles between two values which depend on the choice of $\eta$. This is to say that the sub-optimality cannot be $\epsilon$-arbitrary small for a fixed choice of $\eta$. To be clear, there is still convergence but it's slow and not arbitrarily accurate. Arbitrary accuracy for such problems as this can only be achieved by choosing a sequence of diminishing step-sizes $\{ \eta_t \}_{t=1}^T$ which reduce magnitude of the update since the gradient, itself, is constant. Of course, this sequence must be chosen with care since it's possible to <em>'run out of steam'</em>, so to speak, before reaching the optimizer. The precise criterion is $\eta_t \rightarrow 0$ as $t \rightarrow \infty$ s.t. $\sum_t^\infty \eta_t = \infty$.</p>
 <p>We say GD on $f(x) = x^2$ enjoys the <strong><em>self-tuning property</em></strong>, whereas GD on $h(x) = |x|$ does not. This speaks to the fact that the self-tuning is a property of the objective functions, rather than GD itself.</p>
-<p>As an overview of the theory we will soon develop, functions <em>like</em> $x^2$ (or, more generally, any quadratic) will all have the self-tuning property while functions <em>like</em> $|x|$ will not. This is what ends up introducing a taxonomy of easier-to-harder convex optimization problems. What it means, precisely, to be <em>like</em> $x^2$ or $|x|$ will be made rigorous in the next few sections.</p>
+<p>As an overview of the theory we will soon develop, functions <em>like</em> $x^2$ (or, more generally, any quadratic in $\mathbb{R}^n$) will all have the self-tuning property while functions <em>like</em> $|x|$ will not. This is what ends up introducing the taxonomy of easier-to-harder convex optimization problems mentioned in the previous section. What it means, precisely, to be <em>like</em> $x^2$ or $|x|$ will be made rigorous in the next few sections.</p>
 
 </div>
 </div>
@@ -366,10 +366,10 @@ $$x^+ = x - 2\eta x$$
 <a class="anchor" href="#Smoothness-and-Strong-Convexity" aria-hidden="true"><span class="octicon octicon-link"></span></a>Smoothness and Strong Convexity<a class="anchor-link" href="#Smoothness-and-Strong-Convexity"> </a>
 </h1>
 <p>As we saw above, gradient descent with a fixed step-size behaved much better on $f(x) = x^2$ than on $h(x) = |x|$. Since both of these problems are convex, $x^2$ must have additional properties not shared by $|x|$ that make it more amenable to optimization by GD. These properties turn out to be <strong><em>smoothness</em></strong> and <strong><em>strong convexity</em></strong>. We will see that these properties provide insight into choosing the best fixed-step size which guarantees faster convergence of GD.</p>
-<p>We can start by asking ourselves what makes the two quintessential functions $f(x) = x^2$ and $h(x) = |x|$ different from one another. Since the GD update step relies on the gradient, it helps thinking in terms of the differences of the gradients instead of the objective functions themselves.</p>
+<p>We start by asking ourselves what makes the two quintessential functions $f(x) = x^2$ and $h(x) = |x|$ different from one another. Since the GD update step relies on the gradient, it helps thinking in terms of the differences of the gradients instead of the objective functions themselves.</p>
 <p>The first difference of note is that $|x|$ has a discontinuity at $x = 0$ that's not present in $x^2$. At a point of discontinuity the gradient experiences an abrupt jump. So, in general, jumps in the gradient must pose a problem for GD.</p>
-<p>The second thing to note is that $|x|$ is flat compared to $x^2$. In flat regions, the gradient is constant. So, in general, constant regions in the gradient must pose a problem for GD.</p>
-<p>Both of these scenarios can be ruled out with a <a href="https://en.wikipedia.org/wiki/Lipschitz_continuity"><strong><em>Lipschitz condition</em></strong></a> on the gradient. Lipschitz conditions are both regularity conditions, as well as, growth conditions. So, they can rule out abrupt jumps and ensure there's some change in the gradient.</p>
+<p>The second difference of note is that $|x|$ is flat compared to $x^2$. In flat regions, the gradient is constant. So, in general, constant regions in the gradient must pose a problem for GD.</p>
+<p>Both of these scenarios can be ruled out with a <a href="https://en.wikipedia.org/wiki/Lipschitz_continuity"><strong><em>Lipschitz condition</em></strong></a> on the gradient. Lipschitz conditions are both regularity conditions, as well as, growth conditions. So, they can rule out abrupt jumps and ensure there's, at least, some change in the gradient.</p>
 <p>We are ready to define the two properties mentioned in the beginning of this section.</p>
 
 </div>
@@ -415,13 +415,13 @@ $$\exists m &gt; 0 \ \ s.t. \ \ ||\nabla f(x) - \nabla f(y)||_2 \geq m||x-y||_2 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is a universal lower-bound on the change in gradient which rules out the possibility of a constant gradient.</p>
-<p>In particular, an $M$-smooth, and $m$-strongly-convex function $f(x)$ has the property that:</p>
+<p>In particular, an $M$-smooth, and $m$-strongly-convex function $f(x)$ satisfies:</p>
 <p><br>
 
 $$m||x-y||_2 \leq ||\nabla f(x) - \nabla f(y)||_2 \leq M||x-y||_2 \ \ \forall x,y \tag{3.1}$$
 
 <br></p>
-<p>For a twice-differentiable function, there's a more compact way to express these properties using the hessian. It makes use of an ordering on matrices introduced by matrix <a href="https://en.wikipedia.org/wiki/Definite_matrix"><strong><em>definiteness</em></strong></a>.</p>
+<p>For a twice-differentiable function, there's a more compact way to express these properties using the hessian which makes use of an ordering on matrices introduced by matrix <a href="https://en.wikipedia.org/wiki/Definite_matrix"><strong><em>definiteness</em></strong></a>. After all, Lipschitzness of the gradient, which is nothing but a restriction on its growth, is a statement about the hessian.</p>
 <p><br>
 
 $$||\nabla f(x) - \nabla f(y)||_2 \leq M||x-y||_2 \ \ \forall x,y$$
@@ -470,18 +470,18 @@ $$m||x-y||_2 \leq ||\nabla f(x) - \nabla f(y)||_2 \leq M||x-y||_2 \ \ \forall x,
 $$m||x-x^*||_2 \leq ||\nabla f(x) - \nabla f(x^*)||_2 \leq M||x-x^*||_2$$
 
 <br></p>
-<p>But, since $x^*$ is an optimizer, $\nabla f(x^*) = 0$, so the above becomes:</p>
+<p>Since $x^*$ is an optimizer $\nabla f(x^*) = 0$, so the above becomes:</p>
 <p><br>
 
 $$m||x-x^*||_2 \leq ||\nabla f(x)||_2 \leq M||x-x^*||_2$$
 
 <br></p>
-<p>The first inequality says that the magnitude of the gradient is <em>at least</em> a constant multiple of the distance from the optimizer. The second inequality says that the magnitude of the gradient is <em>at most</em> a constant multiple of the distance from the optimizer. So, the gradient is large for $x$ far from $x^*$ and gets smaller as $x \rightarrow x^*$. We recognize this as none other than the self-tuning property. So, smoothness and strong-convexity were, indeed, what was needed to encapsulate this property.</p>
+<p>The first inequality says that the magnitude of the gradient is <em>at least</em> a constant multiple of the distance from the optimizer. The second inequality says that the magnitude of the gradient is <em>at most</em> a constant multiple of the distance from the optimizer. So, the gradient is large for $x$ far from $x^*$ and gets smaller as $x \rightarrow x^*$. Since the GD update depends on the magnitude of the gradient, this ensures GD has the self-tuning property. So, smoothness and strong-convexity were, indeed, the ideas needed to encapsulate the self-tuning property.</p>
 <h2 id="Quadratic-Bounds">
 <a class="anchor" href="#Quadratic-Bounds" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quadratic Bounds<a class="anchor-link" href="#Quadratic-Bounds"> </a>
 </h2>
-<p>Smoothness and strong-convexity, should they hold for a given convex function, give a universal quadratic point-wise upper and lower-bound, respectively, for this function. This is what it means to say that the function is <em>like</em> a quadratic. In a sense, all we're saying is that a function is asymptotically bounded by a quadratic from above and below at every point. That is, at any point, it should neither grow slower nor faster than quadratically.</p>
-<p>To construct the upper and lower-bounds, we may use the following  two lemmas:</p>
+<p>Smoothness and strong-convexity, should they hold for a given convex function, give a universal quadratic point-wise upper and lower-bound, respectively, on the function. This is what it means to say that the function is <em>like</em> a quadratic. In a sense, all we're saying is that a function is <em>tightly</em> asymptotically bounded by a quadratic at every point. That is, at any given point, the function should neither grow slower nor faster than quadratically.</p>
+<p>To construct the upper and lower-bounds, we use the following two lemmas:</p>
 
 </div>
 </div>
@@ -490,8 +490,16 @@ $$m||x-x^*||_2 \leq ||\nabla f(x)||_2 \leq M||x-x^*||_2$$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote>
-<p><strong>Lemma 1:</strong> If $f$ is convex and $L$-Lipschitz then $g(x) = \frac{L}{2}x^Tx - f(x)$ is convex.<br></p>
+<p><strong>Lemma 1:</strong> If $f$ is convex and $L$-Lipschitz then $g(x) = \frac{L}{2}x^Tx - f(x)$ is convex.</p>
 </blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br></p>
 
 </div>
 </div>
@@ -511,13 +519,13 @@ $$m||x-x^*||_2 \leq ||\nabla f(x)||_2 \leq M||x-x^*||_2$$
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Both lemmas are statements of comparative convexity in disguise. <strong><em>Lemma 1</em></strong> says that $\frac{L}{2}x^Tx$ is more convex than $f$, whereas <strong><em>Lemma 2</em></strong> says that $f$ is more convex than $\frac{m}{2}x^Tx$.</p>
 <p>It's not difficult to see how these lemmas can assist in sandwiching $f$ between an upper-bound that's more convex and a lower-bound that's less convex.</p>
-<p>The bounds themselves come from the quadratic approximation of $f$:</p>
+<p>The bounds themselves come from the quadratic approximation of $f$ as:</p>
 <p><br>
 
 $$f(y) \approx f(x) + \nabla f(x)^T(y-x) + \frac{1}{2}(y-x)^T\nabla^2 f(x)(y-x)\ \ \forall y$$
 
 <br></p>
-<p>By replacing the hessian with its bounds $mI$ and $MI$ and using the above lemmas we obtain:</p>
+<p>By replacing the hessian with its bounds $mI$ and $MI$ and using the above lemmas we obtain the two bounds as:</p>
 <p><br>
 $$f(y) \geq f(x) + \nabla f(x)^T(y-x) + \frac{m}{2}||y-x||_2^2 \ \ \forall y$$ 
 
@@ -538,8 +546,8 @@ $$f(y) \leq f(x) + \nabla f(x)^T(y-x) + \frac{M}{2}||y-x||_2^2 \ \ \forall y$$
 <a class="anchor" href="#The-Optimal-Fixed-Step-Size" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Optimal Fixed Step-Size<a class="anchor-link" href="#The-Optimal-Fixed-Step-Size"> </a>
 </h2>
 <p>We already showed that an $M$-smooth and $m$-strongly-convex function enjoys the advantage of self-tuning. But, without knowing how to choose the step-size, we can still cause GD to make slow progress or even diverge.</p>
-<p>After all, gradient descent is based on a local linear approximation of the objective. If we take big steps, we are counting on the linear approximation to be a good-enough estimate far from the current iterate. This may be too optimistic, in which case GD will diverge. Being too pessimistic, however, is also not good. While taking small steps won't cause GD to diverge, it will make GD painfully slow.</p>
-<p>Luckily, the quadratic upper-bound in $(5.1)$ informs our choice of step-size both in terms of a convergence guarantee and in terms of optimality. First, let's guarantee convergence...</p>
+<p>After all, gradient descent is based on a local linear approximation of the objective. If we take big steps, we are counting on the linear approximation to be a good-enough estimate far from the current iterate. This may be too optimistic, in which case GD will diverge. Being too pessimistic, however, is also not good. While taking small steps won't cause GD to diverge, it will make GD painfully slow... Slow to the point of making it worthless in practice.</p>
+<p>Luckily, the quadratic upper-bound in $(5.1)$ informs our choice of step-size both in terms of a convergence guarantee and in terms of optimality. First, let's develop the convergence guarantee.</p>
 <p>By plugging the update step $x^+ = x - \eta \nabla f(x)$ as $y$ into the upper-bound in $(5.1)$ we obtain:</p>
 <p><br>
 
@@ -547,7 +555,7 @@ $$f(x^+) \leq f(x) + \eta(1-\frac{M}{2}\eta)||\nabla f(x)||_2^2 \tag{5.2}$$
 
 <br></p>
 <p>As before, it would be wise to insist $f(x^+) \leq f(x)$, which gives the convergence interval as $0 &lt; \eta &lt; \frac{2}{M}$.</p>
-<p>It helps considering the simple example of quadratics.</p>
+<p>Here, it helps to consider the simple example of quadratics.</p>
 <hr>
 <p><strong>Example 1:</strong></p>
 <p>Consider the quadratic form in $\mathbb{R}$ given by $f(x) = \frac{1}{2}M x^2$ where $x, M \in \mathbb{R}$. Here we can think of $M$ as the only, and therefore the largest, eigenvalue of the $1 \times 1$ matrix $[M]$.</p>
@@ -596,30 +604,24 @@ $$\textrm{and}$$
 $$\tilde \lambda_{max} &lt; 1$$
 
 <br></p>
-<p>Both of these together give us $0 \leq \eta \leq \frac{2}{M}$ as desired.</p>
+<p>Both of these together give us $0 &lt; \eta &lt; \frac{2}{M}$ as desired.</p>
 <hr>
-<p>But $0 \leq \eta \leq \frac{2}{M}$ is an interval, not a greedy choice. It's just a condition that guarantees convergence. By making the greedy choice we can find the optimal step-size within this interval.</p>
+<p>But $0 &lt; \eta &lt; \frac{2}{M}$ is an interval, not a greedy choice. It's just a condition that guarantees convergence. By making the greedy choice we can find the optimal step-size within this interval.</p>
 <p>Since the RHS of $(5.2)$ is strongly convex, the quadratic upper-bound is guaranteed to have a unique minimizer.</p>
-<p>The idea is similar to other instances of making a greedy choice we've seen so far. Since the function value is upper-bounded by this quadratic, minimizing this upper-bound gives the best guarantee of smallness for the function value available to us without access to higher order information about the objective. That is:</p>
-<p><br>
-
-$$f(y) \leq \min_y f(x) + \nabla f(x)^T(y-x) + \frac{M}{2}||y-x||_2^2$$
-
-<br></p>
-<p>Then, the greedy choice for the next iterate is:</p>
+<p>The idea is similar to other instances of making a greedy choice we've seen so far. Since the function value is upper-bounded by this quadratic, minimizing this upper-bound gives the best guarantee of smallness for the function value available to us without access to higher order information about the objective. So, the greedy choice for the next iterate is:</p>
 <p><br>
 $$
 x^+ = \arg \min_y f(x) + \nabla f(x)^T(y-x) + \frac{M}{2}||y-x||_2^2
 $$
 <br></p>
-<p>As always, minimizing a quadratic is easy. After going through the motions, we obtain:</p>
+<p>As always, minimizing a quadratic is easy. After going through the motions we obtain:</p>
 <p><br>
 
 $$x^+ = x - \frac{1}{M}\nabla f(x)$$
 
 <br></p>
 <p>So, the optimal fixed step-size is $\eta = \frac{1}{M}$.</p>
-<p>We will see this idea of minimizing a quadratic approximation of the objective, instead of the objective itself, repeat itself when we get to <strong><em>Newton's Method (NM)</em></strong>. However, NM is a second-oder oracle which has access to $\nabla^2 f(x)$, and hence the quadratic approximation, at all points in the domain of the objective. The remarkable thing about $M$-smoothness and $m$-strong-convexity is that they still give gradient descent, a first-order oracle, access to universal quadratic bounds without the need to know $\nabla^2 f(x)$. These upper-bounds are, as we saw, what inform GD's choice of step-size. This step-size, as we shall soon see, give the GD its convergence guarantees.</p>
+<p>We will see this idea of minimizing a quadratic approximation of the objective, instead of the objective itself, repeat itself when we get to <strong><em>Newton's Method (NM)</em></strong>. However, NM is a second-oder oracle which has access to $\nabla^2 f(x)$, and hence the quadratic approximation at all points in the domain of the objective is accessible to NM. The remarkable thing about $M$-smoothness and $m$-strong-convexity is that they give gradient descent, a first-order oracle, access to <em>universal</em> quadratic bounds which eliminates the need to know $\nabla^2 f(x)$. These upper-bounds are, as we saw, what inform GD's choice of step-size which ends up guaranteeing convergence.</p>
 
 </div>
 </div>
@@ -681,13 +683,13 @@ $$f(x_{T}) - f(x^*) \leq \frac{M}{2T}||x_0 - x^*||_2^2 \tag{5.5}$$
 
 <br></p>
 <p>So, the error gets better with more iterations and, conversely, gets worse the larger $M$, a measure of how abruptly the gradient changes anywhere on its domain, is.</p>
-<p>Note that $M$, as well as $||x_0 - x^*||_2^2$ are fixed in $(5.5)$. So, the convergence rate of GD on an $M$-smooth objective is $\mathcal{O}(\frac{1}{T})$.</p>
+<p>Note that $M$, as well as $||x_0 - x^*||_2^2$ are fixed in $(5.5)$. So, the convergence rate of GD on an $M$-smooth objective is $O(\frac{1}{T})$.</p>
 <h3 id="M-Smooth-and-m-Strongly-Convex-Objective">
 <a class="anchor" href="#M-Smooth-and-m-Strongly-Convex-Objective" aria-hidden="true"><span class="octicon octicon-link"></span></a>M-Smooth and m-Strongly-Convex Objective<a class="anchor-link" href="#M-Smooth-and-m-Strongly-Convex-Objective"> </a>
 </h3>
-<p>The situation is drastically better if, in addition to $M$-smoothness, we also have $m$-strong-convexity. Not only do we get a much faster convergence rate, we also guarantee convergence in the iterates themselves. Note that, so far, we've discussed sub-optimality in objective values only. That is, the only convergence guarantee we've seen so far is $f(x^T) \rightarrow f(x^*)$ as $T \rightarrow \infty$. But sometimes more is needed, we may want convergence of the iterates themselves. That is, we may want $x^T \rightarrow x^*$ as $T \rightarrow \infty$? Since strong convexity guarantees the existence of a unique optimizer, we can discuss this type of sub-optimality for $m$-strongly-convex objectives.</p>
+<p>The situation is drastically better if, in addition to $M$-smoothness, we also have $m$-strong-convexity. Not only do we get a much faster convergence rate, we also guarantee convergence in the iterates themselves. Note that, so far, we've discussed sub-optimality in objective values only. That is, the only convergence guarantee we've seen so far is $f(x^T) \rightarrow f(x^*)$ as $T \rightarrow \infty$. Sometimes more is needed, we may actually want convergence of the iterates themselves. That is, we may want $x^T \rightarrow x^*$ as $T \rightarrow \infty$? Since strong convexity guarantees the existence of a unique optimizer $x^*$, we can discuss this type of sub-optimality for $m$-strongly-convex objectives.</p>
 <p>In this scenario, we have the analog of $(5.3)$ for the quadratic lower-bound.</p>
-<p>Just as $x - \frac{1}{M} \nabla f(x)$ minimized the quadratic upper-bound, $x - \frac{1}{m}$ minimizes the quadratic lower-bound. Plugging it into the lower-bound, we get $(5.3)$'s analog as:</p>
+<p>Just as $x - \frac{1}{M} \nabla f(x)$ minimized the quadratic upper-bound, $x - \frac{1}{m} \nabla f(x)$ minimizes the quadratic lower-bound. Plugging it into the lower-bound, we get $(5.3)$'s analog as:</p>
 <p><br>
 
 $$f(y) \geq f(x) - \frac{1}{2m}||\nabla f(x)||_2^2 \ \ \forall y \tag{5.6}$$
@@ -703,7 +705,7 @@ $$f(y) \geq f(x) - \frac{1}{2m}||\nabla f(x)||_2^2 \ \ \forall y \tag{5.6}$$
 <p></p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>Note, this result is stronger than its analog (i.e. it holds ’$\forall y$’) as opposed to $(5.3)$, which is only guaranteed to hold at its minimizer $x^+ = x - \frac{1}{M}\nabla f(x)$, because it’s a minimization of a lower-bound as opposed to a minimization of an upper-bound. 
+    <strong>Note: </strong>Note, this result is stronger than its analog because it holds $\forall y$ as opposed to $(5.3)$ which is only guaranteed to hold at the minimizer $x^+ = x - \frac{1}{M}\nabla f(x)$. This is expected because $(5.6)$ is the result of minimizing a universal lower-bound as opposed to $(5.3)$ which is the result of minimizing a universal upper-bound. 
 </div>
 
 </div>
@@ -730,14 +732,14 @@ $$||\nabla f(x)||_2^2 \geq 2m(f(x)-f(x^*))$$
 $$f(x^+) - f(x^*) \leq \left(1-\frac{m}{M}\right)(f(x)-f(x^*))$$
 
 <br></p>
-<p>The LHS is the sub-optimality in the next iteration, whereas the RHS is that in the current iteration.  Recursion from iteration $T$ down to the initial iteration, gives:</p>
+<p>We recognize the LHS as the sub-optimality at the next iteration, and the RHS as the sub-optimality at the current iteration. Recursion from iteration $T$ down to the initial iteration, gives:</p>
 <p><br>
 
 $$f(x_T) - f(x^*) \leq  \left(1-\frac{m}{M}\right)^T (f(x_0) - f(x^*)) \tag{5.8}$$
 
 <br></p>
 <p>And, since $m \leq M$ and both strictly positive, $0 &lt; \frac{m}{M} \leq 1$ which guarantees convergence.</p>
-<p>Note that $m$, $M$, and the initial sub-optimality $f(x_0) - f(x^*)$ are fixed quantities in $(5.8)$. So, the convergence rate of GD on a smooth and strongly-convex objective is $\mathcal{O}(c^{-T})$ for some constant $c &gt; 0$. That is, the error decreases exponentially in the number of iterations. However, historically, mathematicians were concerned with the logarithm of the error, rather than the error itself, and hence this type of convergence is known as <strong><em>linear convergence</em></strong>.</p>
+<p>Note that $m$, $M$, and the initial sub-optimality $f(x_0) - f(x^*)$ are fixed quantities in $(5.8)$. So, the convergence rate of GD on a smooth and strongly-convex objective is $O(c^{-T})$ for the constant $c^-1 = 1 - \frac{m}{M}$. That is, the error decreases <em>exponentially</em> in the number of iterations. However, historically, mathematicians were concerned with the logarithm of the error, rather than the error itself, and hence this type of convergence is known as <strong><em>linear convergence</em></strong>.</p>
 <p>As promised, we also have convergence of the iterates themselves. From the quadratic lower-bound in $(5.1)$ we can derive an upper-bound on $||x - x^*||_2$ as follows. As before, letting $y = x^*$ in the quadratic lower-bound gives us:</p>
 <p><br>
 
@@ -773,23 +775,29 @@ $$||x - x^*||_2 \leq \frac{2}{m}||\nabla f(x)||_2 \tag{5.9}$$
 <h3 id="Affine-Invariance">
 <a class="anchor" href="#Affine-Invariance" aria-hidden="true"><span class="octicon octicon-link"></span></a>Affine Invariance<a class="anchor-link" href="#Affine-Invariance"> </a>
 </h3>
-<p>Note that $(5.8)$ predicts the performance of GD on objectives with circular vs elongated level-sets. These are the level-sets of what's referred to as <strong><em>badly</em></strong> and <strong><em>well conditioned</em></strong> objectives respectively.</p>
-<p>To say that an objective is $M$-smooth and $m$-strongly convex is to say $(3.2)$ which implies that all the eigenvalues of the hessian are bounded between $m$ and $M$. The eigenvalues of the hessian represent the stretch of the level sets in the principal directions. So, to say that $\frac{m}{M} \approx 1$ is to say that $m \approx M$, which means that the level-sets are not more or less stretched in any particular direction. This implies that the level-sets are roughly spherical. As we can see from $(5.8)$, GD converges quite fast in such cases since $\left( 1 - \frac{m}{M} \right)$ is small. The opposite is true in the case when the level sets are elongated.</p>
-<p>This brings us to an important property called <strong><em>affine invariance</em></strong> which GD lacks. Simply put, an affine transformation of the input space (i.e. a mere change of coordinates) may affect GD's performance drastically.</p>
-<p>It helps to look at am example where the objective is a simple quadratic in $\mathbb{R}^n$.</p>
+<p>Not only does $(5.8)$ give the rate of convergence of GD, it also predicts its performance on objectives with roughly spherical vs roughly elliptical level-sets. These are the level-sets of what's referred to as <strong><em>badly</em></strong> and <strong><em>well conditioned</em></strong> objectives respectively.</p>
+<p>To say that an objective is $M$-smooth and $m$-strongly convex is to say $(3.2)$ which, as a reminder, is:</p>
+<p><br>
+
+$$mI \preceq \nabla^2 f(x) \preceq MI \ \ \forall x$$
+
+<br></p>
+<p>This implies that all the eigenvalues of the hessian are bounded between $m$ and $M$. The eigenvalues of the hessian represent the stretch of the level sets in the principal directions. So, to say that $\frac{m}{M} \approx 1$ is to say that $m \approx M$, which means that the level-sets are not more or less stretched in any particular direction. This implies that the level-sets are roughly spherical. As we can see from $(5.8)$, GD converges quite fast in such cases since $\left( 1 - \frac{m}{M} \right)$, the factor of decrease, is small. The opposite is true in the case when the level sets are elongated.</p>
+<p>This brings us to an important property called <strong><em>affine invariance</em></strong> which GD lacks. Simply put, an affine transformation of the input space (i.e. a mere change of coordinates/basis) may affect GD's performance drastically.</p>
+<p>It helps to look at an example where the objective is a simple quadratic in $\mathbb{R}^n$.</p>
 <hr>
-<p>Take the quadratic objective $f(x) = \frac{1}{2}x^TQx$ where $x \in \mathbb{R}^n$ is a coordinate vector in a basis $X$. Now, consider the change of coordinates from basis $X$ to a basis $Z$ given by $Az = x$ where $A$ is a matrix whose column vectors are the basis vectors in $Z$.</p>
+<p>Take the quadratic objective $f(x) = \frac{1}{2}x^TQx$ where $x \in \mathbb{R}^n$ is a coordinate vector in the standard basis. Now, consider the change of coordinates from the standard basis to a basis $Z$ given by $Az = x$ where $A$ is a matrix whose column vectors are the basis vectors in $Z$.</p>
 <p>The key observation is that we can choose $A$ in such a way as to make the objective in the new coordinate system have more or less elliptical level-sets which would affect GD's performance.</p>
-<p>First, let's come up with the same quadratic in the $Z$-coordinates.</p>
+<p>First, let's come up with the same quadratic in $Z$-coordinates.</p>
 <p><br>
 
 $$f(x) = f(Az) = \frac{1}{2}(Az)^TQAz = z^TA^TQAz$$
 
 <br></p>
-<p>Let $\tilde Q = A^TQA$ and define the quadratic in $Z$-coordinates as $\tilde f(z) = \frac{1}{2}z^T \tilde Q z$ so that $\tilde f(z) = f(x)$ for all $z$ in the $Z$-coordinates corresponding to $x$ in the $X$-coordinates. In particular, optimizing in either coordinate system yields the same result in terms of an optimum, that is $\tilde f(z^*) = f(x^*)$.</p>
-<p>The GD factor of decrease on $\tilde f$ is $\left(1 - \frac{\tilde m}{\tilde M} \right)$, where $\tilde m = \lambda_{\min}(\tilde Q)$ and $\tilde M = \lambda_{\max}(\tilde Q)$. Note that $\left(1 - \frac{\tilde m}{\tilde M} \right)$ is under no obligation to be equal to $\left(1 - \frac{m}{M} \right)$, the GD factor of decrease in the $X$-coordinates.</p>
+<p>Let $\tilde Q = A^TQA$ and define the quadratic in $Z$-coordinates as $\tilde f(z) = \frac{1}{2}z^T \tilde Q z$ so that $\tilde f(z) = f(x)$ for all $z$ in the $Z$-coordinates corresponding to $x$ in the standard basis. In particular, optimizing in either coordinate system yields the same result in terms of an optimum, that is $\tilde f(z^*) = f(x^*)$.</p>
+<p>The GD factor of decrease on $\tilde f$ is $\left(1 - \frac{\tilde m}{\tilde M} \right)$, where $\tilde m = \lambda_{\min}(\tilde Q)$ and $\tilde M = \lambda_{\max}(\tilde Q)$. But $\left(1 - \frac{\tilde m}{\tilde M} \right)$ is under no obligation to be equal to $\left(1 - \frac{m}{M} \right)$, the GD factor of decrease in the standard basis, proving that GD is <em>not</em> affine invariant.</p>
 <p>Another perspective on affine invariance comes from comparing the GD update steps in both spaces.</p>
-<p>The GD update in $X$-coordinates is:</p>
+<p>The GD update in the standard basis is:</p>
 <p><br>
 
 $$x^+ = x - \eta \nabla f(x) = x - \eta Qx$$
@@ -801,13 +809,13 @@ $$x^+ = x - \eta \nabla f(x) = x - \eta Qx$$
 $$z^+ = z - \eta \nabla \tilde f(z) = z - \eta \tilde Qz$$
 
 <br></p>
-<p>To go from $Z$-coordinates back to $X$-coordinates, we apply $A$ to the LHS which necessitates its application to the RHS as well. We obtain:</p>
+<p>To go from $Z$-coordinates back to the standard basis, we apply $A$ to the LHS which necessitates its application to the RHS as well. We obtain:</p>
 <p><br>
 
 $$Az^+ = Az - \eta A\tilde Qz = x - \eta AA^TQx$$
 
 <br></p>
-<p>Which is <em>not</em> the same as $x - \eta Qx$. So, although $Az = x$ the linear relationship breaks down for the next iterates produced by GD, that is $Az^+ \ne x^+$. So, doing a step of GD in the $X$-coordinates it's not the same as doing a step of GD in the $Z$-coordinates up to a change of coordinates by $A$. Gradient descent is doing something radically different in the $Z$-coordinates compared to what it does in the $X$-coordinates.</p>
+<p>Which is <em>not</em> the same as $x - \eta Qx$. So, although $Az = x$ the linear relationship breaks down for the next iterates produced by GD (that is $Az^+ \ne x^+$). So, doing a step of GD in the standard basis it's not the same as doing a step of GD in $Z$-coordinates (up to a change of basis by $A$). So, gradient descent is doing something radically different in the $Z$-coordinates compared to what it does in the standard basis.</p>
 <hr>
 <h4 id="Best-Affine-Transformation">
 <a class="anchor" href="#Best-Affine-Transformation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Best Affine Transformation<a class="anchor-link" href="#Best-Affine-Transformation"> </a>
@@ -817,13 +825,17 @@ $$Az^+ = Az - \eta A\tilde Qz = x - \eta AA^TQx$$
 <p>Since $Q \succeq 0$, it has an eigendecomposition as $Q = PDP^T$ where $D$ is diagonal and $P$ is orthonormal. Then its matrix square root exists and is given by $Q^{-1/2} = PD^{-1/2}P^T$.
 Letting $A = Q^{-1/2}$ we, indeed, have:</p>
 <p><br>
-
-$$A^TQA = (PD^{-1/2}P^T)^TPDP^TPD^{-1/2}P^T = PD^{-1/2}DD^{-1/2}P^T = PP^T = I$$
-
+$$
+\begin{aligned}
+A^TQA &amp;= (PD^{-1/2}P^T)^TPDP^TPD^{-1/2}P^T \\ 
+&amp;= PD^{-1/2}DD^{-1/2}P^T \\
+&amp;= PP^T \\
+&amp;= I \\
+\end{aligned}$$
 <br></p>
 <p>Where we have used the fact that $P^TP = PP^T = I$ since $P$ is orthonormal, and the fact that diagonal matrices are raised to a power simply by raising their diagonal entries to that power.</p>
-<p>Geometrically, the choice of $\tilde Q = I$ forces the level-sets to be spherical. A level-set of $f(x) = \frac{1}{2}x^TQx$ in the $X-coordinates$, i.e. an ellipse in $\mathbb{R}^n$, is given by $x^TQx = c$ for some constant $c$ which has absorbed $\frac{1}{2}$. In the $Z$-coordinates, the same level-set is given by $\tilde f(z) = z^T\tilde Qz = c$. If $\tilde Q = I$, then the level-set in the $Z$-coordinates becomes $z^Tz = c$ which is, indeed, a sphere in $\mathbb{R}^n$.</p>
-<p>In conclusion, if the objective is quadratic, we can improve NM's convergence rate by applying the above change of basis. If the objective is not quadratic, we may still assume that it is quadratic locally. This allows us to apply the same idea to non-quadratic functions. But, since it requires coming up with a different matrix $A$ at each iteration, the payoff from this procedure may not be worth it.</p>
+<p>Geometrically, the choice of $\tilde Q = I$ forces the level-sets to be spherical. A level-set of $f(x) = \frac{1}{2}x^TQx$ in the standard coordinate system, i.e. an ellipse in $\mathbb{R}^n$, is given by $x^TQx = c$ for some constant $c$ which has absorbed $\frac{1}{2}$. In the $Z$-coordinates, the same level-set is given by $\tilde f(z) = z^T\tilde Qz = c$. If $\tilde Q = I$, as is the case for the choice $A = Q^{-1/2}$, then the level-set in the $Z$-coordinates becomes $z^Tz = c$ which is, indeed, a sphere in $\mathbb{R}^n$.</p>
+<p>In conclusion, if the objective is quadratic, we can improve GD's convergence rate by applying the above change of basis. If the objective is not quadratic, we may still assume that it's locally quadratic. This allows us to apply the same idea to non-quadratic objectives, but, since it requires coming up with a different matrix $A$ at each iteration, the payoff from this procedure may not be worth it. So, we explore other ways of accelerating the performance of gradient descent on badly conditioned objectives by developing <strong><em>accelerated GD</em></strong> which will be explained shortly.</p>
 
 </div>
 </div>
