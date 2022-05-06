@@ -220,10 +220,11 @@ window.onload = wrap_img;
 <h1 id="Introduction">
 <a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
 </h1>
-<p><strong><em>Gradient descent (GD)</em></strong> is a powerful, yet incredibly simple, iterative optimization algorithm. We can think of it as a <strong><em>greedy algorithm</em></strong> in the setting of continuous optimization. That is, one step of GD is our best attempt at local optimization given limited information about the objective $f(x)$, and having limited computational power at our disposal.</p>
+<p><strong><em>Gradient Descent (GD)</em></strong> is a powerful, yet incredibly simple, iterative optimization algorithm. We can think of it as a <strong><em>greedy algorithm</em></strong> in the setting of continuous optimization. That is, one step of GD is our best attempt at local optimization given limited information about the objective $f(x)$, and having limited computational power at our disposal.</p>
 <p>We can further qualify what we mean by <em>'limited information'</em> about the objective by introducing a categorization on optimization algorithms – the <strong><em>Oracle Access Model (OAM)</em></strong>. In this model, the objective is abstracted into a black box. For each input $x$, the black box gives the algorithm access to the value of the objective, $f(x)$, and, optionally, global information in the form of higher order behavior such as $\nabla f(x)$, $\nabla^2 f(x)$, etc. GD is what's known as a <strong><em>first-order oracle</em></strong> because it's only allowed access to $f(x)$ and first-order information in the form of $\nabla f(x)$.</p>
-<p>It's important to note that the OAM is not all-inclusive, there are a number of optimization algorithms, such as <strong><em>composite optimization</em></strong> algorithms, that utilize structural information about the objective that goes beyond $n$-th order behavior. An example of such an algorithm is <strong><em>proximal gradient descent (PGD)</em></strong> which, in addition to $f(x)$ and $\nabla f(x)$, also has access to the <strong><em>prox operator</em></strong>.</p>
-<p>For now, we focus on the simple case of unconstrained optimization with OAM algorithms, particularly GD, in order to develop the key algorithmic ideas. Later on, perhaps in a different post, we will explore modifications to GD, such as the PGD algorithm mentioned above, that make it suitable for constrained optimization.</p>
+<p>It's important to note that the OAM is not all-inclusive, there are a number of optimization algorithms, such as <strong><em>composite optimization</em></strong> algorithms, that utilize structural information about the objective that goes beyond $n$-th order behavior. An example of such an algorithm is <strong><em>Proximal Gradient Descent (PGD)</em></strong> which, in addition to $f(x)$ and $\nabla f(x)$, also has access to the <strong><em>prox operator</em></strong> $Prox_{h,\eta}(x)$.</p>
+<p>We will cover these algorithms in later posts. Many of the composite optimization algorithms, such as PGD, are simple modifications of vanilla GD. The modification done in PGD, for example, make it suitable for constrained optimization.
+For now, however, we focus on the case of unconstrained optimization with oracles, particularly on GD, in order to develop the key algorithmic intuition.</p>
 <h1 id="The-Gradient-Descent-Algorithm">
 <a class="anchor" href="#The-Gradient-Descent-Algorithm" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Gradient Descent Algorithm<a class="anchor-link" href="#The-Gradient-Descent-Algorithm"> </a>
 </h1>
@@ -286,7 +287,7 @@ $$
 x^+ = \arg \min_y f(x) + \nabla f(x)^T(y - x) + \eta ||y - x||_2^2 \tag{2.3}
 $$
 <br></p>
-<p>Now, since the RHS is a a simple quadratic in $y$, it has a unique minimizer which can be found by using the <strong><em>unconstrained optimality condition</em></strong>. This just means taking the gradient of the RHS w.r.t. the optimization variable $y$, setting it to zero, and then solving for the unique root. This obtains:</p>
+<p>Now, since the RHS is a a simple quadratic in $y$, it has a unique minimizer which can be found by using the unconstrained optimality condition. This just boils down to taking the gradient of the RHS w.r.t. the optimization variable $y$, setting it to zero, and then solving for the unique root. This procedure obtains:</p>
 <p><br>
 
 $$x^+ = x - \frac{1}{2 \eta} \nabla f(x)$$
@@ -851,7 +852,7 @@ A^TQA &amp;= (PD^{-1/2}P^T)^TPDP^TPD^{-1/2}P^T \\
 <br></p>
 <p>Where we have used the fact that $P^TP = PP^T = I$ since $P$ is orthonormal, and the fact that diagonal matrices are raised to a power simply by raising their diagonal entries to that power.</p>
 <p>Geometrically, the choice of $\tilde Q = I$ forces the level-sets to be spherical. A level-set of $f(x) = \frac{1}{2}x^TQx$ in the standard coordinate system, i.e. an ellipse in $\mathbb{R}^n$, is given by $x^TQx = c$ for some constant $c$ which has absorbed $\frac{1}{2}$. In the $Z$-coordinates, the same level-set is given by $\tilde f(z) = z^T\tilde Qz = c$. If $\tilde Q = I$, as is the case for the choice $A = Q^{-1/2}$, then the level-set in the $Z$-coordinates becomes $z^Tz = c$ which is, indeed, a sphere in $\mathbb{R}^n$.</p>
-<p>In conclusion, if the objective is quadratic, we can improve GD's convergence rate by applying the above change of basis. If the objective is not quadratic, we may still assume that it's locally quadratic. This allows us to apply the same idea to non-quadratic objectives, but, since it requires coming up with a different matrix $A$ at each iteration, the payoff from this procedure may not be worth it. So, we explore other ways of accelerating the performance of gradient descent on badly conditioned objectives by developing <strong><em>accelerated GD</em></strong> which will be explained shortly.</p>
+<p>In conclusion, if the objective is quadratic, we can improve GD's convergence rate by applying the above change of basis. If the objective is not quadratic, we may still assume that it's locally quadratic. This allows us to apply the same idea to non-quadratic objectives, but, since it requires coming up with a different matrix $A$ at each iteration, the payoff from this procedure may not be worth it. So, we explore other ways of accelerating the performance of gradient descent on badly conditioned objectives by developing <strong><em>Accelerated Gradient Descent (AGD)</em></strong> which will be explained shortly.</p>
 
 </div>
 </div>
@@ -1027,7 +1028,7 @@ $$x_{t+1} \in x_t + span \{ \nabla f(x_t), \nabla f(x_{t-1}), ..., \nabla f(x_0)
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In accelerating gradient descent, we obviously can't hope for error that's asymptotically better than these lower-bounds. In fact, we shall see that accelerated gradient descent (AGD) achieves these lower-bounds exactly, thereby closing the error gap.</p>
+<p>Any first-order oracle, including Accelerated GD, cannot hope for error that's asymptotically better than these lower-bounds. In fact, we shall see that AGD achieves these lower-bounds exactly, thereby closing the first-order oracle error gap.</p>
 
 </div>
 </div>
