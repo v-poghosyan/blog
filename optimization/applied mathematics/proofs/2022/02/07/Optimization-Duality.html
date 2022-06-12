@@ -110,7 +110,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      52 min read
+      45 min read
     
 </span></p>
 
@@ -181,60 +181,56 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#An-Easier-Dual-Problem">An Easier Dual Problem </a></li>
-<li class="toc-entry toc-h2"><a href="#Optimality-Conditions">Optimality Conditions </a>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Theorems-of-the-Alternative">Theorems of the Alternative </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Stationarity-Condition">Stationarity Condition </a>
+<li class="toc-entry toc-h2"><a href="#Farkas'-Lemma">Farkas&#39; Lemma </a></li>
+<li class="toc-entry toc-h2"><a href="#Proving-a-Theorem-of-the-Alternative">Proving a Theorem of the Alternative </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Proof-using-a-Separation-Argument">Proof using a Separation Argument </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Prelude">Prelude </a></li>
+<li class="toc-entry toc-h4"><a href="#Proof">Proof </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Proof-using-Strong-Duality">Proof using Strong Duality </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Strong-Duality---Optimality-Conditions">Strong Duality - Optimality Conditions </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Stationarity-Condition">Stationarity Condition </a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#Proof-of-Claims-(6.1)-and-(6.2)">Proof of Claims (6.1) and (6.2) </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h3"><a href="#Complementary-Slackness">Complementary Slackness </a>
+<li class="toc-entry toc-h2"><a href="#Complementary-Slackness">Complementary Slackness </a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#Proof-of-Complementary-Slackness">Proof of Complementary Slackness </a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#Karush-Kuhn-Tucker-(KKT)-Conditions">Karush-Kuhn-Tucker (KKT) Conditions </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#Generalization-of-Unconstrained-Optimization">Generalization of Unconstrained Optimization </a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-entry toc-h1"><a href="#LINEAR-PROGRAMS">LINEAR PROGRAMS </a></li>
-<li class="toc-entry toc-h1"><a href="#Weak-Duality-in-Linear-Programs">Weak Duality in Linear Programs </a>
+<li class="toc-entry toc-h3"><a href="#Certificate-of-Optimality">Certificate of Optimality </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#Proof-of-Weak-Duality">Proof of Weak Duality </a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h1"><a href="#Strong-Duality">Strong Duality </a>
-<ul>
-<li class="toc-entry toc-h2"><a href="#Farkas'-Lemma">Farkas&#39; Lemma </a></li>
-<li class="toc-entry toc-h2"><a href="#Proof-of-Strong-Duality-in-LP's">Proof of Strong Duality in LP&#39;s </a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h1"><a href="#Theorems-of-the-Alternative">Theorems of the Alternative </a>
-<ul>
-<li class="toc-entry toc-h2"><a href="#Example-of-a-Theorem-of-the-Alternative">Example of a Theorem of the Alternative </a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#Using-a-Separation-Argument">Using a Separation Argument </a>
-<ul>
-<li class="toc-entry toc-h4"><a href="#Proof">Proof </a></li>
-</ul>
-</li>
-<li class="toc-entry toc-h3"><a href="#Using-Strong-Duality">Using Strong Duality </a>
-<ul>
-<li class="toc-entry toc-h4"><a href="#Proof">Proof </a></li>
+<li class="toc-entry toc-h4"><a href="#Proof-of-Certificate-of-Optimality">Proof of Certificate of Optimality </a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#Complementary-Slackness">Complementary Slackness </a>
+<li class="toc-entry toc-h1"><a href="#Strong-Duality---Linear-Programs">Strong Duality - Linear Programs </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#Proof-of-Complementary-Slackness">Proof of Complementary Slackness </a></li>
+<li class="toc-entry toc-h2"><a href="#Proof-of-Strong-Duality-in-LP's">Proof of Strong Duality in LP&#39;s </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Prelude">Prelude </a></li>
+<li class="toc-entry toc-h3"><a href="#Proof">Proof </a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#Further-Reading---Duality-in-Unconstrained-Problems">Further Reading - Duality in Unconstrained Problems </a>
@@ -905,13 +901,200 @@ $$g(\lambda^*, \mu^*) = \max_{\lambda \geq 0, \mu} \left\{ \min_x \mathcal{L} (x
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Optimality-Conditions">
-<a class="anchor" href="#Optimality-Conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimality Conditions<a class="anchor-link" href="#Optimality-Conditions"> </a>
+<h1 id="Theorems-of-the-Alternative">
+<a class="anchor" href="#Theorems-of-the-Alternative" aria-hidden="true"><span class="octicon octicon-link"></span></a>Theorems of the Alternative<a class="anchor-link" href="#Theorems-of-the-Alternative"> </a>
+</h1>
+<p>Duality isn't just a tool for applied science, it has important theoretical uses. For instance, in proving <strong><em>Theorems of the Alternative</em></strong>. These are theorems that describe exclusively disjoint scenarios that together comprise the entire outcome space. Formally, they are theorems of the form $A \implies \neg B \land \neg A \implies  B$  where $A$, and $B$ are logical statements.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
+    <strong>Note: </strong>Theorems of equivalence (i.e. theorems of the form <em>’the following are equivalent - TFAE’</em>) can also be formulated as theorems of the alternative. To say that $A$ and $B$ are equivalent means $ A \iff B$. But this breaks down as $A \implies B \land B \implies A$. Letting $\hat B = \neg B$ we can rewrite the above as $A \implies \neg \hat B \land B \implies A$. But, by taking the contrapositive, $B \implies A$ becomes $\neg A \implies \neg B$, which is to say $\neg A \implies \hat B$. In summary, we have shown that $A \iff B$ is equivalent to $A \implies \neg \hat B \land \neg A \implies \hat B$. So, the class of theorems of the alternative is much broader than it appears and includes theorems of equivalence.
+</div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>These theorems are usually proven by a <strong><em>Separation Argument</em></strong>, but can also be proven, quite elegantly, through duality.</p>
+<p>A well-known instance of a Theorem of the Alternative is <a href="https://en.wikipedia.org/wiki/Farkas%27_lemma">Farkas' Lemma</a> which underpins major results in the study of optimization.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Farkas'-Lemma">
+<a class="anchor" href="#Farkas'-Lemma" aria-hidden="true"><span class="octicon octicon-link"></span></a>Farkas' Lemma<a class="anchor-link" href="#Farkas'-Lemma"> </a>
 </h2>
-<p>As mentioned before, strong duality also obtains powerful optimality conditions. These conditions are known as <strong><em>stationarity condition</em></strong> and <strong><em>complementary slackness</em></strong>, and they are often bundled into the <a href="https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions"><em>Karush–Kuhn–Tucker (KKT) Conditions</em></a> which will be provided shortly.</p>
-<h3 id="Stationarity-Condition">
-<a class="anchor" href="#Stationarity-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stationarity Condition<a class="anchor-link" href="#Stationarity-Condition"> </a>
+<p>Farkas' Lemma simply states that a given vector $c$ is either a <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/01/23/Optimization-Review-of-Linear-Algebra-and-Geometry.html#Conic-Combinations-of-%24n%24-Points">conic combination</a> of some vectors $a_i$'s (for $i \in I$), or it's entirely separated from their cone by some hyperplane.</p>
+<p>We state Farkas' Lemma without offering proof since it has such an obvious geometric interpretation.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p><strong>Farkas' Lemma:</strong>   For any vector $c$ and $a_i \ \ (i \in I)$ either the first or the second statement holds:   </p>
+<ul>
+<li>$\exists p \geq 0$ s.t. $c = \sum_{i \in I} a_ip_i$</li>
+<li>$\exists$ vector $d$ s.t. $d^Ta_i \geq 0 \ \ \forall i \in I$ but $d^Tc &lt; 0$</li>
+</ul>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Proving-a-Theorem-of-the-Alternative">
+<a class="anchor" href="#Proving-a-Theorem-of-the-Alternative" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proving a Theorem of the Alternative<a class="anchor-link" href="#Proving-a-Theorem-of-the-Alternative"> </a>
+</h2>
+<p>To see how we can prove a Theorem of the Alternative, it helps to state one.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p><strong>Theorem:</strong>   Exactly one of the following two statements most hold for a given matrix A. </p>
+<ol>
+<li>$\exists x \ne 0$ s.t. $Ax = 0$ and $x \geq 0$</li>
+<li>$\exists p$ s.t. $p^TA &gt; 0$</li>
+</ol>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Proof-using-a-Separation-Argument">
+<a class="anchor" href="#Proof-using-a-Separation-Argument" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof using a Separation Argument<a class="anchor-link" href="#Proof-using-a-Separation-Argument"> </a>
 </h3>
+<h4 id="Prelude">
+<a class="anchor" href="#Prelude" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prelude<a class="anchor-link" href="#Prelude"> </a>
+</h4>
+<p>At the heart of separation arguments lies this simple fact.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p><strong>Separating Hyperplane Theorem:</strong>   For any <em>convex</em> set $C$, if a point $\omega \notin C$ then there exists a hyperplane separating $\omega$ and $C$.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Farkas' Lemma, for instance, is proved by a separation argument that uses, as its convex set, the conic combination of the $a_i$'s. The conclusion is immediate since in Farkas' Lemma the first statement plainly says that a vector belongs to the convex set, and the second statement plainly says there exists a separating hyperplane between the two.</p>
+<p>This is the pattern all separation arguments must follow. However, in general, it may take a bit of work to define the problem-specific convex set and also to show that the two statements are <em>really</em> talking about belonging to this set, and separation from it. However, once these components are in place, the proof is complete.</p>
+<p>Using this idea, let's give a proof of the above theorem using a separation argument.</p>
+<h4 id="Proof">
+<a class="anchor" href="#Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof<a class="anchor-link" href="#Proof"> </a>
+</h4>
+<p>First order of business is to come up with a convex set.</p>
+<p>Let's take $C = \{ z : z = Ay, \sum_i y_i = 1, y \geq 0 \}$ to be the convex hull of the columns of $A$.</p>
+<p>The first statement in the theorem was that $\exists x \ne 0$ s.t. $Ax = 0$ and $x \geq 0$.</p>
+<p>Since $x \ne 0$ and $x \geq 0$ we can scale as $x$ as $y = \alpha x$ until $\sum_i y_i = 1$.</p>
+<p>So, the first statement is equivalent to saying the origin belongs to the convex hull $C$ (i.e. $0 \in C$)</p>
+<p>The second statement was that $\exists p$ s.t. $p^TA &gt; 0$. This is equivalent to saying that all the columns of $A$ lie to one side of the separating hyperplane introduced by $p$.</p>
+<p>But all $z \in C$ are convex combinations of $A$'s columns. In particular since they're a convex combination they're also a conic combination, so all $z \in C$ also lie on the same side of the hyperplane. That is $p^Tz &gt; 0 \ \ \forall z \in C$.</p>
+<p>But, of course, $p^T0 = 0$ (not $&gt; 0$). So, according to the second statement, the origin is separated from $C$.</p>
+<p>This concludes the proof since the two statements must be mutually exclusive.</p>
+<h3 id="Proof-using-Strong-Duality">
+<a class="anchor" href="#Proof-using-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof using Strong Duality<a class="anchor-link" href="#Proof-using-Strong-Duality"> </a>
+</h3>
+<p>To prove the theorem we need to show two things. First, we need to show $1 \implies \neg 2$, then we need to show $\neg 1 \implies 2$.</p>
+<p>The $1 \implies \neg 2$ direction is simple.</p>
+<p>Suppose $\exists x \ne 0$ s.t. $Ax = 0$ and $x \geq 0$.</p>
+<p>Then $\forall p \ \ (p^TA)x = p^T(Ax) = p^T0 = 0$ (not $&gt; 0$).</p>
+<p>We tackle the $\neg 1 \implies 2$ direction using duality.</p>
+<p>The strategy is to construct an LP based on $\neg 1$ such that the feasibility of its dual implies $2$.</p>
+<p>We can express $\neg 1$ as '$\forall x \ne 0$, either $Ax \ne 0$ or $x &lt; 0$.' Equivalently, '$x \ne 0 \implies Ax \ne 0$ or $x &lt; 0$.' Taking the contrapositive, statement $1$ becomes '$Ax = 0$ and  $x \geq 0 \implies x = 0$.'</p>
+<p>So, we form the LP as:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
+\begin{aligned}
+&amp;\max_x: \textbf{1}^Tx
+\\
+&amp;s.t.: \begin{aligned} &amp;Ax = 0
+\\ 
+&amp;x \geq 0
+\end{aligned}
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that $x = 0$ is a feasible solution to the LP. Furthermore, assuming statement $1$ guarantees that $x = 0$ is the only feasible solution. Thus, the LP is feasible and bounded.</p>
+<p>By strong duality, its dual exists and is also feasible and bounded.</p>
+<p>The dual is:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
+\begin{aligned}
+&amp;\min_p: \textbf{0}^Tp
+\\
+&amp;s.t.: p^TA \geq \textbf{1}
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since the dual is feasible, $\exists p$ s.t. $p^TA \geq 1 &gt; 0$ which demonstrates the truth of statement $2$ and, in doing so, completes the proof.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Strong-Duality---Optimality-Conditions">
+<a class="anchor" href="#Strong-Duality---Optimality-Conditions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Strong Duality - Optimality Conditions<a class="anchor-link" href="#Strong-Duality---Optimality-Conditions"> </a>
+</h1>
+<p>As mentioned before, strong duality also obtains powerful optimality conditions. These conditions are known as <strong><em>stationarity condition</em></strong> and <strong><em>complementary slackness</em></strong>, and they are often bundled into the <a href="https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions"><em>Karush–Kuhn–Tucker (KKT) Conditions</em></a> which will be provided shortly.</p>
+<h2 id="Stationarity-Condition">
+<a class="anchor" href="#Stationarity-Condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stationarity Condition<a class="anchor-link" href="#Stationarity-Condition"> </a>
+</h2>
 <p>In the section titled <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-LP-Duality.html#An-Easier-Dual-Problem">An Easier Dual Problem</a> we mentioned that the dual problem is that of finding the dual optimal value:</p>
 <p><br>
 
@@ -999,9 +1182,9 @@ $$\mathcal{L}(x^*, \lambda^*, \mu^*) = \min_x \mathcal{L}(x, \lambda^*, \mu^*)$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Complementary-Slackness">
+<h2 id="Complementary-Slackness">
 <a class="anchor" href="#Complementary-Slackness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Complementary Slackness<a class="anchor-link" href="#Complementary-Slackness"> </a>
-</h3>
+</h2>
 <p>Strong duality also obtains another optimality condition known as <em>complementary slackness (CS)</em>.</p>
 
 </div>
@@ -1158,110 +1341,157 @@ $$\lambda^*_i f_i(x^*) = 0 \ \ \forall i \tag{8.3}$$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primal-dual pairs which satisfy the KKT Conditions are called <strong><em>KKT pairs</em></strong>.</p>
-<p>As promised, KKT Conditions together with strong duality obtain the following certificate of optimality.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<blockquote>
-<p><strong>Certificate of Optimality:</strong>   If strong duality holds, then $x^*, (\lambda^*, \mu^*)$ are primal-dual optimal if and only if they are a KKT Pair.</p>
-</blockquote>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We have already shown one direction of this in the sections on <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Stationarity-Condition">stationarity condition</a> and <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Complementary-Slackness">complementary slackness</a>, where we proved that being a primal-dual optimal pair in a strongly convex problem guarantees $(x^*, (\lambda^*, \mu^*))$ is also a KKT pair.</p>
-<p>Showing the other direction provides us with an interesting geometric viewpoint of the KKT conditions. <a href="https://en.wikipedia.org/wiki/Farkas%27_lemma"><em>Farka's Lemma</em></a>, which will be provided shortly, is what underpins this result. In this post we only offer this proof for the specific case of LPs. The general case, which we do not prove, follows the same key ideas since the objective function and the constraints all have linear approximations on a small neighborhood around the primal-optimal. In the proof, we construct a dual variable from a primal optimal $x^*$ by enforcing the KKT conditions. We then show that the dual variable obtained through this construction is, in fact, dual optimal.</p>
-<p>Something to note in the general case of this proof is that the existence of a primal optimal $x^*$ guarantees, by construction of a KKT pair, the existence of $(\lambda, \mu)$ that are dual feasible. However, it is strong duality which guarantees that the $(\lambda, \mu)$ obtained by this construction is also dual optimal.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Generalization-of-Unconstrained-Optimization">
 <a class="anchor" href="#Generalization-of-Unconstrained-Optimization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generalization of Unconstrained Optimization<a class="anchor-link" href="#Generalization-of-Unconstrained-Optimization"> </a>
 </h3>
-<p>--- UNREVISED SECTION BEGINS ---</p>
 <p>The KKT conditions represent a strict generalization of the unconstrained optimality condition for use in constrained problems.</p>
-<p>Note that if there are no constraints, the KKT conditions simply reduce to the familiar unconstrained optimality condition:</p>
+<p>To see this, note that if there are no constraints then the KKT conditions simply reduce to the familiar unconstrained optimality condition:</p>
 <p><br>
 
 $$\nabla_x f_0(x^*) = 0$$
-</p>
-<p>In order to discuss optimality in constrained problems, we must first define the concept of a <em>feasible direction</em>.</p>
-<p><br></p>
+
+<br></p>
+<p>In order to discuss optimality in constrained problems, we must first define a <strong><em>feasible direction</em></strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <blockquote>
-<p><strong>Feasible Direction:</strong>   A unit vector $d$ is called a <em>feasible direction</em> at any $x$ if $x + \epsilon d$ remains feasible for $\epsilon &gt; 0$ small enough.<br></p>
+<p><strong>Feasible Direction:</strong>   A unit vector $d$ is called a <em>feasible direction</em> at any $x$ if $x + \epsilon d$ remains feasible for $\epsilon &gt; 0$ small enough.</p>
 </blockquote>
-<p>Then, we can generalize the unconstrained optimality condition by using Taylor Expansion as follows.</p>
-<p>For small enough $\epsilon &gt; 0$, we can estimate $f_0(x^* + \epsilon d)$, where $x^*$ is optimal, for any feasible $d$ by its linear approximation:
-<br> 
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are now in a position to generalize the unconstrained optimality condition into a <strong><em>constrained optimality condition</em></strong>.</p>
+<p>By using <em>Taylor expansion</em>, for small enough $\epsilon &gt; 0$ and any feasible $d$, we can estimate $f_0(x^* + \epsilon d)$ by its linear approximation as:</p>
+<p><br> 
 
 $$f_0(x^* + \epsilon d) = f_0(x^*) + \epsilon \nabla f_0(x^*)^Td$$
-</p>
-<p>But since $x^*$ is optimal, we have:
-<br>
+
+<br></p>
+<p>But since $x^*$ is optimal, we have:</p>
+<p><br>
 $$
 \begin{aligned}
 f_0(x^*) &amp;\leq f_0(x^* + \epsilon d) \\
 &amp; = f_0(x^*) + \epsilon \nabla f_0(x^*)^Td
 \end{aligned}
-$$</p>
-<p>Which means $\nabla f_0(x^*)^Td \geq 0$. And since $d$ was an arbitrary feasible direction, the result holds for all feasible directions $d$.</p>
-<p><br></p>
-<blockquote>
-<p><strong>Constrained Optimality Condition:</strong>   If $x^*$ is an optimizer of $f_0$ over some constraint set then, for any feasible direction $d$ at $x^*$, $\nabla f_0(x^*)^Td \geq 0$.<br>
+$$
 <br></p>
+<p>Which necessitates that $\nabla f_0(x^*)^Td \geq 0$. Since $d$ was just an arbitrary feasible direction, this result must hold for <em>all</em> feasible directions. Hence, the constrained optimality condition can be given as:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p><strong>Constrained Optimality Condition:</strong>   If $x^*$ is an optimizer of $f_0$ over some constraint set then, for any feasible direction $d$ at $x^*$, $\nabla f_0(x^*)^Td \geq 0$.</p>
 </blockquote>
-<p>In words, the directional derivative of the objective function in <em>any</em> feasible direction at the optimizer must be non-negative. This ensures that moving in any allowable direction does not improve the objective.</p>
-<p>We've already seen that being a primal-dual optimal pair guarantees that $(x^*, (\lambda^*, \mu^*))$ is also a KKT Pair. But, in showing that, we did not use the constrained optimality condition at $x^*$. Doing so is worth it, however, because it provides a key geometric insight. So, let's show that if $x^*$ satisfies the constrained optimality condition then its KKT Pair exists.</p>
-<p>If a particular constraint is loose at $x^*$ then taking a small enough step in any direction from $x^*$ does not violate it. Formally, if $f_i(x^*) &lt; 0$, then $f_i(x^* + \epsilon d) \leq 0 \ \ \forall d$. So, loose constraints do not pose any restrictions on the feasible directions.</p>
-<p>However, if a constraint is tight at $x^*$, that is $f_i(x^*) = 0$, then we must be careful not to violate it. For small enough $\epsilon &gt; 0$, we can estimate $f_i(x^* + \epsilon d)$ by its linear Taylor Expansion as:
-<br> 
 
-$$f_i(x^* + \epsilon d) = f_i(x^*) + \epsilon \nabla f_i(x^*)^Td$$
-</p>
-<p>For feasibility, we want $f_i(x^* \epsilon d) \leq 0$. So, we require:
-<br>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that $\nabla f_0(x^*)^Td$ is simply the <strong><em>directional derivative</em></strong> of $f_0$ in the direction $d$. So, in plain words, the constrained optimality condition says that the directional derivative of the objective function in any feasible direction at an optimizer should be non-negative. This ensures that moving in any feasible direction does not minimize the objective any further.</p>
 
-$$f_i(x^*) + \epsilon \nabla f_i(x^*)^Td \leq 0$$
-</p>
-<p>But since $f_i$ is tight at $x^*$, $f_i(x^*) = 0$, which leaves us with:
-<br> 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Certificate-of-Optimality">
+<a class="anchor" href="#Certificate-of-Optimality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Certificate of Optimality<a class="anchor-link" href="#Certificate-of-Optimality"> </a>
+</h3>
+<p>As promised, the KKT Conditions together with strong duality obtain a certificate of optimality.</p>
 
-$$\nabla f_i(x^*)^Td \leq 0 \ \ \forall i \ \textrm{that are binding at $x^*$}$$
-</p>
-<p>Clearly the above is a restriction on $d$. The feasible directions can now be stated as:
-<br>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p><strong>Certificate of Optimality:</strong>   If strong duality holds, then $x^*, (\lambda^*, \mu^*)$ are primal-dual optimal if and only if they are a KKT pair.</p>
+</blockquote>
 
-$$d \ \textrm{s.t.} \ \nabla f_i(x^*)^Td \leq 0 \ \ \forall i \ \textrm{that are binding at $x^*$} \tag{8.1}$$
-</p>
-<p>Or, equivalently:
-<br>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Proof-of-Certificate-of-Optimality">
+<a class="anchor" href="#Proof-of-Certificate-of-Optimality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Certificate of Optimality<a class="anchor-link" href="#Proof-of-Certificate-of-Optimality"> </a>
+</h4>
+<p>We have already shown one direction of the certificate in the sections on <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Stationarity-Condition">stationarity condition</a> and <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/02/07/Optimization-Duality.html#Complementary-Slackness">complementary slackness</a>, where we proved that being a primal-dual optimal pair in a strongly convex problem guarantees $(x^*, (\lambda^*, \mu^*))$ is also a KKT pair.</p>
+<p>Showing the other direction provides us with an interesting geometric viewpoint of the KKT conditions. Incidentally, Farkas' Lemma is the key theoretical result that underpins this proof.</p>
 
-$$d \ \textrm{s.t.} \ - \nabla f_i(x^*)^Td \geq 0 \ \ \forall i \ \textrm{that are binding at $x^*$} \tag{8.2}$$
-</p>
-<p>But, since $x^*$ is optimal, by the generalized unconstrained optimality condition:
-<br>
-$$\nabla f_0(x^*)^Td \geq 0 \ \ \forall \ \textrm{feasible} \ d \tag{8.3}$$.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's begin the proof.</p>
+<p>If a particular constraint is loose at $x^*$ then taking a small enough step in any direction from $x^*$ does not violate it. Formally, if $f_i(x^*) &lt; 0$, then $f_i(x^* + \epsilon d) \leq 0$ $\forall d$ and for some $\epsilon &gt;0$. So, loose constraints do not pose any restrictions on the set of feasible directions.</p>
+<p>However, if a constraint is tight at $x^*$, that is $f_i(x^*) = 0$, then we must be careful not to violate it. Suppose the set of indices of all the tight constraints at $x^*$ is given by $I_{x^*}$. For small enough $\epsilon &gt; 0$, we can estimate $f_i(x^* + \epsilon d)$ by its linear Taylor expansion as:</p>
+<p><br> 
+
+$$f_i(x^* + \epsilon d) = f_i(x^*) + \epsilon \nabla f_i(x^*)^Td \ \ \forall i \in I_{x^*}$$
+
+<br></p>
+<p>For feasibility, we want $f_i(x^* + \epsilon d) \leq 0$. So, we require:</p>
+<p><br>
+
+$$f_i(x^*) + \epsilon \nabla f_i(x^*)^Td \leq 0 \ \ \forall i \in I_{x^*}$$
+
+<br></p>
+<p>But since $f_i$ is tight at $x^*$, $f_i(x^*) = 0$, which simply leaves us with:</p>
+<p><br> 
+
+$$\nabla f_i(x^*)^Td \leq 0 \ \ \forall i \in I_{x^*}$$
+
+<br></p>
+<p>With the above restriction of $d$, the feasible directions can now be stated as:</p>
+<p><br>
+
+$$d \ \textrm{s.t.} \ \nabla f_i(x^*)^Td \leq 0 \ \ \forall i \in I_{x^*} \tag{8.1}$$
+
+<br></p>
+<p>Or, equivalently:</p>
+<p><br>
+
+$$d \ \textrm{s.t.} \ - \nabla f_i(x^*)^Td \geq 0 \ \ \forall i \in I_{x^*} \tag{8.2}$$
+
+<br></p>
+<p>But, since $x^*$ is optimal, by the constrained optimality condition we have:</p>
+<p><br>
+
+$$\nabla f_0(x^*)^Td \geq 0 \ \ \forall \ \textrm{feasible} \ d \tag{8.3}$$
+
+<br></p>
 <p>That is, for all $d$ as in $(8.2)$.</p>
-<p>But together, $(8.2)$ and $(8.3)$ say that $\not \exists \ d$ which defines a separating hyperplane between $\nabla f_0(x^*)$ and $-\nabla f_i(x^*)$ for all binding constraints $i$. This means that the <em>only other</em> alternative scenario must be true — $\nabla f_0(x^*)$ must lie in the cone of the $-\nabla f_i(x^*)$'s. Incidentally, this is what's known as a <em>theorem of the alternative</em>, specifically Farka's Lemma, which will soon be covered in detail.</p>
-<p>Formally, $\exists \ \lambda^* \geq 0$ s.t.
-<br>
+<p>Put together, $(8.2)$ and $(8.3)$ say that $\not \exists \ d$ which defines a separating hyperplane between $\nabla f_0(x^*)$ and $-\nabla f_i(x^*)$ for all binding constraints at $x^*$. By Farka's Lemma, this means that the only other alternative scenario must be true — it must be the case that $\nabla f_0(x^*)$ lies in the cone of the $-\nabla f_i(x^*)$'s.</p>
+<p>Formally, $\exists \ \lambda^* \geq 0$ s.t.</p>
+<p><br>
 
-$$\nabla f_0(x^*) + \sum_{i \in I} \lambda^*_i f_i(x^*) = 0 \tag{8.4}$$
-</p>
-<p>Where $I = \{i : f_i(x^*) = 0 \}$ is the set of active inequality constraints.</p>
-<p>But, upon closer examination, $(8.4)$ is exactly $(KKT \ 1)$, $(KKT \ 2)$, and $(KKT \ 5)$ rolled into one condition. The remaining conditions, $(KKT \ 3)$ and $(KKT \ 4)$, of course, follow from the assumed feasibility of $x^*$.</p>
-<p>We can also show that if $(x^*, (\lambda^*, \mu^*))$ is a KKT Pair then $x^*$ is optimal by the constrained optimality condition. Note, however, this says nothing about the dual optimality of $(\lambda^*, \mu^*)$ if no assumption of Strong Duality is made. The argument is simply reversed. If $\nabla f_0(x^*)$ is in the aforementioned cone then going in any feasible direction makes life worse. Which is exactly what the constrained optimality condition says. This, of course, provides a strong geometric interpretation of the Stationary Condition.</p>
+$$\nabla f_0(x^*) + \sum_{i \in I_{x^*}} \lambda^*_i f_i(x^*) = 0 \tag{8.4}$$
+
+<br></p>
+<p>Upon closer examination, $(8.4)$ is exactly <em>KKT-1</em>, <em>KKT- 2</em>, and <em>KKT-5</em> all rolled into one condition. The remaining conditions, <em>KKT-3</em> and <em>KKT-4</em> simply follow from the assumed feasibility of $x^*$.</p>
+<p>Thus, we have shown that if $x^*$ is primal-optimal, its KKT pair $(x^*, (\lambda^*, \mu^*))$ exists. Furthermore, as proved earlier, if strong duality holds then any KKT pair is primal-dual optimal. Hence, if strong duality holds, the $(\lambda^*, \mu^*)$ obtained through the above procedure is also dual-optimal.</p>
 
 </div>
 </div>
@@ -1269,10 +1499,11 @@ $$\nabla f_0(x^*) + \sum_{i \in I} \lambda^*_i f_i(x^*) = 0 \tag{8.4}$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="LINEAR-PROGRAMS">
-<a class="anchor" href="#LINEAR-PROGRAMS" aria-hidden="true"><span class="octicon octicon-link"></span></a>LINEAR PROGRAMS<a class="anchor-link" href="#LINEAR-PROGRAMS"> </a>
+<h1 id="Strong-Duality---Linear-Programs">
+<a class="anchor" href="#Strong-Duality---Linear-Programs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Strong Duality - Linear Programs<a class="anchor-link" href="#Strong-Duality---Linear-Programs"> </a>
 </h1>
-<p>BEST WAY TO UNDERSTAND INTUITIVELY COMPLEMENTARY SLACKNESS AND OTHER PROPERTIES OF STRING DUALITY IN KKT CONDITIONS</p>
+<p>Linear Programs, due to their simpler structure, lend themselves to a direct proof of strong duality. So, to wrap up this post, we show that LPs have strong duality through a direct proof.</p>
+<p>Strong duality for LPs can be stated as:</p>
 
 </div>
 </div>
@@ -1280,69 +1511,9 @@ $$\nabla f_0(x^*) + \sum_{i \in I} \lambda^*_i f_i(x^*) = 0 \tag{8.4}$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Weak-Duality-in-Linear-Programs">
-<a class="anchor" href="#Weak-Duality-in-Linear-Programs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weak Duality in Linear Programs<a class="anchor-link" href="#Weak-Duality-in-Linear-Programs"> </a>
-</h1>
-<p>Let's narrow our focus down to linear programs (LPs).</p>
-<p>Suppose the primal is an LP of the form</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$
-\begin{cases}
-\min_x: c^Tx
-\\
-s.t.: \begin{aligned} &amp;Ax \geq b
-\\ 
-&amp;x \geq 0
-\end{aligned}
-\end{cases}
-$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>By constructing the Lagrangian and going through the steps above we can show its dual is for the form</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$
-\begin{cases}
-\max_p: b^Tp
-\\
-s.t.: \begin{aligned} &amp;A^Tp \leq c
-\\ 
-&amp;p \geq 0
-\end{aligned}
-\end{cases}
-$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Weak Duality states</p>
 <blockquote>
-<p><strong>Weak Duality:</strong>   For any primal feasible $x$ and for all dual feasible $p$, $c^Tx \geq b^Tp$.<br></p>
+<p><strong>LP Strong Duality:</strong>   If the primal is feasible and bounded with optimal $x^*$ then the dual is also feasible and bounded. Furthermore, a dual optimal $p^*$ is s.t. $c^Tx^* = b^Tp^*$.</p>
 </blockquote>
-<p>That is, any dual feasible solution $b^Tp$ is a <em>lower bound</em> for all primal feasible solutions $c^Tx$. Conversely, any primal feasible solution $c^Tx$ is an <em>upper bound</em> for all dual feasible solutions $b^Tp$.</p>
-<h2 id="Proof-of-Weak-Duality">
-<a class="anchor" href="#Proof-of-Weak-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Weak Duality<a class="anchor-link" href="#Proof-of-Weak-Duality"> </a>
-</h2>
-<p>Let $(p, x)$ be respectively dual-primal feasible. Then $c^Tx = x^Tc \geq x^TA^Tp \geq b^Tp$.</p>
 
 </div>
 </div>
@@ -1350,36 +1521,7 @@ $</p>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Strong-Duality">
-<a class="anchor" href="#Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Strong Duality<a class="anchor-link" href="#Strong-Duality"> </a>
-</h1>
-<p>LPS THAT HAVE PRIMAL OPTIMALS ARE STRONGLY DUAL BY CONSTRAINT QUALIFICATION BUT THIS PROOF IS A MORE DIRECT PROOF THAT DOES NOT RELY ON THAT.</p>
-<p>While Weak Duality is a useful result, the real strength of duality theory lies in <em>Strong Duality</em>. Strong duality is a re-statement of Von Neumann's <a href="https://en.wikipedia.org/wiki/Minimax_theorem">Minimax Theorem</a> which lays out the conditions for which the max-min inequality holds with strict equality. Roughly speaking, it holds for functions that are saddle-shaped — convex in one variable and concave in the another.</p>
-<p>Instead of proving the Minimax Theorem in the general case, we will stay topical and prove Strong Duality for LP's. That is, the Minimax Theorem as it pertains to the special case of linear programs...</p>
-<blockquote>
-<p><strong>Strong Duality:</strong>   If the primal is feasible and bounded with optimal $x^*$ then the dual is also feasible and bounded. Furthermore, a dual optimal $p^*$ is s.t. $c^Tx^* = b^Tp^*$.<br></p>
-</blockquote>
-<p>To prove Strong Duality, we require <em>Farkas' Lemma</em>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Farkas'-Lemma">
-<a class="anchor" href="#Farkas'-Lemma" aria-hidden="true"><span class="octicon octicon-link"></span></a>Farkas' Lemma<a class="anchor-link" href="#Farkas'-Lemma"> </a>
-</h2>
-<p><em>Farkas' Lemma</em> belongs to the class of theorems called <em>Theorems of the Alternative</em> — these are a theorems which state that exactly one of two statements must hold true.</p>
-<p>The lemma simply states that a given vector $c$ is either a <a href="https://v-poghosyan.github.io/blog/optimization/applied%20mathematics/proofs/2022/01/23/Optimization-Review-of-Linear-Algebra-and-Geometry.html#Conic-Combinations-of-%24n%24-Points">conic combination</a> of some vectors $a_i$'s ($i \in I$), or it's entirely separated from their cone by some hyperplane.</p>
-<p>We state Farkas' Lemma without offering proof since it has such an obvious geometric interpretation. Later on, we will outline its proof in a section fully dedicated to Theorems of the Alternative.</p>
-<blockquote>
-<p><strong>Farkas' Lemma:</strong>   For any vector $c$ and $a_i \ \ (i \in I)$ either the first or the second statement holds:   </p>
-<ul>
-<li>$\exists p \geq 0$ s.t. $c = \sum_{i \in I} a_ip_i$</li>
-<li>$\exists$ vector $d$ s.t. $d^Ta_i \geq 0 \ \ \forall i \in I$ but $d^Tc &lt; 0$</li>
-</ul>
-</blockquote>
+<p>Where $x$ is the primal variable, $c^Tx$ is the primal objective, $p$ is the dual variable, and $b^Tp$ is the dual objective.</p>
 
 </div>
 </div>
@@ -1390,26 +1532,36 @@ $</p>
 <h2 id="Proof-of-Strong-Duality-in-LP's">
 <a class="anchor" href="#Proof-of-Strong-Duality-in-LP's" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Strong Duality in LP's<a class="anchor-link" href="#Proof-of-Strong-Duality-in-LP's"> </a>
 </h2>
-<p>\\ ANOTHER SUFFICIENT CONDITION FOR STRONG DUALITY IS BEING A LINEAR PROGRAM. THE PROOF BELOW IS INDEPENDENT OF PAST SUFFICIENT CONDITIONS. ///</p>
-<p>The proof is by construction.</p>
-<p>Suppose $x^*$ is a primal optimal solution. Let the set $I_{x^*} = \{ i : a_i^Tx^* = b_i\}$ be the set of the indices of the active constraints at $x^*$. Our goal is to construct a dual optimal solution $p^*$ s.t. $c^Tx^* = b^Tp^*$.</p>
+<h3 id="Prelude">
+<a class="anchor" href="#Prelude" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prelude<a class="anchor-link" href="#Prelude"> </a>
+</h3>
+<p>As in the general case, we construct a KKT pair through the use of Farkas' Lemma. Then, by a structural property of LPs, we notice that the dual and the primal optima agree. This concludes the proof of LP strong duality.</p>
+<h3 id="Proof">
+<a class="anchor" href="#Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof<a class="anchor-link" href="#Proof"> </a>
+</h3>
+<p>Suppose $x^*$ is primal-optimal. Let the set $I_{x^*} = \{ i : a_i^Tx^* = b_i\}$ be the set of the indices of the active constraints at $x^*$. Our goal is to construct a dual optimal solution $p^*$ s.t. $c^Tx^* = b^Tp^*$.</p>
 <p>Let $d$ be any vector that satisfies $d^Ta_i \geq 0 \ \ \forall i \in I_{x^*}$. That is, $d$ is a feasible direction w.r.t. to all the active constraints.</p>
-<p>A small, positive $\epsilon$-step in the direction of $d$ results in point $x^* + \epsilon d$ that's still feasible. The fact that the step is small is what guarantees no inactive constraints are violated.</p>
-<p>Let's compare the value of the objective at $x^* + \epsilon d$ to the value of the objective at $x^*$.</p>
-<p>By the assumption that $x^*$ is optimal, we have $c^Tx^* \leq c^T(x^* + \epsilon d) = c^Tx^* + \epsilon c^Td$. Thus, $c^Td = d^Tc \geq 0$
-</p>
+<p>By the assumption that $x^*$ is optimal, we have $c^Tx^* \leq c^T(x^* + \epsilon d) = c^Tx^* + \epsilon c^Td$. Thus, $c^Td = d^Tc \geq 0$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
 <div class="flash">
     <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>$d^Tc$ is nothing but the <em>directional derivative</em> at the minimizer $x^*$. It is a <em>first-order necessary-condition</em> that the <em>directional derivative</em> in any feasible direction $d$ be non-negative at any minimizer $x^*$. This is analogous to the first-derivative test for scalar-valued functions. So, this result should have been expected...
+    <strong>Note: </strong>$d^Tc$ is nothing but the <em>directional derivative</em> at the minimizer $x^*$. So, this also follows from the optimality of $x^*$ using the constrained optimality condition.
 </div>
-<br>
-<p>But since $d$ is a vector s.t. $d^Ta_i \geq 0 \ \ \forall i \in I_{x^*}$ and $d^Tc \geq 0$, then $d$ does <em>not</em> separate $c$ from the cone of the $a_i$'s. And since $d$ was arbitrary, this puts us in the setting of Farkas' Lemma. Namely, there exist <em>no</em> vectors $d$ that separate $c$ from the cone. This means the second statement in Farkas' Lemma is violated and the first must be true — $c$ must a conic combination of the $a_i$'s that are active at the minimizer. In other words, $\exists p \geq 0$ s.t. $c = \sum_{i \in I_{x^*}} p_ia_i$. 
-</p>
-<div class="flash">
-    <svg class="octicon octicon-info" viewbox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg>
-    <strong>Note: </strong>$c = \sum_{i \in I_{x^*}} p_ia_i$ should remind us of the Lagrange optimality condition in the general case of convex optimization. Recall that the Lagrange condition states that a point $x^*$ is optimal for a convex problem with objective $f(x)$ and constraints $g_i(x)=0$ if and only if $\exists  \lambda_i$ for each active constraint s.t. $\nabla f(x^*) = \sum_i \lambda_i \nabla g_i(x^*)$. In fact, Farka’s lemma is what underpins the Lagrange condition through the assumption that the non-linear objective $f$ and non-linear constraints $g_i$ behave linearly in a small neighborhood of $x^*$. 
+
 </div>
-<br>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But, since $d$ is a vector s.t. $d^Ta_i \geq 0 \ \ \forall i \in I_{x^*}$ and $d^Tc \geq 0$, $d$ does <em>not</em> separate $c$ from the cone of the $a_i$'s. And, since $d$ was arbitrary, this puts us in the setting of Farkas' Lemma. Namely, there exist <em>no</em> vectors $d$ that separate $c$ from the cone. This means the alternative must be true — $c$ must a conic combination of the $a_i$'s that are active at the minimizer. In other words, $\exists p \geq 0$ s.t. $c = \sum_{i \in I_{x^*}} p_ia_i$.</p>
 <p>But $p$ has dimension equal to only the number of active constraints at $x^*$. To be a dual variable at all, it must have dimension equal to the number of all primal constraints. We extend $p$ to $p^*$ by setting all the entries that do not correspond to the active constraints at $x^*$ to be zero.</p>
 <p>That is $p^*_i = \begin{cases} p_i \ \ \textrm{if} \ \  i \in I_{x^*} \\ 0   \ \ \textrm{if} \ \  i \notin I_{x^*} \end{cases}$.</p>
 <p>Now $A^Tp^*  = \sum_{i} p^*_ia_i = c$, so any feasibility condition in the dual, whether it be $A^Tp \leq c$, $A^Tp \geq c$, or $A^Tp = c$, is satisfied by $p^*$.</p>
@@ -1417,226 +1569,7 @@ $</p>
 <p>
 $$b^Tp^* = \sum_{i} b_ip_i^* = \sum_{i \in I_{x^*}} b_ip_i^* + \sum_{i \notin I_{x^*}} b_ip_i^* = \sum_{i \in I_{x^*}} a_i^Tx^*p_i^* = (\sum_{i \in I_{x^*}} p_ia_i^T)x^* = c^Tx^* $$
 </p>
-<p>However, it still remains to be shown that $p^*$ is dual optimal.</p>
-<p>Whenever the primal objective and the dual objective agree on a value, the respective solutions must be primal-dual optimal. This is simply true by Weak Duality, which states that $b^Tp \leq c^Tx^*$ $\forall p$. So, $c^Tx^*$ is an upper bound for any dual feasible solution. But the dual is a maximization problem, so the dual optimal must be $p^*$ s.t. $b^Tp^* = c^Tx^*$.</p>
-<p>NOTE THAT WE HAVE CONSTRUCTED THE DUAL OPTIMAL BY EXPLICITY SATISFYING THE KKT CONDITIONS IN THE LINEAR CASE. SO THIS IS THE PROOF THAT KKT PAIR =&gt; PRIMAL/DUAL OPTIMAL.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Theorems-of-the-Alternative">
-<a class="anchor" href="#Theorems-of-the-Alternative" aria-hidden="true"><span class="octicon octicon-link"></span></a>Theorems of the Alternative<a class="anchor-link" href="#Theorems-of-the-Alternative"> </a>
-</h1>
-<p>As mentioned earlier, these are theorems that describe exclusively disjoint scenarios that together comprise the entire outcome space. Formally, these are theorems of the form $A \implies \neg B \land \neg A \implies  B$  where $A$, and $B$ are logical statements.</p>
-<p>Note that theorems of equivalence (i.e. theorems of the form <em>'the following are equivalent - TFAE'</em>) can also be formulated as theorems of the alternative. To say that $A$ and $B$ are equivalent means $ A \iff B$. But this breaks down as $A \implies B \land B \implies A$. Letting $\hat B = \neg B$ we can rewrite the above as $A \implies \neg \hat B \land B \implies A$. But, by taking the contrapositive, $B \implies A$ becomes $\neg A \implies \neg B$, which is to say $\neg A \implies \hat B$. In summary, we have shown that $A \iff B$ is equivalent to $A \implies \neg \hat B \land \neg A \implies \hat B$.</p>
-<p>So, the class of theorems of the alternative is much broader than it appears and includes theorems of equivalence.</p>
-<h2 id="Example-of-a-Theorem-of-the-Alternative">
-<a class="anchor" href="#Example-of-a-Theorem-of-the-Alternative" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example of a Theorem of the Alternative<a class="anchor-link" href="#Example-of-a-Theorem-of-the-Alternative"> </a>
-</h2>
-<p>To see how we can prove a theorem of the alternative, it helps to state one.</p>
-<blockquote>
-<p><strong>Theorem:</strong>   Exactly one of the following two statements most hold for a given matrix A. </p>
-<ol>
-<li>$\exists x \ne 0$ s.t. $Ax = 0$ and $x \geq 0$</li>
-<li>$\exists p$ s.t. $p^TA &gt; 0$
-<br>
-</li>
-</ol>
-</blockquote>
-<h3 id="Using-a-Separation-Argument">
-<a class="anchor" href="#Using-a-Separation-Argument" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using a Separation Argument<a class="anchor-link" href="#Using-a-Separation-Argument"> </a>
-</h3>
-<p>At the heart of separation arguments lies this simple fact.</p>
-<blockquote>
-<p><strong>Separating Hyperplane Theorem:</strong> For any convex set $C$, if a point $\omega \notin C$ then there exists a hyperplane separating $\omega$ and $C$.<br></p>
-</blockquote>
-<p>Farkas' Lemma, for instance, is proved by a separation argument that uses, as its convex set, the conic combination of the $a_i$'s. The conclusion is immediate since in Farkas' Lemma the first statement plainly says that a vector belongs to the convex set, and the second statement plainly says there exists a separating hyperplane between the two.</p>
-<p>This is the pattern all separation arguments must follow. However, in general, it may take a bit of work to define the problem-specific convex set and also to show that the two statements are <em>really</em> talking about belonging to this set, and separation from it. However, once these three things are accomplished the proof is complete.</p>
-<p>Using this idea, let's give a proof of the above theorem of the alternative using a separation argument.</p>
-<h4 id="Proof">
-<a class="anchor" href="#Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof<a class="anchor-link" href="#Proof"> </a>
-</h4>
-<p>First order of business is to come up with a convex set.</p>
-<p>Let's take $C = \{ z : z = Ay, \sum_i y_i = 1, y \geq 0 \}$ to be the convex hull of the columns of $A$.</p>
-<p>The first statement in the theorem was that $\exists x \ne 0$ s.t. $Ax = 0$ and $x \geq 0$.</p>
-<p>Since $x \ne 0$ and $x \geq 0$ we can scale as $x$ as $y = \alpha x$ until $\sum_i y_i = 1$.</p>
-<p>So, the first statement is equivalent to saying the origin belongs to the convex hull $C$ (i.e. $0 \in C$)</p>
-<p>The second statement was that $\exists p$ s.t. $p^TA &gt; 0$. This is equivalent to saying that all the columns of $A$ lie to one side of the separating hyperplane introduced by $p$.</p>
-<p>But all $z \in C$ are convex combinations of $A$'s columns. In particular since they're a convex combination they're also a conic combination, so all $z \in C$ also lie on the same side of the hyperplane. That is $p^Tz &gt; 0 \ \ \forall z \in C$.</p>
-<p>But, of course, $p^T0 = 0$ (not $&gt; 0$). So, according to the second statement, the origin is separated from $C$.</p>
-<p>This concludes the proof since the two statements must be mutually exclusive.</p>
-<h3 id="Using-Strong-Duality">
-<a class="anchor" href="#Using-Strong-Duality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using Strong Duality<a class="anchor-link" href="#Using-Strong-Duality"> </a>
-</h3>
-<p>Strong duality isn't just a tool for applied science, it has important theoretical uses. For instance, now that we've proven it we can use Strong Duality, instead of a separation argument, to prove theorems of the alternative.</p>
-<p>Since it gives us feasibility of two different constraint sets, it makes sense to use duality to prove theorems of existence.</p>
-<p>Let's take the aforementioned theorem of the alternative for example...</p>
-<h4 id="Proof">
-<a class="anchor" href="#Proof" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof<a class="anchor-link" href="#Proof"> </a>
-</h4>
-<p>To prove the theorem we need to show two things. First, we need to show $1 \implies \neg 2$, then we need to show $\neg 1 \implies 2$.</p>
-<p>The $1 \implies \neg 2$ direction is simple.</p>
-<p>Suppose $\exists x \ne 0$ s.t. $Ax = 0$ and $x \geq 0$.</p>
-<p>Then $\forall p \ \ (p^TA)x = p^T(Ax) = p^T0 = 0$ (not $&gt; 0$).</p>
-<p>We tackle the $\neg 1 \implies 2$ direction using duality.</p>
-<p>The strategy is to construct a linear program based on $\neg 1$ such that the feasibility of its dual implies $2$.</p>
-<p>We can express $\neg 1$ as '$\forall x \ne 0$, either $Ax \ne 0$ or $x &lt; 0$.' Equivalently, '$x \ne 0 \implies Ax \ne 0$ or $x &lt; 0$.' Taking the contrapositive, statement $1$ becomes '$Ax = 0$ and  $x \geq 0 \implies x = 0$.'</p>
-<p>So, let's form the LP</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$
-\begin{cases}
-\max_x: \textbf{1}^Tx
-\\
-s.t.: \begin{aligned} &amp;Ax = 0
-\\ 
-&amp;x \geq 0
-\end{aligned}
-\end{cases}
-$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Note that $x = 0$ is a feasible solution to the LP. Furthermore, assuming statement $1$ guarantees that $x = 0$ is the only feasible solution. Thus, the LP is feasible and bounded.</p>
-<p>By Strong Duality, its dual must also be feasible and bounded.</p>
-<p>The dual is...</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$
-\begin{cases}
-\min_p: \textbf{0}^Tp
-\\
-s.t.: p^TA \geq \textbf{1}
-\end{cases}
-$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>... and since it's feasible, $\exists p$ s.t. $p^TA \geq 1 &gt; 0$ which demonstrates the truth of statement $2$.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Complementary-Slackness">
-<a class="anchor" href="#Complementary-Slackness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Complementary Slackness<a class="anchor-link" href="#Complementary-Slackness"> </a>
-</h1>
-<p><em>Complementary Slackness</em> is a fundamental property that exists between any primal optimal solution and any dual optimal solution.</p>
-<p>In the preceding section on Strong Duality we constructed a dual optimal by setting those of its variables that corresponded to the inactive constraints of the primal optimal to be zero.</p>
-<p>This is true in general, for all primal-dual optimal pairs.</p>
-<p>If a primal's constraint is loose at a some primal optimal, then the corresponding variable in the dual optimal is zero, and vice versa.</p>
-<p>Formally, this can be stated as</p>
-<blockquote>
-<p><strong>Complementary Slackness:</strong> if $x$ is primal feasible and $p$ is dual feasible, then $x$ and $p$ are respectively optimal iff: </p>
-<ol>
-<li>$(b_i - \sum_{j} a_{ij}x_j)p_i = 0 \ \ \forall i$</li>
-<li>$(\sum_{i} a_{ij}p_i - c_j)x_j = 0  \ \ \forall j$
-<br>
-</li>
-</ol>
-</blockquote>
-<p>If we recall, in the proof of Strong Duality we constructed a dual optimal by setting those of its variables that corresponded to the primal's slack constraints to be zero. In other words, we constructed a dual optimal in such a way as to satisfy the Complementary Slackness theorem. So, the fact that this generalizes to all primal-dual optima shouldn't surprise us.</p>
-<p>However, the above does not constitute a proof of Complementary Slackness, so let's offer one.</p>
-<p>Take as a starting point the primal-dual pair</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$
-\textrm{P} \ \ 
-\begin{cases}
-\min_x: c^Tx
-\\
-s.t.: \begin{aligned} &amp;Ax \geq b
-\\ 
-&amp;x \geq 0
-\end{aligned}
-\end{cases}
-$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$
-\textrm{D} \ \ 
-\begin{cases}
-\max_p: b^Tp
-\\
-s.t.: \begin{aligned} &amp;A^Tp \leq c
-\\ 
-&amp;p \geq 0
-\end{aligned}
-\end{cases}
-$</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Proof-of-Complementary-Slackness">
-<a class="anchor" href="#Proof-of-Complementary-Slackness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Proof of Complementary Slackness<a class="anchor-link" href="#Proof-of-Complementary-Slackness"> </a>
-</h2>
-<p><strong>Sufficiency $\impliedby$:</strong></p>
-<p>Suppose both equalities hold.</p>
-<p>Summing each over all $i$'s and $j$'s respectively and adding the results we get</p>
-<p>
-$$\sum_i \left(b_i - \sum_j a_{ij}x_j \right)p_i + \sum_j \left( \sum_i a_{ij}p_i - c_j \right)x_j = 0$$
-</p>
-<p>Which simplifies to</p>
-<p>
-$$\sum_i b_ip_i - \sum_i \sum_j a_{ij}x_jy_i + \sum_j \sum_i a_{i,j}y_ix_j - \sum_j c_jx_j = 0$$
-</p>
-<p>Or, in matrix-vector form</p>
-<p>
-$$b^Tp - p^TAx + p^TAx - c^Tx = 0$$
-</p>
-<p>The middle two terms cancel, and we get $b^Tp = c^Tp$.</p>
-<p>By Weak Duality, $x$ and $p$ are primal-dual optimal.</p>
-<p><strong>Necessity $\implies$:</strong></p>
-<p>Suppose $x$ and $p$ are primal-dual optimal.</p>
-<p>By Strong Duality $b^Tp = c^Tx$.</p>
-<p>In other words, $b^Tp - c^Tx = 0$. Adding and subtracting the terms canceled in the first part, we can bring the sum to the form</p>
-<p>
-$$b^Tp - p^TAx + p^TAx - c^Tx = 0$$
-</p>
-<p>Which is, once again, the same as</p>
-<p>
-$$\sum_i \left(b_i - \sum_j a_{ij}x_j \right)p_i + \sum_j \left( \sum_i a_{ij}p_i - c_j \right)x_j = 0$$
-</p>
-<p>But $p$ is dual feasible, so $p_i \geq 0 \ \ \forall i$. And since $x$ is primal feasible, $Ax \geq b$ implies $(b_i - \sum_j a_{ij}x_j) \leq 0 \ \ \forall i$.</p>
-<p>Similarly, $x_j \geq 0 \ \ \forall j$ and $( \sum_i a_{ij}p_i - c_j) \geq 0 \ \ \forall j$.</p>
-<p>So the above expression is a sum of all non-positive terms that adds up to zero. This can only happen if each term is equal to zero.</p>
+<p>This concludes the proof.</p>
 
 </div>
 </div>
@@ -1647,7 +1580,6 @@ $$\sum_i \left(b_i - \sum_j a_{ij}x_j \right)p_i + \sum_j \left( \sum_i a_{ij}p_
 <h1 id="Further-Reading---Duality-in-Unconstrained-Problems">
 <a class="anchor" href="#Further-Reading---Duality-in-Unconstrained-Problems" aria-hidden="true"><span class="octicon octicon-link"></span></a>Further Reading - Duality in Unconstrained Problems<a class="anchor-link" href="#Further-Reading---Duality-in-Unconstrained-Problems"> </a>
 </h1>
-<p>The Dual of an Unconstrained Problem</p>
 <p>As mentioned briefly, in the case of certain types of unconstrained problems, the <strong><em>Fenchel-Legendre (FL) Transform</em></strong> is what gives rise to the dual.</p>
 <p>First, we define the FL transform which is also known as a <strong><em>convex conjugate</em></strong> for reasons that will soon become apparent.</p>
 
