@@ -8,7 +8,7 @@ Thanks for dropping by! I'm Vahram, a Software Developer and graduate student of
 
 ### 🎓 Education
 
-After graduating from community college in 2018, I transfered to [UCLA](https://www.ucla.edu/) where I pursued my undergraduate studies in Applied Mathematics. In 2020, having graduated from UCLA with honors, I enrolled in the M.S. in Computer Science program @ [UT Austin](https://www.utexas.edu/). 
+After graduating from community college in 2018, I transfered to [UCLA](https://www.ucla.edu/) where I pursued my undergraduate studies in Applied Mathematics. In 2020, having graduated from UCLA, I enrolled in the M.S. in Computer Science program @ [UT Austin](https://www.utexas.edu/). 
 
 ### 💻 Work
 
