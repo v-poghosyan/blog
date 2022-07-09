@@ -8,8 +8,8 @@
 <meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Gradient Descent, Smoothness and Strict Convexity, Affine Invariance, Line Search - Optimization for Iterative Algorithms." />
-<meta property="og:description" content="Gradient Descent, Smoothness and Strict Convexity, Affine Invariance, Line Search - Optimization for Iterative Algorithms." />
+<meta name="description" content="Gradient Descent, Smoothness and Strict Convexity, Affine Invariance, Line Search - Optimization for Iterative Algorithms" />
+<meta property="og:description" content="Gradient Descent, Smoothness and Strict Convexity, Affine Invariance, Line Search - Optimization for Iterative Algorithms" />
 <link rel="canonical" href="https://v-poghosyan.github.io/blog/optimization/algorithms/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html" />
 <meta property="og:url" content="https://v-poghosyan.github.io/blog/optimization/algorithms/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html" />
 <meta property="og:site_name" content="Vahram Poghosyan" />
@@ -20,7 +20,7 @@
 <meta property="twitter:image" content="https://v-poghosyan.github.io/blog/images/grad-descent.png" />
 <meta property="twitter:title" content="Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-03-03T00:00:00-06:00","datePublished":"2022-03-03T00:00:00-06:00","description":"Gradient Descent, Smoothness and Strict Convexity, Affine Invariance, Line Search - Optimization for Iterative Algorithms.","headline":"Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent","image":"https://v-poghosyan.github.io/blog/images/grad-descent.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/algorithms/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html"},"url":"https://v-poghosyan.github.io/blog/optimization/algorithms/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-03-03T00:00:00-06:00","datePublished":"2022-03-03T00:00:00-06:00","description":"Gradient Descent, Smoothness and Strict Convexity, Affine Invariance, Line Search - Optimization for Iterative Algorithms","headline":"Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent","image":"https://v-poghosyan.github.io/blog/images/grad-descent.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://v-poghosyan.github.io/blog/optimization/algorithms/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html"},"url":"https://v-poghosyan.github.io/blog/optimization/algorithms/applied%20mathematics/proofs/2022/03/03/Convex-Optimization-Algorithms-for-Unconstrained-Optimization-Gradient-Descent.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://v-poghosyan.github.io/blog/feed.xml" title="Vahram Poghosyan" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -106,7 +106,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent</h1><p class="page-description">Gradient Descent, Smoothness and Strict Convexity, Affine Invariance, Line Search - Optimization for Iterative Algorithms.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-03-03T00:00:00-06:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Optimization - Algorithms for Unconstrained Optimization, Gradient-Descent</h1><p class="page-description">Gradient Descent, Smoothness and Strict Convexity, Affine Invariance, Line Search - Optimization for Iterative Algorithms</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-03-03T00:00:00-06:00" itemprop="datePublished">
         Mar 3, 2022
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -226,7 +226,7 @@ window.onload = wrap_img;
 <p>We can further qualify what we mean by <em>'limited information'</em> about the objective by introducing a categorization on optimization algorithms – the <strong><em>Oracle Access Model (OAM)</em></strong>. In this model, the objective is abstracted into a black box. For each input $x$, the black box gives the algorithm access to the value of the objective, $f(x)$, and, optionally, global information in the form of higher order behavior such as $\nabla f(x)$, $\nabla^2 f(x)$, etc. GD is what's known as a <strong><em>first-order oracle</em></strong> because it's only allowed access to $f(x)$ and first-order information in the form of $\nabla f(x)$.</p>
 <p>It's important to note that the OAM is not all-inclusive, there are a number of optimization algorithms, such as <strong><em>composite optimization</em></strong> algorithms, that utilize structural information about the objective that goes beyond $n$-th order behavior. An example of such an algorithm is <strong><em>Proximal Gradient Descent (PGD)</em></strong> which, in addition to $f(x)$ and $\nabla f(x)$, also has access to the <strong><em>prox operator</em></strong>: $Prox_{h,\eta}(x)$.</p>
 <p>We will cover these composite optimization algorithms in later posts. Many of the composite optimization algorithms, such as PGD, are simple modifications of vanilla GD. The modification done in PGD, for example, make it suitable for constrained optimization.
-For now, however, we focus on the case of unconstrained optimization with oracles, particularly on GD, in order to develop the key algorithmic intuition.</p>
+For now, however, we focus on the case of unconstrained optimization with oracles, particularly on Gradient Descent, in order to develop the key algorithmic intuition.</p>
 <h1 id="The-Gradient-Descent-Algorithm">
 <a class="anchor" href="#The-Gradient-Descent-Algorithm" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Gradient Descent Algorithm<a class="anchor-link" href="#The-Gradient-Descent-Algorithm"> </a>
 </h1>
