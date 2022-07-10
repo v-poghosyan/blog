@@ -20,6 +20,6 @@ In the Summer of 2022 I will be joining [Capital One](https://www.capitalone.com
 
 For a detailed rundown of my work history and experience, check out my [LinkedIn](https://www.linkedin.com/in/vahrampoghosyan/). 
 
-<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="vahrampoghosyan" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/vahrampoghosyan?trk=profile-badge">Vahram P.</a></div>
+<!-- <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="vahrampoghosyan" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/vahrampoghosyan?trk=profile-badge">Vahram P.</a></div> -->
               
 Feel free to also email me at: vahram@utexas.edu
