@@ -433,6 +433,16 @@ html, body, input, textarea, select, button { color: rgba(255, 255, 255, 0.87) !
 
 a { text-decoration: none !important; font-weight: bold !important; color: rgba(255, 255, 255, 0.87) !important; padding: 2px !important; border-radius: 6px !important; }
 
+.profile-badge { margin-left: auto !important; margin-right: auto !important; }
+
+.badge-base__link { display: none !important; }
+
+.profile-badge__cta-btn { margin: 4px 16px 12px !important; color: inherit !important; }
+
+.profile-badge__cta-btn--dark { text-decoration: none !important; font-weight: 600 !important; color: #fff !important; padding: 0 16px !important; border-radius: 2px !important; }
+
+.artdeco-entity-image { margin-left: 0 !important; margin-right: 0 !important; }
+
 .footnotes { border-top: 1px solid rgba(255, 255, 255, 0.87) !important; }
 
 a.footnote.footnotes { border: none !important; }
